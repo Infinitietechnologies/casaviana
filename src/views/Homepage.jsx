@@ -6,6 +6,7 @@ import { Navigation, Thumbs } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
+import Link from "next/link";
 
 const Homepage = () => {
   // Separate state for each Swiper instance
@@ -16,8 +17,14 @@ const Homepage = () => {
   const [thumbsSwiper5, setThumbsSwiper5] = React.useState(null);
 
   const eventImages = [
-    { src: "/images/event1.jpg", alt: "Event 1" },
-    { src: "/images/event2.png", alt: "Event 2" },
+    {
+      src: "/images/Imagem WhatsApp 2025-10-31 às 11.05.57_e8acca07.jpg",
+      alt: "Event 1",
+    },
+    {
+      src: "/images/Imagem WhatsApp 2025-10-31 às 11.06.20_11115bdf.jpg",
+      alt: "Event 2",
+    },
   ];
 
   const destaqueItems = [
@@ -88,24 +95,24 @@ const Homepage = () => {
   return (
     <>
       {/* FIRST SECTION - EVENTOS, DESTAQUES, SLIDER */}
-      <div className="mx-auto py-4 md:py-8 px-2 sm:px-4 mt-20 sm:mt-36">
+      <div className="mx-auto py-4 md:py-8 px-2 sm:px-4 mt-20 sm:mt-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6">
           {/* LEFT SIDE - EVENTOS EM DESTAQUES */}
           <div className="lg:col-span-3">
             <h2 className="bg-gradient-to-r from-orange-500 to-red-600 text-white text-base sm:text-lg md:text-xl text-center font-bold py-2 px-4 rounded-md mb-4">
               EVENTOS EM DESTAQUES
             </h2>
-            <div className="grid grid-cols-2 sm:flex gap-2 sm:gap-4">
+            <div className="flex justify-center gap-2 sm:gap-3">
               {eventImages.map((ev, i) => (
                 <div
                   key={i}
-                  className="relative w-full h-[150px] sm:h-[180px] md:h-[230px]"
+                  className="relative w-[48%] sm:w-[45%] md:w-[48%] h-[150px] sm:h-[180px] md:h-[220px]"
                 >
                   <Image
                     src={ev.src}
                     alt={ev.alt}
                     fill
-                    className="object-contain"
+                    className="object-cover rounded-md"
                   />
                 </div>
               ))}
@@ -117,16 +124,18 @@ const Homepage = () => {
             <h2 className="bg-gradient-to-r from-orange-500 to-red-600 text-white text-base sm:text-lg md:text-xl text-center font-bold py-2 px-4 rounded-md mb-4">
               DESTAQUES
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
-              {destaqueItems.map((item, i) => (
-                <button
-                  key={i}
-                  className="bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md py-2 sm:py-3 px-3 sm:px-4 text-xs sm:text-sm transition-all"
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
+            <Link href="https://centraldipanda.ao/loja-do-cabelo/">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+                {destaqueItems.map((item, i) => (
+                  <button
+                    key={i}
+                    className="bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md py-2 sm:py-3 px-3 sm:px-4 text-xs sm:text-sm transition-all"
+                  >
+                    {item}
+                  </button>
+                ))}
+              </div>
+            </Link>
           </div>
 
           {/* RIGHT SIDE - SLIDER 1 */}
@@ -336,7 +345,7 @@ const Homepage = () => {
             >
               {sliderCenterImages.map((img, i) => (
                 <SwiperSlide key={i}>
-                  <div className="relative w-full h-[60px] sm:h-[70px] md:h-[90px] cursor-pointer">
+                  <div className="relative w-full h-[60px] sm:h-[70px] md:h-[110px] cursor-pointer">
                     <Image
                       src={img}
                       alt={`thumb-${i}`}
@@ -449,7 +458,7 @@ const Homepage = () => {
           >
             {images.map((img, i) => (
               <SwiperSlide key={i}>
-                <div className="relative w-full h-[60px] sm:h-[70px] md:h-[90px] cursor-pointer">
+                <div className="relative w-full h-[60px] sm:h-[70px] md:h-[110px] cursor-pointer">
                   <Image
                     src={img}
                     alt={`thumb-${i}`}
@@ -518,7 +527,7 @@ const Homepage = () => {
         >
           {hotelImages.map((img, i) => (
             <SwiperSlide key={i}>
-              <div className="relative w-full h-[60px] sm:h-[70px] md:h-[90px] cursor-pointer">
+              <div className="relative w-full h-[60px] sm:h-[70px] md:h-[110px] cursor-pointer">
                 <Image
                   src={img}
                   alt={`thumb-${i}`}
@@ -575,7 +584,7 @@ const Homepage = () => {
         >
           {singerImages.map((img, i) => (
             <SwiperSlide key={i}>
-              <div className="relative w-full h-[60px] sm:h-[70px] md:h-[90px] cursor-pointer">
+              <div className="relative w-full h-[60px] sm:h-[70px] md:h-[110px] cursor-pointer">
                 <Image
                   src={img}
                   alt={`thumb-${i}`}

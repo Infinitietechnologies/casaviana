@@ -2557,3 +2557,732 @@ Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
 
 %s
  {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:36:32.687] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[03:36:32.687] Browser WARN    Image with src "http://localhost:3000/images/cardapio.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:36:32.687] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:36:32.687] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:36:48.802] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[03:36:48.802] Browser WARN    Image with src "http://localhost:3000/images/cardapio.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:36:48.803] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:36:48.803] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:40:37.365] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:40:37.366] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:40:37.366] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:40:37.366] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:40:39.734] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[03:40:39.734] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:40:39.734] Browser WARN    Image with src "http://localhost:3000/images/cardapio.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:40:39.734] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:41:01.406] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:41:01.406] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:41:01.406] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:41:01.406] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:42:31.659] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[03:42:31.659] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:42:31.659] Browser WARN    Image with src "http://localhost:3000/images/cardapio.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:42:31.659] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:44:37.130] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[03:44:37.130] Browser WARN    Image with src "http://localhost:3000/images/cardapio.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:44:37.130] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:44:37.130] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:44:55.725] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[03:44:55.725] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:44:55.725] Browser WARN    Image with src "http://localhost:3000/images/cardapio.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:44:55.725] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[04:00:53.532] Server  ERROR    ⨯ ./src/views/Homepage.jsx
+Error:   × Expected '>', got 'div'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:390:1]
+ 387 │     </div>
+ 388 │   </div>
+ 389 │         </div>
+ 390 │       </div>
+     ·         ───
+ 391 │ 
+ 392 │       {/* BANNER AND BEVERAGE SLIDER */}
+ 392 │       <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-8 py-4 md:py-6">
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[04:00:54.231] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expected '>', got 'div'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:390:1]
+ 387 │     </div>
+ 388 │   </div>
+ 389 │         </div>
+ 390 │       </div>
+     ·         ───
+ 391 │ 
+ 392 │       {/* BANNER AND BEVERAGE SLIDER */}
+ 392 │       <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-8 py-4 md:py-6">
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[04:00:54.231] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expected '>', got 'div'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:390:1]
+ 387 │     </div>
+ 388 │   </div>
+ 389 │         </div>
+ 390 │       </div>
+     ·         ───
+ 391 │ 
+ 392 │       {/* BANNER AND BEVERAGE SLIDER */}
+ 392 │       <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-8 py-4 md:py-6">
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+./src/pages/index.js
+[04:00:56.392] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expected '>', got 'div'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:390:1]
+ 387 │     </div>
+ 388 │   </div>
+ 389 │         </div>
+ 390 │       </div>
+     ·         ───
+ 391 │ 
+ 392 │       {/* BANNER AND BEVERAGE SLIDER */}
+ 392 │       <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-8 py-4 md:py-6">
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[04:02:33.230] Browser LOG     Refreshing page data due to server-side change
+[04:03:38.264] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[04:03:38.264] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[04:03:38.264] Browser WARN    Image with src "http://localhost:3000/images/cardapio.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[04:03:38.264] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:42:43.215] Server  ERROR    ⨯ ./src/components/Header.jsx
+Error:   × Legacy octal escape is not permitted in strict mode
+    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:87:1]
+ 84 │               <Image
+ 85 │                 src="/images/qualidade.png"
+ 86 │                 alt="Qualidade"
+ 87 │                 width={00}
+    ·                        ──
+ 88 │                 height={100}
+ 89 │               />
+ 89 │             </Link>
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[05:42:44.240] Browser ERROR   ./src/components/Header.jsx
+Error:   × Legacy octal escape is not permitted in strict mode
+    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:87:1]
+ 84 │               <Image
+ 85 │                 src="/images/qualidade.png"
+ 86 │                 alt="Qualidade"
+ 87 │                 width={00}
+    ·                        ──
+ 88 │                 height={100}
+ 89 │               />
+ 89 │             </Link>
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[05:42:44.240] Browser ERROR   ./src/components/Header.jsx
+Error:   × Legacy octal escape is not permitted in strict mode
+    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:87:1]
+ 84 │               <Image
+ 85 │                 src="/images/qualidade.png"
+ 86 │                 alt="Qualidade"
+ 87 │                 width={00}
+    ·                        ──
+ 88 │                 height={100}
+ 89 │               />
+ 89 │             </Link>
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[05:42:45.233] Browser ERROR   ./src/components/Header.jsx
+Error:   × Legacy octal escape is not permitted in strict mode
+    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:87:1]
+ 84 │               <Image
+ 85 │                 src="/images/qualidade.png"
+ 86 │                 alt="Qualidade"
+ 87 │                 width={00}
+    ·                        ──
+ 88 │                 height={100}
+ 89 │               />
+ 89 │             </Link>
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[05:44:25.148] Server  ERROR    ⨯ ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:121:1]
+ 118 │               DESTAQUES
+ 119 │             </h2>
+ 120 │             <Li
+ 121 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·             ─
+ 122 │               {destaqueItems.map((item, i) => (
+ 123 │                 <button
+ 123 │                   key={i}
+     ╰────
+  × Expected ',', got 'className'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:121:1]
+ 118 │               DESTAQUES
+ 119 │             </h2>
+ 120 │             <Li
+ 121 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·                  ─────────
+ 122 │               {destaqueItems.map((item, i) => (
+ 123 │                 <button
+ 123 │                   key={i}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[05:44:26.236] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:121:1]
+ 118 │               DESTAQUES
+ 119 │             </h2>
+ 120 │             <Li
+ 121 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·             ─
+ 122 │               {destaqueItems.map((item, i) => (
+ 123 │                 <button
+ 123 │                   key={i}
+     ╰────
+  × Expected ',', got 'className'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:121:1]
+ 118 │               DESTAQUES
+ 119 │             </h2>
+ 120 │             <Li
+ 121 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·                  ─────────
+ 122 │               {destaqueItems.map((item, i) => (
+ 123 │                 <button
+ 123 │                   key={i}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[05:44:26.236] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:121:1]
+ 118 │               DESTAQUES
+ 119 │             </h2>
+ 120 │             <Li
+ 121 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·             ─
+ 122 │               {destaqueItems.map((item, i) => (
+ 123 │                 <button
+ 123 │                   key={i}
+     ╰────
+  × Expected ',', got 'className'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:121:1]
+ 118 │               DESTAQUES
+ 119 │             </h2>
+ 120 │             <Li
+ 121 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·                  ─────────
+ 122 │               {destaqueItems.map((item, i) => (
+ 123 │                 <button
+ 123 │                   key={i}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+./src/pages/index.js
+[05:44:29.971] Server  ERROR    ⨯ ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
+ 119 │               DESTAQUES
+ 120 │             </h2>
+ 121 │             <Link href={}
+ 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·             ─
+ 123 │               {destaqueItems.map((item, i) => (
+ 124 │                 <button
+ 124 │                   key={i}
+     ╰────
+  × Expected ',', got 'className'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
+ 119 │               DESTAQUES
+ 120 │             </h2>
+ 121 │             <Link href={}
+ 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·                  ─────────
+ 123 │               {destaqueItems.map((item, i) => (
+ 124 │                 <button
+ 124 │                   key={i}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[05:44:30.237] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:121:1]
+ 118 │               DESTAQUES
+ 119 │             </h2>
+ 120 │             <Li
+ 121 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·             ─
+ 122 │               {destaqueItems.map((item, i) => (
+ 123 │                 <button
+ 123 │                   key={i}
+     ╰────
+  × Expected ',', got 'className'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:121:1]
+ 118 │               DESTAQUES
+ 119 │             </h2>
+ 120 │             <Li
+ 121 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·                  ─────────
+ 122 │               {destaqueItems.map((item, i) => (
+ 123 │                 <button
+ 123 │                   key={i}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[05:44:30.237] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
+ 119 │               DESTAQUES
+ 120 │             </h2>
+ 121 │             <Link href={}
+ 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·             ─
+ 123 │               {destaqueItems.map((item, i) => (
+ 124 │                 <button
+ 124 │                   key={i}
+     ╰────
+  × Expected ',', got 'className'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
+ 119 │               DESTAQUES
+ 120 │             </h2>
+ 121 │             <Link href={}
+ 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·                  ─────────
+ 123 │               {destaqueItems.map((item, i) => (
+ 124 │                 <button
+ 124 │                   key={i}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[05:44:30.237] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
+ 119 │               DESTAQUES
+ 120 │             </h2>
+ 121 │             <Link href={}
+ 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·             ─
+ 123 │               {destaqueItems.map((item, i) => (
+ 124 │                 <button
+ 124 │                   key={i}
+     ╰────
+  × Expected ',', got 'className'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
+ 119 │               DESTAQUES
+ 120 │             </h2>
+ 121 │             <Link href={}
+ 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·                  ─────────
+ 123 │               {destaqueItems.map((item, i) => (
+ 124 │                 <button
+ 124 │                   key={i}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+./src/pages/index.js
+[05:44:33.544] Server  ERROR    ⨯ ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
+ 119 │               DESTAQUES
+ 120 │             </h2>
+ 121 │             <Link href="https://centraldipanda.ao/loja-do-cabelo/"
+ 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·             ─
+ 123 │               {destaqueItems.map((item, i) => (
+ 124 │                 <button
+ 124 │                   key={i}
+     ╰────
+  × Expected ',', got 'className'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
+ 119 │               DESTAQUES
+ 120 │             </h2>
+ 121 │             <Link href="https://centraldipanda.ao/loja-do-cabelo/"
+ 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·                  ─────────
+ 123 │               {destaqueItems.map((item, i) => (
+ 124 │                 <button
+ 124 │                   key={i}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[05:44:34.230] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
+ 119 │               DESTAQUES
+ 120 │             </h2>
+ 121 │             <Link href={}
+ 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·             ─
+ 123 │               {destaqueItems.map((item, i) => (
+ 124 │                 <button
+ 124 │                   key={i}
+     ╰────
+  × Expected ',', got 'className'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
+ 119 │               DESTAQUES
+ 120 │             </h2>
+ 121 │             <Link href={}
+ 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·                  ─────────
+ 123 │               {destaqueItems.map((item, i) => (
+ 124 │                 <button
+ 124 │                   key={i}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[05:44:34.230] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
+ 119 │               DESTAQUES
+ 120 │             </h2>
+ 121 │             <Link href="https://centraldipanda.ao/loja-do-cabelo/"
+ 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·             ─
+ 123 │               {destaqueItems.map((item, i) => (
+ 124 │                 <button
+ 124 │                   key={i}
+     ╰────
+  × Expected ',', got 'className'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
+ 119 │               DESTAQUES
+ 120 │             </h2>
+ 121 │             <Link href="https://centraldipanda.ao/loja-do-cabelo/"
+ 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·                  ─────────
+ 123 │               {destaqueItems.map((item, i) => (
+ 124 │                 <button
+ 124 │                   key={i}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[05:44:34.230] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
+ 119 │               DESTAQUES
+ 120 │             </h2>
+ 121 │             <Link href="https://centraldipanda.ao/loja-do-cabelo/"
+ 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·             ─
+ 123 │               {destaqueItems.map((item, i) => (
+ 124 │                 <button
+ 124 │                   key={i}
+     ╰────
+  × Expected ',', got 'className'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
+ 119 │               DESTAQUES
+ 120 │             </h2>
+ 121 │             <Link href="https://centraldipanda.ao/loja-do-cabelo/"
+ 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·                  ─────────
+ 123 │               {destaqueItems.map((item, i) => (
+ 124 │                 <button
+ 124 │                   key={i}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+./src/pages/index.js
+[05:44:36.296] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
+ 119 │               DESTAQUES
+ 120 │             </h2>
+ 121 │             <Link href="https://centraldipanda.ao/loja-do-cabelo/"
+ 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·             ─
+ 123 │               {destaqueItems.map((item, i) => (
+ 124 │                 <button
+ 124 │                   key={i}
+     ╰────
+  × Expected ',', got 'className'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
+ 119 │               DESTAQUES
+ 120 │             </h2>
+ 121 │             <Link href="https://centraldipanda.ao/loja-do-cabelo/"
+ 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ·                  ─────────
+ 123 │               {destaqueItems.map((item, i) => (
+ 124 │                 <button
+ 124 │                   key={i}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[05:44:37.954] Server  ERROR    ⨯ ./src/views/Homepage.jsx
+Error:   × Expected '</', got 'jsx text (
+  │
+  │           )'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:132:1]
+ 129 │                     </button>
+ 130 │                   ))}
+ 131 │                 </div>
+ 132 │ ╭─▶           </div>
+ 133 │ │   
+ 134 │ ╰─▶           {/* RIGHT SIDE - SLIDER 1 */}
+ 135 │               <div className="lg:col-span-4">
+ 136 │                 {/* Main Slider */}
+ 136 │                 <Swiper
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[05:44:38.237] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expected '</', got 'jsx text (
+  │
+  │           )'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:132:1]
+ 129 │                     </button>
+ 130 │                   ))}
+ 131 │                 </div>
+ 132 │ ╭─▶           </div>
+ 133 │ │   
+ 134 │ ╰─▶           {/* RIGHT SIDE - SLIDER 1 */}
+ 135 │               <div className="lg:col-span-4">
+ 136 │                 {/* Main Slider */}
+ 136 │                 <Swiper
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[05:44:38.237] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expected '</', got 'jsx text (
+  │
+  │           )'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:132:1]
+ 129 │                     </button>
+ 130 │                   ))}
+ 131 │                 </div>
+ 132 │ ╭─▶           </div>
+ 133 │ │   
+ 134 │ ╰─▶           {/* RIGHT SIDE - SLIDER 1 */}
+ 135 │               <div className="lg:col-span-4">
+ 136 │                 {/* Main Slider */}
+ 136 │                 <Swiper
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+./src/pages/index.js
+[05:44:40.390] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expected '</', got 'jsx text (
+  │
+  │           )'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:132:1]
+ 129 │                     </button>
+ 130 │                   ))}
+ 131 │                 </div>
+ 132 │ ╭─▶           </div>
+ 133 │ │   
+ 134 │ ╰─▶           {/* RIGHT SIDE - SLIDER 1 */}
+ 135 │               <div className="lg:col-span-4">
+ 136 │                 {/* Main Slider */}
+ 136 │                 <Swiper
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[05:44:46.241] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:44:46.241] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:44:46.241] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:44:46.241] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:44:47.546] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[05:44:51.779] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[05:44:51.779] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:44:51.779] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:44:51.779] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:44:51.779] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:47:51.278] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[05:47:51.278] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:47:51.278] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:47:51.278] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:47:51.278] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:47:53.542] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:47:53.542] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:47:53.542] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:47:53.542] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:47:53.542] Browser WARN    Image with src "/images/qualidade.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[05:47:57.894] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[05:47:57.894] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:47:57.894] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:47:57.894] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:47:57.894] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:50:47.351] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[05:50:47.351] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:50:47.351] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:50:47.351] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:50:47.351] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[06:05:05.749] Browser WARN    Image with src "/images/cms-image2.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[06:05:06.042] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[06:05:06.042] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[06:05:06.042] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[06:05:06.042] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[06:08:22.719] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[06:08:22.719] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[06:08:22.719] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[06:08:22.719] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[06:08:22.719] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[06:10:52.440] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[06:10:52.440] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[06:10:52.440] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[06:10:52.440] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[06:10:52.440] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[06:11:44.300] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[06:11:44.300] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[06:11:44.300] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[06:11:44.300] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[06:11:44.300] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.

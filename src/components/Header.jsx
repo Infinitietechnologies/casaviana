@@ -23,14 +23,14 @@ const Header = () => {
             : "bg-red-600 border-transparent"
         }`}
     >
-      <div className="max-w-[1900px] mx-auto flex items-center justify-between h-36 px-4 md:px-6">
+      <div className="max-w-[1900px] mx-auto flex items-center justify-between h-20 px-4 md:px-6">
         {/* Left logos */}
         <div className="flex items-center gap-2">
           {/* Always show Casa Viana */}
           <Image
             src="/images/casa-viana.png"
             alt="Casa Viana"
-            width={160}
+            width={90}
             height={90}
           />
 
@@ -39,7 +39,7 @@ const Header = () => {
             <Image
               src="/images/mabululu.png"
               alt="Mabululu"
-              width={80}
+              width={50}
               height={80}
             />
           </Link>
@@ -48,7 +48,7 @@ const Header = () => {
             <Image
               src="/images/Centra-Dipanda.png"
               alt="Central Dipanda"
-              width={80}
+              width={50}
               height={80}
             />
           </Link>
@@ -60,7 +60,9 @@ const Header = () => {
             (item, i) => (
               <a
                 key={i}
-                href="#"
+                href={
+                  item === "Eventos" ? "https://www.casaviana.ao/eventos/" : "#"
+                }
                 className="relative group transition-colors hover:text-gray-200 text-lg"
               >
                 {item}
@@ -77,14 +79,14 @@ const Header = () => {
             <Image
               src="/images/cardapio.png"
               alt="Cardápio"
-              width={75}
+              width={55}
               height={55}
             />
             <Link href="https://maps.app.goo.gl/UuTFT2sXNC6epm4x6">
               <Image
                 src="/images/qualidade.png"
                 alt="Qualidade"
-                width={400}
+                width={300}
                 height={100}
               />
             </Link>
