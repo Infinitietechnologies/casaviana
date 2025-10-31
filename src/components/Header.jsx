@@ -21,21 +21,21 @@ const Header = () => {
             alt="Casa Viana"
             width={90}
             height={90}
-            className="rounded-md bg-white/80 p-1 backdrop-blur-sm hover:scale-105 transition-transform"
+            className="rounded-md bg-white/80 p-1 backdrop-blur-sm transition-transform"
           />
           <Image
             src="/images/mabululu.png"
             alt="Mabululu"
             width={80}
             height={80}
-            className="rounded-md bg-white/80 p-1 backdrop-blur-sm hover:scale-105 transition-transform"
+            className="rounded-md bg-white/80 p-1 backdrop-blur-sm transition-transform"
           />
           <Image
             src="/images/Centra-Dipanda.png"
             alt="Central Dipanda"
             width={80}
             height={80}
-            className="rounded-md bg-white/80 p-1 backdrop-blur-sm hover:scale-105 transition-transform"
+            className="rounded-md bg-white/80 p-1 backdrop-blur-sm transition-transform"
           />
         </div>
 
@@ -62,14 +62,14 @@ const Header = () => {
             alt="Cardápio"
             width={55}
             height={55}
-            className="hover:scale-110 transition-transform"
+            className="transition-transform"
           />
           <Image
             src="/images/qualidade.png"
             alt="Qualidade"
             width={300}
             height={100}
-            className="hover:opacity-90 transition-opacity"
+            className="transition-opacity"
           />
           <div className="relative">
             <Image
@@ -77,7 +77,7 @@ const Header = () => {
               alt="Cart"
               width={30}
               height={30}
-              className="invert hover:scale-110 transition-transform"
+              className="invert transition-transform"
             />
             <span className="absolute -top-1 -right-2 bg-red-800 text-white text-xs rounded-full px-1.5">
               0
