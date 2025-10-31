@@ -26,6 +26,11 @@ const Homepage = () => {
     "...",
     "...",
     "...",
+    "...",
+    "...",
+    "...",
+    "...",
+    "...",
   ];
 
   const sliderImages = [
@@ -83,7 +88,7 @@ const Homepage = () => {
   return (
     <>
       {/* FIRST SECTION - EVENTOS, DESTAQUES, SLIDER */}
-      <div className="mx-auto py-4 md:py-8 px-2 sm:px-4 mt-20 sm:mt-34">
+      <div className="mx-auto py-4 md:py-8 px-2 sm:px-4 mt-20 sm:mt-36">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6">
           {/* LEFT SIDE - EVENTOS EM DESTAQUES */}
           <div className="lg:col-span-3">
@@ -141,7 +146,7 @@ const Homepage = () => {
             >
               {sliderImages.map((img, i) => (
                 <SwiperSlide key={i}>
-                  <div className="relative w-full h-[200px] sm:h-[250px] md:h-[280px] lg:h-[220px]">
+                  <div className="relative w-full h-[200px] sm:h-[250px] md:h-[280px] lg:h-[260px]">
                     <Image
                       src={img}
                       alt={`slide-${i}`}
@@ -171,7 +176,7 @@ const Homepage = () => {
             >
               {sliderImages.map((img, i) => (
                 <SwiperSlide key={i}>
-                  <div className="relative w-full h-[50px] sm:h-[60px] md:h-[70px] cursor-pointer">
+                  <div className="relative w-full h-[50px] sm:h-[60px] md:h-[80px] cursor-pointer">
                     <Image
                       src={img}
                       alt={`thumb-${i}`}
@@ -190,14 +195,15 @@ const Homepage = () => {
       <div className="mx-auto py-4 md:py-6 px-2 sm:px-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6">
           {/* LEFT SIDE - TRENDING / COMMENTS / LATEST */}
-          <div className="lg:col-span-2 space-y-4">
-            {/* Ad image */}
-            <div className="relative w-full h-[200px] sm:h-[250px]">
+          <div className="lg:col-span-2 space-y-6">
+            {/* Top Ad image */}
+            <div className="w-full overflow-hidden rounded-md border border-gray-200 shadow-sm">
               <Image
                 src="/images/images_cms.png"
                 alt="Advertisement"
-                fill
-                className="object-cover rounded-md"
+                width={600}
+                height={400}
+                className="w-full h-auto object-contain"
               />
             </div>
 
@@ -206,7 +212,7 @@ const Homepage = () => {
               {["Trending", "Comments", "Latest"].map((tab) => (
                 <button
                   key={tab}
-                  className="flex-1 text-center py-2 text-xs sm:text-sm font-semibold border-b-2 border-transparent hover:border-red-600 hover:text-red-600 transition-colors"
+                  className="flex-1 text-center py-2 text-sm font-semibold border-b-2 border-transparent hover:border-red-600 hover:text-red-600 transition-colors"
                 >
                   {tab}
                 </button>
@@ -214,7 +220,7 @@ const Homepage = () => {
             </div>
 
             {/* News items */}
-            <div className="space-y-3">
+            <div className="space-y-4">
               {[
                 {
                   title: "Restaurante",
@@ -237,32 +243,47 @@ const Homepage = () => {
                   img: "/images/swiper_center1.png",
                 },
               ].map((news, i) => (
-                <div key={i} className="flex items-center gap-2 sm:gap-3">
-                  <div className="relative w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0">
+                <div
+                  key={i}
+                  className="flex items-center gap-3 p-1 hover:bg-gray-50 rounded-md transition-colors"
+                >
+                  <div className="w-16 h-16 overflow-hidden rounded-md border border-gray-200">
                     <Image
                       src={news.img}
                       alt={news.title}
-                      fill
-                      className="object-cover rounded-md"
+                      width={64}
+                      height={64}
+                      className="object-cover w-full h-full"
                     />
                   </div>
-                  <div className="min-w-0">
-                    <p className="text-xs sm:text-sm font-semibold leading-tight text-gray-900 truncate">
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-gray-900 truncate">
                       {news.title}
                     </p>
-                    <p className="text-xs text-gray-500">{news.date}</p>
+                    <p className="text-xs text-gray-500 flex items-center gap-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        className="w-4 h-4 text-gray-400"
+                      >
+                        <path d="M10 2a8 8 0 1 0 8 8A8.01 8.01 0 0 0 10 2Zm.75 8.25V5.75a.75.75 0 0 0-1.5 0v5a.75.75 0 0 0 .22.53l3 3a.75.75 0 1 0 1.06-1.06Z" />
+                      </svg>
+                      {news.date}
+                    </p>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Ad image */}
-            <div className="relative w-full h-[200px] sm:h-[250px] hidden lg:block">
+            {/* Bottom Ad image */}
+            <div className="w-full overflow-hidden rounded-md border border-gray-200 shadow-sm">
               <Image
                 src="/images/dogq.jpg"
                 alt="Advertisement"
-                fill
-                className="object-cover rounded-md"
+                width={600}
+                height={400}
+                className="w-full h-auto object-contain"
               />
             </div>
           </div>
@@ -291,7 +312,7 @@ const Homepage = () => {
                       fill
                       className="object-cover"
                     />
-                    <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-xs px-2 py-1 rounded">
+                    <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-xs px-2 py-1">
                       CASAMENTO
                     </div>
                   </div>
@@ -315,17 +336,28 @@ const Homepage = () => {
             >
               {sliderCenterImages.map((img, i) => (
                 <SwiperSlide key={i}>
-                  <div className="relative w-full h-[60px] sm:h-[70px] md:h-[80px] cursor-pointer">
+                  <div className="relative w-full h-[60px] sm:h-[70px] md:h-[90px] cursor-pointer">
                     <Image
                       src={img}
                       alt={`thumb-${i}`}
                       fill
-                      className="object-cover rounded-md"
+                      className="object-cover"
                     />
                   </div>
                 </SwiperSlide>
               ))}
             </Swiper>
+
+            {/* Red Banner */}
+            <div className="mb-6 sm:mb-8 mt-4 sm:mt-6">
+              <Image
+                src="/images/cms-image2.jpg"
+                alt="Tigra Banner"
+                width={1920}
+                height={400}
+                className="w-full h-auto object-cover rounded-md"
+              />
+            </div>
           </div>
 
           {/* RIGHT SIDE - DIRECTORY */}
@@ -360,13 +392,13 @@ const Homepage = () => {
       <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-8 py-4 md:py-6">
         {/* Banner */}
         <div className="mb-6 sm:mb-8">
-          <Image
+          {/* <Image
             src="/images/cms-image2.jpg"
             alt="Tigra Banner"
             width={1920}
             height={400}
             className="w-full h-auto object-cover rounded-md"
-          />
+          /> */}
         </div>
 
         {/* Main Image Slider */}
@@ -417,12 +449,12 @@ const Homepage = () => {
           >
             {images.map((img, i) => (
               <SwiperSlide key={i}>
-                <div className="relative w-full h-[60px] sm:h-[70px] md:h-[80px] cursor-pointer">
+                <div className="relative w-full h-[60px] sm:h-[70px] md:h-[90px] cursor-pointer">
                   <Image
                     src={img}
                     alt={`thumb-${i}`}
                     fill
-                    className="object-cover rounded-md"
+                    className="object-cover"
                   />
                 </div>
               </SwiperSlide>
@@ -486,7 +518,7 @@ const Homepage = () => {
         >
           {hotelImages.map((img, i) => (
             <SwiperSlide key={i}>
-              <div className="relative w-full h-[60px] sm:h-[70px] md:h-[80px] cursor-pointer">
+              <div className="relative w-full h-[60px] sm:h-[70px] md:h-[90px] cursor-pointer">
                 <Image
                   src={img}
                   alt={`thumb-${i}`}
@@ -543,7 +575,7 @@ const Homepage = () => {
         >
           {singerImages.map((img, i) => (
             <SwiperSlide key={i}>
-              <div className="relative w-full h-[60px] sm:h-[70px] md:h-[80px] cursor-pointer">
+              <div className="relative w-full h-[60px] sm:h-[70px] md:h-[90px] cursor-pointer">
                 <Image
                   src={img}
                   alt={`thumb-${i}`}
