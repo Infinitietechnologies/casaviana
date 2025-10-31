@@ -12,6 +12,8 @@ const Homepage = () => {
   const [thumbsSwiper1, setThumbsSwiper1] = React.useState(null);
   const [thumbsSwiper2, setThumbsSwiper2] = React.useState(null);
   const [thumbsSwiper3, setThumbsSwiper3] = React.useState(null);
+  const [thumbsSwiper4, setThumbsSwiper4] = React.useState(null);
+  const [thumbsSwiper5, setThumbsSwiper5] = React.useState(null);
 
   const eventImages = [
     { src: "/images/event1.jpg", alt: "Event 1" },
@@ -81,7 +83,7 @@ const Homepage = () => {
   return (
     <>
       {/* FIRST SECTION - EVENTOS, DESTAQUES, SLIDER */}
-      <div className="mx-auto py-4 md:py-8 px-2 sm:px-4">
+      <div className="mx-auto py-4 md:py-8 px-2 sm:px-4 mt-20 sm:mt-34">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6">
           {/* LEFT SIDE - EVENTOS EM DESTAQUES */}
           <div className="lg:col-span-3">
@@ -126,7 +128,7 @@ const Homepage = () => {
               spaceBetween={10}
               navigation={true}
               modules={[Navigation, Thumbs]}
-              thumbs={{ swiper: thumbsSwiper1 }}
+              thumbs={{ swiper: thumbsSwiper1 && !thumbsSwiper1.destroyed ? thumbsSwiper1 : null }}
               className="mainSwiper rounded-md overflow-hidden"
             >
               {sliderImages.map((img, i) => (
@@ -264,7 +266,7 @@ const Homepage = () => {
               spaceBetween={10}
               navigation={true}
               modules={[Navigation, Thumbs]}
-              thumbs={{ swiper: thumbsSwiper2 }}
+              thumbs={{ swiper: thumbsSwiper2 && !thumbsSwiper2.destroyed ? thumbsSwiper2 : null }}
               className="mainSwiper overflow-hidden rounded-md"
             >
               {sliderCenterImages.map((img, i) => (
@@ -359,12 +361,12 @@ const Homepage = () => {
             spaceBetween={10}
             navigation={true}
             modules={[Navigation, Thumbs]}
-            thumbs={{ swiper: thumbsSwiper3 }}
+            thumbs={{ swiper: thumbsSwiper3 && !thumbsSwiper3.destroyed ? thumbsSwiper3 : null }}
             className="mainSwiper rounded-md overflow-hidden"
           >
             {images.map((img, i) => (
               <SwiperSlide key={i}>
-                <div className="relative w-full h-[250px] sm:h-[300px] md:h-[400px]">
+                <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
                   <Image
                     src={img}
                     alt={`slide-${i}`}
@@ -426,12 +428,12 @@ const Homepage = () => {
           spaceBetween={10}
           navigation={true}
           modules={[Navigation, Thumbs]}
-          thumbs={{ swiper: thumbsSwiper3 }}
+          thumbs={{ swiper: thumbsSwiper4 && !thumbsSwiper4.destroyed ? thumbsSwiper4 : null }}
           className="mainSwiper overflow-hidden rounded-md"
         >
           {hotelImages.map((img, i) => (
             <SwiperSlide key={i}>
-              <div className="relative w-full h-[250px] sm:h-[300px] md:h-[400px]">
+              <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
                 <Image
                   src={img}
                   alt={`slide-${i}`}
@@ -447,7 +449,7 @@ const Homepage = () => {
         </Swiper>
 
         <Swiper
-          onSwiper={setThumbsSwiper3}
+          onSwiper={setThumbsSwiper4}
           spaceBetween={8}
           slidesPerView={3}
           breakpoints={{
@@ -480,12 +482,12 @@ const Homepage = () => {
           spaceBetween={10}
           navigation={true}
           modules={[Navigation, Thumbs]}
-          thumbs={{ swiper: thumbsSwiper3 }}
+          thumbs={{ swiper: thumbsSwiper5 && !thumbsSwiper5.destroyed ? thumbsSwiper5 : null }}
           className="mainSwiper overflow-hidden rounded-md"
         >
           {singerImages.map((img, i) => (
             <SwiperSlide key={i}>
-              <div className="relative w-full h-[250px] sm:h-[300px] md:h-[400px]">
+              <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
                 <Image
                   src={img}
                   alt={`slide-${i}`}
@@ -501,7 +503,7 @@ const Homepage = () => {
         </Swiper>
 
         <Swiper
-          onSwiper={setThumbsSwiper3}
+          onSwiper={setThumbsSwiper5}
           spaceBetween={8}
           slidesPerView={3}
           breakpoints={{
