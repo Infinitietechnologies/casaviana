@@ -183,3 +183,24 @@ Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
 [01:05:10.691] Browser WARN    Image with src "/images/event1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
 Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
 [01:05:10.691] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[01:21:40.175] Browser WARN    Image with src "http://localhost:3000/images/images_cms.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[01:21:40.175] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[01:21:54.684] Browser WARN    Image with src "http://localhost:3000/images/images_cms.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[01:21:54.684] Browser WARN    Image with src "/images/cms-image2.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[01:21:54.684] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[01:35:39.090] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[01:35:39.090] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[01:35:42.557] Browser WARN    Image with src "/images/images_cms.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[01:35:42.557] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
