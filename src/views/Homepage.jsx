@@ -25,7 +25,7 @@ const Homepage = () => {
     "Dipanda Plazza",
     "...",
     "...",
-    "..."
+    "...",
   ];
 
   const sliderImages = [
@@ -39,12 +39,12 @@ const Homepage = () => {
   ];
 
   const sliderCenterImages = [
-    "/images/swiper_center1.png",
-    "/images/swiper_center2.jpeg",
-    "/images/swiper_center3.jpeg",
-    "/images/swiper_center4.jpeg",
-    "/images/swiper_center5.jpeg",
-    "/images/swiper_center6.jpeg",
+    "/images/hotel_swiper1.jpg",
+    "/images/hotel_swiper2.jpeg",
+    "/images/hotel_swiper3.jpeg",
+    "/images/hotel_swiper4.jpeg",
+    "/images/hotel_swiper5.jpeg",
+    "/images/hotel_swiper6.jpeg",
   ];
 
   const images = [
@@ -70,7 +70,7 @@ const Homepage = () => {
     "/images/hotel_swiper7.jpeg",
   ];
 
-   const singerImages = [
+  const singerImages = [
     "/images/singer_swiper1.jpeg",
     "/images/singer_swiper2.png",
     "/images/singer_swiper3.jpeg",
@@ -92,7 +92,10 @@ const Homepage = () => {
             </h2>
             <div className="grid grid-cols-2 sm:flex gap-2 sm:gap-4">
               {eventImages.map((ev, i) => (
-                <div key={i} className="relative w-full h-[150px] sm:h-[180px] md:h-[230px]">
+                <div
+                  key={i}
+                  className="relative w-full h-[150px] sm:h-[180px] md:h-[230px]"
+                >
                   <Image
                     src={ev.src}
                     alt={ev.alt}
@@ -128,7 +131,12 @@ const Homepage = () => {
               spaceBetween={10}
               navigation={true}
               modules={[Navigation, Thumbs]}
-              thumbs={{ swiper: thumbsSwiper1 && !thumbsSwiper1.destroyed ? thumbsSwiper1 : null }}
+              thumbs={{
+                swiper:
+                  thumbsSwiper1 && !thumbsSwiper1.destroyed
+                    ? thumbsSwiper1
+                    : null,
+              }}
               className="mainSwiper rounded-md overflow-hidden"
             >
               {sliderImages.map((img, i) => (
@@ -204,7 +212,7 @@ const Homepage = () => {
                 </button>
               ))}
             </div>
-            
+
             {/* News items */}
             <div className="space-y-3">
               {[
@@ -266,7 +274,12 @@ const Homepage = () => {
               spaceBetween={10}
               navigation={true}
               modules={[Navigation, Thumbs]}
-              thumbs={{ swiper: thumbsSwiper2 && !thumbsSwiper2.destroyed ? thumbsSwiper2 : null }}
+              thumbs={{
+                swiper:
+                  thumbsSwiper2 && !thumbsSwiper2.destroyed
+                    ? thumbsSwiper2
+                    : null,
+              }}
               className="mainSwiper overflow-hidden rounded-md"
             >
               {sliderCenterImages.map((img, i) => (
@@ -318,7 +331,9 @@ const Homepage = () => {
           {/* RIGHT SIDE - DIRECTORY */}
           <div className="lg:col-span-2">
             <div className="lg:sticky lg:top-4">
-              <h2 className="text-xl sm:text-2xl font-bold text-red-600 mb-4">Directório</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-red-600 mb-4">
+                Directório
+              </h2>
               <div className="flex flex-col gap-2">
                 {[
                   "Aqui Acontece",
@@ -361,7 +376,12 @@ const Homepage = () => {
             spaceBetween={10}
             navigation={true}
             modules={[Navigation, Thumbs]}
-            thumbs={{ swiper: thumbsSwiper3 && !thumbsSwiper3.destroyed ? thumbsSwiper3 : null }}
+            thumbs={{
+              swiper:
+                thumbsSwiper3 && !thumbsSwiper3.destroyed
+                  ? thumbsSwiper3
+                  : null,
+            }}
             className="mainSwiper rounded-md overflow-hidden"
           >
             {images.map((img, i) => (
@@ -428,7 +448,10 @@ const Homepage = () => {
           spaceBetween={10}
           navigation={true}
           modules={[Navigation, Thumbs]}
-          thumbs={{ swiper: thumbsSwiper4 && !thumbsSwiper4.destroyed ? thumbsSwiper4 : null }}
+          thumbs={{
+            swiper:
+              thumbsSwiper4 && !thumbsSwiper4.destroyed ? thumbsSwiper4 : null,
+          }}
           className="mainSwiper overflow-hidden rounded-md"
         >
           {hotelImages.map((img, i) => (
@@ -482,7 +505,10 @@ const Homepage = () => {
           spaceBetween={10}
           navigation={true}
           modules={[Navigation, Thumbs]}
-          thumbs={{ swiper: thumbsSwiper5 && !thumbsSwiper5.destroyed ? thumbsSwiper5 : null }}
+          thumbs={{
+            swiper:
+              thumbsSwiper5 && !thumbsSwiper5.destroyed ? thumbsSwiper5 : null,
+          }}
           className="mainSwiper overflow-hidden rounded-md"
         >
           {singerImages.map((img, i) => (

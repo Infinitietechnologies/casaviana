@@ -1,10 +1,6 @@
-[02:08:18.821] Server  ERROR    ⨯ Error: ENOENT: no such file or directory, open 'C:\Users\Rahul Soneji\Desktop\casa-viana-website\dist\dev\server\pages\_document.js'
-[02:08:20.913] Server  ERROR    ⨯ Error: ENOENT: no such file or directory, open 'C:\Users\Rahul Soneji\Desktop\casa-viana-website\dist\dev\routes-manifest.json'
-[02:08:20.941] Server  ERROR    ⨯ Error: ENOENT: no such file or directory, open 'C:\Users\Rahul Soneji\Desktop\casa-viana-website\dist\dev\server\pages\_document.js'
-[02:08:21.003] Server  ERROR   Error: ENOENT: no such file or directory, open 'C:\Users\Rahul Soneji\Desktop\casa-viana-website\dist\dev\routes-manifest.json'
-[02:08:21.028] Server  ERROR    ⨯ Error: ENOENT: no such file or directory, open 'C:\Users\Rahul Soneji\Desktop\casa-viana-website\dist\dev\server\pages\_document.js'
-[02:08:21.053] Server  ERROR   Error: ENOENT: no such file or directory, open 'C:\Users\Rahul Soneji\Desktop\casa-viana-website\dist\dev\routes-manifest.json'
-[02:08:22.731] Server  ERROR    ⨯ Error: ENOENT: no such file or directory, open 'C:\Users\Rahul Soneji\Desktop\casa-viana-website\dist\dev\server\pages\_document.js'
-[02:08:22.759] Server  ERROR   Error: ENOENT: no such file or directory, open 'C:\Users\Rahul Soneji\Desktop\casa-viana-website\dist\dev\routes-manifest.json'
-[02:08:22.775] Server  ERROR    ⨯ Error: ENOENT: no such file or directory, open 'C:\Users\Rahul Soneji\Desktop\casa-viana-website\dist\dev\server\pages\_document.js'
-[02:08:22.818] Server  ERROR   Error: ENOENT: no such file or directory, open 'C:\Users\Rahul Soneji\Desktop\casa-viana-website\dist\dev\routes-manifest.json'
+[00:00:02.855] Server  ERROR    ⨯ API Routes cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:00:03.178] Server  LOG      ✓ Ready in 2.5s
+[00:00:06.246] Server  LOG      ○ Compiling / ...
+[00:00:09.958] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:00:09.958] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
