@@ -5,11 +5,10 @@ import Link from "next/link";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -24,9 +23,8 @@ const Header = () => {
         }`}
     >
       <div className="max-w-[1900px] mx-auto flex items-center justify-between h-20 px-4 md:px-6">
-        {/* Left logos */}
+        {/* LEFT LOGOS */}
         <div className="flex items-center gap-2">
-          {/* Always show Casa Viana */}
           <Image
             src="/images/casa-viana.png"
             alt="Casa Viana"
@@ -54,15 +52,13 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* Center menu (desktop only) */}
+        {/* CENTER MENU (desktop only) */}
         <div className="hidden md:flex items-center gap-6 text-sm font-semibold text-white">
           {["Início", "Serviços", "Eventos", "Reservar", "Contactos"].map(
             (item, i) => (
               <a
                 key={i}
-                href={
-                  item === "Eventos" ? "https://www.casaviana.ao/eventos/" : "#"
-                }
+                href={item === "Eventos" ? "https://novo.casaviana.ao/" : "#"}
                 className="relative group transition-colors hover:text-gray-200 text-lg"
               >
                 {item}
@@ -72,9 +68,9 @@ const Header = () => {
           )}
         </div>
 
-        {/* Right side */}
+        {/* RIGHT SIDE */}
         <div className="flex items-center gap-4">
-          {/* Hide these on mobile */}
+          {/* Desktop right side */}
           <div className="hidden md:flex items-center gap-4">
             <Image
               src="/images/cardapio.png"
@@ -104,29 +100,120 @@ const Header = () => {
                 0
               </span>
             </div>
+
+            {/* Profile Icon */}
+            <div className="w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full cursor-pointer transition">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.8}
+                stroke="currentColor"
+                className="w-5 h-5 text-white"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 
+                  19.5a8.25 8.25 0 0115 0v.75a.75.75 
+                  0 01-.75.75H5.25a.75.75 
+                  0 01-.75-.75v-.75z"
+                />
+              </svg>
+            </div>
           </div>
 
-          {/* Profile Icon (always visible) */}
-          <div className="w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full cursor-pointer transition">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.8}
-              stroke="currentColor"
-              className="w-5 h-5 text-white"
+          {/* Mobile right side */}
+          <div className="flex md:hidden items-center gap-3">
+            {/* Cardapio small image */}
+            <Image
+              src="/images/cardapio.png"
+              alt="Cardápio"
+              width={40}
+              height={40}
+            />
+
+            {/* Profile icon */}
+            <div className="w-9 h-9 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full cursor-pointer transition">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.8}
+                stroke="currentColor"
+                className="w-5 h-5 text-white"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 
+                  19.5a8.25 8.25 0 0115 0v.75a.75.75 
+                  0 01-.75.75H5.25a.75.75 
+                  0 01-.75-.75v-.75z"
+                />
+              </svg>
+            </div>
+
+            {/* Hamburger Menu */}
+            <button
+              className="text-white focus:outline-none"
+              onClick={() => setMenuOpen(!menuOpen)}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 
-                19.5a8.25 8.25 0 0115 0v.75a.75.75 
-                0 01-.75.75H5.25a.75.75 
-                0 01-.75-.75v-.75z"
-              />
-            </svg>
+              {menuOpen ? (
+                // Close icon
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="w-7 h-7"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                // Hamburger icon
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="w-7 h-7"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              )}
+            </button>
           </div>
         </div>
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      <div
+        className={`md:hidden bg-red-700 text-white flex flex-col items-center overflow-hidden transition-all duration-300 ease-in-out ${
+          menuOpen ? "max-h-96 py-4 shadow-lg" : "max-h-0 py-0"
+        }`}
+      >
+        {["Início", "Serviços", "Eventos", "Reservar", "Contactos"].map(
+          (item, i) => (
+            <a
+              key={i}
+              href={item === "Eventos" ? "https://novo.casaviana.ao/" : "#"}
+              className="text-lg font-medium hover:text-gray-200 transition py-2"
+            >
+              {item}
+            </a>
+          )
+        )}
       </div>
     </nav>
   );

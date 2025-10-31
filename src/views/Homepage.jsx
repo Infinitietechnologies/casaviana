@@ -106,7 +106,7 @@ const Homepage = () => {
               {eventImages.map((ev, i) => (
                 <div
                   key={i}
-                  className="relative w-[48%] sm:w-[45%] md:w-[48%] h-[150px] sm:h-[180px] md:h-[220px]"
+                  className="relative w-[48%] sm:w-[45%] md:w-[48%] h-[240px] sm:h-[260px] md:h-[300px]"
                 >
                   <Image
                     src={ev.src}
@@ -286,15 +286,15 @@ const Homepage = () => {
             </div>
 
             {/* Bottom Ad image */}
-            <div className="w-full overflow-hidden rounded-md border border-gray-200 shadow-sm">
+            {/* <div className="w-full overflow-hidden rounded-md border border-gray-200 shadow-sm">
               <Image
                 src="/images/dogq.jpg"
                 alt="Advertisement"
                 width={600}
-                height={400}
+                height={200}
                 className="w-full h-auto object-contain"
               />
-            </div>
+            </div> */}
           </div>
 
           {/* CENTER - MAIN SWIPER 2 + THUMBNAILS */}
@@ -358,7 +358,7 @@ const Homepage = () => {
             </Swiper>
 
             {/* Red Banner */}
-            <div className="mb-6 sm:mb-8 mt-4 sm:mt-6">
+            <div className="mb-3 sm:mb-4 mt-2 sm:mt-3">
               <Image
                 src="/images/cms-image2.jpg"
                 alt="Tigra Banner"
@@ -398,9 +398,9 @@ const Homepage = () => {
       </div>
 
       {/* BANNER AND BEVERAGE SLIDER */}
-      <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-8 py-4 md:py-6">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-8 pt-2 md:pt-3 pb-4 md:pb-6">
         {/* Banner */}
-        <div className="mb-6 sm:mb-8">
+        <div className="mb-0">
           {/* <Image
             src="/images/cms-image2.jpg"
             alt="Tigra Banner"
