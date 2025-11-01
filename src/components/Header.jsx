@@ -25,13 +25,14 @@ const Header = () => {
       <div className="max-w-[1900px] mx-auto flex items-center justify-between h-20 px-4 md:px-6">
         {/* LEFT LOGOS */}
         <div className="flex items-center gap-2">
-          <Image
-            src="/images/casa-viana.png"
-            alt="Casa Viana"
-            width={90}
-            height={90}
-          />
-
+          <Link href="/">
+            <Image
+              src="/images/casa-viana.png"
+              alt="Casa Viana"
+              width={90}
+              height={90}
+            />
+          </Link>
           {/* Hide on mobile */}
           <Link href="https://centraldipanda.ao/" className="hidden md:block">
             <Image
@@ -58,7 +59,7 @@ const Header = () => {
             (item, i) => (
               <a
                 key={i}
-                href={item === "Eventos" ? "https://novo.casaviana.ao/" : "#"}
+                href={item === "Eventos" ? "/events" : "#"}
                 className="relative group transition-colors hover:text-gray-200 text-lg"
               >
                 {item}
@@ -212,7 +213,7 @@ const Header = () => {
           (item, i) => (
             <a
               key={i}
-              href={item === "Eventos" ? "https://novo.casaviana.ao/" : "#"}
+              href={item === "Eventos" ? "/events" : "#"}
               className="text-lg font-medium hover:text-gray-200 transition py-2"
             >
               {item}
