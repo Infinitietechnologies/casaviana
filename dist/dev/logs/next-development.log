@@ -1,3330 +1,510 @@
-[00:00:02.855] Server  ERROR    ⨯ API Routes cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
-[00:00:03.178] Server  LOG      ✓ Ready in 2.5s
-[00:00:06.246] Server  LOG      ○ Compiling / ...
-[00:00:09.958] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+[00:00:04.243] Server  ERROR    ⨯ API Routes cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:00:04.610] Server  LOG      ✓ Ready in 3.6s
+[00:00:07.860] Server  LOG      ○ Compiling / ...
+[00:00:11.588] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
 Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:00:09.958] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:18:16.427] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:18:16.594] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:34:20.235] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:52:07.708] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:52:07.709] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:52:07.709] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[02:23:47.312] Server  ERROR    ⨯ ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:6:1]
- 3 │ const Footer = () => {
- 4 │   return (
- 5 │     <footer class="bg-gray-900 text-white">
- 6 │         <!-- Orange strip -->
-   ·          ─
- 7 │         <div class="bg-orange-500 h-1"></div>
- 8 │ 
- 8 │         <!-- Main footer content -->
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:23:48.230] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:6:1]
- 3 │ const Footer = () => {
- 4 │   return (
- 5 │     <footer class="bg-gray-900 text-white">
- 6 │         <!-- Orange strip -->
-   ·          ─
- 7 │         <div class="bg-orange-500 h-1"></div>
- 8 │ 
- 8 │         <!-- Main footer content -->
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:23:48.230] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:6:1]
- 3 │ const Footer = () => {
- 4 │   return (
- 5 │     <footer class="bg-gray-900 text-white">
- 6 │         <!-- Orange strip -->
-   ·          ─
- 7 │         <div class="bg-orange-500 h-1"></div>
- 8 │ 
- 8 │         <!-- Main footer content -->
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:23:54.723] Server  ERROR    ⨯ ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:7:1]
- 4 │   return (
- 5 │     
- 6 │     <footer class="bg-gray-900 text-white">
- 7 │         <!-- Orange strip -->
-   ·          ─
- 8 │         <div class="bg-orange-500 h-1"></div>
- 9 │ 
- 9 │         <!-- Main footer content -->
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:23:55.240] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:6:1]
- 3 │ const Footer = () => {
- 4 │   return (
- 5 │     <footer class="bg-gray-900 text-white">
- 6 │         <!-- Orange strip -->
-   ·          ─
- 7 │         <div class="bg-orange-500 h-1"></div>
- 8 │ 
- 8 │         <!-- Main footer content -->
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:23:55.240] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:7:1]
- 4 │   return (
- 5 │     
- 6 │     <footer class="bg-gray-900 text-white">
- 7 │         <!-- Orange strip -->
-   ·          ─
- 8 │         <div class="bg-orange-500 h-1"></div>
- 9 │ 
- 9 │         <!-- Main footer content -->
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:23:55.240] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:7:1]
- 4 │   return (
- 5 │     
- 6 │     <footer class="bg-gray-900 text-white">
- 7 │         <!-- Orange strip -->
-   ·          ─
- 8 │         <div class="bg-orange-500 h-1"></div>
- 9 │ 
- 9 │         <!-- Main footer content -->
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:23:56.113] Server  ERROR    ⨯ ./src/components/Footer.jsx
-Error:   × Expected ',', got 'class'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:6:1]
- 3 │ const Footer = () => {
- 4 │   return (
- 5 │     <></>
- 6 │     <footer class="bg-gray-900 text-white">
-   ·             ─────
- 7 │         <!-- Orange strip -->
- 8 │         <div class="bg-orange-500 h-1"></div>
- 8 │ 
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:23:56.238] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:7:1]
- 4 │   return (
- 5 │     
- 6 │     <footer class="bg-gray-900 text-white">
- 7 │         <!-- Orange strip -->
-   ·          ─
- 8 │         <div class="bg-orange-500 h-1"></div>
- 9 │ 
- 9 │         <!-- Main footer content -->
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:23:56.238] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected ',', got 'class'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:6:1]
- 3 │ const Footer = () => {
- 4 │   return (
- 5 │     <></>
- 6 │     <footer class="bg-gray-900 text-white">
-   ·             ─────
- 7 │         <!-- Orange strip -->
- 8 │         <div class="bg-orange-500 h-1"></div>
- 8 │ 
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:23:56.238] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected ',', got 'class'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:6:1]
- 3 │ const Footer = () => {
- 4 │   return (
- 5 │     <></>
- 6 │     <footer class="bg-gray-900 text-white">
-   ·             ─────
- 7 │         <!-- Orange strip -->
- 8 │         <div class="bg-orange-500 h-1"></div>
- 8 │ 
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:23:57.538] Server  ERROR    ⨯ ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:7:1]
- 4 │   return (
- 5 │     <>
- 6 │     <footer class="bg-gray-900 text-white">
- 7 │         <!-- Orange strip -->
-   ·          ─
- 8 │         <div class="bg-orange-500 h-1"></div>
- 9 │ 
- 9 │         <!-- Main footer content -->
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:23:58.244] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected ',', got 'class'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:6:1]
- 3 │ const Footer = () => {
- 4 │   return (
- 5 │     <></>
- 6 │     <footer class="bg-gray-900 text-white">
-   ·             ─────
- 7 │         <!-- Orange strip -->
- 8 │         <div class="bg-orange-500 h-1"></div>
- 8 │ 
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:23:58.244] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:7:1]
- 4 │   return (
- 5 │     <>
- 6 │     <footer class="bg-gray-900 text-white">
- 7 │         <!-- Orange strip -->
-   ·          ─
- 8 │         <div class="bg-orange-500 h-1"></div>
- 9 │ 
- 9 │         <!-- Main footer content -->
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:00.749] Server  ERROR    ⨯ ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:7:1]
- 4 │   return (
- 5 │     <>
- 6 │     <footer class="bg-gray-900 text-white">
- 7 │         <!-- Orange strip -->
-   ·          ─
- 8 │         <div class="bg-orange-500 h-1"></div>
- 9 │ 
- 9 │         <!-- Main footer content -->
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:01.243] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:7:1]
- 4 │   return (
- 5 │     <>
- 6 │     <footer class="bg-gray-900 text-white">
- 7 │         <!-- Orange strip -->
-   ·          ─
- 8 │         <div class="bg-orange-500 h-1"></div>
- 9 │ 
- 9 │         <!-- Main footer content -->
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:01.243] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:7:1]
- 4 │   return (
- 5 │     <>
- 6 │     <footer class="bg-gray-900 text-white">
- 7 │         <!-- Orange strip -->
-   ·          ─
- 8 │         <div class="bg-orange-500 h-1"></div>
- 9 │ 
- 9 │         <!-- Main footer content -->
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:01.243] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:7:1]
- 4 │   return (
- 5 │     <>
- 6 │     <footer class="bg-gray-900 text-white">
- 7 │         <!-- Orange strip -->
-   ·          ─
- 8 │         <div class="bg-orange-500 h-1"></div>
- 9 │ 
- 9 │         <!-- Main footer content -->
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:08.580] Server  ERROR    ⨯ ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:7:1]
- 4 │   return (
- 5 │     <>
- 6 │     <footer class="bg-gray-900 text-white">
- 7 │         <!-- Orange strip -->
-   ·          ─
- 8 │         <div class="bg-orange-500 h-1"></div>
- 9 │ 
- 9 │         <div class="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-16">
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:09.235] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:7:1]
- 4 │   return (
- 5 │     <>
- 6 │     <footer class="bg-gray-900 text-white">
- 7 │         <!-- Orange strip -->
-   ·          ─
- 8 │         <div class="bg-orange-500 h-1"></div>
- 9 │ 
- 9 │         <!-- Main footer content -->
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:09.235] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:7:1]
- 4 │   return (
- 5 │     <>
- 6 │     <footer class="bg-gray-900 text-white">
- 7 │         <!-- Orange strip -->
-   ·          ─
- 8 │         <div class="bg-orange-500 h-1"></div>
- 9 │ 
- 9 │         <div class="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-16">
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:09.235] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:7:1]
- 4 │   return (
- 5 │     <>
- 6 │     <footer class="bg-gray-900 text-white">
- 7 │         <!-- Orange strip -->
-   ·          ─
- 8 │         <div class="bg-orange-500 h-1"></div>
- 9 │ 
- 9 │         <div class="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-16">
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:11.071] Server  ERROR    ⨯ ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:11:1]
-  8 │ 
-  9 │         <div class="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-16">
- 10 │             <div class="flex flex-col lg:flex-row justify-between items-start gap-12">
- 11 │                 <!-- Left side - Company info and navigation -->
-    ·                  ─
- 12 │                 <div class="flex-1">
- 13 │                     <!-- Logo and tagline -->
- 13 │                     <div class="mb-8">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:11.237] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-   ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:7:1]
- 4 │   return (
- 5 │     <>
- 6 │     <footer class="bg-gray-900 text-white">
- 7 │         <!-- Orange strip -->
-   ·          ─
- 8 │         <div class="bg-orange-500 h-1"></div>
- 9 │ 
- 9 │         <div class="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-16">
-   ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:11.237] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:11:1]
-  8 │ 
-  9 │         <div class="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-16">
- 10 │             <div class="flex flex-col lg:flex-row justify-between items-start gap-12">
- 11 │                 <!-- Left side - Company info and navigation -->
-    ·                  ─
- 12 │                 <div class="flex-1">
- 13 │                     <!-- Logo and tagline -->
- 13 │                     <div class="mb-8">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:11.237] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:11:1]
-  8 │ 
-  9 │         <div class="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-16">
- 10 │             <div class="flex flex-col lg:flex-row justify-between items-start gap-12">
- 11 │                 <!-- Left side - Company info and navigation -->
-    ·                  ─
- 12 │                 <div class="flex-1">
- 13 │                     <!-- Logo and tagline -->
- 13 │                     <div class="mb-8">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:13.391] Server  ERROR    ⨯ ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:19:1]
- 16 │                         </p>
- 17 │                     </div>
- 18 │ 
- 19 │                     <!-- Navigation columns -->
-    ·                      ─
- 20 │                     <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
- 21 │                         <!-- Empresa -->
- 21 │                         <div>
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:14.244] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:11:1]
-  8 │ 
-  9 │         <div class="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-16">
- 10 │             <div class="flex flex-col lg:flex-row justify-between items-start gap-12">
- 11 │                 <!-- Left side - Company info and navigation -->
-    ·                  ─
- 12 │                 <div class="flex-1">
- 13 │                     <!-- Logo and tagline -->
- 13 │                     <div class="mb-8">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:14.244] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:19:1]
- 16 │                         </p>
- 17 │                     </div>
- 18 │ 
- 19 │                     <!-- Navigation columns -->
-    ·                      ─
- 20 │                     <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
- 21 │                         <!-- Empresa -->
- 21 │                         <div>
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:14.244] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:19:1]
- 16 │                         </p>
- 17 │                     </div>
- 18 │ 
- 19 │                     <!-- Navigation columns -->
-    ·                      ─
- 20 │                     <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
- 21 │                         <!-- Empresa -->
- 21 │                         <div>
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:15.409] Server  ERROR    ⨯ ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:20:1]
- 17 │                     </div>
- 18 │ 
- 19 │                     <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
- 20 │                         <!--  -->
-    ·                          ─
- 21 │                         <div>
- 22 │                             <h3 class="font-bold text-white mb-3">Empresa</h3>
- 22 │                             <ul class="space-y-2 text-sm">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:16.242] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:19:1]
- 16 │                         </p>
- 17 │                     </div>
- 18 │ 
- 19 │                     <!-- Navigation columns -->
-    ·                      ─
- 20 │                     <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
- 21 │                         <!-- Empresa -->
- 21 │                         <div>
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:16.242] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:20:1]
- 17 │                     </div>
- 18 │ 
- 19 │                     <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
- 20 │                         <!--  -->
-    ·                          ─
- 21 │                         <div>
- 22 │                             <h3 class="font-bold text-white mb-3">Empresa</h3>
- 22 │                             <ul class="space-y-2 text-sm">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:16.242] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:20:1]
- 17 │                     </div>
- 18 │ 
- 19 │                     <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
- 20 │                         <!--  -->
-    ·                          ─
- 21 │                         <div>
- 22 │                             <h3 class="font-bold text-white mb-3">Empresa</h3>
- 22 │                             <ul class="space-y-2 text-sm">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:19.536] Server  ERROR    ⨯ ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:31:1]
- 28 │                             </ul>
- 29 │                         </div>
- 30 │ 
- 31 │                         <!-- Marketplace -->
-    ·                          ─
- 32 │                         <div>
- 33 │                             <h3 class="font-bold text-white mb-3">Marketplace</h3>
- 33 │                             <ul class="space-y-2 text-sm">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:20.246] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:20:1]
- 17 │                     </div>
- 18 │ 
- 19 │                     <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
- 20 │                         <!--  -->
-    ·                          ─
- 21 │                         <div>
- 22 │                             <h3 class="font-bold text-white mb-3">Empresa</h3>
- 22 │                             <ul class="space-y-2 text-sm">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:20.246] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:31:1]
- 28 │                             </ul>
- 29 │                         </div>
- 30 │ 
- 31 │                         <!-- Marketplace -->
-    ·                          ─
- 32 │                         <div>
- 33 │                             <h3 class="font-bold text-white mb-3">Marketplace</h3>
- 33 │                             <ul class="space-y-2 text-sm">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:20.246] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:31:1]
- 28 │                             </ul>
- 29 │                         </div>
- 30 │ 
- 31 │                         <!-- Marketplace -->
-    ·                          ─
- 32 │                         <div>
- 33 │                             <h3 class="font-bold text-white mb-3">Marketplace</h3>
- 33 │                             <ul class="space-y-2 text-sm">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:22.416] Server  ERROR    ⨯ ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:42:1]
- 39 │                             </ul>
- 40 │                         </div>
- 41 │ 
- 42 │                         <!-- Recursos -->
-    ·                          ─
- 43 │                         <div>
- 44 │                             <h3 class="font-bold text-white mb-3">Recursos</h3>
- 44 │                             <ul class="space-y-2 text-sm">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:23.242] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:31:1]
- 28 │                             </ul>
- 29 │                         </div>
- 30 │ 
- 31 │                         <!-- Marketplace -->
-    ·                          ─
- 32 │                         <div>
- 33 │                             <h3 class="font-bold text-white mb-3">Marketplace</h3>
- 33 │                             <ul class="space-y-2 text-sm">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:23.242] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:42:1]
- 39 │                             </ul>
- 40 │                         </div>
- 41 │ 
- 42 │                         <!-- Recursos -->
-    ·                          ─
- 43 │                         <div>
- 44 │                             <h3 class="font-bold text-white mb-3">Recursos</h3>
- 44 │                             <ul class="space-y-2 text-sm">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:23.242] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:42:1]
- 39 │                             </ul>
- 40 │                         </div>
- 41 │ 
- 42 │                         <!-- Recursos -->
-    ·                          ─
- 43 │                         <div>
- 44 │                             <h3 class="font-bold text-white mb-3">Recursos</h3>
- 44 │                             <ul class="space-y-2 text-sm">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:24.812] Server  ERROR    ⨯ ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:53:1]
- 50 │                             </ul>
- 51 │                         </div>
- 52 │ 
- 53 │                         <!-- Press -->
-    ·                          ─
- 54 │                         <div>
- 55 │                             <h3 class="font-bold text-white mb-3">Press</h3>
- 55 │                             <ul class="space-y-2 text-sm">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:25.233] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:42:1]
- 39 │                             </ul>
- 40 │                         </div>
- 41 │ 
- 42 │                         <!-- Recursos -->
-    ·                          ─
- 43 │                         <div>
- 44 │                             <h3 class="font-bold text-white mb-3">Recursos</h3>
- 44 │                             <ul class="space-y-2 text-sm">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:25.233] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:53:1]
- 50 │                             </ul>
- 51 │                         </div>
- 52 │ 
- 53 │                         <!-- Press -->
-    ·                          ─
- 54 │                         <div>
- 55 │                             <h3 class="font-bold text-white mb-3">Press</h3>
- 55 │                             <ul class="space-y-2 text-sm">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:25.233] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:53:1]
- 50 │                             </ul>
- 51 │                         </div>
- 52 │ 
- 53 │                         <!-- Press -->
-    ·                          ─
- 54 │                         <div>
- 55 │                             <h3 class="font-bold text-white mb-3">Press</h3>
- 55 │                             <ul class="space-y-2 text-sm">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:26.533] Server  ERROR    ⨯ ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:62:1]
- 59 │                             </ul>
- 60 │                         </div>
- 61 │ 
- 62 │                         <!-- Payment Methods -->
-    ·                          ─
- 63 │                         <div>
- 64 │                             <h3 class="font-bold text-white mb-3">Payment Methods</h3>
- 64 │                             <ul class="space-y-2 text-sm">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:27.239] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:53:1]
- 50 │                             </ul>
- 51 │                         </div>
- 52 │ 
- 53 │                         <!-- Press -->
-    ·                          ─
- 54 │                         <div>
- 55 │                             <h3 class="font-bold text-white mb-3">Press</h3>
- 55 │                             <ul class="space-y-2 text-sm">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:27.239] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:62:1]
- 59 │                             </ul>
- 60 │                         </div>
- 61 │ 
- 62 │                         <!-- Payment Methods -->
-    ·                          ─
- 63 │                         <div>
- 64 │                             <h3 class="font-bold text-white mb-3">Payment Methods</h3>
- 64 │                             <ul class="space-y-2 text-sm">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:27.239] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:62:1]
- 59 │                             </ul>
- 60 │                         </div>
- 61 │ 
- 62 │                         <!-- Payment Methods -->
-    ·                          ─
- 63 │                         <div>
- 64 │                             <h3 class="font-bold text-white mb-3">Payment Methods</h3>
- 64 │                             <ul class="space-y-2 text-sm">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:27.905] Server  ERROR    ⨯ ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:75:1]
- 72 │                     </div>
- 73 │                 </div>
- 74 │ 
- 75 │                 <!-- Right side - Connect with us -->
-    ·                  ─
- 76 │                 <div class="flex-shrink-0">
- 77 │                     <h3 class="font-bold text-white mb-4">Connect with Us</h3>
- 77 │ 
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:28.240] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:62:1]
- 59 │                             </ul>
- 60 │                         </div>
- 61 │ 
- 62 │                         <!-- Payment Methods -->
-    ·                          ─
- 63 │                         <div>
- 64 │                             <h3 class="font-bold text-white mb-3">Payment Methods</h3>
- 64 │                             <ul class="space-y-2 text-sm">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:28.240] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:75:1]
- 72 │                     </div>
- 73 │                 </div>
- 74 │ 
- 75 │                 <!-- Right side - Connect with us -->
-    ·                  ─
- 76 │                 <div class="flex-shrink-0">
- 77 │                     <h3 class="font-bold text-white mb-4">Connect with Us</h3>
- 77 │ 
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:28.240] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:75:1]
- 72 │                     </div>
- 73 │                 </div>
- 74 │ 
- 75 │                 <!-- Right side - Connect with us -->
-    ·                  ─
- 76 │                 <div class="flex-shrink-0">
- 77 │                     <h3 class="font-bold text-white mb-4">Connect with Us</h3>
- 77 │ 
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:32.997] Server  ERROR    ⨯ ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:78:1]
- 75 │                 <div class="flex-shrink-0">
- 76 │                     <h3 class="font-bold text-white mb-4">Connect with Us</h3>
- 77 │ 
- 78 │                     <!-- Contact details -->
-    ·                      ─
- 79 │                     <div class="space-y-4">
- 80 │                         <!-- Phone -->
- 80 │                         <div class="flex items-center space-x-3">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:33.241] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:75:1]
- 72 │                     </div>
- 73 │                 </div>
- 74 │ 
- 75 │                 <!-- Right side - Connect with us -->
-    ·                  ─
- 76 │                 <div class="flex-shrink-0">
- 77 │                     <h3 class="font-bold text-white mb-4">Connect with Us</h3>
- 77 │ 
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:33.242] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:78:1]
- 75 │                 <div class="flex-shrink-0">
- 76 │                     <h3 class="font-bold text-white mb-4">Connect with Us</h3>
- 77 │ 
- 78 │                     <!-- Contact details -->
-    ·                      ─
- 79 │                     <div class="space-y-4">
- 80 │                         <!-- Phone -->
- 80 │                         <div class="flex items-center space-x-3">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:33.242] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:78:1]
- 75 │                 <div class="flex-shrink-0">
- 76 │                     <h3 class="font-bold text-white mb-4">Connect with Us</h3>
- 77 │ 
- 78 │                     <!-- Contact details -->
-    ·                      ─
- 79 │                     <div class="space-y-4">
- 80 │                         <!-- Phone -->
- 80 │                         <div class="flex items-center space-x-3">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:34.109] Server  ERROR    ⨯ ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:79:1]
- 76 │                     <h3 class="font-bold text-white mb-4">Connect with Us</h3>
- 77 │ 
- 78 │                     <div class="space-y-4">
- 79 │                         <!-- Phone -->
-    ·                          ─
- 80 │                         <div class="flex items-center space-x-3">
- 81 │                             <div class="w-5 h-5 flex items-center justify-center">
- 81 │                                 <i class="fas fa-phone text-white text-sm"></i>
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:34.283] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:78:1]
- 75 │                 <div class="flex-shrink-0">
- 76 │                     <h3 class="font-bold text-white mb-4">Connect with Us</h3>
- 77 │ 
- 78 │                     <!-- Contact details -->
-    ·                      ─
- 79 │                     <div class="space-y-4">
- 80 │                         <!-- Phone -->
- 80 │                         <div class="flex items-center space-x-3">
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:34.283] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:79:1]
- 76 │                     <h3 class="font-bold text-white mb-4">Connect with Us</h3>
- 77 │ 
- 78 │                     <div class="space-y-4">
- 79 │                         <!-- Phone -->
-    ·                          ─
- 80 │                         <div class="flex items-center space-x-3">
- 81 │                             <div class="w-5 h-5 flex items-center justify-center">
- 81 │                                 <i class="fas fa-phone text-white text-sm"></i>
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:34.283] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:79:1]
- 76 │                     <h3 class="font-bold text-white mb-4">Connect with Us</h3>
- 77 │ 
- 78 │                     <div class="space-y-4">
- 79 │                         <!-- Phone -->
-    ·                          ─
- 80 │                         <div class="flex items-center space-x-3">
- 81 │                             <div class="w-5 h-5 flex items-center justify-center">
- 81 │                                 <i class="fas fa-phone text-white text-sm"></i>
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:35.117] Server  ERROR    ⨯ ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:89:1]
- 86 │                             </div>
- 87 │                         </div>
- 88 │ 
- 89 │                         <!-- Mail -->
-    ·                          ─
- 90 │                         <div class="flex items-center space-x-3">
- 91 │                             <div class="w-5 h-5 flex items-center justify-center">
- 91 │                                 <i class="fas fa-envelope text-white text-sm"></i>
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:35.242] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:79:1]
- 76 │                     <h3 class="font-bold text-white mb-4">Connect with Us</h3>
- 77 │ 
- 78 │                     <div class="space-y-4">
- 79 │                         <!-- Phone -->
-    ·                          ─
- 80 │                         <div class="flex items-center space-x-3">
- 81 │                             <div class="w-5 h-5 flex items-center justify-center">
- 81 │                                 <i class="fas fa-phone text-white text-sm"></i>
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:35.242] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:89:1]
- 86 │                             </div>
- 87 │                         </div>
- 88 │ 
- 89 │                         <!-- Mail -->
-    ·                          ─
- 90 │                         <div class="flex items-center space-x-3">
- 91 │                             <div class="w-5 h-5 flex items-center justify-center">
- 91 │                                 <i class="fas fa-envelope text-white text-sm"></i>
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:36.742] Server  ERROR    ⨯ ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:99:1]
-  96 │                             </div>
-  97 │                         </div>
-  98 │ 
-  99 │                         <!-- Location -->
-     ·                          ─
- 100 │                         <div class="flex items-center space-x-3">
- 101 │                             <div class="w-5 h-5 flex items-center justify-center">
- 101 │                                 <i class="fas fa-map-marker-alt text-white text-sm"></i>
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:37.241] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:89:1]
- 86 │                             </div>
- 87 │                         </div>
- 88 │ 
- 89 │                         <!-- Mail -->
-    ·                          ─
- 90 │                         <div class="flex items-center space-x-3">
- 91 │                             <div class="w-5 h-5 flex items-center justify-center">
- 91 │                                 <i class="fas fa-envelope text-white text-sm"></i>
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:37.241] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:99:1]
-  96 │                             </div>
-  97 │                         </div>
-  98 │ 
-  99 │                         <!-- Location -->
-     ·                          ─
- 100 │                         <div class="flex items-center space-x-3">
- 101 │                             <div class="w-5 h-5 flex items-center justify-center">
- 101 │                                 <i class="fas fa-map-marker-alt text-white text-sm"></i>
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:37.241] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:99:1]
-  96 │                             </div>
-  97 │                         </div>
-  98 │ 
-  99 │                         <!-- Location -->
-     ·                          ─
- 100 │                         <div class="flex items-center space-x-3">
- 101 │                             <div class="w-5 h-5 flex items-center justify-center">
- 101 │                                 <i class="fas fa-map-marker-alt text-white text-sm"></i>
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:38.357] Server  ERROR    ⨯ ./src/components/Footer.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:112:1]
- 109 │                     </div>
- 110 │                 </div>
- 111 │                 </div>
- 112 │ ╭─▶         </div>
- 113 │ │   
- 114 │ ╰─▶         <!-- Bottom bar -->
- 115 │             <div class="bg-gray-800 border-t border-gray-700">
- 116 │                 <div class="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-6">
- 116 │                     <div class="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:39.232] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got '!'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:99:1]
-  96 │                             </div>
-  97 │                         </div>
-  98 │ 
-  99 │                         <!-- Location -->
-     ·                          ─
- 100 │                         <div class="flex items-center space-x-3">
- 101 │                             <div class="w-5 h-5 flex items-center justify-center">
- 101 │                                 <i class="fas fa-map-marker-alt text-white text-sm"></i>
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:39.232] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:112:1]
- 109 │                     </div>
- 110 │                 </div>
- 111 │                 </div>
- 112 │ ╭─▶         </div>
- 113 │ │   
- 114 │ ╰─▶         <!-- Bottom bar -->
- 115 │             <div class="bg-gray-800 border-t border-gray-700">
- 116 │                 <div class="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-6">
- 116 │                     <div class="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:39.232] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:112:1]
- 109 │                     </div>
- 110 │                 </div>
- 111 │                 </div>
- 112 │ ╭─▶         </div>
- 113 │ │   
- 114 │ ╰─▶         <!-- Bottom bar -->
- 115 │             <div class="bg-gray-800 border-t border-gray-700">
- 116 │                 <div class="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-6">
- 116 │                     <div class="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:42.789] Server  ERROR    ⨯ ./src/components/Footer.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:112:1]
- 109 │                     </div>
- 110 │                 </div>
- 111 │                 </div>
- 112 │ ╭─▶         </div>
- 113 │ │   
- 114 │ ╰─▶         <div class="bg-gray-800 border-t border-gray-700">
- 115 │                 <div class="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-6">
- 116 │                     <div class="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
- 116 │                         <div class="text-gray-400 text-sm">
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:43.237] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:112:1]
- 109 │                     </div>
- 110 │                 </div>
- 111 │                 </div>
- 112 │ ╭─▶         </div>
- 113 │ │   
- 114 │ ╰─▶         <!-- Bottom bar -->
- 115 │             <div class="bg-gray-800 border-t border-gray-700">
- 116 │                 <div class="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-6">
- 116 │                     <div class="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:43.237] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:112:1]
- 109 │                     </div>
- 110 │                 </div>
- 111 │                 </div>
- 112 │ ╭─▶         </div>
- 113 │ │   
- 114 │ ╰─▶         <div class="bg-gray-800 border-t border-gray-700">
- 115 │                 <div class="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-6">
- 116 │                     <div class="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
- 116 │                         <div class="text-gray-400 text-sm">
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:24:43.237] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:112:1]
- 109 │                     </div>
- 110 │                 </div>
- 111 │                 </div>
- 112 │ ╭─▶         </div>
- 113 │ │   
- 114 │ ╰─▶         <div class="bg-gray-800 border-t border-gray-700">
- 115 │                 <div class="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-6">
- 116 │                     <div class="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
- 116 │                         <div class="text-gray-400 text-sm">
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:27:18.269] Browser ERROR   ./src/components/Footer.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Footer.jsx:112:1]
- 109 │                     </div>
- 110 │                 </div>
- 111 │                 </div>
- 112 │ ╭─▶         </div>
- 113 │ │   
- 114 │ ╰─▶         <div class="bg-gray-800 border-t border-gray-700">
- 115 │                 <div class="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-6">
- 116 │                     <div class="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
- 116 │                         <div class="text-gray-400 text-sm">
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Footer.jsx
-./src/layouts/layout.jsx
-[02:28:39.365] Server  ERROR    ⨯ ./src/components/Header.jsx
+[00:00:12.071] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:00:12.071] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:00:12.071] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:00:12.071] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:01:18.919] Server  ERROR    ⨯ ./src/components/Header.jsx
 Error:   × Expression expected
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href={} <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                        ─
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-  × Expected ',', got 'src'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href={} <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                               ───
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:28:40.239] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href={} <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                        ─
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-  × Expected ',', got 'src'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href={} <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                               ───
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:28:42.803] Server  ERROR    ⨯ ./src/components/Header.jsx
-Error:   × Expected '</', got ':'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href={https://centraldipanda.ao/} <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                           ─
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:28:43.240] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href={} <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                        ─
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-  × Expected ',', got 'src'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href={} <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                               ───
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:28:43.240] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got ':'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href={https://centraldipanda.ao/} <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                           ─
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:28:43.240] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got ':'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href={https://centraldipanda.ao/} <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                           ─
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:28:43.720] Server  ERROR    ⨯ ./src/components/Header.jsx
-Error:   × Expression expected
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href={} <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                        ─
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-  × Expected ',', got 'src'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href={} <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                               ───
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:28:44.237] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got ':'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href={https://centraldipanda.ao/} <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                           ─
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:28:44.237] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href={} <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                        ─
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-  × Expected ',', got 'src'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href={} <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                               ───
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:28:44.237] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href={} <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                        ─
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-  × Expected ',', got 'src'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href={} <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                               ───
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:28:46.239] Server  ERROR    ⨯ ./src/components/Header.jsx
-Error:   × Expression expected
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href="https://centraldipanda.ao/" <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                                                  ─
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-  × Expected ',', got 'src'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href="https://centraldipanda.ao/" <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                                                         ───
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:28:47.236] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href={} <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                        ─
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-  × Expected ',', got 'src'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href={} <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                               ───
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:28:47.236] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href="https://centraldipanda.ao/" <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                                                  ─
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-  × Expected ',', got 'src'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href="https://centraldipanda.ao/" <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                                                         ───
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:28:47.236] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href="https://centraldipanda.ao/" <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                                                  ─
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-  × Expected ',', got 'src'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href="https://centraldipanda.ao/" <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                                                         ───
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:28:49.247] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href="https://centraldipanda.ao/" <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                                                  ─
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-  × Expected ',', got 'src'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:29:1]
- 26 │         {/* Left logos */}
- 27 │         <div className="flex items-center gap-2">
- 28 │           <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │          <Link href="https://centraldipanda.ao/" <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
-    ·                                                         ───
- 30 │           <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │         </div>
- 31 │ 
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:28:50.687] Server  ERROR    ⨯ ./src/components/Header.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:31:1]
- 28 │               <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │              <Link href="https://centraldipanda.ao/"> <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
- 30 │               <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │ ╭─▶         </div>
- 32 │ │   
- 33 │ ╰─▶         {/* Center menu */}
- 34 │             <div className="hidden md:flex items-center gap-6 text-sm font-semibold text-white">
- 35 │               {["Início", "Serviços", "Eventos", "Reservar", "Contactos"].map((item, i) => (
- 35 │                 <a
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:28:51.235] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:31:1]
- 28 │               <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │              <Link href="https://centraldipanda.ao/"> <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
- 30 │               <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │ ╭─▶         </div>
- 32 │ │   
- 33 │ ╰─▶         {/* Center menu */}
- 34 │             <div className="hidden md:flex items-center gap-6 text-sm font-semibold text-white">
- 35 │               {["Início", "Serviços", "Eventos", "Reservar", "Contactos"].map((item, i) => (
- 35 │                 <a
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:28:51.235] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:31:1]
- 28 │               <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │              <Link href="https://centraldipanda.ao/"> <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
- 30 │               <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │ ╭─▶         </div>
- 32 │ │   
- 33 │ ╰─▶         {/* Center menu */}
- 34 │             <div className="hidden md:flex items-center gap-6 text-sm font-semibold text-white">
- 35 │               {["Início", "Serviços", "Eventos", "Reservar", "Contactos"].map((item, i) => (
- 35 │                 <a
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:28:56.243] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:31:1]
- 28 │               <Image src="/images/casa-viana.png" alt="Casa Viana" width={160} height={90} />
- 29 │              <Link href="https://centraldipanda.ao/"> <Image src="/images/mabululu.png" alt="Mabululu" width={80} height={80} />
- 30 │               <Image src="/images/Centra-Dipanda.png" alt="Central Dipanda" width={80} height={80} />
- 31 │ ╭─▶         </div>
- 32 │ │   
- 33 │ ╰─▶         {/* Center menu */}
- 34 │             <div className="hidden md:flex items-center gap-6 text-sm font-semibold text-white">
- 35 │               {["Início", "Serviços", "Eventos", "Reservar", "Contactos"].map((item, i) => (
- 35 │                 <a
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:29:44.276] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[02:29:44.276] Browser WARN    Image with src "http://localhost:3000/images/cardapio.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[02:29:44.276] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[02:29:44.276] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[02:30:04.434] Server  ERROR    ⨯ ./src/components/Header.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:51:1]
- 48 │                 width={80}
- 49 │                 height={80}
- 50 │               />
- 51 │ ╭─▶         </div>
- 52 │ │   
- 53 │ ╰─▶         {/* Center menu */}
- 54 │             <div className="hidden md:flex items-center gap-6 text-sm font-semibold text-white">
- 55 │               {["Início", "Serviços", "Eventos", "Reservar", "Contactos"].map(
- 55 │                 (item, i) => (
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:30:05.242] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:51:1]
- 48 │                 width={80}
- 49 │                 height={80}
- 50 │               />
- 51 │ ╭─▶         </div>
- 52 │ │   
- 53 │ ╰─▶         {/* Center menu */}
- 54 │             <div className="hidden md:flex items-center gap-6 text-sm font-semibold text-white">
- 55 │               {["Início", "Serviços", "Eventos", "Reservar", "Contactos"].map(
- 55 │                 (item, i) => (
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:30:05.242] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:51:1]
- 48 │                 width={80}
- 49 │                 height={80}
- 50 │               />
- 51 │ ╭─▶         </div>
- 52 │ │   
- 53 │ ╰─▶         {/* Center menu */}
- 54 │             <div className="hidden md:flex items-center gap-6 text-sm font-semibold text-white">
- 55 │               {["Início", "Serviços", "Eventos", "Reservar", "Contactos"].map(
- 55 │                 (item, i) => (
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-./src/pages/_app.js
-[02:30:05.242] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:51:1]
- 48 │                 width={80}
- 49 │                 height={80}
- 50 │               />
- 51 │ ╭─▶         </div>
- 52 │ │   
- 53 │ ╰─▶         {/* Center menu */}
- 54 │             <div className="hidden md:flex items-center gap-6 text-sm font-semibold text-white">
- 55 │               {["Início", "Serviços", "Eventos", "Reservar", "Contactos"].map(
- 55 │                 (item, i) => (
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:30:13.189] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │         )'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:51:1]
- 48 │                 width={80}
- 49 │                 height={80}
- 50 │               />
- 51 │ ╭─▶         </div>
- 52 │ │   
- 53 │ ╰─▶         {/* Center menu */}
- 54 │             <div className="hidden md:flex items-center gap-6 text-sm font-semibold text-white">
- 55 │               {["Início", "Serviços", "Eventos", "Reservar", "Contactos"].map(
- 55 │                 (item, i) => (
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:30:55.593] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[02:30:55.593] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[02:30:55.593] Browser WARN    Image with src "http://localhost:3000/images/cardapio.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[02:30:55.593] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[02:43:36.278] Browser ERROR   %o
-
-%s
-
-%s
- {} The above error occurred in the <ForwardRef> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
-[02:51:13.649] Server  ERROR    ⨯ ./src/components/Header.jsx
-Error:   × Expression expected
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:78:1]
- 75 │             height={55}
- 76 │           />
- 77 │           <K
- 78 │           <Image
-    ·           ─
- 79 │             src="/images/qualidade.png"
- 80 │             alt="Qualidade"
- 80 │             width={400}
-    ╰────
-  × Expected ',', got 'src'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:79:1]
- 76 │           />
- 77 │           <K
- 78 │           <Image
- 79 │             src="/images/qualidade.png"
-    ·             ───
- 80 │             alt="Qualidade"
- 81 │             width={400}
- 81 │             height={100}
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:51:14.249] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:78:1]
- 75 │             height={55}
- 76 │           />
- 77 │           <K
- 78 │           <Image
-    ·           ─
- 79 │             src="/images/qualidade.png"
- 80 │             alt="Qualidade"
- 80 │             width={400}
-    ╰────
-  × Expected ',', got 'src'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:79:1]
- 76 │           />
- 77 │           <K
- 78 │           <Image
- 79 │             src="/images/qualidade.png"
-    ·             ───
- 80 │             alt="Qualidade"
- 81 │             width={400}
- 81 │             height={100}
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:51:14.249] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:78:1]
- 75 │             height={55}
- 76 │           />
- 77 │           <K
- 78 │           <Image
-    ·           ─
- 79 │             src="/images/qualidade.png"
- 80 │             alt="Qualidade"
- 80 │             width={400}
-    ╰────
-  × Expected ',', got 'src'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:79:1]
- 76 │           />
- 77 │           <K
- 78 │           <Image
- 79 │             src="/images/qualidade.png"
-    ·             ───
- 80 │             alt="Qualidade"
- 81 │             width={400}
- 81 │             height={100}
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:51:19.669] Server  ERROR    ⨯ ./src/components/Header.jsx
-Error:   × Expected '</', got '}'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:77:1]
- 74 │             width={75}
- 75 │             height={55}
- 76 │           />
- 77 │           <Link href=}
-    ·                      ─
- 78 │           <Image
- 79 │             src="/images/qualidade.png"
- 79 │             alt="Qualidade"
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:51:20.239] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:78:1]
- 75 │             height={55}
- 76 │           />
- 77 │           <K
- 78 │           <Image
-    ·           ─
- 79 │             src="/images/qualidade.png"
- 80 │             alt="Qualidade"
- 80 │             width={400}
-    ╰────
-  × Expected ',', got 'src'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:79:1]
- 76 │           />
- 77 │           <K
- 78 │           <Image
- 79 │             src="/images/qualidade.png"
-    ·             ───
- 80 │             alt="Qualidade"
- 81 │             width={400}
- 81 │             height={100}
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:51:20.239] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got '}'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:77:1]
- 74 │             width={75}
- 75 │             height={55}
- 76 │           />
- 77 │           <Link href=}
-    ·                      ─
- 78 │           <Image
- 79 │             src="/images/qualidade.png"
- 79 │             alt="Qualidade"
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:51:20.239] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got '}'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:77:1]
- 74 │             width={75}
- 75 │             height={55}
- 76 │           />
- 77 │           <Link href=}
-    ·                      ─
- 78 │           <Image
- 79 │             src="/images/qualidade.png"
- 79 │             alt="Qualidade"
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:51:22.056] Server  ERROR    ⨯ ./src/components/Header.jsx
-Error:   × Expression expected
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:78:1]
- 75 │             height={55}
- 76 │           />
- 77 │           <Link href="https://maps.app.goo.gl/UuTFT2sXNC6epm4x6"
- 78 │           <Image
-    ·           ─
- 79 │             src="/images/qualidade.png"
- 80 │             alt="Qualidade"
- 80 │             width={400}
-    ╰────
-  × Expected ',', got 'src'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:79:1]
- 76 │           />
- 77 │           <Link href="https://maps.app.goo.gl/UuTFT2sXNC6epm4x6"
- 78 │           <Image
- 79 │             src="/images/qualidade.png"
-    ·             ───
- 80 │             alt="Qualidade"
- 81 │             width={400}
- 81 │             height={100}
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:51:22.237] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got '}'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:77:1]
- 74 │             width={75}
- 75 │             height={55}
- 76 │           />
- 77 │           <Link href=}
-    ·                      ─
- 78 │           <Image
- 79 │             src="/images/qualidade.png"
- 79 │             alt="Qualidade"
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:51:22.237] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:78:1]
- 75 │             height={55}
- 76 │           />
- 77 │           <Link href="https://maps.app.goo.gl/UuTFT2sXNC6epm4x6"
- 78 │           <Image
-    ·           ─
- 79 │             src="/images/qualidade.png"
- 80 │             alt="Qualidade"
- 80 │             width={400}
-    ╰────
-  × Expected ',', got 'src'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:79:1]
- 76 │           />
- 77 │           <Link href="https://maps.app.goo.gl/UuTFT2sXNC6epm4x6"
- 78 │           <Image
- 79 │             src="/images/qualidade.png"
-    ·             ───
- 80 │             alt="Qualidade"
- 81 │             width={400}
- 81 │             height={100}
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:51:22.237] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:78:1]
- 75 │             height={55}
- 76 │           />
- 77 │           <Link href="https://maps.app.goo.gl/UuTFT2sXNC6epm4x6"
- 78 │           <Image
-    ·           ─
- 79 │             src="/images/qualidade.png"
- 80 │             alt="Qualidade"
- 80 │             width={400}
-    ╰────
-  × Expected ',', got 'src'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:79:1]
- 76 │           />
- 77 │           <Link href="https://maps.app.goo.gl/UuTFT2sXNC6epm4x6"
- 78 │           <Image
- 79 │             src="/images/qualidade.png"
-    ·             ───
- 80 │             alt="Qualidade"
- 81 │             width={400}
- 81 │             height={100}
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:51:25.252] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:78:1]
- 75 │             height={55}
- 76 │           />
- 77 │           <Link href="https://maps.app.goo.gl/UuTFT2sXNC6epm4x6"
- 78 │           <Image
-    ·           ─
- 79 │             src="/images/qualidade.png"
- 80 │             alt="Qualidade"
- 80 │             width={400}
-    ╰────
-  × Expected ',', got 'src'
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:79:1]
- 76 │           />
- 77 │           <Link href="https://maps.app.goo.gl/UuTFT2sXNC6epm4x6"
- 78 │           <Image
- 79 │             src="/images/qualidade.png"
-    ·             ───
- 80 │             alt="Qualidade"
- 81 │             width={400}
- 81 │             height={100}
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:51:26.438] Server  ERROR    ⨯ ./src/components/Header.jsx
-Error:   × Expected '</', got 'jsx text (
-  │       )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:116:1]
- 113 │                   />
- 114 │                 </svg>
- 115 │               </div>
- 116 │ ╭─▶         </div>
- 117 │ ╰─▶       </div>
- 118 │         </nav>
- 119 │       );
- 119 │     };
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:51:28.243] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got 'jsx text (
-  │       )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:116:1]
- 113 │                   />
- 114 │                 </svg>
- 115 │               </div>
- 116 │ ╭─▶         </div>
- 117 │ ╰─▶       </div>
- 118 │         </nav>
- 119 │       );
- 119 │     };
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:51:28.243] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got 'jsx text (
-  │       )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:116:1]
- 113 │                   />
- 114 │                 </svg>
- 115 │               </div>
- 116 │ ╭─▶         </div>
- 117 │ ╰─▶       </div>
- 118 │         </nav>
- 119 │       );
- 119 │     };
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:51:28.243] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got 'jsx text (
-  │       )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:116:1]
- 113 │                   />
- 114 │                 </svg>
- 115 │               </div>
- 116 │ ╭─▶         </div>
- 117 │ ╰─▶       </div>
- 118 │         </nav>
- 119 │       );
- 119 │     };
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[02:51:49.961] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[02:51:49.961] Browser WARN    Image with src "http://localhost:3000/images/cardapio.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[02:51:49.961] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[02:51:49.961] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[03:03:56.363] Browser ERROR   %o
-
-%s
-
-%s
- {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
-[03:03:58.936] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[03:03:58.936] Browser WARN    Image with src "http://localhost:3000/images/cardapio.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[03:03:58.936] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[03:03:58.937] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[03:05:05.243] Browser ERROR   %o
-
-%s
-
-%s
- {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
-[03:36:32.687] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[03:36:32.687] Browser WARN    Image with src "http://localhost:3000/images/cardapio.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[03:36:32.687] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[03:36:32.687] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[03:36:48.802] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[03:36:48.802] Browser WARN    Image with src "http://localhost:3000/images/cardapio.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[03:36:48.803] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[03:36:48.803] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[03:40:37.365] Browser ERROR   %o
-
-%s
-
-%s
- {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
-[03:40:37.366] Browser ERROR   %o
-
-%s
-
-%s
- {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
-[03:40:37.366] Browser ERROR   %o
-
-%s
-
-%s
- {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
-[03:40:37.366] Browser ERROR   %o
-
-%s
-
-%s
- {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
-[03:40:39.734] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[03:40:39.734] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[03:40:39.734] Browser WARN    Image with src "http://localhost:3000/images/cardapio.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[03:40:39.734] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[03:41:01.406] Browser ERROR   %o
-
-%s
-
-%s
- {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
-[03:41:01.406] Browser ERROR   %o
-
-%s
-
-%s
- {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
-[03:41:01.406] Browser ERROR   %o
-
-%s
-
-%s
- {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
-[03:41:01.406] Browser ERROR   %o
-
-%s
-
-%s
- {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
-[03:42:31.659] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[03:42:31.659] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[03:42:31.659] Browser WARN    Image with src "http://localhost:3000/images/cardapio.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[03:42:31.659] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[03:44:37.130] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[03:44:37.130] Browser WARN    Image with src "http://localhost:3000/images/cardapio.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[03:44:37.130] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[03:44:37.130] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[03:44:55.725] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[03:44:55.725] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[03:44:55.725] Browser WARN    Image with src "http://localhost:3000/images/cardapio.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[03:44:55.725] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[04:00:53.532] Server  ERROR    ⨯ ./src/views/Homepage.jsx
-Error:   × Expected '>', got 'div'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:390:1]
- 387 │     </div>
- 388 │   </div>
- 389 │         </div>
- 390 │       </div>
-     ·         ───
- 391 │ 
- 392 │       {/* BANNER AND BEVERAGE SLIDER */}
- 392 │       <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-8 py-4 md:py-6">
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/views/Homepage.jsx
-[04:00:54.231] Browser ERROR   ./src/views/Homepage.jsx
-Error:   × Expected '>', got 'div'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:390:1]
- 387 │     </div>
- 388 │   </div>
- 389 │         </div>
- 390 │       </div>
-     ·         ───
- 391 │ 
- 392 │       {/* BANNER AND BEVERAGE SLIDER */}
- 392 │       <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-8 py-4 md:py-6">
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/views/Homepage.jsx
-[04:00:54.231] Browser ERROR   ./src/views/Homepage.jsx
-Error:   × Expected '>', got 'div'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:390:1]
- 387 │     </div>
- 388 │   </div>
- 389 │         </div>
- 390 │       </div>
-     ·         ───
- 391 │ 
- 392 │       {/* BANNER AND BEVERAGE SLIDER */}
- 392 │       <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-8 py-4 md:py-6">
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/views/Homepage.jsx
-./src/pages/index.js
-[04:00:56.392] Browser ERROR   ./src/views/Homepage.jsx
-Error:   × Expected '>', got 'div'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:390:1]
- 387 │     </div>
- 388 │   </div>
- 389 │         </div>
- 390 │       </div>
-     ·         ───
- 391 │ 
- 392 │       {/* BANNER AND BEVERAGE SLIDER */}
- 392 │       <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-8 py-4 md:py-6">
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/views/Homepage.jsx
-[04:02:33.230] Browser LOG     Refreshing page data due to server-side change
-[04:03:38.264] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[04:03:38.264] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[04:03:38.264] Browser WARN    Image with src "http://localhost:3000/images/cardapio.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[04:03:38.264] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:42:43.215] Server  ERROR    ⨯ ./src/components/Header.jsx
-Error:   × Legacy octal escape is not permitted in strict mode
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:87:1]
- 84 │               <Image
- 85 │                 src="/images/qualidade.png"
- 86 │                 alt="Qualidade"
- 87 │                 width={00}
-    ·                        ──
- 88 │                 height={100}
- 89 │               />
- 89 │             </Link>
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[05:42:44.240] Browser ERROR   ./src/components/Header.jsx
-Error:   × Legacy octal escape is not permitted in strict mode
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:87:1]
- 84 │               <Image
- 85 │                 src="/images/qualidade.png"
- 86 │                 alt="Qualidade"
- 87 │                 width={00}
-    ·                        ──
- 88 │                 height={100}
- 89 │               />
- 89 │             </Link>
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[05:42:44.240] Browser ERROR   ./src/components/Header.jsx
-Error:   × Legacy octal escape is not permitted in strict mode
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:87:1]
- 84 │               <Image
- 85 │                 src="/images/qualidade.png"
- 86 │                 alt="Qualidade"
- 87 │                 width={00}
-    ·                        ──
- 88 │                 height={100}
- 89 │               />
- 89 │             </Link>
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[05:42:45.233] Browser ERROR   ./src/components/Header.jsx
-Error:   × Legacy octal escape is not permitted in strict mode
-    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:87:1]
- 84 │               <Image
- 85 │                 src="/images/qualidade.png"
- 86 │                 alt="Qualidade"
- 87 │                 width={00}
-    ·                        ──
- 88 │                 height={100}
- 89 │               />
- 89 │             </Link>
-    ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[05:44:25.148] Server  ERROR    ⨯ ./src/views/Homepage.jsx
-Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:121:1]
- 118 │               DESTAQUES
- 119 │             </h2>
- 120 │             <Li
- 121 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
+ 127 │           <div className="flex md:hidden items-center gap-3">
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link
+ 130 │             <Image
      ·             ─
- 122 │               {destaqueItems.map((item, i) => (
- 123 │                 <button
- 123 │                   key={i}
+ 131 │               src="/images/cardapio.png"
+ 132 │               alt="Cardápio"
+ 132 │               width={40}
      ╰────
-  × Expected ',', got 'className'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:121:1]
- 118 │               DESTAQUES
- 119 │             </h2>
- 120 │             <Li
- 121 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
-     ·                  ─────────
- 122 │               {destaqueItems.map((item, i) => (
- 123 │                 <button
- 123 │                   key={i}
+  × Expected ',', got 'src'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link
+ 130 │             <Image
+ 131 │               src="/images/cardapio.png"
+     ·               ───
+ 132 │               alt="Cardápio"
+ 133 │               width={40}
+ 133 │               height={40}
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./src/views/Homepage.jsx
-[05:44:26.236] Browser ERROR   ./src/views/Homepage.jsx
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[00:01:19.353] Browser ERROR   ./src/components/Header.jsx
 Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:121:1]
- 118 │               DESTAQUES
- 119 │             </h2>
- 120 │             <Li
- 121 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
+ 127 │           <div className="flex md:hidden items-center gap-3">
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link
+ 130 │             <Image
      ·             ─
- 122 │               {destaqueItems.map((item, i) => (
- 123 │                 <button
- 123 │                   key={i}
+ 131 │               src="/images/cardapio.png"
+ 132 │               alt="Cardápio"
+ 132 │               width={40}
      ╰────
-  × Expected ',', got 'className'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:121:1]
- 118 │               DESTAQUES
- 119 │             </h2>
- 120 │             <Li
- 121 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
-     ·                  ─────────
- 122 │               {destaqueItems.map((item, i) => (
- 123 │                 <button
- 123 │                   key={i}
+  × Expected ',', got 'src'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link
+ 130 │             <Image
+ 131 │               src="/images/cardapio.png"
+     ·               ───
+ 132 │               alt="Cardápio"
+ 133 │               width={40}
+ 133 │               height={40}
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./src/views/Homepage.jsx
-[05:44:26.236] Browser ERROR   ./src/views/Homepage.jsx
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[00:01:19.353] Browser ERROR   ./src/components/Header.jsx
 Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:121:1]
- 118 │               DESTAQUES
- 119 │             </h2>
- 120 │             <Li
- 121 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
+ 127 │           <div className="flex md:hidden items-center gap-3">
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link
+ 130 │             <Image
      ·             ─
- 122 │               {destaqueItems.map((item, i) => (
- 123 │                 <button
- 123 │                   key={i}
+ 131 │               src="/images/cardapio.png"
+ 132 │               alt="Cardápio"
+ 132 │               width={40}
      ╰────
-  × Expected ',', got 'className'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:121:1]
- 118 │               DESTAQUES
- 119 │             </h2>
- 120 │             <Li
- 121 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
-     ·                  ─────────
- 122 │               {destaqueItems.map((item, i) => (
- 123 │                 <button
- 123 │                   key={i}
+  × Expected ',', got 'src'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link
+ 130 │             <Image
+ 131 │               src="/images/cardapio.png"
+     ·               ───
+ 132 │               alt="Cardápio"
+ 133 │               width={40}
+ 133 │               height={40}
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./src/views/Homepage.jsx
-./src/pages/index.js
-[05:44:29.971] Server  ERROR    ⨯ ./src/views/Homepage.jsx
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[00:01:23.041] Server  ERROR    ⨯ ./src/components/Header.jsx
 Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
- 119 │               DESTAQUES
- 120 │             </h2>
- 121 │             <Link href={}
- 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
+ 127 │           <div className="flex md:hidden items-center gap-3">
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link href=""
+ 130 │             <Image
      ·             ─
- 123 │               {destaqueItems.map((item, i) => (
- 124 │                 <button
- 124 │                   key={i}
+ 131 │               src="/images/cardapio.png"
+ 132 │               alt="Cardápio"
+ 132 │               width={40}
      ╰────
-  × Expected ',', got 'className'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
- 119 │               DESTAQUES
- 120 │             </h2>
- 121 │             <Link href={}
- 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
-     ·                  ─────────
- 123 │               {destaqueItems.map((item, i) => (
- 124 │                 <button
- 124 │                   key={i}
+  × Expected ',', got 'src'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link href=""
+ 130 │             <Image
+ 131 │               src="/images/cardapio.png"
+     ·               ───
+ 132 │               alt="Cardápio"
+ 133 │               width={40}
+ 133 │               height={40}
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./src/views/Homepage.jsx
-[05:44:30.237] Browser ERROR   ./src/views/Homepage.jsx
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[00:01:23.296] Browser ERROR   ./src/components/Header.jsx
 Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:121:1]
- 118 │               DESTAQUES
- 119 │             </h2>
- 120 │             <Li
- 121 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
+ 127 │           <div className="flex md:hidden items-center gap-3">
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link
+ 130 │             <Image
      ·             ─
- 122 │               {destaqueItems.map((item, i) => (
- 123 │                 <button
- 123 │                   key={i}
+ 131 │               src="/images/cardapio.png"
+ 132 │               alt="Cardápio"
+ 132 │               width={40}
      ╰────
-  × Expected ',', got 'className'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:121:1]
- 118 │               DESTAQUES
- 119 │             </h2>
- 120 │             <Li
- 121 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
-     ·                  ─────────
- 122 │               {destaqueItems.map((item, i) => (
- 123 │                 <button
- 123 │                   key={i}
+  × Expected ',', got 'src'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link
+ 130 │             <Image
+ 131 │               src="/images/cardapio.png"
+     ·               ───
+ 132 │               alt="Cardápio"
+ 133 │               width={40}
+ 133 │               height={40}
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./src/views/Homepage.jsx
-[05:44:30.237] Browser ERROR   ./src/views/Homepage.jsx
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[00:01:23.296] Browser ERROR   ./src/components/Header.jsx
 Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
- 119 │               DESTAQUES
- 120 │             </h2>
- 121 │             <Link href={}
- 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
+ 127 │           <div className="flex md:hidden items-center gap-3">
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link href=""
+ 130 │             <Image
      ·             ─
- 123 │               {destaqueItems.map((item, i) => (
- 124 │                 <button
- 124 │                   key={i}
+ 131 │               src="/images/cardapio.png"
+ 132 │               alt="Cardápio"
+ 132 │               width={40}
      ╰────
-  × Expected ',', got 'className'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
- 119 │               DESTAQUES
- 120 │             </h2>
- 121 │             <Link href={}
- 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
-     ·                  ─────────
- 123 │               {destaqueItems.map((item, i) => (
- 124 │                 <button
- 124 │                   key={i}
+  × Expected ',', got 'src'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link href=""
+ 130 │             <Image
+ 131 │               src="/images/cardapio.png"
+     ·               ───
+ 132 │               alt="Cardápio"
+ 133 │               width={40}
+ 133 │               height={40}
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./src/views/Homepage.jsx
-[05:44:30.237] Browser ERROR   ./src/views/Homepage.jsx
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[00:01:23.296] Browser ERROR   ./src/components/Header.jsx
 Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
- 119 │               DESTAQUES
- 120 │             </h2>
- 121 │             <Link href={}
- 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
+ 127 │           <div className="flex md:hidden items-center gap-3">
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link href=""
+ 130 │             <Image
      ·             ─
- 123 │               {destaqueItems.map((item, i) => (
- 124 │                 <button
- 124 │                   key={i}
+ 131 │               src="/images/cardapio.png"
+ 132 │               alt="Cardápio"
+ 132 │               width={40}
      ╰────
-  × Expected ',', got 'className'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
- 119 │               DESTAQUES
- 120 │             </h2>
- 121 │             <Link href={}
- 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
-     ·                  ─────────
- 123 │               {destaqueItems.map((item, i) => (
- 124 │                 <button
- 124 │                   key={i}
+  × Expected ',', got 'src'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link href=""
+ 130 │             <Image
+ 131 │               src="/images/cardapio.png"
+     ·               ───
+ 132 │               alt="Cardápio"
+ 133 │               width={40}
+ 133 │               height={40}
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./src/views/Homepage.jsx
-./src/pages/index.js
-[05:44:33.544] Server  ERROR    ⨯ ./src/views/Homepage.jsx
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[00:01:25.143] Server  ERROR    ⨯ ./src/components/Header.jsx
 Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
- 119 │               DESTAQUES
- 120 │             </h2>
- 121 │             <Link href="https://centraldipanda.ao/loja-do-cabelo/"
- 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
+ 127 │           <div className="flex md:hidden items-center gap-3">
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link href=""
+ 130 │             <Image
      ·             ─
- 123 │               {destaqueItems.map((item, i) => (
- 124 │                 <button
- 124 │                   key={i}
+ 131 │               src="/images/cardapio.png"
+ 132 │               alt="Cardápio"
+ 132 │               width={40}
      ╰────
-  × Expected ',', got 'className'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
- 119 │               DESTAQUES
- 120 │             </h2>
- 121 │             <Link href="https://centraldipanda.ao/loja-do-cabelo/"
- 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
-     ·                  ─────────
- 123 │               {destaqueItems.map((item, i) => (
- 124 │                 <button
- 124 │                   key={i}
+  × Expected ',', got 'src'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link href=""
+ 130 │             <Image
+ 131 │               src="/images/cardapio.png"
+     ·               ───
+ 132 │               alt="Cardápio"
+ 133 │               width={40}
+ 133 │               height={40}
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./src/views/Homepage.jsx
-[05:44:34.230] Browser ERROR   ./src/views/Homepage.jsx
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[00:01:25.294] Browser ERROR   ./src/components/Header.jsx
 Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
- 119 │               DESTAQUES
- 120 │             </h2>
- 121 │             <Link href={}
- 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
+ 127 │           <div className="flex md:hidden items-center gap-3">
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link href=""
+ 130 │             <Image
      ·             ─
- 123 │               {destaqueItems.map((item, i) => (
- 124 │                 <button
- 124 │                   key={i}
+ 131 │               src="/images/cardapio.png"
+ 132 │               alt="Cardápio"
+ 132 │               width={40}
      ╰────
-  × Expected ',', got 'className'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
- 119 │               DESTAQUES
- 120 │             </h2>
- 121 │             <Link href={}
- 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
-     ·                  ─────────
- 123 │               {destaqueItems.map((item, i) => (
- 124 │                 <button
- 124 │                   key={i}
+  × Expected ',', got 'src'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link href=""
+ 130 │             <Image
+ 131 │               src="/images/cardapio.png"
+     ·               ───
+ 132 │               alt="Cardápio"
+ 133 │               width={40}
+ 133 │               height={40}
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./src/views/Homepage.jsx
-[05:44:34.230] Browser ERROR   ./src/views/Homepage.jsx
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[00:01:25.294] Browser ERROR   ./src/components/Header.jsx
 Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
- 119 │               DESTAQUES
- 120 │             </h2>
- 121 │             <Link href="https://centraldipanda.ao/loja-do-cabelo/"
- 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
+ 127 │           <div className="flex md:hidden items-center gap-3">
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link href=""
+ 130 │             <Image
      ·             ─
- 123 │               {destaqueItems.map((item, i) => (
- 124 │                 <button
- 124 │                   key={i}
+ 131 │               src="/images/cardapio.png"
+ 132 │               alt="Cardápio"
+ 132 │               width={40}
      ╰────
-  × Expected ',', got 'className'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
- 119 │               DESTAQUES
- 120 │             </h2>
- 121 │             <Link href="https://centraldipanda.ao/loja-do-cabelo/"
- 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
-     ·                  ─────────
- 123 │               {destaqueItems.map((item, i) => (
- 124 │                 <button
- 124 │                   key={i}
+  × Expected ',', got 'src'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link href=""
+ 130 │             <Image
+ 131 │               src="/images/cardapio.png"
+     ·               ───
+ 132 │               alt="Cardápio"
+ 133 │               width={40}
+ 133 │               height={40}
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./src/views/Homepage.jsx
-[05:44:34.230] Browser ERROR   ./src/views/Homepage.jsx
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[00:01:27.300] Browser ERROR   ./src/components/Header.jsx
 Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
- 119 │               DESTAQUES
- 120 │             </h2>
- 121 │             <Link href="https://centraldipanda.ao/loja-do-cabelo/"
- 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
+ 127 │           <div className="flex md:hidden items-center gap-3">
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link href=""
+ 130 │             <Image
      ·             ─
- 123 │               {destaqueItems.map((item, i) => (
- 124 │                 <button
- 124 │                   key={i}
+ 131 │               src="/images/cardapio.png"
+ 132 │               alt="Cardápio"
+ 132 │               width={40}
      ╰────
-  × Expected ',', got 'className'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
- 119 │               DESTAQUES
- 120 │             </h2>
- 121 │             <Link href="https://centraldipanda.ao/loja-do-cabelo/"
- 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
-     ·                  ─────────
- 123 │               {destaqueItems.map((item, i) => (
- 124 │                 <button
- 124 │                   key={i}
+  × Expected ',', got 'src'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
+ 128 │             {/* Cardapio small image */}
+ 129 │             <Link href=""
+ 130 │             <Image
+ 131 │               src="/images/cardapio.png"
+     ·               ───
+ 132 │               alt="Cardápio"
+ 133 │               width={40}
+ 133 │               height={40}
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./src/views/Homepage.jsx
-./src/pages/index.js
-[05:44:36.296] Browser ERROR   ./src/views/Homepage.jsx
-Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
- 119 │               DESTAQUES
- 120 │             </h2>
- 121 │             <Link href="https://centraldipanda.ao/loja-do-cabelo/"
- 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
-     ·             ─
- 123 │               {destaqueItems.map((item, i) => (
- 124 │                 <button
- 124 │                   key={i}
-     ╰────
-  × Expected ',', got 'className'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:122:1]
- 119 │               DESTAQUES
- 120 │             </h2>
- 121 │             <Link href="https://centraldipanda.ao/loja-do-cabelo/"
- 122 │             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
-     ·                  ─────────
- 123 │               {destaqueItems.map((item, i) => (
- 124 │                 <button
- 124 │                   key={i}
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[00:01:28.863] Server  ERROR    ⨯ ./src/components/Header.jsx
+Error:   × Expected '</', got 'jsx text (
+  │         )'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:197:1]
+ 194 │                     </svg>
+ 195 │                   )}
+ 196 │                 </button>
+ 197 │ ╭─▶           </div>
+ 198 │ ╰─▶         </div>
+ 199 │           </div>
+ 200 │     
+ 200 │           {/* Mobile Menu Dropdown */}
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./src/views/Homepage.jsx
-[05:44:37.954] Server  ERROR    ⨯ ./src/views/Homepage.jsx
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[00:01:29.329] Browser ERROR   ./src/components/Header.jsx
+Error:   × Expected '</', got 'jsx text (
+  │         )'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:197:1]
+ 194 │                     </svg>
+ 195 │                   )}
+ 196 │                 </button>
+ 197 │ ╭─▶           </div>
+ 198 │ ╰─▶         </div>
+ 199 │           </div>
+ 200 │     
+ 200 │           {/* Mobile Menu Dropdown */}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[00:01:29.329] Browser ERROR   ./src/components/Header.jsx
+Error:   × Expected '</', got 'jsx text (
+  │         )'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:197:1]
+ 194 │                     </svg>
+ 195 │                   )}
+ 196 │                 </button>
+ 197 │ ╭─▶           </div>
+ 198 │ ╰─▶         </div>
+ 199 │           </div>
+ 200 │     
+ 200 │           {/* Mobile Menu Dropdown */}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[00:01:30.304] Browser ERROR   ./src/components/Header.jsx
+Error:   × Expected '</', got 'jsx text (
+  │         )'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:197:1]
+ 194 │                     </svg>
+ 195 │                   )}
+ 196 │                 </button>
+ 197 │ ╭─▶           </div>
+ 198 │ ╰─▶         </div>
+ 199 │           </div>
+ 200 │     
+ 200 │           {/* Mobile Menu Dropdown */}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[00:11:32.712] Browser WARN    Image with src "/images/Imagem WhatsApp 2025-10-31 às 11.05.57_e8acca07.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:11:32.712] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:25:18.448] Server  ERROR    ⨯ ./src/components/Header.jsx
 Error:   × Expected '</', got 'jsx text (
   │
   │           )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:132:1]
- 129 │                     </button>
- 130 │                   ))}
- 131 │                 </div>
- 132 │ ╭─▶           </div>
- 133 │ │   
- 134 │ ╰─▶           {/* RIGHT SIDE - SLIDER 1 */}
- 135 │               <div className="lg:col-span-4">
- 136 │                 {/* Main Slider */}
- 136 │                 <Swiper
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:126:1]
+ 123 │                     />
+ 124 │                   </svg>
+ 125 │                 </div>
+ 126 │ ╭─▶           </div>
+ 127 │ │   
+ 128 │ ╰─▶           {/* Mobile right side */}
+ 129 │               <div className="flex md:hidden items-center gap-3">
+ 130 │                 {/* Cardapio small image */}
+ 130 │                 <Link href="https://www.casaviana.ao/cardapio/">
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./src/views/Homepage.jsx
-[05:44:38.237] Browser ERROR   ./src/views/Homepage.jsx
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[00:25:19.298] Browser ERROR   ./src/components/Header.jsx
 Error:   × Expected '</', got 'jsx text (
   │
   │           )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:132:1]
- 129 │                     </button>
- 130 │                   ))}
- 131 │                 </div>
- 132 │ ╭─▶           </div>
- 133 │ │   
- 134 │ ╰─▶           {/* RIGHT SIDE - SLIDER 1 */}
- 135 │               <div className="lg:col-span-4">
- 136 │                 {/* Main Slider */}
- 136 │                 <Swiper
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:126:1]
+ 123 │                     />
+ 124 │                   </svg>
+ 125 │                 </div>
+ 126 │ ╭─▶           </div>
+ 127 │ │   
+ 128 │ ╰─▶           {/* Mobile right side */}
+ 129 │               <div className="flex md:hidden items-center gap-3">
+ 130 │                 {/* Cardapio small image */}
+ 130 │                 <Link href="https://www.casaviana.ao/cardapio/">
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./src/views/Homepage.jsx
-[05:44:38.237] Browser ERROR   ./src/views/Homepage.jsx
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[00:25:19.298] Browser ERROR   ./src/components/Header.jsx
 Error:   × Expected '</', got 'jsx text (
   │
   │           )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:132:1]
- 129 │                     </button>
- 130 │                   ))}
- 131 │                 </div>
- 132 │ ╭─▶           </div>
- 133 │ │   
- 134 │ ╰─▶           {/* RIGHT SIDE - SLIDER 1 */}
- 135 │               <div className="lg:col-span-4">
- 136 │                 {/* Main Slider */}
- 136 │                 <Swiper
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:126:1]
+ 123 │                     />
+ 124 │                   </svg>
+ 125 │                 </div>
+ 126 │ ╭─▶           </div>
+ 127 │ │   
+ 128 │ ╰─▶           {/* Mobile right side */}
+ 129 │               <div className="flex md:hidden items-center gap-3">
+ 130 │                 {/* Cardapio small image */}
+ 130 │                 <Link href="https://www.casaviana.ao/cardapio/">
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./src/views/Homepage.jsx
-./src/pages/index.js
-[05:44:40.390] Browser ERROR   ./src/views/Homepage.jsx
+./src/components/Header.jsx
+./src/layouts/layout.jsx
+[00:25:24.310] Browser ERROR   ./src/components/Header.jsx
 Error:   × Expected '</', got 'jsx text (
   │
   │           )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:132:1]
- 129 │                     </button>
- 130 │                   ))}
- 131 │                 </div>
- 132 │ ╭─▶           </div>
- 133 │ │   
- 134 │ ╰─▶           {/* RIGHT SIDE - SLIDER 1 */}
- 135 │               <div className="lg:col-span-4">
- 136 │                 {/* Main Slider */}
- 136 │                 <Swiper
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:126:1]
+ 123 │                     />
+ 124 │                   </svg>
+ 125 │                 </div>
+ 126 │ ╭─▶           </div>
+ 127 │ │   
+ 128 │ ╰─▶           {/* Mobile right side */}
+ 129 │               <div className="flex md:hidden items-center gap-3">
+ 130 │                 {/* Cardapio small image */}
+ 130 │                 <Link href="https://www.casaviana.ao/cardapio/">
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./src/views/Homepage.jsx
-[05:44:46.241] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:44:46.241] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:44:46.241] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:44:46.241] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:44:47.546] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[05:44:51.779] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[05:44:51.779] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:44:51.779] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:44:51.779] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:44:51.779] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:47:51.278] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[05:47:51.278] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:47:51.278] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:47:51.278] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:47:51.278] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:47:53.542] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:47:53.542] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:47:53.542] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:47:53.542] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:47:53.542] Browser WARN    Image with src "/images/qualidade.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[05:47:57.894] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[05:47:57.894] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:47:57.894] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:47:57.894] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:47:57.894] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:50:47.351] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[05:50:47.351] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:50:47.351] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:50:47.351] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[05:50:47.351] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:05:05.749] Browser WARN    Image with src "/images/cms-image2.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[06:05:06.042] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:05:06.042] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:05:06.042] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:05:06.042] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:08:22.719] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[06:08:22.719] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:08:22.719] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:08:22.719] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:08:22.719] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:10:52.440] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[06:10:52.440] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:10:52.440] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:10:52.440] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:10:52.440] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:11:44.300] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[06:11:44.300] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:11:44.300] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:11:44.300] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:11:44.300] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:29:00.891] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[06:29:00.891] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:29:00.891] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:29:00.891] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:29:00.891] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:36:50.156] Browser WARN    Image with src "/images/cms-image2.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[06:36:50.157] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:36:50.157] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:36:50.157] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:36:50.157] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:37:16.431] Browser WARN    Image with src "/images/cms-image2.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[06:37:16.431] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:37:16.431] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:37:16.431] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:37:16.431] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:37:32.636] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[06:37:32.636] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:37:32.636] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:37:32.636] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:37:32.636] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:38:30.982] Browser WARN    Image with src "/images/cms-image2.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[06:38:30.982] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:38:30.982] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:38:30.982] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:38:30.982] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:38:38.719] Browser WARN    Image with src "/images/cms-image2.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[06:38:38.719] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:38:38.719] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:38:38.719] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:38:38.719] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:57:44.969] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[06:57:45.051] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:57:45.051] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:57:45.051] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[06:57:45.051] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+./src/components/Header.jsx
+./src/layouts/layout.jsx

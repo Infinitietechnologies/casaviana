@@ -72,12 +72,14 @@ const Header = () => {
         <div className="flex items-center gap-4">
           {/* Desktop right side */}
           <div className="hidden md:flex items-center gap-4">
-            <Image
-              src="/images/cardapio.png"
-              alt="Cardápio"
-              width={55}
-              height={55}
-            />
+            <Link href="https://www.casaviana.ao/cardapio/">
+              <Image
+                src="/images/cardapio.png"
+                alt="Cardápio"
+                width={55}
+                height={55}
+              />
+            </Link>
             <Link href="https://maps.app.goo.gl/UuTFT2sXNC6epm4x6">
               <Image
                 src="/images/qualidade.png"
@@ -126,13 +128,14 @@ const Header = () => {
           {/* Mobile right side */}
           <div className="flex md:hidden items-center gap-3">
             {/* Cardapio small image */}
-            <Image
-              src="/images/cardapio.png"
-              alt="Cardápio"
-              width={40}
-              height={40}
-            />
-
+            <Link href="https://www.casaviana.ao/cardapio/">
+              <Image
+                src="/images/cardapio.png"
+                alt="Cardápio"
+                width={90}
+                height={90}
+              />
+            </Link>
             {/* Profile icon */}
             <div className="w-9 h-9 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full cursor-pointer transition">
               <svg
@@ -199,8 +202,10 @@ const Header = () => {
 
       {/* Mobile Menu Dropdown */}
       <div
-        className={`md:hidden bg-red-700 text-white flex flex-col items-center overflow-hidden transition-all duration-300 ease-in-out ${
-          menuOpen ? "max-h-96 py-4 shadow-lg" : "max-h-0 py-0"
+        className={`md:hidden text-white flex flex-col items-center overflow-hidden transition-all duration-300 ease-in-out ${
+          menuOpen
+            ? "max-h-96 py-4 shadow-lg backdrop-blur-md bg-red-600/70 border-t border-white/20"
+            : "max-h-0 py-0"
         }`}
       >
         {["Início", "Serviços", "Eventos", "Reservar", "Contactos"].map(
