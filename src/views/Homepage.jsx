@@ -94,10 +94,8 @@ const Homepage = () => {
 
   return (
     <>
-      {/* FIRST SECTION - EVENTOS, DESTAQUES, SLIDER */}
       <div className="mx-auto py-4 md:py-8 px-2 sm:px-4 mt-20 sm:mt-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6">
-          {/* LEFT SIDE - EVENTOS EM DESTAQUES */}
           <div className="lg:col-span-3">
             <h2 className="bg-gradient-to-r from-orange-500 to-red-600 text-white text-base sm:text-lg md:text-xl text-center font-bold py-2 px-4 rounded-md mb-4">
               EVENTOS EM DESTAQUES
@@ -119,7 +117,6 @@ const Homepage = () => {
             </div>
           </div>
 
-          {/* MIDDLE SECTION - DESTAQUES */}
           <div className="lg:col-span-5">
             <h2 className="bg-gradient-to-r from-orange-500 to-red-600 text-white text-base sm:text-lg md:text-xl text-center font-bold py-2 px-4 rounded-md mb-4">
               DESTAQUES
@@ -138,9 +135,7 @@ const Homepage = () => {
             </Link>
           </div>
 
-          {/* RIGHT SIDE - SLIDER 1 */}
           <div className="lg:col-span-4">
-            {/* Main Slider */}
             <Swiper
               spaceBetween={10}
               navigation={true}
@@ -170,7 +165,6 @@ const Homepage = () => {
               ))}
             </Swiper>
 
-            {/* Thumbnails */}
             <Swiper
               onSwiper={setThumbsSwiper1}
               spaceBetween={8}
@@ -200,11 +194,11 @@ const Homepage = () => {
         </div>
       </div>
 
-      {/* SECOND SECTION - SIDEBAR, MAIN SWIPER, DIRECTORY */}
-      <div className="mx-auto py-4 md:py-6 px-2 sm:px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6">
+      {/* Main content grid - Caps total width and distributes columns evenly */}
+      <div className=" mx-auto px-2 sm:px-4 md:px-8 lg:px-0 min-h-screen">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 relative min-h-screen">
           {/* LEFT SIDE - TRENDING / COMMENTS / LATEST */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 lg:sticky lg:top-24 self-start p-2 sm:p-4 space-y-6">
             {/* Top Ad image */}
             <div className="w-full overflow-hidden rounded-md border border-gray-200 shadow-sm">
               <Image
@@ -256,7 +250,7 @@ const Homepage = () => {
                   key={i}
                   className="flex items-center gap-3 p-1 hover:bg-gray-50 rounded-md transition-colors"
                 >
-                  <div className="w-16 h-16 overflow-hidden rounded-md border border-gray-200">
+                  <div className="w-16 h-16 overflow-hidden rounded-md border border-gray-200 flex-shrink-0">
                     <Image
                       src={news.img}
                       alt={news.title}
@@ -274,7 +268,7 @@ const Homepage = () => {
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
-                        className="w-4 h-4 text-gray-400"
+                        className="w-4 h-4 text-gray-400 flex-shrink-0"
                       >
                         <path d="M10 2a8 8 0 1 0 8 8A8.01 8.01 0 0 0 10 2Zm.75 8.25V5.75a.75.75 0 0 0-1.5 0v5a.75.75 0 0 0 .22.53l3 3a.75.75 0 1 0 1.06-1.06Z" />
                       </svg>
@@ -286,315 +280,324 @@ const Homepage = () => {
             </div>
 
             {/* Bottom Ad image */}
-            {/* <div className="w-full overflow-hidden rounded-md border border-gray-200 shadow-sm">
+            <div className="w-full overflow-hidden rounded-md border border-gray-200 shadow-sm">
               <Image
                 src="/images/dogq.jpg"
                 alt="Advertisement"
                 width={600}
-                height={200}
+                height={400}
                 className="w-full h-auto object-contain"
               />
-            </div> */}
+            </div>
           </div>
 
-          {/* CENTER - MAIN SWIPER 2 + THUMBNAILS */}
-          <div className="lg:col-span-8">
-            {/* Main Slider */}
-            <Swiper
-              spaceBetween={10}
-              navigation={true}
-              modules={[Navigation, Thumbs]}
-              thumbs={{
-                swiper:
-                  thumbsSwiper2 && !thumbsSwiper2.destroyed
-                    ? thumbsSwiper2
-                    : null,
-              }}
-              className="mainSwiper overflow-hidden rounded-md"
-            >
-              {sliderCenterImages.map((img, i) => (
-                <SwiperSlide key={i}>
-                  <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-                    <Image
-                      src={img}
-                      alt={`slide-${i}`}
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-xs px-2 py-1">
-                      CASAMENTO
+          {/* CENTER - All main content */}
+          <div className="lg:col-span-8 py-4 md:py-6 gap-6">
+            {/* Original top center content */}
+            <div className="w-full gap-4 grid grid-cols-1 md:gap-6 relative overflow-hidden">
+              {/* Main Slider */}
+              <div className="w-full">
+                <Swiper
+                  slidesPerView={1}
+                  spaceBetween={10}
+                  navigation={true}
+                  modules={[Navigation, Thumbs]}
+                  thumbs={{
+                    swiper:
+                      thumbsSwiper2 && !thumbsSwiper2.destroyed
+                        ? thumbsSwiper2
+                        : null,
+                  }}
+                  className="mainSwiper overflow-hidden rounded-md"
+                >
+                  {sliderCenterImages.map((img, i) => (
+                    <SwiperSlide key={i}>
+                      <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+                        <Image
+                          src={img}
+                          alt={`slide-${i}`}
+                          fill
+                          className="object-cover"
+                        />
+                        <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-xs px-2 py-1">
+                          CASAMENTO
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
+
+              {/* Thumbnails */}
+              <div className="w-full">
+                <Swiper
+                  onSwiper={setThumbsSwiper2}
+                  spaceBetween={8}
+                  slidesPerView={3}
+                  breakpoints={{
+                    480: { slidesPerView: 4 },
+                    640: { slidesPerView: 5 },
+                    768: { slidesPerView: 6 },
+                  }}
+                  watchSlidesProgress
+                  modules={[Thumbs]}
+                  className="thumbSwiper mt-2 sm:mt-3"
+                >
+                  {sliderCenterImages.map((img, i) => (
+                    <SwiperSlide key={i}>
+                      <div className="relative w-full h-[60px] sm:h-[70px] md:h-[110px] cursor-pointer">
+                        <Image
+                          src={img}
+                          alt={`thumb-${i}`}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
+
+              {/* Red Banner */}
+              <div className="mb-3 sm:mb-4 mt-2 sm:mt-3 w-full">
+                <Image
+                  src="/images/cms-image2.jpg"
+                  alt="Tigra Banner"
+                  width={1920}
+                  height={400}
+                  className="w-full h-auto object-cover rounded-md"
+                />
+              </div>
+            </div>
+
+            {/* BANNER AND BEVERAGE SLIDER */}
+            <div className="max-w-full pt-2 md:pt-3 pb-4 md:pb-6 w-full">
+              {/* Banner */}
+              <div className="mb-0">
+                {/* <Image
+                  src="/images/cms-image2.jpg"
+                  alt="Tigra Banner"
+                  width={1920}
+                  height={400}
+                  className="w-full h-auto object-cover rounded-md"
+                /> */}
+              </div>
+
+              {/* Main Image Slider */}
+              <div className="w-full">
+                {/* Main Slider 3 */}
+                <Swiper
+                  slidesPerView={1}
+                  spaceBetween={10}
+                  navigation={true}
+                  modules={[Navigation, Thumbs]}
+                  thumbs={{
+                    swiper:
+                      thumbsSwiper3 && !thumbsSwiper3.destroyed
+                        ? thumbsSwiper3
+                        : null,
+                  }}
+                  className="mainSwiper rounded-md overflow-hidden"
+                >
+                  {images.map((img, i) => (
+                    <SwiperSlide key={i}>
+                      <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+                        <Image
+                          src={img}
+                          alt={`slide-${i}`}
+                          fill
+                          className="object-cover rounded-md"
+                        />
+                        <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-xs px-2 py-1 rounded">
+                          CASAMENTO
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+
+                {/* Thumbnails */}
+                <Swiper
+                  onSwiper={setThumbsSwiper3}
+                  spaceBetween={8}
+                  slidesPerView={3}
+                  breakpoints={{
+                    480: { slidesPerView: 4 },
+                    640: { slidesPerView: 5 },
+                    768: { slidesPerView: 6 },
+                  }}
+                  watchSlidesProgress
+                  modules={[Thumbs]}
+                  className="thumbSwiper mt-2 sm:mt-3"
+                >
+                  {images.map((img, i) => (
+                    <SwiperSlide key={i}>
+                      <div className="relative w-full h-[60px] sm:h-[70px] md:h-[110px] cursor-pointer">
+                        <Image
+                          src={img}
+                          alt={`thumb-${i}`}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
+
+              {/* Banner */}
+              <div className="mt-6 sm:mt-8 w-full">
+                <Image
+                  src="/images/saf.png"
+                  alt="Tigra Banner"
+                  width={1920}
+                  height={400}
+                  className="w-full h-auto object-cover rounded-md"
+                />
+              </div>
+            </div>
+
+            {/* HOTEL SLIDER */}
+            <div className="max-w-full py-4 md:py-8 w-full">
+              <Swiper
+                slidesPerView={1}
+                spaceBetween={10}
+                navigation={true}
+                modules={[Navigation, Thumbs]}
+                thumbs={{
+                  swiper:
+                    thumbsSwiper4 && !thumbsSwiper4.destroyed ? thumbsSwiper4 : null,
+                }}
+                className="mainSwiper overflow-hidden rounded-md"
+              >
+                {hotelImages.map((img, i) => (
+                  <SwiperSlide key={i}>
+                    <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+                      <Image
+                        src={img}
+                        alt={`slide-${i}`}
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-xs px-2 py-1 rounded">
+                        CASAMENTO
+                      </div>
                     </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
 
-            {/* Thumbnails */}
-            <Swiper
-              onSwiper={setThumbsSwiper2}
-              spaceBetween={8}
-              slidesPerView={3}
-              breakpoints={{
-                480: { slidesPerView: 4 },
-                640: { slidesPerView: 5 },
-                768: { slidesPerView: 6 },
-              }}
-              watchSlidesProgress
-              modules={[Thumbs]}
-              className="thumbSwiper mt-2 sm:mt-3"
-            >
-              {sliderCenterImages.map((img, i) => (
-                <SwiperSlide key={i}>
-                  <div className="relative w-full h-[60px] sm:h-[70px] md:h-[110px] cursor-pointer">
-                    <Image
-                      src={img}
-                      alt={`thumb-${i}`}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+              <Swiper
+                onSwiper={setThumbsSwiper4}
+                spaceBetween={8}
+                slidesPerView={3}
+                breakpoints={{
+                  480: { slidesPerView: 4 },
+                  640: { slidesPerView: 5 },
+                  768: { slidesPerView: 6 },
+                }}
+                watchSlidesProgress
+                modules={[Thumbs]}
+                className="thumbSwiper mt-2 sm:mt-3"
+              >
+                {hotelImages.map((img, i) => (
+                  <SwiperSlide key={i}>
+                    <div className="relative w-full h-[60px] sm:h-[70px] md:h-[110px] cursor-pointer">
+                      <Image
+                        src={img}
+                        alt={`thumb-${i}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
 
-            {/* Red Banner */}
-            <div className="mb-3 sm:mb-4 mt-2 sm:mt-3">
-              <Image
-                src="/images/cms-image2.jpg"
-                alt="Tigra Banner"
-                width={1920}
-                height={400}
-                className="w-full h-auto object-cover rounded-md"
-              />
+            {/* SINGER SLIDER */}
+            <div className="max-w-full py-4 md:py-8 w-full">
+              <Swiper
+                slidesPerView={1}
+                spaceBetween={10}
+                navigation={true}
+                modules={[Navigation, Thumbs]}
+                thumbs={{
+                  swiper:
+                    thumbsSwiper5 && !thumbsSwiper5.destroyed ? thumbsSwiper5 : null,
+                }}
+                className="mainSwiper overflow-hidden rounded-md"
+              >
+                {singerImages.map((img, i) => (
+                  <SwiperSlide key={i}>
+                    <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+                      <Image
+                        src={img}
+                        alt={`slide-${i}`}
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-xs px-2 py-1 rounded">
+                        CASAMENTO
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+
+              <Swiper
+                onSwiper={setThumbsSwiper5}
+                spaceBetween={8}
+                slidesPerView={3}
+                breakpoints={{
+                  480: { slidesPerView: 4 },
+                  640: { slidesPerView: 5 },
+                  768: { slidesPerView: 6 },
+                }}
+                watchSlidesProgress
+                modules={[Thumbs]}
+                className="thumbSwiper mt-2 sm:mt-3"
+              >
+                {singerImages.map((img, i) => (
+                  <SwiperSlide key={i}>
+                    <div className="relative w-full h-[60px] sm:h-[70px] md:h-[110px] cursor-pointer">
+                      <Image
+                        src={img}
+                        alt={`thumb-${i}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
           </div>
 
           {/* RIGHT SIDE - DIRECTORY */}
-          <div className="lg:col-span-2">
-            <div className="lg:sticky lg:top-4">
-              <h2 className="text-xl sm:text-2xl font-bold text-red-600 mb-4">
-                Directório
-              </h2>
-              <div className="flex flex-col gap-2">
-                {[
-                  "Aqui Acontece",
-                  "Lá Fora",
-                  "Destinos",
-                  "Em Forma",
-                  "Clube da Cultura",
-                  "O Nosso SPORTING",
-                ].map((item, i) => (
-                  <button
-                    key={i}
-                    className="flex justify-between items-center bg-red-600 text-white font-semibold px-3 sm:px-4 py-2 rounded-md hover:bg-red-700 transition-colors text-xs sm:text-sm"
-                  >
-                    {item} <span className="text-white font-bold">●</span>
-                  </button>
-                ))}
-              </div>
+          <div className="lg:col-span-2 lg:sticky lg:top-24 self-start p-4 bg-white z-10">
+            <h2 className="text-xl sm:text-2xl font-bold text-red-600 mb-4">
+              Directório
+            </h2>
+            <div className="flex flex-col gap-2">
+              {[
+                "Aqui Acontece",
+                "Lá Fora",
+                "Destinos",
+                "Em Forma",
+                "Clube da Cultura",
+                "O Nosso SPORTING",
+              ].map((item, i) => (
+                <button
+                  key={i}
+                  className="flex justify-between items-center bg-red-600 text-white font-semibold px-3 sm:px-4 py-2 rounded-md hover:bg-red-700 transition-colors text-xs sm:text-sm w-full text-left truncate"
+                >
+                  {item} <span className="text-white font-bold">●</span>
+                </button>
+              ))}
             </div>
           </div>
         </div>
-      </div>
-
-      {/* BANNER AND BEVERAGE SLIDER */}
-      <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-8 pt-2 md:pt-3 pb-4 md:pb-6">
-        {/* Banner */}
-        <div className="mb-0">
-          {/* <Image
-            src="/images/cms-image2.jpg"
-            alt="Tigra Banner"
-            width={1920}
-            height={400}
-            className="w-full h-auto object-cover rounded-md"
-          /> */}
-        </div>
-
-        {/* Main Image Slider */}
-        <div>
-          {/* Main Slider 3 */}
-          <Swiper
-            spaceBetween={10}
-            navigation={true}
-            modules={[Navigation, Thumbs]}
-            thumbs={{
-              swiper:
-                thumbsSwiper3 && !thumbsSwiper3.destroyed
-                  ? thumbsSwiper3
-                  : null,
-            }}
-            className="mainSwiper rounded-md overflow-hidden"
-          >
-            {images.map((img, i) => (
-              <SwiperSlide key={i}>
-                <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-                  <Image
-                    src={img}
-                    alt={`slide-${i}`}
-                    fill
-                    className="object-cover rounded-md"
-                  />
-                  <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-xs px-2 py-1 rounded">
-                    CASAMENTO
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-
-          {/* Thumbnails */}
-          <Swiper
-            onSwiper={setThumbsSwiper3}
-            spaceBetween={8}
-            slidesPerView={3}
-            breakpoints={{
-              480: { slidesPerView: 4 },
-              640: { slidesPerView: 5 },
-              768: { slidesPerView: 6 },
-            }}
-            watchSlidesProgress
-            modules={[Thumbs]}
-            className="thumbSwiper mt-2 sm:mt-3"
-          >
-            {images.map((img, i) => (
-              <SwiperSlide key={i}>
-                <div className="relative w-full h-[60px] sm:h-[70px] md:h-[110px] cursor-pointer">
-                  <Image
-                    src={img}
-                    alt={`thumb-${i}`}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-
-        {/* Banner */}
-        <div className="mt-6 sm:mt-8">
-          <Image
-            src="/images/saf.png"
-            alt="Tigra Banner"
-            width={1920}
-            height={400}
-            className="w-full h-auto object-cover rounded-md"
-          />
-        </div>
-      </div>
-
-      {/* HOTEL SLIDER */}
-      <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-8 py-4 md:py-8">
-        <Swiper
-          spaceBetween={10}
-          navigation={true}
-          modules={[Navigation, Thumbs]}
-          thumbs={{
-            swiper:
-              thumbsSwiper4 && !thumbsSwiper4.destroyed ? thumbsSwiper4 : null,
-          }}
-          className="mainSwiper overflow-hidden rounded-md"
-        >
-          {hotelImages.map((img, i) => (
-            <SwiperSlide key={i}>
-              <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-                <Image
-                  src={img}
-                  alt={`slide-${i}`}
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-xs px-2 py-1 rounded">
-                  CASAMENTO
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-
-        <Swiper
-          onSwiper={setThumbsSwiper4}
-          spaceBetween={8}
-          slidesPerView={3}
-          breakpoints={{
-            480: { slidesPerView: 4 },
-            640: { slidesPerView: 5 },
-            768: { slidesPerView: 6 },
-          }}
-          watchSlidesProgress
-          modules={[Thumbs]}
-          className="thumbSwiper mt-2 sm:mt-3"
-        >
-          {hotelImages.map((img, i) => (
-            <SwiperSlide key={i}>
-              <div className="relative w-full h-[60px] sm:h-[70px] md:h-[110px] cursor-pointer">
-                <Image
-                  src={img}
-                  alt={`thumb-${i}`}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-
-      {/* SINGER SLIDER */}
-      <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-8 py-4 md:py-8">
-        <Swiper
-          spaceBetween={10}
-          navigation={true}
-          modules={[Navigation, Thumbs]}
-          thumbs={{
-            swiper:
-              thumbsSwiper5 && !thumbsSwiper5.destroyed ? thumbsSwiper5 : null,
-          }}
-          className="mainSwiper overflow-hidden rounded-md"
-        >
-          {singerImages.map((img, i) => (
-            <SwiperSlide key={i}>
-              <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-                <Image
-                  src={img}
-                  alt={`slide-${i}`}
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-xs px-2 py-1 rounded">
-                  CASAMENTO
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-
-        <Swiper
-          onSwiper={setThumbsSwiper5}
-          spaceBetween={8}
-          slidesPerView={3}
-          breakpoints={{
-            480: { slidesPerView: 4 },
-            640: { slidesPerView: 5 },
-            768: { slidesPerView: 6 },
-          }}
-          watchSlidesProgress
-          modules={[Thumbs]}
-          className="thumbSwiper mt-2 sm:mt-3"
-        >
-          {singerImages.map((img, i) => (
-            <SwiperSlide key={i}>
-              <div className="relative w-full h-[60px] sm:h-[70px] md:h-[110px] cursor-pointer">
-                <Image
-                  src={img}
-                  alt={`thumb-${i}`}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
       </div>
     </>
   );

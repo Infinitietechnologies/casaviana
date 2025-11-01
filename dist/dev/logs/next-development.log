@@ -1,510 +1,2350 @@
-[00:00:04.243] Server  ERROR    ⨯ API Routes cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
-[00:00:04.610] Server  LOG      ✓ Ready in 3.6s
-[00:00:07.860] Server  LOG      ○ Compiling / ...
-[00:00:11.588] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+[00:00:04.656] Server  ERROR    ⨯ API Routes cannot be used with "output: export". See more info here: https://nextjs.org/docs/advanced-features/static-html-export
+[00:00:05.121] Server  LOG      ✓ Ready in 4.3s
+[00:00:13.164] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
 Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:00:12.071] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:00:12.071] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:00:12.071] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:00:12.071] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:01:18.919] Server  ERROR    ⨯ ./src/components/Header.jsx
-Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
- 127 │           <div className="flex md:hidden items-center gap-3">
- 128 │             {/* Cardapio small image */}
- 129 │             <Link
- 130 │             <Image
-     ·             ─
- 131 │               src="/images/cardapio.png"
- 132 │               alt="Cardápio"
- 132 │               width={40}
-     ╰────
-  × Expected ',', got 'src'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
- 128 │             {/* Cardapio small image */}
- 129 │             <Link
- 130 │             <Image
- 131 │               src="/images/cardapio.png"
-     ·               ───
- 132 │               alt="Cardápio"
- 133 │               width={40}
- 133 │               height={40}
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[00:01:19.353] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
- 127 │           <div className="flex md:hidden items-center gap-3">
- 128 │             {/* Cardapio small image */}
- 129 │             <Link
- 130 │             <Image
-     ·             ─
- 131 │               src="/images/cardapio.png"
- 132 │               alt="Cardápio"
- 132 │               width={40}
-     ╰────
-  × Expected ',', got 'src'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
- 128 │             {/* Cardapio small image */}
- 129 │             <Link
- 130 │             <Image
- 131 │               src="/images/cardapio.png"
-     ·               ───
- 132 │               alt="Cardápio"
- 133 │               width={40}
- 133 │               height={40}
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[00:01:19.353] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
- 127 │           <div className="flex md:hidden items-center gap-3">
- 128 │             {/* Cardapio small image */}
- 129 │             <Link
- 130 │             <Image
-     ·             ─
- 131 │               src="/images/cardapio.png"
- 132 │               alt="Cardápio"
- 132 │               width={40}
-     ╰────
-  × Expected ',', got 'src'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
- 128 │             {/* Cardapio small image */}
- 129 │             <Link
- 130 │             <Image
- 131 │               src="/images/cardapio.png"
-     ·               ───
- 132 │               alt="Cardápio"
- 133 │               width={40}
- 133 │               height={40}
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[00:01:23.041] Server  ERROR    ⨯ ./src/components/Header.jsx
-Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
- 127 │           <div className="flex md:hidden items-center gap-3">
- 128 │             {/* Cardapio small image */}
- 129 │             <Link href=""
- 130 │             <Image
-     ·             ─
- 131 │               src="/images/cardapio.png"
- 132 │               alt="Cardápio"
- 132 │               width={40}
-     ╰────
-  × Expected ',', got 'src'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
- 128 │             {/* Cardapio small image */}
- 129 │             <Link href=""
- 130 │             <Image
- 131 │               src="/images/cardapio.png"
-     ·               ───
- 132 │               alt="Cardápio"
- 133 │               width={40}
- 133 │               height={40}
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[00:01:23.296] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
- 127 │           <div className="flex md:hidden items-center gap-3">
- 128 │             {/* Cardapio small image */}
- 129 │             <Link
- 130 │             <Image
-     ·             ─
- 131 │               src="/images/cardapio.png"
- 132 │               alt="Cardápio"
- 132 │               width={40}
-     ╰────
-  × Expected ',', got 'src'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
- 128 │             {/* Cardapio small image */}
- 129 │             <Link
- 130 │             <Image
- 131 │               src="/images/cardapio.png"
-     ·               ───
- 132 │               alt="Cardápio"
- 133 │               width={40}
- 133 │               height={40}
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[00:01:23.296] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
- 127 │           <div className="flex md:hidden items-center gap-3">
- 128 │             {/* Cardapio small image */}
- 129 │             <Link href=""
- 130 │             <Image
-     ·             ─
- 131 │               src="/images/cardapio.png"
- 132 │               alt="Cardápio"
- 132 │               width={40}
-     ╰────
-  × Expected ',', got 'src'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
- 128 │             {/* Cardapio small image */}
- 129 │             <Link href=""
- 130 │             <Image
- 131 │               src="/images/cardapio.png"
-     ·               ───
- 132 │               alt="Cardápio"
- 133 │               width={40}
- 133 │               height={40}
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[00:01:23.296] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
- 127 │           <div className="flex md:hidden items-center gap-3">
- 128 │             {/* Cardapio small image */}
- 129 │             <Link href=""
- 130 │             <Image
-     ·             ─
- 131 │               src="/images/cardapio.png"
- 132 │               alt="Cardápio"
- 132 │               width={40}
-     ╰────
-  × Expected ',', got 'src'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
- 128 │             {/* Cardapio small image */}
- 129 │             <Link href=""
- 130 │             <Image
- 131 │               src="/images/cardapio.png"
-     ·               ───
- 132 │               alt="Cardápio"
- 133 │               width={40}
- 133 │               height={40}
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[00:01:25.143] Server  ERROR    ⨯ ./src/components/Header.jsx
-Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
- 127 │           <div className="flex md:hidden items-center gap-3">
- 128 │             {/* Cardapio small image */}
- 129 │             <Link href=""
- 130 │             <Image
-     ·             ─
- 131 │               src="/images/cardapio.png"
- 132 │               alt="Cardápio"
- 132 │               width={40}
-     ╰────
-  × Expected ',', got 'src'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
- 128 │             {/* Cardapio small image */}
- 129 │             <Link href=""
- 130 │             <Image
- 131 │               src="/images/cardapio.png"
-     ·               ───
- 132 │               alt="Cardápio"
- 133 │               width={40}
- 133 │               height={40}
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[00:01:25.294] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
- 127 │           <div className="flex md:hidden items-center gap-3">
- 128 │             {/* Cardapio small image */}
- 129 │             <Link href=""
- 130 │             <Image
-     ·             ─
- 131 │               src="/images/cardapio.png"
- 132 │               alt="Cardápio"
- 132 │               width={40}
-     ╰────
-  × Expected ',', got 'src'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
- 128 │             {/* Cardapio small image */}
- 129 │             <Link href=""
- 130 │             <Image
- 131 │               src="/images/cardapio.png"
-     ·               ───
- 132 │               alt="Cardápio"
- 133 │               width={40}
- 133 │               height={40}
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[00:01:25.294] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
- 127 │           <div className="flex md:hidden items-center gap-3">
- 128 │             {/* Cardapio small image */}
- 129 │             <Link href=""
- 130 │             <Image
-     ·             ─
- 131 │               src="/images/cardapio.png"
- 132 │               alt="Cardápio"
- 132 │               width={40}
-     ╰────
-  × Expected ',', got 'src'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
- 128 │             {/* Cardapio small image */}
- 129 │             <Link href=""
- 130 │             <Image
- 131 │               src="/images/cardapio.png"
-     ·               ───
- 132 │               alt="Cardápio"
- 133 │               width={40}
- 133 │               height={40}
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[00:01:27.300] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expression expected
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:130:1]
- 127 │           <div className="flex md:hidden items-center gap-3">
- 128 │             {/* Cardapio small image */}
- 129 │             <Link href=""
- 130 │             <Image
-     ·             ─
- 131 │               src="/images/cardapio.png"
- 132 │               alt="Cardápio"
- 132 │               width={40}
-     ╰────
-  × Expected ',', got 'src'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:131:1]
- 128 │             {/* Cardapio small image */}
- 129 │             <Link href=""
- 130 │             <Image
- 131 │               src="/images/cardapio.png"
-     ·               ───
- 132 │               alt="Cardápio"
- 133 │               width={40}
- 133 │               height={40}
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[00:01:28.863] Server  ERROR    ⨯ ./src/components/Header.jsx
-Error:   × Expected '</', got 'jsx text (
-  │         )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:197:1]
- 194 │                     </svg>
- 195 │                   )}
- 196 │                 </button>
- 197 │ ╭─▶           </div>
- 198 │ ╰─▶         </div>
- 199 │           </div>
- 200 │     
- 200 │           {/* Mobile Menu Dropdown */}
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[00:01:29.329] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got 'jsx text (
-  │         )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:197:1]
- 194 │                     </svg>
- 195 │                   )}
- 196 │                 </button>
- 197 │ ╭─▶           </div>
- 198 │ ╰─▶         </div>
- 199 │           </div>
- 200 │     
- 200 │           {/* Mobile Menu Dropdown */}
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[00:01:29.329] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got 'jsx text (
-  │         )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:197:1]
- 194 │                     </svg>
- 195 │                   )}
- 196 │                 </button>
- 197 │ ╭─▶           </div>
- 198 │ ╰─▶         </div>
- 199 │           </div>
- 200 │     
- 200 │           {/* Mobile Menu Dropdown */}
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[00:01:30.304] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got 'jsx text (
-  │         )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:197:1]
- 194 │                     </svg>
- 195 │                   )}
- 196 │                 </button>
- 197 │ ╭─▶           </div>
- 198 │ ╰─▶         </div>
- 199 │           </div>
- 200 │     
- 200 │           {/* Mobile Menu Dropdown */}
-     ╰────
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[00:11:32.712] Browser WARN    Image with src "/images/Imagem WhatsApp 2025-10-31 às 11.05.57_e8acca07.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+[00:00:13.314] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:00:13.314] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:00:13.314] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:00:13.314] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:04:24.531] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
 Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:11:32.712] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:25:18.448] Server  ERROR    ⨯ ./src/components/Header.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │           )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:126:1]
- 123 │                     />
- 124 │                   </svg>
- 125 │                 </div>
- 126 │ ╭─▶           </div>
- 127 │ │   
- 128 │ ╰─▶           {/* Mobile right side */}
- 129 │               <div className="flex md:hidden items-center gap-3">
- 130 │                 {/* Cardapio small image */}
- 130 │                 <Link href="https://www.casaviana.ao/cardapio/">
+[00:04:24.531] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:04:24.531] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:04:24.531] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:04:24.531] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:08:53.003] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:08:53.003] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:08:53.003] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:08:53.003] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:08:53.003] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:09:03.530] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:09:03.530] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:09:03.530] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:09:03.530] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:09:03.531] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:10:29.574] Browser LOG     Refreshing page data due to server-side change
+[00:10:31.403] Browser WARN    Image with src "/images/cms-image2.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:10:31.403] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:10:31.403] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:10:31.404] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:10:31.404] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:11:44.187] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:11:44.188] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:11:44.188] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:11:44.188] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:11:44.188] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:17:37.802] Browser ERROR   Invalid DOM property `%s`. Did you mean `%s`? class className
+[00:17:37.802] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[00:17:37.802] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[00:17:37.802] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[00:17:39.422] Server  ERROR   Invalid DOM property `class`. Did you mean `className`?
+[00:17:40.409] Browser ERROR   Invalid DOM property `%s`. Did you mean `%s`? class className
+[00:17:40.700] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:17:40.700] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:17:40.700] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:17:40.700] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:17:40.700] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:17:50.946] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[00:17:50.946] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[00:17:50.946] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[00:22:02.039] Browser WARN    Image with src "/images/cms-image2.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:22:02.039] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:22:02.039] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:22:02.039] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:22:02.039] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:24:07.562] Server  ERROR    ⨯ ./src/layouts/layout.jsx
+Error:   × Expression expected
+    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\layouts\layout.jsx:24:1]
+ 21 │       <main className="mx-auto max-w-[1900px] px-4 min-h-[75vh] sm:px-6 md:px-4 flex-grow pt-0">
+ 22 │         {children}
+ 23 │         <
+ 24 │       </main>
+    ·       ─
+ 25 │       <Footer />
+ 26 │     </div>
+ 26 │   );
+    ╰────
+  × Unterminated regexp literal
+    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\layouts\layout.jsx:24:1]
+ 21 │       <main className="mx-auto max-w-[1900px] px-4 min-h-[75vh] sm:px-6 md:px-4 flex-grow pt-0">
+ 22 │         {children}
+ 23 │         <
+ 24 │       </main>
+    ·        ──────
+ 25 │       <Footer />
+ 26 │     </div>
+ 26 │   );
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/layouts/layout.jsx
+[00:24:07.949] Browser ERROR   ./src/layouts/layout.jsx
+Error:   × Expression expected
+    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\layouts\layout.jsx:24:1]
+ 21 │       <main className="mx-auto max-w-[1900px] px-4 min-h-[75vh] sm:px-6 md:px-4 flex-grow pt-0">
+ 22 │         {children}
+ 23 │         <
+ 24 │       </main>
+    ·       ─
+ 25 │       <Footer />
+ 26 │     </div>
+ 26 │   );
+    ╰────
+  × Unterminated regexp literal
+    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\layouts\layout.jsx:24:1]
+ 21 │       <main className="mx-auto max-w-[1900px] px-4 min-h-[75vh] sm:px-6 md:px-4 flex-grow pt-0">
+ 22 │         {children}
+ 23 │         <
+ 24 │       </main>
+    ·        ──────
+ 25 │       <Footer />
+ 26 │     </div>
+ 26 │   );
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/layouts/layout.jsx
+[00:24:07.949] Browser ERROR   ./src/layouts/layout.jsx
+Error:   × Expression expected
+    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\layouts\layout.jsx:24:1]
+ 21 │       <main className="mx-auto max-w-[1900px] px-4 min-h-[75vh] sm:px-6 md:px-4 flex-grow pt-0">
+ 22 │         {children}
+ 23 │         <
+ 24 │       </main>
+    ·       ─
+ 25 │       <Footer />
+ 26 │     </div>
+ 26 │   );
+    ╰────
+  × Unterminated regexp literal
+    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\layouts\layout.jsx:24:1]
+ 21 │       <main className="mx-auto max-w-[1900px] px-4 min-h-[75vh] sm:px-6 md:px-4 flex-grow pt-0">
+ 22 │         {children}
+ 23 │         <
+ 24 │       </main>
+    ·        ──────
+ 25 │       <Footer />
+ 26 │     </div>
+ 26 │   );
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/layouts/layout.jsx
+[00:24:12.935] Browser ERROR   ./src/layouts/layout.jsx
+Error:   × Expression expected
+    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\layouts\layout.jsx:24:1]
+ 21 │       <main className="mx-auto max-w-[1900px] px-4 min-h-[75vh] sm:px-6 md:px-4 flex-grow pt-0">
+ 22 │         {children}
+ 23 │         <
+ 24 │       </main>
+    ·       ─
+ 25 │       <Footer />
+ 26 │     </div>
+ 26 │   );
+    ╰────
+  × Unterminated regexp literal
+    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\layouts\layout.jsx:24:1]
+ 21 │       <main className="mx-auto max-w-[1900px] px-4 min-h-[75vh] sm:px-6 md:px-4 flex-grow pt-0">
+ 22 │         {children}
+ 23 │         <
+ 24 │       </main>
+    ·        ──────
+ 25 │       <Footer />
+ 26 │     </div>
+ 26 │   );
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/layouts/layout.jsx
+[00:24:12.935] Browser LOG     Refreshing page data due to server-side change
+[00:25:05.106] Server  ERROR    ⨯ ./src/views/Homepage.jsx
+Error:   × Expected '>', got 'div'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:200:1]
+ 197 │               ))}
+ 198 │             </Swiper>
+ 199 │           </div>
+ 200 │         </div>
+     ·           ───
+ 201 │       </div> */}
+ 202 │ 
+ 202 │       {/* SECOND SECTION - SIDEBAR, MAIN SWIPER, DIRECTORY */}
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[00:25:19.298] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │           )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:126:1]
- 123 │                     />
- 124 │                   </svg>
- 125 │                 </div>
- 126 │ ╭─▶           </div>
- 127 │ │   
- 128 │ ╰─▶           {/* Mobile right side */}
- 129 │               <div className="flex md:hidden items-center gap-3">
- 130 │                 {/* Cardapio small image */}
- 130 │                 <Link href="https://www.casaviana.ao/cardapio/">
+./src/views/Homepage.jsx
+[00:25:05.937] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expected '>', got 'div'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:200:1]
+ 197 │               ))}
+ 198 │             </Swiper>
+ 199 │           </div>
+ 200 │         </div>
+     ·           ───
+ 201 │       </div> */}
+ 202 │ 
+ 202 │       {/* SECOND SECTION - SIDEBAR, MAIN SWIPER, DIRECTORY */}
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[00:25:19.298] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │           )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:126:1]
- 123 │                     />
- 124 │                   </svg>
- 125 │                 </div>
- 126 │ ╭─▶           </div>
- 127 │ │   
- 128 │ ╰─▶           {/* Mobile right side */}
- 129 │               <div className="flex md:hidden items-center gap-3">
- 130 │                 {/* Cardapio small image */}
- 130 │                 <Link href="https://www.casaviana.ao/cardapio/">
+./src/views/Homepage.jsx
+[00:25:05.937] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expected '>', got 'div'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:200:1]
+ 197 │               ))}
+ 198 │             </Swiper>
+ 199 │           </div>
+ 200 │         </div>
+     ·           ───
+ 201 │       </div> */}
+ 202 │ 
+ 202 │       {/* SECOND SECTION - SIDEBAR, MAIN SWIPER, DIRECTORY */}
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./src/components/Header.jsx
-./src/layouts/layout.jsx
-[00:25:24.310] Browser ERROR   ./src/components/Header.jsx
-Error:   × Expected '</', got 'jsx text (
-  │
-  │           )'
-     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\components\Header.jsx:126:1]
- 123 │                     />
- 124 │                   </svg>
- 125 │                 </div>
- 126 │ ╭─▶           </div>
- 127 │ │   
- 128 │ ╰─▶           {/* Mobile right side */}
- 129 │               <div className="flex md:hidden items-center gap-3">
- 130 │                 {/* Cardapio small image */}
- 130 │                 <Link href="https://www.casaviana.ao/cardapio/">
+./src/views/Homepage.jsx
+./src/pages/index.js
+[00:25:06.944] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expected '>', got 'div'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:200:1]
+ 197 │               ))}
+ 198 │             </Swiper>
+ 199 │           </div>
+ 200 │         </div>
+     ·           ───
+ 201 │       </div> */}
+ 202 │ 
+ 202 │       {/* SECOND SECTION - SIDEBAR, MAIN SWIPER, DIRECTORY */}
      ╰────
 
 Caused by:
     Syntax Error
 
 Import trace for requested module:
-./src/components/Header.jsx
+./src/views/Homepage.jsx
+[00:25:57.950] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[00:25:57.950] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[00:26:01.607] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:26:01.607] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:26:01.607] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:26:01.607] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:26:01.607] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:30:30.632] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:30:30.709] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:30:30.782] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:30:30.874] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:30:30.959] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:30:31.092] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:30:31.423] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:30:31.478] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:30:31.548] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:30:31.607] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:30:31.826] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:30:31.883] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:30:42.035] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:30:42.142] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:30:42.206] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:30:42.273] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:30:42.339] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:30:42.419] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:44.544] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:44.624] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:45.108] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:45.182] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:45.720] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:47.055] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:47.130] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:47.219] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:47.296] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:47.645] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:47.717] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:47.909] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:49.597] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:49.684] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:51.126] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:32:51.322] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:51.414] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:51.518] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:51.606] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:52.019] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:53.483] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:53.582] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:53.665] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:53.744] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:53.961] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:54.045] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:54.574] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:56.332] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:56.436] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:32:58.171] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:32:58.425] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:32:58.721] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:32:58.721] Browser LOG     Refreshing page data due to server-side change
+[00:33:00.023] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:33:00.023] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:33:00.023] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:33:00.023] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:33:00.023] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:46:54.945] Browser LOG     Refreshing page data due to server-side change
+[00:53:38.795] Server  ERROR    ⨯ ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'react-router-dom'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Link } from "react-router-dom";
+     | ^
+   8 | import { Clock } from "lucide-react";
+   9 |
+  10 | const Homepage = () => {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:53:39.940] Browser ERROR   ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'react-router-dom'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Link } from "react-router-dom";
+     | ^
+   8 | import { Clock } from "lucide-react";
+   9 |
+  10 | const Homepage = () => {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:53:39.940] Browser ERROR   ./src/views/Homepage.jsx:8:1
+Module not found: Can't resolve 'lucide-react'
+   6 | import "swiper/css/thumbs";
+   7 | import { Link } from "react-router-dom";
+>  8 | import { Clock } from "lucide-react";
+     | ^
+   9 |
+  10 | const Homepage = () => {
+  11 |   const [thumbsSwiper2, setThumbsSwiper2] = React.useState<any>(null);
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:53:39.940] Browser ERROR   ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'react-router-dom'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Link } from "react-router-dom";
+     | ^
+   8 | import { Clock } from "lucide-react";
+   9 |
+  10 | const Homepage = () => {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:53:39.940] Browser ERROR   ./src/views/Homepage.jsx:8:1
+Module not found: Can't resolve 'lucide-react'
+   6 | import "swiper/css/thumbs";
+   7 | import { Link } from "react-router-dom";
+>  8 | import { Clock } from "lucide-react";
+     | ^
+   9 |
+  10 | const Homepage = () => {
+  11 |   const [thumbsSwiper2, setThumbsSwiper2] = React.useState<any>(null);
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:10.688] Server  ERROR    ⨯ ./src/layouts/layout.jsx:3:1
+Module not found: Can't resolve './Homepage'
+  1 | import Header from "@/components/Header";
+  2 | import Footer from "@/components/Footer";
+> 3 | import Homepage from "./Homepage";
+    | ^
+  4 |
+  5 | const Index = () => {
+  6 |   return (
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/_app.js
+[00:54:10.944] Browser ERROR   ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'react-router-dom'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Link } from "react-router-dom";
+     | ^
+   8 | import { Clock } from "lucide-react";
+   9 |
+  10 | const Homepage = () => {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:10.944] Browser ERROR   ./src/views/Homepage.jsx:8:1
+Module not found: Can't resolve 'lucide-react'
+   6 | import "swiper/css/thumbs";
+   7 | import { Link } from "react-router-dom";
+>  8 | import { Clock } from "lucide-react";
+     | ^
+   9 |
+  10 | const Homepage = () => {
+  11 |   const [thumbsSwiper2, setThumbsSwiper2] = React.useState<any>(null);
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:10.944] Browser ERROR   ./src/layouts/layout.jsx:3:1
+Module not found: Can't resolve './Homepage'
+  1 | import Header from "@/components/Header";
+  2 | import Footer from "@/components/Footer";
+> 3 | import Homepage from "./Homepage";
+    | ^
+  4 |
+  5 | const Index = () => {
+  6 |   return (
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/_app.js
+[00:54:10.944] Browser ERROR   ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'react-router-dom'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Link } from "react-router-dom";
+     | ^
+   8 | import { Clock } from "lucide-react";
+   9 |
+  10 | const Homepage = () => {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:10.944] Browser ERROR   ./src/views/Homepage.jsx:8:1
+Module not found: Can't resolve 'lucide-react'
+   6 | import "swiper/css/thumbs";
+   7 | import { Link } from "react-router-dom";
+>  8 | import { Clock } from "lucide-react";
+     | ^
+   9 |
+  10 | const Homepage = () => {
+  11 |   const [thumbsSwiper2, setThumbsSwiper2] = React.useState<any>(null);
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:10.944] Browser ERROR   ./src/layouts/layout.jsx:3:1
+Module not found: Can't resolve './Homepage'
+  1 | import Header from "@/components/Header";
+  2 | import Footer from "@/components/Footer";
+> 3 | import Homepage from "./Homepage";
+    | ^
+  4 |
+  5 | const Index = () => {
+  6 |   return (
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/_app.js
+[00:54:10.944] Browser ERROR   ./src/layouts/layout.jsx:3:1
+Module not found: Can't resolve './Homepage'
+  1 | import Header from "@/components/Header";
+  2 | import Footer from "@/components/Footer";
+> 3 | import Homepage from "./Homepage";
+    | ^
+  4 |
+  5 | const Index = () => {
+  6 |   return (
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/_app.js
+[00:54:10.944] Browser ERROR   ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'react-router-dom'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Link } from "react-router-dom";
+     | ^
+   8 | import { Clock } from "lucide-react";
+   9 |
+  10 | const Homepage = () => {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:10.944] Browser ERROR   ./src/views/Homepage.jsx:8:1
+Module not found: Can't resolve 'lucide-react'
+   6 | import "swiper/css/thumbs";
+   7 | import { Link } from "react-router-dom";
+>  8 | import { Clock } from "lucide-react";
+     | ^
+   9 |
+  10 | const Homepage = () => {
+  11 |   const [thumbsSwiper2, setThumbsSwiper2] = React.useState<any>(null);
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:12.329] Server  ERROR    ⨯ ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'react-router-dom'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Link } from "react-router-dom";
+     | ^
+   8 | import { Clock } from "lucide-react";
+   9 |
+  10 | const Homepage = () => {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:12.938] Browser ERROR   ./src/layouts/layout.jsx:3:1
+Module not found: Can't resolve './Homepage'
+  1 | import Header from "@/components/Header";
+  2 | import Footer from "@/components/Footer";
+> 3 | import Homepage from "./Homepage";
+    | ^
+  4 |
+  5 | const Index = () => {
+  6 |   return (
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/_app.js
+[00:54:12.938] Browser ERROR   ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'react-router-dom'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Link } from "react-router-dom";
+     | ^
+   8 | import { Clock } from "lucide-react";
+   9 |
+  10 | const Homepage = () => {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:12.938] Browser ERROR   ./src/views/Homepage.jsx:8:1
+Module not found: Can't resolve 'lucide-react'
+   6 | import "swiper/css/thumbs";
+   7 | import { Link } from "react-router-dom";
+>  8 | import { Clock } from "lucide-react";
+     | ^
+   9 |
+  10 | const Homepage = () => {
+  11 |   const [thumbsSwiper2, setThumbsSwiper2] = React.useState<any>(null);
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:12.938] Browser ERROR   ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'react-router-dom'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Link } from "react-router-dom";
+     | ^
+   8 | import { Clock } from "lucide-react";
+   9 |
+  10 | const Homepage = () => {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:12.938] Browser ERROR   ./src/views/Homepage.jsx:8:1
+Module not found: Can't resolve 'lucide-react'
+   6 | import "swiper/css/thumbs";
+   7 | import { Link } from "react-router-dom";
+>  8 | import { Clock } from "lucide-react";
+     | ^
+   9 |
+  10 | const Homepage = () => {
+  11 |   const [thumbsSwiper2, setThumbsSwiper2] = React.useState<any>(null);
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:12.938] Browser ERROR   ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'react-router-dom'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Link } from "react-router-dom";
+     | ^
+   8 | import { Clock } from "lucide-react";
+   9 |
+  10 | const Homepage = () => {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:12.938] Browser ERROR   ./src/views/Homepage.jsx:8:1
+Module not found: Can't resolve 'lucide-react'
+   6 | import "swiper/css/thumbs";
+   7 | import { Link } from "react-router-dom";
+>  8 | import { Clock } from "lucide-react";
+     | ^
+   9 |
+  10 | const Homepage = () => {
+  11 |   const [thumbsSwiper2, setThumbsSwiper2] = React.useState<any>(null);
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:19.056] Server  ERROR    ⨯ ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'react-router-dom'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Link } from "react-router-dom";
+     | ^
+   8 | import { Clock } from "lucide-react";
+   9 |
+  10 | const Homepage = () => {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:19.950] Browser ERROR   ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'react-router-dom'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Link } from "react-router-dom";
+     | ^
+   8 | import { Clock } from "lucide-react";
+   9 |
+  10 | const Homepage = () => {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:19.950] Browser ERROR   ./src/views/Homepage.jsx:8:1
+Module not found: Can't resolve 'lucide-react'
+   6 | import "swiper/css/thumbs";
+   7 | import { Link } from "react-router-dom";
+>  8 | import { Clock } from "lucide-react";
+     | ^
+   9 |
+  10 | const Homepage = () => {
+  11 |   const [thumbsSwiper2, setThumbsSwiper2] = React.useState<any>(null);
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:19.950] Browser ERROR   ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'react-router-dom'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Link } from "react-router-dom";
+     | ^
+   8 | import { Clock } from "lucide-react";
+   9 |
+  10 | const Homepage = () => {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:19.950] Browser ERROR   ./src/views/Homepage.jsx:8:1
+Module not found: Can't resolve 'lucide-react'
+   6 | import "swiper/css/thumbs";
+   7 | import { Link } from "react-router-dom";
+>  8 | import { Clock } from "lucide-react";
+     | ^
+   9 |
+  10 | const Homepage = () => {
+  11 |   const [thumbsSwiper2, setThumbsSwiper2] = React.useState<any>(null);
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:19.950] Browser ERROR   ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'react-router-dom'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Link } from "react-router-dom";
+     | ^
+   8 | import { Clock } from "lucide-react";
+   9 |
+  10 | const Homepage = () => {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:19.950] Browser ERROR   ./src/views/Homepage.jsx:8:1
+Module not found: Can't resolve 'lucide-react'
+   6 | import "swiper/css/thumbs";
+   7 | import { Link } from "react-router-dom";
+>  8 | import { Clock } from "lucide-react";
+     | ^
+   9 |
+  10 | const Homepage = () => {
+  11 |   const [thumbsSwiper2, setThumbsSwiper2] = React.useState<any>(null);
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:35.826] Browser ERROR   ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'react-router-dom'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Link } from "react-router-dom";
+     | ^
+   8 | import { Clock } from "lucide-react";
+   9 |
+  10 | const Homepage = () => {
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:35.826] Browser ERROR   ./src/views/Homepage.jsx:8:1
+Module not found: Can't resolve 'lucide-react'
+   6 | import "swiper/css/thumbs";
+   7 | import { Link } from "react-router-dom";
+>  8 | import { Clock } from "lucide-react";
+     | ^
+   9 |
+  10 | const Homepage = () => {
+  11 |   const [thumbsSwiper2, setThumbsSwiper2] = React.useState<any>(null);
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:35.948] Server  ERROR    ⨯ ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'lucide-react'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Clock } from "lucide-react";
+     | ^
+   8 |
+   9 | const Homepage = () => {
+  10 |   const [thumbsSwiper2, setThumbsSwiper2] = React.useState<any>(null);
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:36.945] Browser ERROR   ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'lucide-react'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Clock } from "lucide-react";
+     | ^
+   8 |
+   9 | const Homepage = () => {
+  10 |   const [thumbsSwiper2, setThumbsSwiper2] = React.useState<any>(null);
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:36.945] Browser ERROR   ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'lucide-react'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Clock } from "lucide-react";
+     | ^
+   8 |
+   9 | const Homepage = () => {
+  10 |   const [thumbsSwiper2, setThumbsSwiper2] = React.useState<any>(null);
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:41.456] Server  ERROR    ⨯ ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'lucide-react'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Clock } from "lucide-react";
+     | ^
+   8 |
+   9 | const Homepage = () => {
+  10 |   const [thumbsSwiper2, setThumbsSwiper2] = React.useState<any>(null);
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:41.941] Browser ERROR   ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'lucide-react'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Clock } from "lucide-react";
+     | ^
+   8 |
+   9 | const Homepage = () => {
+  10 |   const [thumbsSwiper2, setThumbsSwiper2] = React.useState<any>(null);
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:41.941] Browser ERROR   ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'lucide-react'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Clock } from "lucide-react";
+     | ^
+   8 |
+   9 | const Homepage = () => {
+  10 |   const [thumbsSwiper2, setThumbsSwiper2] = React.useState<any>(null);
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:41.941] Browser ERROR   ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'lucide-react'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Clock } from "lucide-react";
+     | ^
+   8 |
+   9 | const Homepage = () => {
+  10 |   const [thumbsSwiper2, setThumbsSwiper2] = React.useState<any>(null);
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:45.501] Browser ERROR   ./src/views/Homepage.jsx:7:1
+Module not found: Can't resolve 'lucide-react'
+   5 | import "swiper/css/navigation";
+   6 | import "swiper/css/thumbs";
+>  7 | import { Clock } from "lucide-react";
+     | ^
+   8 |
+   9 | const Homepage = () => {
+  10 |   const [thumbsSwiper2, setThumbsSwiper2] = React.useState<any>(null);
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/pages/index.js
+[00:54:45.810] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <RootLayout> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[00:54:52.847] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Homepage> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[00:54:54.960] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:54:55.033] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:54:55.110] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:54:55.188] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:54:55.895] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:54:57.204] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:54:57.333] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:54:57.413] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:54:57.485] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:54:57.829] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:54:57.896] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:54:57.988] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:54:59.671] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:54:59.736] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:43.322] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:56:43.322] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:56:43.581] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:43.680] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:43.845] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:43.976] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:43.978] Browser LOG     Refreshing page data due to server-side change
+[00:56:44.602] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:44.711] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:45.013] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:47.035] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:47.104] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:50.942] Server  WARN     ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:56:51.115] Server  WARN     ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:56:51.384] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:51.463] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:51.542] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:51.649] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:51.752] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:51.822] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:52.076] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:52.387] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:52.524] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:52.600] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:52.945] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:55.030] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:56:55.101] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:06.127] Server  ERROR    ⨯ ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:569:1]
+ 566 │           ))}
+ 567 │         </Swiper>
+ 568 │       </div>
+ 569 │     </>
+     ·       ─
+ 570 │   );
+ 571 │ };
+ 571 │ 
+     ╰────
+  × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:570:1]
+ 567 │         </Swiper>
+ 568 │       </div>
+ 569 │     </>
+ 570 │   );
+     ·   ─
+ 571 │ };
+ 572 │ 
+ 572 │ export default Homepage;
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[00:57:06.947] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:569:1]
+ 566 │           ))}
+ 567 │         </Swiper>
+ 568 │       </div>
+ 569 │     </>
+     ·       ─
+ 570 │   );
+ 571 │ };
+ 571 │ 
+     ╰────
+  × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:570:1]
+ 567 │         </Swiper>
+ 568 │       </div>
+ 569 │     </>
+ 570 │   );
+     ·   ─
+ 571 │ };
+ 572 │ 
+ 572 │ export default Homepage;
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[00:57:06.948] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:569:1]
+ 566 │           ))}
+ 567 │         </Swiper>
+ 568 │       </div>
+ 569 │     </>
+     ·       ─
+ 570 │   );
+ 571 │ };
+ 571 │ 
+     ╰────
+  × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:570:1]
+ 567 │         </Swiper>
+ 568 │       </div>
+ 569 │     </>
+ 570 │   );
+     ·   ─
+ 571 │ };
+ 572 │ 
+ 572 │ export default Homepage;
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
 ./src/layouts/layout.jsx
+./src/pages/_app.js
+[00:57:06.948] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:569:1]
+ 566 │           ))}
+ 567 │         </Swiper>
+ 568 │       </div>
+ 569 │     </>
+     ·       ─
+ 570 │   );
+ 571 │ };
+ 571 │ 
+     ╰────
+  × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:570:1]
+ 567 │         </Swiper>
+ 568 │       </div>
+ 569 │     </>
+ 570 │   );
+     ·   ─
+ 571 │ };
+ 572 │ 
+ 572 │ export default Homepage;
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+./src/layouts/layout.jsx
+[00:57:14.078] Server  WARN     ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:57:14.078] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:569:1]
+ 566 │           ))}
+ 567 │         </Swiper>
+ 568 │       </div>
+ 569 │     </>
+     ·       ─
+ 570 │   );
+ 571 │ };
+ 571 │ 
+     ╰────
+  × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:570:1]
+ 567 │         </Swiper>
+ 568 │       </div>
+ 569 │     </>
+ 570 │   );
+     ·   ─
+ 571 │ };
+ 572 │ 
+ 572 │ export default Homepage;
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[00:57:14.229] Server  WARN     ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:57:14.381] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:14.460] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:14.536] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:14.616] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:14.861] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:14.929] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:15.005] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:15.089] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:15.326] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:15.396] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:15.615] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:18.051] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:18.113] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:20.667] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:20.747] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:20.835] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:20.907] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:21.306] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:22.992] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:23.053] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:38.889] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:57:39.067] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:57:39.242] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:39.319] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:39.390] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:39.465] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:39.467] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:57:39.467] Browser LOG     Refreshing page data due to server-side change
+[00:57:39.544] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:39.614] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:39.687] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:39.923] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:40.117] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:40.230] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:40.329] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:40.393] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:40.473] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:40.539] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:40.873] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:41.716] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:41.788] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:41.860] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:41.929] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:42.345] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:42.686] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:42.749] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:44.066] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:44.130] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:47.581] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:57:47.781] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:57:47.982] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:48.088] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:48.172] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:48.249] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:48.254] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:57:48.254] Browser LOG     Refreshing page data due to server-side change
+[00:57:48.361] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:48.443] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:48.534] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:48.616] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:48.756] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:48.877] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:48.975] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:49.046] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:49.122] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:49.184] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:49.511] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:51.217] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[00:57:51.280] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:49:58.366] Server  WARN     ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[01:49:58.536] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:49:58.814] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:49:59.044] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:49:59.163] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:50:03.481] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:50:04.279] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:50:04.370] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:57:23.679] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:57:23.742] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:57:23.827] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:57:23.901] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:57:24.635] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:57:26.689] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:57:26.750] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:16.944] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:58:17.708] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:58:18.247] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:18.397] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:18.415] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:58:18.416] Browser LOG     Refreshing page data due to server-side change
+[01:58:18.625] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:18.740] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:18.817] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:18.893] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:18.989] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:19.062] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:19.142] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:19.214] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:19.312] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:19.381] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:19.462] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:19.533] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:19.924] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:21.640] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:21.705] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:23.820] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:58:24.363] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:24.458] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:24.463] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:58:24.463] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:58:24.557] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:24.645] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:24.739] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:24.830] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:24.917] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:24.989] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:24.999] Browser LOG     Refreshing page data due to server-side change
+[01:58:25.319] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:25.385] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:25.529] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:27.375] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:27.457] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:27.723] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:27.793] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:27.888] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:27.994] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:28.378] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:30.112] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:30.250] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:34.026] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:58:34.246] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:58:34.433] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:34.514] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:34.595] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:34.673] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:34.676] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:58:34.795] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:34.872] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:34.954] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:35.043] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:35.045] Browser LOG     Refreshing page data due to server-side change
+[01:58:35.142] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:35.214] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:35.324] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:35.413] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:35.631] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:58:35.883] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:58:36.110] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:36.255] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:36.350] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:36.431] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:36.524] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:36.596] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:36.701] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:36.769] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:36.851] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:36.944] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:36.949] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:58:36.949] Browser LOG     Refreshing page data due to server-side change
+[01:58:37.125] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:37.265] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:37.387] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:37.491] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:37.716] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:37.783] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:38.035] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:38.305] Server  WARN     ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[01:58:38.898] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:58:39.096] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:39.185] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:39.279] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:39.398] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:39.406] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:58:39.406] Browser LOG     Refreshing page data due to server-side change
+[01:58:39.503] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:39.577] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:39.649] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:39.726] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:39.819] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:39.892] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:39.969] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:40.045] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:40.663] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:40.763] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:40.779] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:42.136] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:42.215] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:58:48.040] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:58:48.514] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:58:48.831] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:58:48.831] Browser LOG     Refreshing page data due to server-side change
+[01:58:50.234] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[01:58:50.234] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[01:58:50.234] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[01:58:50.234] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[01:58:50.234] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[01:59:12.945] Browser LOG     Refreshing page data due to server-side change
+[01:59:21.140] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:59:21.219] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:59:21.310] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:59:21.384] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:59:21.755] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:59:23.475] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[01:59:23.536] Server  ERROR    ⨯ TypeError: Cannot read properties of undefined (reading 'getInitialProps')
+[02:01:02.745] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:01:02.911] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:03:03.834] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <RootLayout> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[02:03:04.697] Server  ERROR   ReferenceError: Homepage is not defined
+[02:03:04.699] Server  ERROR    ⨯ ReferenceError: Homepage is not defined
+[02:03:04.701] Server  ERROR    ⨯ ReferenceError: Homepage is not defined
+[02:03:05.086] Browser ERROR   uncaughtError: ReferenceError: Homepage is not defined
+[02:03:06.740] Server  ERROR   ReferenceError: Homepage is not defined
+[02:03:06.744] Server  ERROR    ⨯ ReferenceError: Homepage is not defined
+[02:03:06.745] Server  ERROR    ⨯ ReferenceError: Homepage is not defined
+[02:03:07.930] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:03:07.954] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:03:16.810] Server  ERROR    ⨯ ./src/layouts/layout.jsx
+Error:   × Parenthesized expression cannot be empty
+    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\layouts\layout.jsx:13:1]
+ 10 │     });
+ 11 │     
+ 12 │     export default function RootLayout({ children }) {
+ 13 │ ╭─▶   return (
+ 14 │ │       // <div>
+ 15 │ │       //   <Head>
+ 16 │ │       //     <link rel="icon" href="/images/casa-viana.png" type="image/*" sizes="any" />
+ 17 │ │       //   </Head>
+ 18 │ │   
+ 19 │ │       //   <Header />
+ 20 │ │   
+ 21 │ │       //   <main className="mx-auto max-w-[1900px] px-4 min-h-[75vh] sm:px-6 md:px-4 flex-grow pt-0">
+ 22 │ │       //     {children}
+ 23 │ │   
+ 24 │ │       //   </main>
+ 25 │ │       //   <Footer />
+ 26 │ │       // </div>
+ 27 │ ╰─▶   );
+ 28 │     }
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/layouts/layout.jsx
+[02:03:16.950] Browser ERROR   ./src/layouts/layout.jsx
+Error:   × Parenthesized expression cannot be empty
+    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\layouts\layout.jsx:13:1]
+ 10 │     });
+ 11 │     
+ 12 │     export default function RootLayout({ children }) {
+ 13 │ ╭─▶   return (
+ 14 │ │       // <div>
+ 15 │ │       //   <Head>
+ 16 │ │       //     <link rel="icon" href="/images/casa-viana.png" type="image/*" sizes="any" />
+ 17 │ │       //   </Head>
+ 18 │ │   
+ 19 │ │       //   <Header />
+ 20 │ │   
+ 21 │ │       //   <main className="mx-auto max-w-[1900px] px-4 min-h-[75vh] sm:px-6 md:px-4 flex-grow pt-0">
+ 22 │ │       //     {children}
+ 23 │ │   
+ 24 │ │       //   </main>
+ 25 │ │       //   <Footer />
+ 26 │ │       // </div>
+ 27 │ ╰─▶   );
+ 28 │     }
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/layouts/layout.jsx
+[02:03:16.950] Browser ERROR   ./src/layouts/layout.jsx
+Error:   × Parenthesized expression cannot be empty
+    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\layouts\layout.jsx:13:1]
+ 10 │     });
+ 11 │     
+ 12 │     export default function RootLayout({ children }) {
+ 13 │ ╭─▶   return (
+ 14 │ │       // <div>
+ 15 │ │       //   <Head>
+ 16 │ │       //     <link rel="icon" href="/images/casa-viana.png" type="image/*" sizes="any" />
+ 17 │ │       //   </Head>
+ 18 │ │   
+ 19 │ │       //   <Header />
+ 20 │ │   
+ 21 │ │       //   <main className="mx-auto max-w-[1900px] px-4 min-h-[75vh] sm:px-6 md:px-4 flex-grow pt-0">
+ 22 │ │       //     {children}
+ 23 │ │   
+ 24 │ │       //   </main>
+ 25 │ │       //   <Footer />
+ 26 │ │       // </div>
+ 27 │ ╰─▶   );
+ 28 │     }
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/layouts/layout.jsx
+./src/pages/_app.js
+[02:03:16.950] Browser ERROR   ./src/layouts/layout.jsx
+Error:   × Parenthesized expression cannot be empty
+    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\layouts\layout.jsx:13:1]
+ 10 │     });
+ 11 │     
+ 12 │     export default function RootLayout({ children }) {
+ 13 │ ╭─▶   return (
+ 14 │ │       // <div>
+ 15 │ │       //   <Head>
+ 16 │ │       //     <link rel="icon" href="/images/casa-viana.png" type="image/*" sizes="any" />
+ 17 │ │       //   </Head>
+ 18 │ │   
+ 19 │ │       //   <Header />
+ 20 │ │   
+ 21 │ │       //   <main className="mx-auto max-w-[1900px] px-4 min-h-[75vh] sm:px-6 md:px-4 flex-grow pt-0">
+ 22 │ │       //     {children}
+ 23 │ │   
+ 24 │ │       //   </main>
+ 25 │ │       //   <Footer />
+ 26 │ │       // </div>
+ 27 │ ╰─▶   );
+ 28 │     }
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/layouts/layout.jsx
+[02:03:18.938] Browser ERROR   ./src/layouts/layout.jsx
+Error:   × Parenthesized expression cannot be empty
+    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\layouts\layout.jsx:13:1]
+ 10 │     });
+ 11 │     
+ 12 │     export default function RootLayout({ children }) {
+ 13 │ ╭─▶   return (
+ 14 │ │       // <div>
+ 15 │ │       //   <Head>
+ 16 │ │       //     <link rel="icon" href="/images/casa-viana.png" type="image/*" sizes="any" />
+ 17 │ │       //   </Head>
+ 18 │ │   
+ 19 │ │       //   <Header />
+ 20 │ │   
+ 21 │ │       //   <main className="mx-auto max-w-[1900px] px-4 min-h-[75vh] sm:px-6 md:px-4 flex-grow pt-0">
+ 22 │ │       //     {children}
+ 23 │ │   
+ 24 │ │       //   </main>
+ 25 │ │       //   <Footer />
+ 26 │ │       // </div>
+ 27 │ ╰─▶   );
+ 28 │     }
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/layouts/layout.jsx
+[02:03:23.573] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <RootLayout> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[02:03:24.206] Browser LOG     Refreshing page data due to server-side change
+[02:03:24.463] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[02:03:24.463] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:03:24.463] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:03:24.463] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:03:24.463] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:15:24.321] Browser LOG     Refreshing page data due to server-side change
+[02:15:57.074] Browser LOG     Refreshing page data due to server-side change
+[02:22:58.400] Server  ERROR    ⨯ ./src/layouts/layout.jsx
+Error:   × Parenthesized expression cannot be empty
+    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\layouts\layout.jsx:13:1]
+ 10 │     });
+ 11 │     
+ 12 │     export default function RootLayout({ children }) {
+ 13 │ ╭─▶   return (
+ 14 │ │       // <div>
+ 15 │ │       //   <Head>
+ 16 │ │       //     <link rel="icon" href="/images/casa-viana.png" type="image/*" sizes="any" />
+ 17 │ │       //   </Head>
+ 18 │ │   
+ 19 │ │       //   <Header />
+ 20 │ │   
+ 21 │ │       //   <main className="mx-auto max-w-[1900px] px-4 min-h-[75vh] sm:px-6 md:px-4 flex-grow pt-0">
+ 22 │ │       //     {children}
+ 23 │ │   
+ 24 │ │       //   </main>
+ 25 │ │       //   <Footer />
+ 26 │ │       // </div>
+ 27 │ │       //  <div className="min-h-screen flex flex-col">
+ 28 │ │       //   <Header />
+ 29 │ │       //   <main className="flex-grow pt-20">
+ 30 │ │       //     {children}
+ 31 │ │       //   </main>
+ 32 │ │       //   <Footer />
+ 33 │ │       // </div>
+ 34 │ ╰─▶   );
+ 35 │     }
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/layouts/layout.jsx
+[02:22:58.946] Browser ERROR   ./src/layouts/layout.jsx
+Error:   × Parenthesized expression cannot be empty
+    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\layouts\layout.jsx:13:1]
+ 10 │     });
+ 11 │     
+ 12 │     export default function RootLayout({ children }) {
+ 13 │ ╭─▶   return (
+ 14 │ │       // <div>
+ 15 │ │       //   <Head>
+ 16 │ │       //     <link rel="icon" href="/images/casa-viana.png" type="image/*" sizes="any" />
+ 17 │ │       //   </Head>
+ 18 │ │   
+ 19 │ │       //   <Header />
+ 20 │ │   
+ 21 │ │       //   <main className="mx-auto max-w-[1900px] px-4 min-h-[75vh] sm:px-6 md:px-4 flex-grow pt-0">
+ 22 │ │       //     {children}
+ 23 │ │   
+ 24 │ │       //   </main>
+ 25 │ │       //   <Footer />
+ 26 │ │       // </div>
+ 27 │ │       //  <div className="min-h-screen flex flex-col">
+ 28 │ │       //   <Header />
+ 29 │ │       //   <main className="flex-grow pt-20">
+ 30 │ │       //     {children}
+ 31 │ │       //   </main>
+ 32 │ │       //   <Footer />
+ 33 │ │       // </div>
+ 34 │ ╰─▶   );
+ 35 │     }
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/layouts/layout.jsx
+./src/pages/_app.js
+[02:22:58.946] Browser ERROR   ./src/layouts/layout.jsx
+Error:   × Parenthesized expression cannot be empty
+    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\layouts\layout.jsx:13:1]
+ 10 │     });
+ 11 │     
+ 12 │     export default function RootLayout({ children }) {
+ 13 │ ╭─▶   return (
+ 14 │ │       // <div>
+ 15 │ │       //   <Head>
+ 16 │ │       //     <link rel="icon" href="/images/casa-viana.png" type="image/*" sizes="any" />
+ 17 │ │       //   </Head>
+ 18 │ │   
+ 19 │ │       //   <Header />
+ 20 │ │   
+ 21 │ │       //   <main className="mx-auto max-w-[1900px] px-4 min-h-[75vh] sm:px-6 md:px-4 flex-grow pt-0">
+ 22 │ │       //     {children}
+ 23 │ │   
+ 24 │ │       //   </main>
+ 25 │ │       //   <Footer />
+ 26 │ │       // </div>
+ 27 │ │       //  <div className="min-h-screen flex flex-col">
+ 28 │ │       //   <Header />
+ 29 │ │       //   <main className="flex-grow pt-20">
+ 30 │ │       //     {children}
+ 31 │ │       //   </main>
+ 32 │ │       //   <Footer />
+ 33 │ │       // </div>
+ 34 │ ╰─▶   );
+ 35 │     }
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/layouts/layout.jsx
+[02:23:02.035] Browser ERROR   ./src/layouts/layout.jsx
+Error:   × Parenthesized expression cannot be empty
+    ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\layouts\layout.jsx:13:1]
+ 10 │     });
+ 11 │     
+ 12 │     export default function RootLayout({ children }) {
+ 13 │ ╭─▶   return (
+ 14 │ │       // <div>
+ 15 │ │       //   <Head>
+ 16 │ │       //     <link rel="icon" href="/images/casa-viana.png" type="image/*" sizes="any" />
+ 17 │ │       //   </Head>
+ 18 │ │   
+ 19 │ │       //   <Header />
+ 20 │ │   
+ 21 │ │       //   <main className="mx-auto max-w-[1900px] px-4 min-h-[75vh] sm:px-6 md:px-4 flex-grow pt-0">
+ 22 │ │       //     {children}
+ 23 │ │   
+ 24 │ │       //   </main>
+ 25 │ │       //   <Footer />
+ 26 │ │       // </div>
+ 27 │ │       //  <div className="min-h-screen flex flex-col">
+ 28 │ │       //   <Header />
+ 29 │ │       //   <main className="flex-grow pt-20">
+ 30 │ │       //     {children}
+ 31 │ │       //   </main>
+ 32 │ │       //   <Footer />
+ 33 │ │       // </div>
+ 34 │ ╰─▶   );
+ 35 │     }
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/layouts/layout.jsx
+[02:23:02.680] Browser LOG     Refreshing page data due to server-side change
+[02:23:08.242] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[02:23:08.242] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:23:08.242] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:23:08.242] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:23:08.242] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:23:17.938] Browser LOG     Refreshing page data due to server-side change
+[02:23:19.942] Browser LOG     Refreshing page data due to server-side change
+[02:31:34.048] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[02:31:34.048] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:31:34.048] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:31:34.048] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:31:34.048] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:32:45.981] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[02:32:45.981] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:32:45.981] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:32:45.981] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:32:45.981] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:39:07.581] Server  ERROR    ⨯ ./src/views/Homepage.jsx
+Error:   × Expected '</', got '!'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:98:1]
+  95 │   return (
+  96 │     <>
+  97 │       <div className="mx-auto py-4 md:py-6 px-2 sm:px-4">
+  98 │         <div class="gap-4 grid grid-cols-1 lg:grid-cols-12 md:gap-6 relative min-h-screen overflow-visible"> <!-- Add min-h-screen and overflow-visible to ensure scrollable height and no hidden overflow -->
+     ·                                                                                                               ─
+  99 │           {/* LEFT SIDE - TRENDING / COMMENTS / LATEST */}
+ 100 │           {/* Updated: Wrapped in sticky div for lg screens */}
+ 100 │           <div className="lg:col-span-2">
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[02:39:07.969] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expected '</', got '!'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:98:1]
+  95 │   return (
+  96 │     <>
+  97 │       <div className="mx-auto py-4 md:py-6 px-2 sm:px-4">
+  98 │         <div class="gap-4 grid grid-cols-1 lg:grid-cols-12 md:gap-6 relative min-h-screen overflow-visible"> <!-- Add min-h-screen and overflow-visible to ensure scrollable height and no hidden overflow -->
+     ·                                                                                                               ─
+  99 │           {/* LEFT SIDE - TRENDING / COMMENTS / LATEST */}
+ 100 │           {/* Updated: Wrapped in sticky div for lg screens */}
+ 100 │           <div className="lg:col-span-2">
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+./src/pages/index.js
+[02:39:12.963] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expected '</', got '!'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:98:1]
+  95 │   return (
+  96 │     <>
+  97 │       <div className="mx-auto py-4 md:py-6 px-2 sm:px-4">
+  98 │         <div class="gap-4 grid grid-cols-1 lg:grid-cols-12 md:gap-6 relative min-h-screen overflow-visible"> <!-- Add min-h-screen and overflow-visible to ensure scrollable height and no hidden overflow -->
+     ·                                                                                                               ─
+  99 │           {/* LEFT SIDE - TRENDING / COMMENTS / LATEST */}
+ 100 │           {/* Updated: Wrapped in sticky div for lg screens */}
+ 100 │           <div className="lg:col-span-2">
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[02:39:13.985] Browser ERROR   Invalid DOM property `%s`. Did you mean `%s`? class className
+[02:41:48.023] Browser ERROR   Invalid DOM property `%s`. Did you mean `%s`? class className
+[02:41:48.492] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:41:48.492] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:41:48.492] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:41:48.492] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:42:36.772] Browser ERROR   Invalid DOM property `%s`. Did you mean `%s`? class className
+[02:42:37.218] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[02:42:37.218] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:42:37.218] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:42:37.218] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:42:37.218] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:45:53.216] Browser ERROR   Invalid DOM property `%s`. Did you mean `%s`? class className
+[02:45:53.563] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[02:45:53.563] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:45:53.563] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:45:53.563] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:45:53.563] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:47:54.435] Server  ERROR    ⨯ ./src/views/Homepage.jsx
+Error:   × Expected '>', got 'div'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:494:1]
+ 491 │             ))}
+ 492 │           </Swiper>
+ 493 │         </div>
+ 494 │       </div>
+     ·         ───
+ 495 │     </>
+ 496 │   );
+ 496 │ };
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[02:47:54.944] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expected '>', got 'div'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:494:1]
+ 491 │             ))}
+ 492 │           </Swiper>
+ 493 │         </div>
+ 494 │       </div>
+     ·         ───
+ 495 │     </>
+ 496 │   );
+ 496 │ };
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[02:47:54.944] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expected '>', got 'div'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:494:1]
+ 491 │             ))}
+ 492 │           </Swiper>
+ 493 │         </div>
+ 494 │       </div>
+     ·         ───
+ 495 │     </>
+ 496 │   );
+ 496 │ };
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+./src/pages/index.js
+[02:48:10.939] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expected '>', got 'div'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:494:1]
+ 491 │             ))}
+ 492 │           </Swiper>
+ 493 │         </div>
+ 494 │       </div>
+     ·         ───
+ 495 │     </>
+ 496 │   );
+ 496 │ };
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[02:53:06.279] Server  ERROR    ⨯ ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:98:1]
+  95 │   return (
+  96 │     <>
+  97 │     <div className="min-h-screen overflow-visible"
+  98 │       <div className="mx-auto py-4 md:py-6 px-2 sm:px-4">
+     ·       ─
+  99 │         <div class="gap-4 grid grid-cols-1 lg:grid-cols-12 md:gap-6 relative min-h-screen overflow-visible">
+ 100 │           {/* LEFT SIDE - TRENDING / COMMENTS / LATEST */}
+ 100 │           {/* Updated: Wrapped in sticky div for lg screens */}
+     ╰────
+  × Expected ',', got 'className'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:98:1]
+  95 │   return (
+  96 │     <>
+  97 │     <div className="min-h-screen overflow-visible"
+  98 │       <div className="mx-auto py-4 md:py-6 px-2 sm:px-4">
+     ·            ─────────
+  99 │         <div class="gap-4 grid grid-cols-1 lg:grid-cols-12 md:gap-6 relative min-h-screen overflow-visible">
+ 100 │           {/* LEFT SIDE - TRENDING / COMMENTS / LATEST */}
+ 100 │           {/* Updated: Wrapped in sticky div for lg screens */}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[02:53:06.942] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:98:1]
+  95 │   return (
+  96 │     <>
+  97 │     <div className="min-h-screen overflow-visible"
+  98 │       <div className="mx-auto py-4 md:py-6 px-2 sm:px-4">
+     ·       ─
+  99 │         <div class="gap-4 grid grid-cols-1 lg:grid-cols-12 md:gap-6 relative min-h-screen overflow-visible">
+ 100 │           {/* LEFT SIDE - TRENDING / COMMENTS / LATEST */}
+ 100 │           {/* Updated: Wrapped in sticky div for lg screens */}
+     ╰────
+  × Expected ',', got 'className'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:98:1]
+  95 │   return (
+  96 │     <>
+  97 │     <div className="min-h-screen overflow-visible"
+  98 │       <div className="mx-auto py-4 md:py-6 px-2 sm:px-4">
+     ·            ─────────
+  99 │         <div class="gap-4 grid grid-cols-1 lg:grid-cols-12 md:gap-6 relative min-h-screen overflow-visible">
+ 100 │           {/* LEFT SIDE - TRENDING / COMMENTS / LATEST */}
+ 100 │           {/* Updated: Wrapped in sticky div for lg screens */}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[02:53:06.942] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:98:1]
+  95 │   return (
+  96 │     <>
+  97 │     <div className="min-h-screen overflow-visible"
+  98 │       <div className="mx-auto py-4 md:py-6 px-2 sm:px-4">
+     ·       ─
+  99 │         <div class="gap-4 grid grid-cols-1 lg:grid-cols-12 md:gap-6 relative min-h-screen overflow-visible">
+ 100 │           {/* LEFT SIDE - TRENDING / COMMENTS / LATEST */}
+ 100 │           {/* Updated: Wrapped in sticky div for lg screens */}
+     ╰────
+  × Expected ',', got 'className'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:98:1]
+  95 │   return (
+  96 │     <>
+  97 │     <div className="min-h-screen overflow-visible"
+  98 │       <div className="mx-auto py-4 md:py-6 px-2 sm:px-4">
+     ·            ─────────
+  99 │         <div class="gap-4 grid grid-cols-1 lg:grid-cols-12 md:gap-6 relative min-h-screen overflow-visible">
+ 100 │           {/* LEFT SIDE - TRENDING / COMMENTS / LATEST */}
+ 100 │           {/* Updated: Wrapped in sticky div for lg screens */}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+./src/pages/index.js
+[02:53:07.952] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:98:1]
+  95 │   return (
+  96 │     <>
+  97 │     <div className="min-h-screen overflow-visible"
+  98 │       <div className="mx-auto py-4 md:py-6 px-2 sm:px-4">
+     ·       ─
+  99 │         <div class="gap-4 grid grid-cols-1 lg:grid-cols-12 md:gap-6 relative min-h-screen overflow-visible">
+ 100 │           {/* LEFT SIDE - TRENDING / COMMENTS / LATEST */}
+ 100 │           {/* Updated: Wrapped in sticky div for lg screens */}
+     ╰────
+  × Expected ',', got 'className'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:98:1]
+  95 │   return (
+  96 │     <>
+  97 │     <div className="min-h-screen overflow-visible"
+  98 │       <div className="mx-auto py-4 md:py-6 px-2 sm:px-4">
+     ·            ─────────
+  99 │         <div class="gap-4 grid grid-cols-1 lg:grid-cols-12 md:gap-6 relative min-h-screen overflow-visible">
+ 100 │           {/* LEFT SIDE - TRENDING / COMMENTS / LATEST */}
+ 100 │           {/* Updated: Wrapped in sticky div for lg screens */}
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[02:53:08.952] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[02:53:08.952] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[02:53:10.080] Server  ERROR    ⨯ ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:497:1]
+ 494 │           ))}
+ 495 │         </Swiper>
+ 496 │       </div>
+ 497 │     </>
+     ·       ─
+ 498 │   );
+ 499 │ };
+ 499 │ 
+     ╰────
+  × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:498:1]
+ 495 │         </Swiper>
+ 496 │       </div>
+ 497 │     </>
+ 498 │   );
+     ·   ─
+ 499 │ };
+ 500 │ 
+ 500 │ export default Homepage;
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[02:53:10.943] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:497:1]
+ 494 │           ))}
+ 495 │         </Swiper>
+ 496 │       </div>
+ 497 │     </>
+     ·       ─
+ 498 │   );
+ 499 │ };
+ 499 │ 
+     ╰────
+  × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:498:1]
+ 495 │         </Swiper>
+ 496 │       </div>
+ 497 │     </>
+ 498 │   );
+     ·   ─
+ 499 │ };
+ 500 │ 
+ 500 │ export default Homepage;
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[02:53:10.943] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:497:1]
+ 494 │           ))}
+ 495 │         </Swiper>
+ 496 │       </div>
+ 497 │     </>
+     ·       ─
+ 498 │   );
+ 499 │ };
+ 499 │ 
+     ╰────
+  × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:498:1]
+ 495 │         </Swiper>
+ 496 │       </div>
+ 497 │     </>
+ 498 │   );
+     ·   ─
+ 499 │ };
+ 500 │ 
+ 500 │ export default Homepage;
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+./src/pages/index.js
+[02:53:19.088] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:497:1]
+ 494 │           ))}
+ 495 │         </Swiper>
+ 496 │       </div>
+ 497 │     </>
+     ·       ─
+ 498 │   );
+ 499 │ };
+ 499 │ 
+     ╰────
+  × Expression expected
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:498:1]
+ 495 │         </Swiper>
+ 496 │       </div>
+ 497 │     </>
+ 498 │   );
+     ·   ─
+ 499 │ };
+ 500 │ 
+ 500 │ export default Homepage;
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[03:00:27.397] Browser ERROR   Invalid DOM property `%s`. Did you mean `%s`? class className
+[03:00:27.806] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[03:00:27.806] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:00:27.806] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:00:27.806] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:00:27.806] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:01:06.276] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:01:06.276] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:01:06.276] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:01:06.276] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:01:09.544] Browser ERROR   Invalid DOM property `%s`. Did you mean `%s`? class className
+[03:01:09.953] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[03:01:09.953] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:01:09.953] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:01:09.953] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:01:09.953] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:04:48.428] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:04:48.428] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:04:48.436] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:04:48.436] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:04:51.538] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:04:51.538] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:04:51.538] Browser WARN    Image with src "/images/images_cms.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[03:04:51.538] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:04:51.538] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:07:22.929] Browser WARN    Image with src "/images/cms-image2.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[03:07:22.930] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:07:22.930] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:07:22.930] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:07:22.930] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:11:46.608] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:11:46.608] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:11:46.608] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:11:49.992] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[03:11:49.992] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:11:49.992] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:11:49.992] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:11:49.992] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:12:03.260] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:12:05.957] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[03:12:05.957] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:12:05.957] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:12:05.957] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:12:05.957] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:12:18.724] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[03:12:18.724] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:12:18.724] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:12:18.724] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:12:18.724] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:18:24.404] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:18:24.404] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:18:24.404] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:18:27.555] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[03:18:27.555] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:18:50.545] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:18:53.032] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[03:18:53.032] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:18:53.033] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:18:53.033] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:18:53.033] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:19:45.471] Server  ERROR    ⨯ ./src/views/Homepage.jsx
+Error:   × Expected '>', got 'div'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:593:1]
+ 590 │             ))}
+ 591 │           </div>
+ 592 │         </div>
+ 593 │       </div>
+     ·         ───
+ 594 │     </>
+ 595 │   );
+ 595 │ };
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[03:19:45.942] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expected '>', got 'div'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:593:1]
+ 590 │             ))}
+ 591 │           </div>
+ 592 │         </div>
+ 593 │       </div>
+     ·         ───
+ 594 │     </>
+ 595 │   );
+ 595 │ };
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[03:19:45.942] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expected '>', got 'div'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:593:1]
+ 590 │             ))}
+ 591 │           </div>
+ 592 │         </div>
+ 593 │       </div>
+     ·         ───
+ 594 │     </>
+ 595 │   );
+ 595 │ };
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+./src/pages/index.js
+[03:19:51.224] Browser ERROR   ./src/views/Homepage.jsx
+Error:   × Expected '>', got 'div'
+     ╭─[C:\Users\Rahul Soneji\Desktop\casa-viana-website\src\views\Homepage.jsx:593:1]
+ 590 │             ))}
+ 591 │           </div>
+ 592 │         </div>
+ 593 │       </div>
+     ·         ───
+ 594 │     </>
+ 595 │   );
+ 595 │ };
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/views/Homepage.jsx
+[03:19:51.224] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:19:51.224] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:19:51.224] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:19:51.224] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:25:35.100] Browser WARN    Image with src "/images/saf.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[03:25:35.100] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:25:35.100] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:25:35.100] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:25:35.100] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:35:03.749] Browser WARN    Image with src "/images/singer_swiper1.jpeg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[03:35:03.749] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:35:03.749] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:35:03.749] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:35:03.749] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:37:11.955] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:37:11.955] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:37:11.955] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:37:11.955] Browser ERROR   %o
+
+%s
+
+%s
+ {} The above error occurred in the <Swiper> component. React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[03:37:15.459] Browser WARN    Image with src "/images/hotel_swiper1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[03:37:15.459] Browser WARN    Image with src "http://localhost:3000/images/mabululu.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:37:15.459] Browser WARN    Image with src "http://localhost:3000/images/Centra-Dipanda.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:37:15.459] Browser WARN    Image with src "http://localhost:3000/images/qualidade.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:37:15.459] Browser WARN    Image with src "http://localhost:3000/images/casa-viana.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
