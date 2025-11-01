@@ -246,19 +246,19 @@ const EventsPage = () => {
           </div>
         </section>
 
-        {/* Destaques Section (Exactly like screenshot) */}
-        <section className="text-white py-8 overflow-hidden">
+        {/* Destaques Section (Responsive Grid: 1 → 2 → 4 columns) */}
+        <section className="text-white py-8">
           <div className="px-4 sm:px-6 lg:px-8 xl:px-12">
             <h2 className="text-xl sm:text-2xl font-bold mb-6">Destaques</h2>
 
-            <div className="flex gap-5 pb-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {featuredEvents.map((event, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 flex items-center bg-white rounded-xl shadow-md overflow-hidden min-w-[300px] sm:min-w-[340px] hover:scale-[1.02] transition-transform duration-200"
+                  className="flex items-center bg-white rounded-xl shadow-md overflow-hidden hover:scale-[1.02] transition-transform duration-200"
                 >
                   {/* Image */}
-                  <div className="w-[45%] h-[120px] sm:h-[140px] relative">
+                  <div className="w-[40%] h-[120px] sm:h-[140px] relative">
                     <img
                       src={event.image}
                       alt={event.title}
@@ -267,7 +267,7 @@ const EventsPage = () => {
                   </div>
 
                   {/* Right Content */}
-                  <div className="w-[55%] p-3 flex flex-col justify-between">
+                  <div className="w-[60%] p-3 flex flex-col justify-between">
                     <div>
                       <h3 className="text-gray-900 font-semibold text-sm sm:text-base truncate">
                         {event.title}
