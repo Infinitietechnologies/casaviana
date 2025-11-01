@@ -205,7 +205,7 @@ const Header = () => {
       <div
         className={`md:hidden text-white flex flex-col items-center overflow-hidden transition-all duration-300 ease-in-out ${
           menuOpen
-            ? "max-h-96 py-4 shadow-lg backdrop-blur-md bg-red-600/70 border-t border-white/20"
+            ? "max-h-96 py-4 backdrop-blur-md backdrop-saturate-150 bg-red-600/60 border-t border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.08)] relative z-[60]"
             : "max-h-0 py-0"
         }`}
       >
