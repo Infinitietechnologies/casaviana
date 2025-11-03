@@ -89,7 +89,7 @@ const Header = () => {
             className="hidden md:flex items-center gap-4 relative"
             ref={dropdownRef}
           >
-            <Link href="https://www.casaviana.ao/cardapio/">
+            <Link href="/cardapio">
               <Image
                 src="/images/cardapio.png"
                 alt="Cardápio"
@@ -234,7 +234,7 @@ const Header = () => {
           {/* Mobile right side */}
           <div className="flex md:hidden items-center gap-3">
             {/* Cardapio small image */}
-            <Link href="https://www.casaviana.ao/cardapio/">
+            <Link href="/cardapio">
               <Image
                 src="/images/cardapio.png"
                 alt="Cardápio"
