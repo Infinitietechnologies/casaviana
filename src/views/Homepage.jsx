@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Thumbs } from "swiper/modules";
@@ -10,11 +10,16 @@ import Link from "next/link";
 
 const Homepage = () => {
   // Separate state for each Swiper instance
-  const [thumbsSwiper1, setThumbsSwiper1] = React.useState(null);
-  const [thumbsSwiper2, setThumbsSwiper2] = React.useState(null);
-  const [thumbsSwiper3, setThumbsSwiper3] = React.useState(null);
-  const [thumbsSwiper4, setThumbsSwiper4] = React.useState(null);
-  const [thumbsSwiper5, setThumbsSwiper5] = React.useState(null);
+  const [thumbsSwiper1, setThumbsSwiper1] = useState(null);
+  const [thumbsSwiper2, setThumbsSwiper2] = useState(null);
+  const [thumbsSwiper3, setThumbsSwiper3] = useState(null);
+  const [thumbsSwiper4, setThumbsSwiper4] = useState(null);
+  const [thumbsSwiper5, setThumbsSwiper5] = useState(null);
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggleSubmenu = (i) => {
+    setOpenIndex(openIndex === i ? null : i);
+  };
 
   const eventImages = [
     {
@@ -90,6 +95,39 @@ const Homepage = () => {
     "/images/singer_swiper5.jpeg",
     "/images/singer_swiper6.jpeg",
     "/images/singer_swiper7.png",
+  ];
+
+  const menuItems = [
+    {
+      name: "Aqui Acontece",
+      sub: ["Casamento", "Aniversários", "Eventos Empresariais"],
+    },
+    {
+      name: "Lá Fora",
+      sub: ["Concertos", "Famosos", "Lançamentos", "Night Life"],
+    },
+    {
+      name: "Destinos",
+      sub: ["Praias", "Resorts", "Restaurantes"],
+    },
+    {
+      name: "Em Forma",
+      sub: ["Ginásios", "Saúde", "Alimentação"],
+    },
+    {
+      name: "Clube da Cultura",
+      sub: [
+        "Cinemateca",
+        "Teatro",
+        "Karaoke",
+        "Dança",
+        "Cerâmica",
+        "Pintura",
+        "Escultura",
+        "Literatura",
+      ],
+    },
+    { name: "O Nosso SPORTING" },
   ];
 
   return (
@@ -466,7 +504,9 @@ const Homepage = () => {
                 modules={[Navigation, Thumbs]}
                 thumbs={{
                   swiper:
-                    thumbsSwiper4 && !thumbsSwiper4.destroyed ? thumbsSwiper4 : null,
+                    thumbsSwiper4 && !thumbsSwiper4.destroyed
+                      ? thumbsSwiper4
+                      : null,
                 }}
                 className="mainSwiper overflow-hidden rounded-md"
               >
@@ -524,7 +564,9 @@ const Homepage = () => {
                 modules={[Navigation, Thumbs]}
                 thumbs={{
                   swiper:
-                    thumbsSwiper5 && !thumbsSwiper5.destroyed ? thumbsSwiper5 : null,
+                    thumbsSwiper5 && !thumbsSwiper5.destroyed
+                      ? thumbsSwiper5
+                      : null,
                 }}
                 className="mainSwiper overflow-hidden rounded-md"
               >
@@ -579,21 +621,51 @@ const Homepage = () => {
             <h2 className="text-xl sm:text-2xl font-bold text-red-600 mb-4">
               Directório
             </h2>
+
             <div className="flex flex-col gap-2">
-              {[
-                "Aqui Acontece",
-                "Lá Fora",
-                "Destinos",
-                "Em Forma",
-                "Clube da Cultura",
-                "O Nosso SPORTING",
-              ].map((item, i) => (
-                <button
-                  key={i}
-                  className="flex justify-between items-center bg-red-600 text-white font-semibold px-3 sm:px-4 py-2 rounded-md hover:bg-red-700 transition-colors text-xs sm:text-sm w-full text-left truncate"
-                >
-                  {item} <span className="text-white font-bold">●</span>
-                </button>
+              {menuItems.map((item, i) => (
+                <div key={i} className="relative group">
+                  {/* MAIN BUTTON */}
+                  <button
+                    onClick={() => toggleSubmenu(i)}
+                    className="flex justify-between items-center bg-red-600 text-white font-semibold 
+          px-3 sm:px-4 py-2 rounded-md hover:bg-red-700 transition-colors 
+          text-xs sm:text-sm w-full text-left truncate"
+                  >
+                    {item.name} <span className="text-white font-bold">●</span>
+                  </button>
+
+                  {/* DESKTOP SUBMENU (hover) */}
+                  {item.sub && (
+                    <div
+                      className="hidden lg:group-hover:block absolute left-[-200px] top-0 bg-[#8c181a] text-white 
+            rounded-md p-2 w-48 z-20"
+                    >
+                      {item.sub.map((subItem, j) => (
+                        <div
+                          key={j}
+                          className="px-3 py-2 hover:bg-red-800 rounded-md cursor-pointer text-sm"
+                        >
+                          {subItem}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* MOBILE SUBMENU (click toggle) */}
+                  {item.sub && openIndex === i && (
+                    <div className="lg:hidden bg-[#8c181a] text-white rounded-md p-2 mt-1 z-20">
+                      {item.sub.map((subItem, j) => (
+                        <div
+                          key={j}
+                          className="px-3 py-2 hover:bg-red-800 rounded-md cursor-pointer text-sm"
+                        >
+                          {subItem}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
           </div>
