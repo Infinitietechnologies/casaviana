@@ -7,6 +7,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import Link from "next/link";
+import RightSidebar from "@/components/RightSidebar";
+import LeftSidebar from "@/components/LeftSidebar";
 
 const Homepage = () => {
   // Separate state for each Swiper instance
@@ -236,98 +238,7 @@ const Homepage = () => {
       <div className=" mx-auto px-2 sm:px-4 md:px-8 lg:px-0 min-h-screen">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 relative min-h-screen">
           {/* LEFT SIDE - TRENDING / COMMENTS / LATEST */}
-          <div className="lg:col-span-2 lg:sticky lg:top-24 self-start p-2 sm:p-4 space-y-6">
-            {/* Top Ad image */}
-            <div className="w-full overflow-hidden rounded-md border border-gray-200 shadow-sm">
-              <Image
-                src="/images/images_cms.png"
-                alt="Advertisement"
-                width={600}
-                height={400}
-                className="w-full h-auto object-contain"
-              />
-            </div>
-
-            {/* Tabs */}
-            <div className="flex border-b border-gray-300">
-              {["Trending", "Comments", "Latest"].map((tab) => (
-                <button
-                  key={tab}
-                  className="flex-1 text-center py-2 text-sm font-semibold border-b-2 border-transparent hover:border-red-600 hover:text-red-600 transition-colors"
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-
-            {/* News items */}
-            <div className="space-y-4">
-              {[
-                {
-                  title: "Restaurante",
-                  date: "NOVEMBRO 6, 2024",
-                  img: "/images/swiper3.png",
-                },
-                {
-                  title: "KIKOLÂNDIA",
-                  date: "NOVEMBRO 5, 2024",
-                  img: "/images/img_jkr.png",
-                },
-                {
-                  title: "Sala Vitória",
-                  date: "NOVEMBRO 6, 2024",
-                  img: "/images/swiper2.png",
-                },
-                {
-                  title: "Casamento Sonhos",
-                  date: "NOVEMBRO 18, 2024",
-                  img: "/images/swiper_center1.png",
-                },
-              ].map((news, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-3 p-1 hover:bg-gray-50 rounded-md transition-colors"
-                >
-                  <div className="w-16 h-16 overflow-hidden rounded-md border border-gray-200 flex-shrink-0">
-                    <Image
-                      src={news.img}
-                      alt={news.title}
-                      width={64}
-                      height={64}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-gray-900 truncate">
-                      {news.title}
-                    </p>
-                    <p className="text-xs text-gray-500 flex items-center gap-1">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        className="w-4 h-4 text-gray-400 flex-shrink-0"
-                      >
-                        <path d="M10 2a8 8 0 1 0 8 8A8.01 8.01 0 0 0 10 2Zm.75 8.25V5.75a.75.75 0 0 0-1.5 0v5a.75.75 0 0 0 .22.53l3 3a.75.75 0 1 0 1.06-1.06Z" />
-                      </svg>
-                      {news.date}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Bottom Ad image */}
-            <div className="w-full overflow-hidden rounded-md border border-gray-200 shadow-sm">
-              <Image
-                src="/images/dogq.jpg"
-                alt="Advertisement"
-                width={600}
-                height={400}
-                className="w-full h-auto object-contain"
-              />
-            </div>
-          </div>
+          <LeftSidebar />
 
           {/* CENTER - All main content */}
           <div className="lg:col-span-8 py-4 md:py-6 gap-6">
@@ -617,58 +528,7 @@ const Homepage = () => {
           </div>
 
           {/* RIGHT SIDE - DIRECTORY */}
-          <div className="lg:col-span-2 lg:sticky lg:top-24 self-start p-4 bg-white z-10">
-            <h2 className="text-xl sm:text-2xl font-bold text-red-600 mb-4">
-              Directório
-            </h2>
-
-            <div className="flex flex-col gap-2">
-              {menuItems.map((item, i) => (
-                <div key={i} className="relative group">
-                  {/* MAIN BUTTON */}
-                  <button
-                    onClick={() => toggleSubmenu(i)}
-                    className="flex justify-between items-center bg-red-600 text-white font-semibold 
-          px-3 sm:px-4 py-2 rounded-md hover:bg-red-700 transition-colors 
-          text-xs sm:text-sm w-full text-left truncate"
-                  >
-                    {item.name} <span className="text-white font-bold">●</span>
-                  </button>
-
-                  {/* DESKTOP SUBMENU (hover) */}
-                  {item.sub && (
-                    <div
-                      className="hidden lg:group-hover:block absolute left-[-200px] top-0 bg-[#8c181a] text-white 
-            rounded-md p-2 w-48 z-20"
-                    >
-                      {item.sub.map((subItem, j) => (
-                        <div
-                          key={j}
-                          className="px-3 py-2 hover:bg-red-800 rounded-md cursor-pointer text-sm"
-                        >
-                          {subItem}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* MOBILE SUBMENU (click toggle) */}
-                  {item.sub && openIndex === i && (
-                    <div className="lg:hidden bg-[#8c181a] text-white rounded-md p-2 mt-1 z-20">
-                      {item.sub.map((subItem, j) => (
-                        <div
-                          key={j}
-                          className="px-3 py-2 hover:bg-red-800 rounded-md cursor-pointer text-sm"
-                        >
-                          {subItem}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
+          <RightSidebar />
         </div>
       </div>
     </>

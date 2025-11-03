@@ -70,14 +70,20 @@ const Header = () => {
         <div className="hidden md:flex items-center gap-6 text-sm font-semibold text-white">
           {["Início", "Serviços", "Eventos", "Reservar", "Contactos"].map(
             (item, i) => (
-              <a
+              <Link
                 key={i}
-                href={item === "Eventos" ? "/events" : "#"}
+                href={
+                  item === "Eventos"
+                    ? "/events"
+                    : item === "Reservar"
+                    ? "/reserva"
+                    : "#"
+                }
                 className="relative group transition-colors hover:text-gray-200 text-lg"
               >
                 {item}
                 <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white transition-all group-hover:w-full"></span>
-              </a>
+              </Link>
             )
           )}
         </div>
@@ -404,13 +410,19 @@ const Header = () => {
       >
         {["Início", "Serviços", "Eventos", "Reservar", "Contactos"].map(
           (item, i) => (
-            <a
+            <Link
               key={i}
-              href={item === "Eventos" ? "/events" : "#"}
+              href={
+                item === "Eventos"
+                  ? "/events"
+                  : item === "Reservar"
+                  ? "/reserva"
+                  : "#"
+              }
               className="text-lg font-medium hover:text-gray-200 transition py-2"
             >
               {item}
-            </a>
+            </Link>
           )
         )}
       </div>
