@@ -168,7 +168,7 @@ const Header = () => {
                 </div>
 
                 <Link
-                  href=""
+                  href="/my-profile"
                   className="px-4 py-2 flex items-center gap-2 text-sm hover:bg-gray-100"
                 >
                   <svg
@@ -291,7 +291,7 @@ const Header = () => {
                 </div>
 
                 <Link
-                  href=""
+                  href="/my-profile"
                   className="px-4 py-2 flex items-center gap-2 text-sm hover:bg-gray-100"
                 >
                   <svg
