@@ -146,12 +146,14 @@ const Homepage = () => {
                   key={i}
                   className="relative w-[48%] sm:w-[45%] md:w-[48%] h-[240px] sm:h-[260px] md:h-[300px]"
                 >
-                  <Image
-                    src={ev.src}
-                    alt={ev.alt}
-                    fill
-                    className="object-cover rounded-md"
-                  />
+                  <Link href="/events/calema-no-clube-s/">
+                    <Image
+                      src={ev.src}
+                      alt={ev.alt}
+                      fill
+                      className="object-cover rounded-md"
+                    />
+                  </Link>
                 </div>
               ))}
             </div>

@@ -88,7 +88,7 @@ const EventsPage = () => {
     {
       title: "Segunda Edição do Brunch Mangás",
       time: "At 11:00 AM",
-      slug: "",
+      slug: "calema-no-clube-s",
       date: "November 15, 2025",
       day: "15",
       month: "NOVEMBER",
@@ -100,7 +100,7 @@ const EventsPage = () => {
     {
       title: "EXPO ECONOMIA DIGITAL 2025",
       time: "At 9:00 AM",
-      slug: "",
+      slug: "calema-no-clube-s",
       date: "November 22, 2025",
       day: "22",
       month: "NOVEMBER",
@@ -112,7 +112,7 @@ const EventsPage = () => {
     {
       title: "Prémios Dentes D'ouro 2025",
       time: "At 7:00 PM",
-      slug: "",
+      slug: "calema-no-clube-s",
       date: "November 28, 2025",
       day: "28",
       month: "NOVEMBER",
@@ -125,7 +125,7 @@ const EventsPage = () => {
     {
       title: "III Edição da Cantata de Natal 2025",
       time: "At 6:00 PM",
-      slug: "",
+      slug: "calema-no-clube-s",
       date: "December 15, 2025",
       day: "15",
       month: "DECEMBER",
@@ -151,7 +151,7 @@ const EventsPage = () => {
     {
       title: "Exposição de Arte Contemporânea Angolana",
       time: "At 3:00 PM",
-      slug: "",
+      slug: "calema-no-clube-s",
       date: "December 12, 2025",
       day: "12",
       month: "DECEMBER",
@@ -164,7 +164,7 @@ const EventsPage = () => {
     {
       title: "Oficina de Artesanato Angolano",
       time: "At 4:00 PM",
-      slug: "",
+      slug: "calema-no-clube-s",
       date: "December 18, 2025",
       day: "18",
       month: "DECEMBER",
