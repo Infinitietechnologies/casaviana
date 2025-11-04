@@ -51,7 +51,7 @@ const Header = () => {
             <Image
               src="/images/mabululu.png"
               alt="Mabululu"
-              width={50}
+              width={60}
               height={80}
             />
           </Link>
@@ -60,7 +60,7 @@ const Header = () => {
             <Image
               src="/images/Centra-Dipanda.png"
               alt="Central Dipanda"
-              width={50}
+              width={60}
               height={80}
             />
           </Link>
@@ -99,8 +99,8 @@ const Header = () => {
               <Image
                 src="/images/cardapio.png"
                 alt="Cardápio"
-                width={55}
-                height={55}
+                width={75}
+                height={75}
               />
             </Link>
             <Link href="https://maps.app.goo.gl/UuTFT2sXNC6epm4x6">

@@ -213,7 +213,7 @@ const EventsPage = () => {
           <div className="soon-overlay">Em breve</div>
         )}
         <button className="btn_black">
-          {event.registrationOpen ? "Inscrever-se" : "Em breve"}
+          {event.registrationOpen ? "Comprar Ingresso" : "Em breve"}
         </button>
       </div>
     </div>
@@ -255,10 +255,10 @@ const EventsPage = () => {
               {featuredEvents.map((event, index) => (
                 <div
                   key={index}
-                  className="flex items-center bg-white rounded-xl shadow-md overflow-hidden hover:scale-[1.02] transition-transform duration-200"
+                  className="flex items-center rounded-xl shadow-md overflow-hidden hover:scale-[1.02] transition-transform duration-200"
                 >
-                  {/* Image */}
-                  <div className="w-[40%] h-[120px] sm:h-[140px] relative">
+                  {/* Image with Black Background */}
+                  <div className="w-[40%] h-[120px] sm:h-[140px] relative bg-black">
                     <img
                       src={event.image}
                       alt={event.title}
@@ -266,10 +266,10 @@ const EventsPage = () => {
                     />
                   </div>
 
-                  {/* Right Content */}
-                  <div className="w-[60%] p-3 flex flex-col justify-between">
+                  {/* Right Content with White Background */}
+                  <div className="w-[60%] p-3 flex flex-col justify-between bg-white h-[120px] sm:h-[140px]">
                     <div>
-                      <h3 className="text-gray-900 font-semibold text-sm sm:text-base truncate">
+                      <h3 className="text-gray-900 font-semibold text-sm sm:text-base line-clamp-2">
                         {event.title}
                       </h3>
                       <p className="text-gray-700 text-xs mt-1">{event.time}</p>

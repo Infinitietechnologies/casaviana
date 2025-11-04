@@ -2,6 +2,7 @@
 import LeftSidebar from "@/components/LeftSidebar";
 import RightSidebar from "@/components/RightSidebar";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const categories = [
@@ -27,30 +28,34 @@ const Index = () => {
 
           <div className="lg:col-span-8 py-4 md:py-6 gap-6 flex flex-col items-center">
             {/* Buttons Section */}
-            <div className="flex flex-col sm:flex-row justify-between items-center w-full px-4 md:px-10 mb-10 gap-3 sm:gap-0">
-              <button className="bg-red-600 text-white font-bold text-lg px-6 py-3 rounded-md shadow hover:bg-red-700 transition w-full sm:w-auto">
-                CASA VIANA
-              </button>
-              <button className="bg-gray-400 text-white font-bold text-lg px-6 py-3 rounded-md shadow hover:bg-gray-500 transition w-full sm:w-auto">
-                DIPANDA PLAZZA
-              </button>
+            <div className="flex flex-col sm:flex-row justify-between items-center w-full px-4 md:px-6 mb-10 gap-3 sm:gap-0">
+              <Link href="/cardapio">
+                <button className="bg-red-600 text-white font-bold text-lg px-6 py-3 rounded-md shadow hover:bg-red-700 transition w-full sm:w-auto">
+                  CASA VIANA
+                </button>
+              </Link>
+              <Link href="https://centraldipanda.ao/dipanda-plaza/">
+                <span className="bg-gray-400 text-white font-bold text-lg px-6 py-3 rounded-md shadow hover:bg-gray-500 transition w-full sm:w-auto">
+                  DIPANDA PLAZZA
+                </span>
+              </Link>
             </div>
 
             {/* Categories Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 w-full px-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-6 w-full px-4 max-w-[1400px] mx-auto">
               {categories.map((cat, index) => (
                 <div
                   key={index}
                   className="flex flex-col items-center rounded transition"
                 >
-                  <div className="flex flex-col items-center w-40">
-                    <div className="w-40 h-40 overflow-hidden flex items-center justify-center">
+                  <div className="flex flex-col items-center w-full">
+                    <div className="w-full aspect-[4/3] overflow-hidden flex items-center justify-center">
                       <Image
                         src={cat.image}
                         alt={cat.name}
-                        width={160}
-                        height={160}
-                        className="object-cover"
+                        width={380}
+                        height={192}
+                        className="object-cover w-full h-full"
                       />
                     </div>
                     <div className="mt-3 bg-red-600 text-white font-semibold text-sm text-center w-full py-1 rounded-sm">
