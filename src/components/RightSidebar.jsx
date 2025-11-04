@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 
 const RightSidebar = () => {
   const [openIndex, setOpenIndex] = useState(null);
-  const router = useRouter(); 
+  const router = useRouter();
 
   const toggleSubmenu = (i) => {
     setOpenIndex(openIndex === i ? null : i);
@@ -49,7 +49,7 @@ const RightSidebar = () => {
   ];
 
   return (
-    <div className="lg:col-span-2 lg:sticky lg:top-24 self-start p-4 bg-white z-10 space-y-6">
+    <div className="lg:col-span-2 lg:sticky lg:top-24 self-start p-4 bg-white z-20 space-y-6">
       <h2 className="text-xl sm:text-2xl font-bold text-red-600 mb-4">
         Directório
       </h2>
@@ -57,7 +57,12 @@ const RightSidebar = () => {
       {/* Menu */}
       <div className="flex flex-col gap-2">
         {menuItems.map((item, i) => (
-          <div key={i} className="relative group">
+          <div
+            key={i}
+            className="relative group"
+            onMouseEnter={() => setOpenIndex(i)}
+            onMouseLeave={() => setOpenIndex(null)}
+          >
             {/* MAIN BUTTON */}
             <button
               onClick={() => toggleSubmenu(i)}
@@ -65,20 +70,31 @@ const RightSidebar = () => {
                 px-3 sm:px-4 py-2 rounded-md hover:bg-red-700 transition-colors 
                 text-xs sm:text-sm w-full text-left truncate"
             >
-              {item.name} <span className="text-white font-bold">●</span>
+              {item.name}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                className="w-3 h-3 ml-2"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M6.646 11.854a.5.5 0 0 0 .708 0l4.146-4.147a.5.5 0 0 0-.708-.707L7 10.793 3.207 6.999a.5.5 0 1 0-.708.707l4.147 4.148z"
+                />
+              </svg>
             </button>
 
-            {/* DESKTOP SUBMENU (hover) */}
-            {item.sub && (
+            {/* DESKTOP SUBMENU (hover + delay fix) */}
+            {item.sub && openIndex === i && (
               <div
-                className="hidden lg:group-hover:block absolute left-[-200px] top-0 bg-[#8c181a] text-white 
-                rounded-md p-2 w-48 z-20"
+                className="hidden lg:block absolute left-[-210px] top-0 bg-[#8c181a] text-white 
+                rounded-md p-2 w-52 z-50"
               >
                 {item.sub.map((subItem, j) => (
                   <div
                     key={j}
-                    onClick={handleRedirect} // ✅ redirect to /posts
-                    className="px-3 py-2 hover:bg-red-800 rounded-md cursor-pointer text-sm"
+                    onClick={handleRedirect}
+                    className="px-3 py-2 hover:bg-red-800 rounded-md cursor-pointer text-sm whitespace-nowrap"
                   >
                     {subItem}
                   </div>
@@ -92,7 +108,7 @@ const RightSidebar = () => {
                 {item.sub.map((subItem, j) => (
                   <div
                     key={j}
-                    onClick={handleRedirect} // ✅ redirect to /posts
+                    onClick={handleRedirect}
                     className="px-3 py-2 hover:bg-red-800 rounded-md cursor-pointer text-sm"
                   >
                     {subItem}
@@ -142,9 +158,10 @@ const RightSidebar = () => {
         ].map((news, i) => (
           <div
             key={i}
-            className="flex items-center gap-3 p-1 hover:bg-gray-50 rounded-md transition-colors"
+            className="flex items-center gap-3 p-1 hover:bg-gray-50 rounded-md transition-colors cursor-pointer"
+            onClick={handleRedirect}
           >
-            <div className="w-16 h-16 overflow-hidden rounded-md border border-gray-200 flex-shrink-0">
+            <div className="w-16 h-16 overflow-hidden rounded-md border border-gray-200 flex-shrink-0 bg-gray-100">
               <Image
                 src={news.img}
                 alt={news.title}
