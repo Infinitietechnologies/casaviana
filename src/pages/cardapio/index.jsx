@@ -3,6 +3,7 @@ import LeftSidebar from "@/components/LeftSidebar";
 import RightSidebar from "@/components/RightSidebar";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const categories = [
@@ -18,6 +19,14 @@ const categories = [
 ];
 
 const Index = () => {
+  const router = useRouter();
+
+  const handleClick = (name) => {
+    if (name === "ENTRADAS") {
+      router.push("/entradas");
+    }
+  };
+
   return (
     <>
       <div className="mx-auto py-4 md:py-0 px-2 sm:px-4 mt-20 sm:mt-24"></div>
@@ -46,7 +55,8 @@ const Index = () => {
               {categories.map((cat, index) => (
                 <div
                   key={index}
-                  className="flex flex-col items-center rounded transition"
+                  onClick={() => handleClick(cat.name)}
+                  className="flex flex-col items-center rounded transition cursor-pointer"
                 >
                   <div className="flex flex-col items-center w-full">
                     <div className="w-full aspect-[4/3] overflow-hidden flex items-center justify-center">
