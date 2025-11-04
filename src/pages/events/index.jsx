@@ -247,8 +247,8 @@ const EventsPage = () => {
         </section>
 
         {/* Destaques Section (Responsive Grid: 1 → 2 → 4 columns) */}
-        <section className="text-white py-8">
-          <div className="px-4 sm:px-6 lg:px-8 xl:px-12">
+        <section className="text-white py-8 bg-black full-width">
+          <div className="px-4 sm:px-6 lg:px-8 xl:px-20">
             <h2 className="text-xl sm:text-2xl font-bold mb-6">Destaques</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">

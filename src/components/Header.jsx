@@ -73,12 +73,8 @@ const Header = () => {
               <Link
                 key={i}
                 href={
-                  item === "Eventos"
-                    ? "/events"
-                    : item === "Reservar"
-                    ? "/reserva"
-                    : "#"
-                }
+                  item === "Início"  ? "/" : item === "Eventos"  ? "/events" : item === "Reservar" ? "/reserva" : "#"
+                  }
                 className="relative group transition-colors hover:text-gray-200 text-lg"
               >
                 {item}
@@ -413,11 +409,9 @@ const Header = () => {
             <Link
               key={i}
               href={
-                item === "Eventos"
-                  ? "/events"
-                  : item === "Reservar"
-                  ? "/reserva"
-                  : "#"
+                item === "Início"  ? "/" :
+                item === "Eventos" ? "/events" : 
+                item === "Reservar"? "/reserva": "#"
               }
               className="text-lg font-medium hover:text-gray-200 transition py-2"
             >
