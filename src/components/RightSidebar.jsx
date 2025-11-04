@@ -1,12 +1,18 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation"; 
 
 const RightSidebar = () => {
   const [openIndex, setOpenIndex] = useState(null);
+  const router = useRouter(); 
 
   const toggleSubmenu = (i) => {
     setOpenIndex(openIndex === i ? null : i);
+  };
+
+  const handleRedirect = () => {
+    router.push("/posts");
   };
 
   const menuItems = [
@@ -48,6 +54,7 @@ const RightSidebar = () => {
         Directório
       </h2>
 
+      {/* Menu */}
       <div className="flex flex-col gap-2">
         {menuItems.map((item, i) => (
           <div key={i} className="relative group">
@@ -70,6 +77,7 @@ const RightSidebar = () => {
                 {item.sub.map((subItem, j) => (
                   <div
                     key={j}
+                    onClick={handleRedirect} // ✅ redirect to /posts
                     className="px-3 py-2 hover:bg-red-800 rounded-md cursor-pointer text-sm"
                   >
                     {subItem}
@@ -84,6 +92,7 @@ const RightSidebar = () => {
                 {item.sub.map((subItem, j) => (
                   <div
                     key={j}
+                    onClick={handleRedirect} // ✅ redirect to /posts
                     className="px-3 py-2 hover:bg-red-800 rounded-md cursor-pointer text-sm"
                   >
                     {subItem}
