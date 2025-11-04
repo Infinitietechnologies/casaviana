@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState } from "react";
 
 const EventsPage = () => {
@@ -75,6 +76,7 @@ const EventsPage = () => {
     {
       title: "Digital Summit Angola 2025",
       time: "At 10:00 AM",
+      slug: "calema-no-clube-s",
       date: "November 20, 2025",
       day: "20",
       month: "NOVEMBER",
@@ -86,6 +88,7 @@ const EventsPage = () => {
     {
       title: "Segunda Edição do Brunch Mangás",
       time: "At 11:00 AM",
+      slug: "",
       date: "November 15, 2025",
       day: "15",
       month: "NOVEMBER",
@@ -97,6 +100,7 @@ const EventsPage = () => {
     {
       title: "EXPO ECONOMIA DIGITAL 2025",
       time: "At 9:00 AM",
+      slug: "",
       date: "November 22, 2025",
       day: "22",
       month: "NOVEMBER",
@@ -108,6 +112,7 @@ const EventsPage = () => {
     {
       title: "Prémios Dentes D'ouro 2025",
       time: "At 7:00 PM",
+      slug: "",
       date: "November 28, 2025",
       day: "28",
       month: "NOVEMBER",
@@ -120,6 +125,7 @@ const EventsPage = () => {
     {
       title: "III Edição da Cantata de Natal 2025",
       time: "At 6:00 PM",
+      slug: "",
       date: "December 15, 2025",
       day: "15",
       month: "DECEMBER",
@@ -132,6 +138,7 @@ const EventsPage = () => {
     {
       title: "Estudos de Literatura Angolana",
       time: "At 2:00 PM",
+      slug: "calema-no-clube-s",
       date: "December 5, 2025",
       day: "5",
       month: "DECEMBER",
@@ -144,6 +151,7 @@ const EventsPage = () => {
     {
       title: "Exposição de Arte Contemporânea Angolana",
       time: "At 3:00 PM",
+      slug: "",
       date: "December 12, 2025",
       day: "12",
       month: "DECEMBER",
@@ -156,6 +164,7 @@ const EventsPage = () => {
     {
       title: "Oficina de Artesanato Angolano",
       time: "At 4:00 PM",
+      slug: "",
       date: "December 18, 2025",
       day: "18",
       month: "DECEMBER",
@@ -186,7 +195,9 @@ const EventsPage = () => {
   // Event Card Component
   const EventCard = ({ event }) => (
     <div className="card-event pointer">
-      <img src={event.image} alt={event.title} />
+      <Link href={`/events/${event.slug}`}>
+        <img src={event.image} alt={event.title} />
+      </Link>
       <div className="card-content">
         <div className="titulo">{event.title}</div>
         <div className="time">{event.time}</div>
