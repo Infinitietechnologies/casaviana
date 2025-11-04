@@ -245,7 +245,7 @@ const Footer = () => {
             </div>
 
             {/* Right Contact Section */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 pt-24">
               <h3 className="font-bold text-white mb-4">Connect with Us</h3>
 
               <div className="space-y-4">
@@ -269,7 +269,7 @@ const Footer = () => {
                   </div>
                   <div>
                     <div className="text-white text-sm font-medium">Phone</div>
-                    <div className="text-gray-400 text-sm">921908484</div>
+                    <div className="text-gray-400 text-sm">929977503</div>
                   </div>
                 </div>
 
@@ -296,7 +296,7 @@ const Footer = () => {
                       Mail Us
                     </div>
                     <div className="text-gray-400 text-sm">
-                      vendas@dikomba.ao
+                      comercial@casaviana.ao
                     </div>
                   </div>
                 </div>
@@ -329,7 +329,7 @@ const Footer = () => {
                       Encontre-nos
                     </div>
                     <div className="text-gray-400 text-sm">
-                      Escritório Central: Talatona, Luanda-Angola.
+                      Viana KM 20, Estrada de Catete, entre Kero e Kinda
                     </div>
                   </div>
                 </div>
