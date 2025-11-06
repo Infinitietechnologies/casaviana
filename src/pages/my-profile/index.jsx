@@ -207,8 +207,8 @@ const Profile = () => {
           {menuItems.map((item, index) => (
             <button
               key={index}
-              className={`w-full flex items-center justify-between text-gray-700 hover:bg-gray-100 py-2.5 px-4 rounded-lg text-sm transition ${
-                index === 0 ? "bg-black text-white" : ""
+              className={`w-full flex items-center justify-between text-gray-700 py-2.5 px-4 rounded-lg text-sm transition ${
+                index === 0 ? "bg-red-600 text-white" : ""
               }`}
             >
               <div className="flex items-center gap-3">
