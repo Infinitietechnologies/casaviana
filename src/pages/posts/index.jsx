@@ -2,6 +2,7 @@
 import LeftSidebar from "@/components/LeftSidebar";
 import RightSidebar from "@/components/RightSidebar";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const posts = [
@@ -76,41 +77,42 @@ const Index = () => {
 
           {/* Main Content */}
           <div className="lg:col-span-8 py-4 md:py-6 flex flex-col items-center w-full">
-            <div className="w-full px-4 max-w-[1400px] mx-auto">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {posts.map((post, index) => (
-                  <div
-                    key={index}
-                    className="relative group cursor-pointer overflow-hidden rounded-md"
-                  >
-                    {/* Image */}
-                    <Image
-                      src={post.image}
-                      alt={post.title}
-                      width={400}
-                      height={250}
-                      className="w-full h-[28rem] object-cover transition-transform duration-300 group-hover:scale-110"
-                    />
+            <Link href="/blogs">
+              <div className="w-full px-4 max-w-[1400px] mx-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {posts.map((post, index) => (
+                    <div
+                      key={index}
+                      className="relative group cursor-pointer overflow-hidden rounded-md"
+                    >
+                      {/* Image */}
+                      <Image
+                        src={post.image}
+                        alt={post.title}
+                        width={400}
+                        height={250}
+                        className="w-full h-[28rem] object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                      {/* Overlay color */}
+                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition"></div>
 
-                    {/* Overlay color */}
-                    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition"></div>
+                      {/* Category tag */}
+                      <div className="absolute top-4 left-4 bg-orange-500 text-white text-xs font-semibold px-2 py-1 rounded">
+                        {post.category}
+                      </div>
 
-                    {/* Category tag */}
-                    <div className="absolute top-4 left-4 bg-orange-500 text-white text-xs font-semibold px-2 py-1 rounded">
-                      {post.category}
+                      {/* Title and date */}
+                      <div className="absolute bottom-4 left-4 right-4 text-white z-10">
+                        <h3 className="font-semibold text-lg leading-snug mb-1">
+                          {post.title}
+                        </h3>
+                        <p className="text-sm opacity-90">{post.date}</p>
+                      </div>
                     </div>
-
-                    {/* Title and date */}
-                    <div className="absolute bottom-4 left-4 right-4 text-white z-10">
-                      <h3 className="font-semibold text-lg leading-snug mb-1">
-                        {post.title}
-                      </h3>
-                      <p className="text-sm opacity-90">{post.date}</p>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
 
           {/* Right Sidebar */}
