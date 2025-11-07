@@ -47,23 +47,23 @@ const Header = () => {
             />
           </Link>
           {/* Hide on mobile */}
-          <Link href="https://centraldipanda.ao/" className="hidden md:block">
+          {/* <Link href="https://centraldipanda.ao/" className="hidden md:block">
             <Image
               src="/images/mabululu.png"
               alt="Mabululu"
               width={60}
               height={80}
             />
-          </Link>
+          </Link> */}
 
-          <Link href="https://centraldipanda.ao/" className="hidden md:block">
+          {/* <Link href="https://centraldipanda.ao/" className="hidden md:block">
             <Image
               src="/images/Centra-Dipanda.png"
               alt="Central Dipanda"
               width={60}
               height={80}
             />
-          </Link>
+          </Link> */}
         </div>
 
         {/* CENTER MENU (desktop only) */}
@@ -81,7 +81,7 @@ const Header = () => {
                     ? "/reserva"
                     : "#"
                 }
-                className="relative group transition-colors hover:text-gray-200 text-lg"
+                className="relative group transition-colors hover:text-gray-200 text-xl"
               >
                 {item}
                 <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white transition-all group-hover:w-full"></span>

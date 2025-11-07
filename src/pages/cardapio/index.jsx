@@ -43,7 +43,7 @@ const Index = () => {
                   CASA VIANA
                 </button>
               </Link>
-              <Link href="https://centraldipanda.ao/dipanda-plaza/">
+              <Link href="/dipanda-plaza">
                 <span className="bg-gray-400 text-white font-bold text-lg px-6 py-3 rounded-md shadow hover:bg-gray-500 transition w-full sm:w-auto">
                   DIPANDA PLAZZA
                 </span>

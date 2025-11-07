@@ -64,7 +64,7 @@ const EventDetailPage = () => {
           {/* Right Side - Event Details */}
           <div className="text-gray-200 pt-[300px] lg:pt-0">
             <div className="text-sm">Concerto</div>
-            <h1 className="text-3xl font-bold">Calema no Clube S</h1>
+            <h1 className="text-3xl font-bold">Calema na Casa Viana</h1>
           </div>
         </div>
       </div>
