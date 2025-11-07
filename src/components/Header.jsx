@@ -88,47 +88,53 @@ const Header = () => {
               </Link>
             )
           )}
+
+          {/* TV Icon Box */}
           <Link
-            href=""
-            className="group relative flex items-center gap-2 hover:text-gray-200"
+            href="#"
+            className="group relative flex flex-col items-center hover:text-gray-200"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.8}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M8 4l4 4 4-4m4 6v7.5A1.5 1.5 0 0118.5 19h-13A1.5 1.5 0 014 17.5V10A1.5 1.5 0 015.5 8.5h13A1.5 1.5 0 0120 10z"
-              />
-            </svg>
-            <span className="text-lg">TV</span>
+            <div className="flex flex-row items-center justify-center w-16 h-10 rounded-xl bg-red-700 hover:bg-red-800 transition-colors shadow-md">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.8}
+                stroke="currentColor"
+                className="w-6 h-6 mb-1"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M8 4l4 4 4-4m4 6v7.5A1.5 1.5 0 0118.5 19h-13A1.5 1.5 0 014 17.5V10A1.5 1.5 0 015.5 8.5h13A1.5 1.5 0 0120 10z"
+                />
+              </svg>
+              <span className="text-sm font-semibold">TV</span>
+            </div>
           </Link>
 
-          {/* Radio Icon */}
+          {/* Rádio Icon Box */}
           <Link
-            href=""
-            className="group relative flex items-center gap-2 hover:text-gray-200"
+            href="#"
+            className="group relative flex flex-col items-center hover:text-gray-200"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.8}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4.5 7.5l15-4.5M3 10.5v6.75A1.75 1.75 0 004.75 19h14.5A1.75 1.75 0 0021 17.25V10.5M6 14.25h.008v.008H6v-.008zm3 0h.008v.008H9v-.008zm3 0h.008v.008H12v-.008z"
-              />
-            </svg>
-            <span className="text-lg">Rádio</span>
+            <div className="flex flex-row items-center justify-center w-20 h-10 rounded-xl bg-red-700 hover:bg-red-800 transition-colors shadow-md">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.8}
+                stroke="currentColor"
+                className="w-6 h-6 mb-1"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4.5 7.5l15-4.5M3 10.5v6.75A1.75 1.75 0 004.75 19h14.5A1.75 1.75 0 0021 17.25V10.5M6 14.25h.008v.008H6v-.008zm3 0h.008v.008H9v-.008zm3 0h.008v.008H12v-.008z"
+                />
+              </svg>
+              <span className="text-sm font-semibold">Rádio</span>
+            </div>
           </Link>
         </div>
 
