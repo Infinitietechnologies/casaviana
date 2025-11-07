@@ -35,8 +35,8 @@ const Homepage = () => {
   ];
 
   const destaqueItems = [
-    "Loja do Cabelo",
-    "Dipanda Plazza",
+    "...",
+    "...",
     "...",
     "...",
     "...",
