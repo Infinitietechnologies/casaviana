@@ -2,6 +2,7 @@
   "name": "casa-viana-website",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
@@ -12,16 +13,16 @@
     "@heroui/react": "^2.8.5",
     "@heroui/system": "2.4.23",
     "@heroui/theme": "2.4.23",
-    "next": "16.0.1",
+    "next": "16.0.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "swiper": "^12.0.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.17",
-    "autoprefixer": "^10.4.21",
+    "autoprefixer": "^10.4.22",
     "eslint": "^9",
-    "eslint-config-next": "16.0.1",
+    "eslint-config-next": "16.0.3",
     "tailwind-variants": "3.1.1",
     "tailwindcss": "^4"
   }
