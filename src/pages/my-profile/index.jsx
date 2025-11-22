@@ -1,7 +1,18 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
+  const router = useRouter();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.replace("/"); 
+    }
+  }, [isLoggedIn]);
+
   const menuItems = [
     {
       name: "My Profile",
