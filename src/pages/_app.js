@@ -7,14 +7,13 @@ import { ToastProvider } from "@heroui/react";
 
 export default function App({ Component, pageProps }) {
   return (
-    <HeroUIProvider>
-      <Provider store={store}>
-        <ToastProvider>
-          <RootLayout>
-            <Component {...pageProps} />
-          </RootLayout>
-        </ToastProvider>
-      </Provider>
-    </HeroUIProvider>
+    <Provider store={store}>
+      <HeroUIProvider>
+        <RootLayout>
+          <Component {...pageProps} />
+        </RootLayout>
+        <ToastProvider />
+      </HeroUIProvider>
+    </Provider>
   );
 }
