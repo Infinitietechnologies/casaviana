@@ -34,15 +34,15 @@ const LoginModal = () => {
       });
       dispatch(setLogin(res.data));
       addToast({
-      title: res.message,
-      color: "success",
-    });
+        title: res.message,
+        color: "success",
+      });
       onClose();
     } catch (err) {
       addToast({
-      title: err.message,
-      color: "danger",
-    });
+        title: err?.response?.data?.message || "Something went wrong",
+        color: "danger",
+      });
     } finally {
       setLoading(false);
     }
