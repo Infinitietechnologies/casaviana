@@ -1,14 +1,15 @@
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { ToastProvider } from "@heroui/react";
-import dynamic from "next/dynamic";
 import Head from "next/head";
 
-const Header = dynamic(() => import("../components/Header"), {
-  ssr: false,
-});
+// const Header = dynamic(() => import("../components/Header"), {
+//   ssr: false,
+// });
 
-const Footer = dynamic(() => import("../components/Footer"), {
-  ssr: false,
-});
+// const Footer = dynamic(() => import("../components/Footer"), {
+//   ssr: false,
+// });
 
 export default function RootLayout({ children }) {
   return (
