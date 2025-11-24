@@ -43,7 +43,7 @@ const Header = () => {
         color: "danger",
       });
     } catch (err) {
-      console.log("Logout failed:", err);
+      // console.log("Logout failed:", err);
     }
   };
   return (
@@ -267,7 +267,7 @@ const Header = () => {
                     </Link>
 
                     <Link
-                      href="/orders"
+                      href="/"
                       className="px-4 py-2 flex items-center gap-2 text-sm hover:bg-gray-100"
                     >
                       <svg
@@ -315,66 +315,24 @@ const Header = () => {
             )}
           </div>
 
-          {/* Mobile right side */}
-          <div className="flex md:hidden items-center gap-3">
-            {/* Cardapio small image */}
-            <Link href="/cardapio">
-              <Image
-                src="/images/cardapio.png"
-                alt="Cardápio"
-                width={90}
-                height={90}
-              />
-            </Link>
+          {isLoggedIn ? (
+            <>
+              {/* Mobile right side */}
+              <div className="flex md:hidden items-center gap-3">
+                {/* Cardapio small image */}
+                <Link href="/cardapio">
+                  <Image
+                    src="/images/cardapio.png"
+                    alt="Cardápio"
+                    width={90}
+                    height={90}
+                  />
+                </Link>
 
-            {/* Profile icon */}
-            <div
-              onClick={() => setProfileOpen(!profileOpen)}
-              className="w-9 h-9 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full cursor-pointer transition"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.8}
-                stroke="currentColor"
-                className="w-5 h-5 text-white"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 
-                  19.5a8.25 8.25 0 0115 0v.75a.75.75 
-                  0 01-.75.75H5.25a.75.75 
-                  0 01-.75-.75v-.75z"
-                />
-              </svg>
-            </div>
-
-            {/* Mobile Dropdown Menu */}
-            {profileOpen && (
-              <div className="absolute right-0 top-12 w-48 bg-white text-gray-800 rounded-lg shadow-lg py-2 z-50">
-                <div className="px-4 py-2 flex items-center gap-2 text-sm font-medium border-b">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.6}
-                    stroke="currentColor"
-                    className="w-4 h-4 text-orange-500"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M17.25 6.75V3.75a.75.75 0 00-.75-.75h-9a.75.75 0 00-.75.75v3a.75.75 0 01-.75.75H4.5a.75.75 0 00-.75.75v11.25A2.25 2.25 0 006 21h12a2.25 2.25 0 002.25-2.25V8.25a.75.75 0 00-.75-.75h-1.5a.75.75 0 01-.75-.75z"
-                    />
-                  </svg>
-                  30,00 AOA
-                </div>
-
-                <Link
-                  href="/my-profile"
-                  className="px-4 py-2 flex items-center gap-2 text-sm hover:bg-gray-100"
+                {/* Profile icon */}
+                <div
+                  onClick={() => setProfileOpen(!profileOpen)}
+                  className="w-9 h-9 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full cursor-pointer transition"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -382,99 +340,152 @@ const Header = () => {
                     viewBox="0 0 24 24"
                     strokeWidth={1.8}
                     stroke="currentColor"
-                    className="w-4 h-4 text-orange-500"
+                    className="w-5 h-5 text-white"
                   >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 
+                  19.5a8.25 8.25 0 0115 0v.75a.75.75 
+                  0 01-.75.75H5.25a.75.75 
+                  0 01-.75-.75v-.75z"
+                    />
+                  </svg>
+                </div>
+
+                {/* Mobile Dropdown Menu */}
+                {profileOpen && (
+                  <div className="absolute right-0 top-12 w-48 bg-white text-gray-800 rounded-lg shadow-lg py-2 z-50">
+                    <div className="px-4 py-2 flex items-center gap-2 text-sm font-medium border-b">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.6}
+                        stroke="currentColor"
+                        className="w-4 h-4 text-orange-500"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M17.25 6.75V3.75a.75.75 0 00-.75-.75h-9a.75.75 0 00-.75.75v3a.75.75 0 01-.75.75H4.5a.75.75 0 00-.75.75v11.25A2.25 2.25 0 006 21h12a2.25 2.25 0 002.25-2.25V8.25a.75.75 0 00-.75-.75h-1.5a.75.75 0 01-.75-.75z"
+                        />
+                      </svg>
+                      30,00 AOA
+                    </div>
+
+                    <Link
+                      href="/my-profile"
+                      className="px-4 py-2 flex items-center gap-2 text-sm hover:bg-gray-100"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.8}
+                        stroke="currentColor"
+                        className="w-4 h-4 text-orange-500"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 
                       19.5a8.25 8.25 0 0115 0v.75a.75.75 
                       0 01-.75.75H5.25a.75.75 
                       0 01-.75-.75v-.75z"
-                    />
-                  </svg>
-                  Perfil
-                </Link>
+                        />
+                      </svg>
+                      Perfil
+                    </Link>
 
-                <Link
-                  href=""
-                  className="px-4 py-2 flex items-center gap-2 text-sm hover:bg-gray-100"
+                    <Link
+                      href=""
+                      className="px-4 py-2 flex items-center gap-2 text-sm hover:bg-gray-100"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.8}
+                        stroke="currentColor"
+                        className="w-4 h-4 text-orange-500"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M16.5 8.25V3.75m0 0h-9v4.5m9-4.5l3.75 3.75M7.5 12h9m-9 4.5h9M6 21h12a2.25 2.25 0 002.25-2.25V8.25a.75.75 0 00-.75-.75H4.5a.75.75 0 00-.75.75v10.5A2.25 2.25 0 006 21z"
+                        />
+                      </svg>
+                      Pedidos
+                    </Link>
+
+                    <button
+                      onClick={handleLogout}
+                      className="w-full text-left px-4 py-2 flex items-center gap-2 text-sm hover:bg-gray-100"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.8}
+                        stroke="currentColor"
+                        className="w-4 h-4 text-orange-500"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15.75 9V5.25a.75.75 0 00-.75-.75h-6a.75.75 0 00-.75.75V9m6 6v3.75a.75.75 0 01-.75.75h-6a.75.75 0 01-.75-.75V15m9-3H3.75m0 0l3-3m-3 3l3 3"
+                        />
+                      </svg>
+                      Sair
+                    </button>
+                  </div>
+                )}
+
+                {/* Hamburger Menu */}
+                <button
+                  className="text-white focus:outline-none"
+                  onClick={() => setMenuOpen(!menuOpen)}
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.8}
-                    stroke="currentColor"
-                    className="w-4 h-4 text-orange-500"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M16.5 8.25V3.75m0 0h-9v4.5m9-4.5l3.75 3.75M7.5 12h9m-9 4.5h9M6 21h12a2.25 2.25 0 002.25-2.25V8.25a.75.75 0 00-.75-.75H4.5a.75.75 0 00-.75.75v10.5A2.25 2.25 0 006 21z"
-                    />
-                  </svg>
-                  Pedidos
-                </Link>
-
-                <button className="w-full text-left px-4 py-2 flex items-center gap-2 text-sm hover:bg-gray-100">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.8}
-                    stroke="currentColor"
-                    className="w-4 h-4 text-orange-500"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15.75 9V5.25a.75.75 0 00-.75-.75h-6a.75.75 0 00-.75.75V9m6 6v3.75a.75.75 0 01-.75.75h-6a.75.75 0 01-.75-.75V15m9-3H3.75m0 0l3-3m-3 3l3 3"
-                    />
-                  </svg>
-                  Sair
+                  {menuOpen ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2}
+                      stroke="currentColor"
+                      className="w-7 h-7"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2}
+                      stroke="currentColor"
+                      className="w-7 h-7"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M4 6h16M4 12h16M4 18h16"
+                      />
+                    </svg>
+                  )}
                 </button>
               </div>
-            )}
-
-            {/* Hamburger Menu */}
-            <button
-              className="text-white focus:outline-none"
-              onClick={() => setMenuOpen(!menuOpen)}
-            >
-              {menuOpen ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-7 h-7"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-7 h-7"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              )}
-            </button>
-          </div>
+            </>
+          ) : (
+            <div className="sm:flex md:hidden">
+              <LoginModal />
+            </div>
+          )}
         </div>
       </div>
 
