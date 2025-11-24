@@ -18,7 +18,7 @@ import { useDispatch } from "react-redux";
 const LoginModal = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const dispatch = useDispatch();
-  
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);

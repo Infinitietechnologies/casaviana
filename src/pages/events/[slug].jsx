@@ -1,23 +1,58 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { get_event } from "../../Api/api"; // Assuming this API function exists for fetching event by slug
+import { Skeleton } from "@heroui/react"; // Assuming Skeleton is available from your UI library
 
 const EventDetailPage = () => {
   const router = useRouter();
   const { slug } = router.query;
 
-  // Ticket state management
-  const [tickets, setTickets] = useState({
-    puffs4pax: 0,
-    mesaPartilhada: 0,
-    extraMesa: 0,
-  });
+  const [event, setEvent] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // Ticket state management - dynamic based on ticket_types
+  const [tickets, setTickets] = useState({});
+
+  // Fetch event data
+  useEffect(() => {
+    if (!slug) return;
+
+    const fetchEvent = async () => {
+      setLoading(true);
+      try {
+        const response = await get_event(slug); // Pass slug to API
+        if (response?.success) {
+          setEvent(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching event:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvent();
+  }, [slug]);
+
+  // Initialize ticket quantities when event loads
+  useEffect(() => {
+    if (event?.ticket_types) {
+      const initialTickets = {};
+      event.ticket_types.forEach((ticket) => {
+        initialTickets[ticket.id] = 0;
+      });
+      setTickets(initialTickets);
+    }
+  }, [event]);
 
   // Calculate totals
   const calculateTotal = () => {
-    const total =
-      tickets.puffs4pax * 600000 +
-      tickets.mesaPartilhada * 50000 +
-      tickets.extraMesa * 35000;
+    if (!event?.ticket_types) return 0;
+    let total = 0;
+    event.ticket_types.forEach((ticket) => {
+      const qty = tickets[ticket.id] || 0;
+      total += qty * parseFloat(ticket.price || 0);
+    });
     return total;
   };
 
@@ -25,16 +60,55 @@ const EventDetailPage = () => {
     return new Intl.NumberFormat("pt-AO").format(price);
   };
 
-  const handleIncrement = (type) => {
-    setTickets((prev) => ({ ...prev, [type]: prev[type] + 1 }));
+  const handleIncrement = (ticketId) => {
+    setTickets((prev) => ({ ...prev, [ticketId]: (prev[ticketId] || 0) + 1 }));
   };
 
-  const handleDecrement = (type) => {
+  const handleDecrement = (ticketId) => {
     setTickets((prev) => ({
       ...prev,
-      [type]: prev[type] > 0 ? prev[type] - 1 : 0,
+      [ticketId]: (prev[ticketId] || 0) > 0 ? (prev[ticketId] || 0) - 1 : 0,
     }));
   };
+
+  // Parse date for display
+  const parseEventDate = () => {
+    if (!event?.event_date) return { day: '', month: '' };
+    const eventDate = new Date(event.event_date);
+    const day = eventDate.getDate().toString();
+    const month = eventDate.toLocaleString("pt-PT", { month: "long" });
+    return { day, month };
+  };
+
+  const { day, month } = parseEventDate();
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 mt-20">
+        <Skeleton className="w-full h-[400px]" />
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+              <Skeleton className="w-full h-32 mb-4" />
+              <Skeleton className="w-3/4 h-4" />
+              <Skeleton className="w-1/2 h-4 mt-2" />
+            </div>
+            <div>
+              <Skeleton className="w-full h-96" />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!event) {
+    return (
+      <div className="min-h-screen bg-gray-50 mt-20 flex items-center justify-center">
+        <p className="text-gray-500">Evento não encontrado.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 mt-20">
@@ -43,8 +117,8 @@ const EventDetailPage = () => {
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="text-right"></div>
             <div className="bg-blue-600 text-white px-4 py-2 rounded-lg text-center">
-              <div className="text-2xl font-bold">28</div>
-              <div className="text-xs uppercase">Novembro</div>
+              <div className="text-2xl font-bold">{day}</div>
+              <div className="text-xs uppercase">{month}</div>
             </div>
           </div>
         </div>
@@ -54,8 +128,8 @@ const EventDetailPage = () => {
             {/* Image container */}
             <div className="absolute top-[-60px] left-0 w-full lg:w-[90%]">
               <img
-                src="https://check-in.ao/admin/upload/photos/2025/10/thumb_10_9cd058114f9fdf16943d01d6203adf4f_image.jpeg"
-                alt="Calema Concert Poster"
+                src={event.banner_image || "/images/event2.png"}
+                alt={event.title}
                 className="w-full rounded-lg shadow-lg"
               />
             </div>
@@ -63,8 +137,8 @@ const EventDetailPage = () => {
 
           {/* Right Side - Event Details */}
           <div className="text-gray-200 pt-[300px] lg:pt-0">
-            <div className="text-sm">Concerto</div>
-            <h1 className="text-3xl font-bold">Calema na Casa Viana</h1>
+            <div className="text-sm">{event.category?.name || "Evento"}</div>
+            <h1 className="text-3xl font-bold">{event.title}</h1>
           </div>
         </div>
       </div>
@@ -78,15 +152,15 @@ const EventDetailPage = () => {
             <div className="grid grid-cols-3 gap-4 mt-6">
               <div className="p-4">
                 <div className="text-gray-600 text-sm mb-1">DURAÇÃO</div>
-                <div className="font-bold">120 Minutos</div>
+                <div className="font-bold">{event.duration_minutes || 0} Minutos</div>
               </div>
               <div className="p-4 border-l">
                 <div className="text-gray-600 text-sm mb-1">CLASSIFICAÇÃO</div>
-                <div className="font-bold">A</div>
+                <div className="font-bold">{event.category?.name || "Geral"}</div>
               </div>
               <div className="p-4 border-l">
                 <div className="text-gray-600 text-sm mb-1">PROMOTOR</div>
-                <div className="font-bold">Clube S</div>
+                <div className="font-bold">{event.venue?.name || "Não especificado"}</div>
               </div>
             </div>
 
@@ -97,18 +171,17 @@ const EventDetailPage = () => {
             </div>
 
             {/* Description */}
-            <div className="p-4   mt-4">
+            <div className="p-4 mt-4">
               <h3 className="font-bold text-lg mb-3">Descrição Curta</h3>
-              <p className="text-gray-700 mb-3">Calema de Volta a Angola.</p>
-              <p className="text-gray-700">Mais um grande show, não percas.</p>
+              <p className="text-gray-700 mb-3">{event.short_description }</p>
             </div>
 
             {/* Location */}
             <div className="p-4 mt-4">
               <h3 className="font-bold text-lg mb-3">LOCALIZAÇÃO</h3>
               <div className="text-gray-700">
-                <div className="font-semibold">Clube S</div>
-                <div>Belas, Luanda - Angola</div>
+                <div className="font-semibold">{event.venue?.name}</div>
+                <div>{event.venue?.address || "Localização não disponível"}</div>
               </div>
             </div>
           </div>
@@ -118,143 +191,88 @@ const EventDetailPage = () => {
             <div className="bg-white rounded-lg shadow-lg p-6 sticky top-4">
               <h2 className="text-xl font-bold mb-6">Selecione os Ingressos</h2>
 
-              {/* Puff's 4 Pax */}
-              <div className="border-b pb-6 mb-6">
-                <div className="flex justify-between items-start mb-3">
-                  <div className="flex-1">
-                    <h3 className="font-bold text-lg">Puff's 4 Pax</h3>
-                    <div className="text-2xl font-bold text-gray-900 mt-1">
-                      600 000,00 Kz
-                    </div>
-                    <p className="text-sm text-gray-600 mt-2">
-                      Puff's para 4 pessoas com consumo de 135.000 para Snack's
-                      e Bebidas (O POSICIONAMENTO DOS LUGARES É DA INTEIRA
-                      RESPONSABILIDADE DO CLUBE S, NÃO PODENDO SER ALTERADO)
-                    </p>
-                  </div>
-                  <span className="bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded ml-4">
-                    Restam 20
-                  </span>
-                </div>
-                <div className="flex items-center justify-between mt-4">
-                  <div className="flex items-center gap-3">
-                    <button
-                      onClick={() => handleDecrement("puffs4pax")}
-                      className="w-8 h-8 bg-black text-white rounded flex items-center justify-center hover:bg-gray-800"
-                    >
-                      −
-                    </button>
-                    <span className="w-12 text-center font-bold">
-                      {tickets.puffs4pax}
-                    </span>
-                    <button
-                      onClick={() => handleIncrement("puffs4pax")}
-                      className="w-8 h-8 bg-black text-white rounded flex items-center justify-center hover:bg-gray-800"
-                    >
-                      +
-                    </button>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm text-gray-600">Subtotal</div>
-                    <div className="font-bold">
-                      {formatPrice(tickets.puffs4pax * 600000)} Kz
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {/* Dynamic Ticket Types */}
+              {event.ticket_types?.map((ticket) => {
+                const ticketQty = tickets[ticket.id] || 0;
+                const ticketPrice = parseFloat(ticket.price || 0);
+                const subtotal = ticketQty * ticketPrice;
+                const symbol = ticket.currency?.symbol || "Kz";
+                const isDisabled = ticket.status !== "active";
 
-              {/* Mesa Partilhada */}
-              <div className="border-b pb-6 mb-6">
-                <div className="flex justify-between items-start mb-3">
-                  <div className="flex-1">
-                    <h3 className="font-bold text-lg">Mesa Partilhada</h3>
-                    <div className="text-2xl font-bold text-gray-900 mt-1">
-                      50 000,00 Kz
+                return (
+                  <div key={ticket.id} className="border-b pb-6 mb-6">
+                    <div className="flex justify-between items-start mb-3">
+                      <div className="flex-1">
+                        <h3 className="font-bold text-lg">{ticket.name}</h3>
+                        <div className="text-2xl font-bold text-gray-900 mt-1">
+                          {formatPrice(ticketPrice)} {symbol}
+                        </div>
+                        <p className="text-sm text-gray-600 mt-2">
+                          {ticket.description || "Sem descrição."}
+                        </p>
+                      </div>
+                      {ticket.available_tickets > 0 && (
+                        <span className="bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded ml-4">
+                          Restam {ticket.available_tickets}
+                        </span>
+                      )}
                     </div>
-                    <p className="text-sm text-gray-600 mt-2">
-                      Puff's partilhados sem consumo incluído
-                    </p>
-                  </div>
-                  <span className="bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded ml-4">
-                    Restam 13
-                  </span>
-                </div>
-                <div className="flex items-center justify-between mt-4">
-                  <div className="flex items-center gap-3">
-                    <button
-                      onClick={() => handleDecrement("mesaPartilhada")}
-                      className="w-8 h-8 bg-black text-white rounded flex items-center justify-center hover:bg-gray-800"
-                    >
-                      −
-                    </button>
-                    <span className="w-12 text-center font-bold">
-                      {tickets.mesaPartilhada}
-                    </span>
-                    <button
-                      onClick={() => handleIncrement("mesaPartilhada")}
-                      className="w-8 h-8 bg-black text-white rounded flex items-center justify-center hover:bg-gray-800"
-                    >
-                      +
-                    </button>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm text-gray-600">Subtotal</div>
-                    <div className="font-bold">
-                      {formatPrice(tickets.mesaPartilhada * 50000)} Kz
+                    {isDisabled && (
+                      <div className="bg-red-50 text-red-600 text-center py-2 px-4 rounded text-sm font-semibold mb-4">
+                        VENDAS SOMENTE PRESENCIAIS
+                      </div>
+                    )}
+                    <div className="flex items-center justify-between mt-4">
+                      <div className="flex items-center gap-3" style={{ opacity: isDisabled ? 0.5 : 1 }}>
+                        <button
+                          onClick={() => handleDecrement(ticket.id)}
+                          disabled={isDisabled}
+                          className={`w-8 h-8 rounded flex items-center justify-center ${
+                            isDisabled
+                              ? "bg-gray-300 text-white cursor-not-allowed"
+                              : "bg-black text-white hover:bg-gray-800"
+                          }`}
+                        >
+                          −
+                        </button>
+                        <span className="w-12 text-center font-bold">{ticketQty}</span>
+                        <button
+                          onClick={() => handleIncrement(ticket.id)}
+                          disabled={isDisabled}
+                          className={`w-8 h-8 rounded flex items-center justify-center ${
+                            isDisabled
+                              ? "bg-gray-300 text-white cursor-not-allowed"
+                              : "bg-black text-white hover:bg-gray-800"
+                          }`}
+                        >
+                          +
+                        </button>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-sm text-gray-600">Subtotal</div>
+                        <div className="font-bold">
+                          {formatPrice(subtotal)} {symbol}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-
-              {/* Extra Mesa */}
-              <div className="pb-6 mb-6">
-                <div className="flex justify-between items-start mb-3">
-                  <div className="flex-1">
-                    <h3 className="font-bold text-lg">Extra mesa</h3>
-                    <div className="text-2xl font-bold text-gray-900 mt-1">
-                      35 000,00 Kz
-                    </div>
-                    <p className="text-sm text-gray-600 mt-2">
-                      Ingresso adicional para quem já tenha comprado mesa, o
-                      indresso
-                    </p>
-                  </div>
-                </div>
-                <div className="bg-red-50 text-red-600 text-center py-2 px-4 rounded text-sm font-semibold mb-4">
-                  VENDAS SOMENTE PRESENCIAIS
-                </div>
-                <div className="flex items-center justify-between mt-4">
-                  <div className="flex items-center gap-3 opacity-50">
-                    <button
-                      disabled
-                      className="w-8 h-8 bg-gray-300 text-white rounded flex items-center justify-center cursor-not-allowed"
-                    >
-                      −
-                    </button>
-                    <span className="w-12 text-center font-bold">0</span>
-                    <button
-                      disabled
-                      className="w-8 h-8 bg-gray-300 text-white rounded flex items-center justify-center cursor-not-allowed"
-                    >
-                      +
-                    </button>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm text-gray-600">Subtotal</div>
-                    <div className="font-bold">0,00 Kz</div>
-                  </div>
-                </div>
-              </div>
+                );
+              }) || (
+                <p className="text-gray-500">Nenhum tipo de ingresso disponível.</p>
+              )}
 
               {/* Total */}
               <div className="border-t pt-6">
                 <div className="flex justify-between items-center mb-4">
                   <div className="text-lg font-bold">TOTAL EVENTO</div>
                   <div className="text-2xl font-bold">
-                    {formatPrice(calculateTotal())} Kz
+                    {formatPrice(calculateTotal())} {event.currency?.symbol || "Kz"}
                   </div>
                 </div>
-                <button className="w-full bg-gray-700 text-white py-4 rounded-lg font-bold text-lg hover:bg-gray-800 transition-colors">
+                <button 
+                  className="w-full bg-gray-700 text-white py-4 rounded-lg font-bold text-lg hover:bg-gray-800 transition-colors disabled:opacity-50"
+                  disabled={!event.is_available_for_booking || calculateTotal() === 0}
+                >
                   🛒 Adicionar
                 </button>
               </div>

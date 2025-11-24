@@ -29,23 +29,27 @@ export const logout = async () => {
 
 export const get_events = async (category_slug = null, search = null, page = null, per_page = null) => {
   try {
-    const params = {};
-    if (category_slug && category_slug !== "all") {
-      params.category_slug = category_slug;
-    }
-    if (search && search !== "") {
-      params.search = search;
-    }
-    if (page !== null) {
-      params.page = page;
-    }
-    if (per_page !== null) {
-      params.per_page = per_page;
-    }
-    let response = await api.get("/events", { params });
+    const params = {
+      ...(category_slug && category_slug !== "all" && { category_slug }),
+      ...(search && { search }),
+      ...(page !== null && { page }),
+      ...(per_page !== null && { per_page }),
+    };
+
+    const response = await api.get("/events", { params });
     return response.data;
   } catch (error) {
     // console.error(error);
+  }
+};
+
+export const get_event = async (slug) => {
+  try {
+    const response = await api.get(`/events/${slug}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching event:", error);
+    return { success: false, error: error.message };
   }
 };
 
