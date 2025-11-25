@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import Link from "next/link";
+import { get_events } from "@/Api/api";
 import RightSidebar from "@/components/RightSidebar";
 import LeftSidebar from "@/components/LeftSidebar";
 
@@ -23,16 +24,48 @@ const Homepage = () => {
     setOpenIndex(openIndex === i ? null : i);
   };
 
-  const eventImages = [
+  const eventImagesFallback = [
     {
       src: "/images/Imagem WhatsApp 2025-10-31 às 11.05.57_e8acca07.jpg",
       alt: "Event 1",
+      slug: "/events/calema-no-clube-s/",
     },
     {
       src: "/images/Imagem WhatsApp 2025-10-31 às 11.06.20_11115bdf.jpg",
       alt: "Event 2",
+      slug: "/events/calema-no-clube-s/",
     },
   ];
+
+  const [eventImages, setEventImages] = useState(eventImagesFallback);
+
+  React.useEffect(() => {
+    let mounted = true;
+    const fetchEvents = async () => {
+      try {
+        const res = await get_events(null, null, 1, 2);
+        if (!mounted) return;
+        if (res?.success && Array.isArray(res.data)) {
+          const items = res.data.map((e) => ({
+            src:
+              e.banner_image ||
+              (e.images && e.images[0]) ||
+              "/images/event2.png",
+            alt: e.title || "Event",
+            slug: `/events/${e.slug}`,
+          }));
+          if (items.length > 0) setEventImages(items);
+        }
+      } catch (err) {
+        // keep fallback
+      }
+    };
+
+    fetchEvents();
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   const destaqueItems = [
     "...",
@@ -146,7 +179,7 @@ const Homepage = () => {
                   key={i}
                   className="relative w-[48%] sm:w-[45%] md:w-[48%] h-[240px] sm:h-[260px] md:h-[300px]"
                 >
-                  <Link href="/events/calema-no-clube-s/">
+                  <Link href={ev.slug || "/events"}>
                     <Image
                       src={ev.src}
                       alt={ev.alt}

@@ -1,26 +1,30 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { get_event } from "../../Api/api"; // Assuming this API function exists for fetching event by slug
-import { Skeleton } from "@heroui/react"; // Assuming Skeleton is available from your UI library
-
+import { get_event } from "../../Api/api"; 
+import { Skeleton } from "@heroui/react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Thumbs ,Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+import "swiper/css/pagination";
 const EventDetailPage = () => {
   const router = useRouter();
   const { slug } = router.query;
 
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-  // Ticket state management - dynamic based on ticket_types
   const [tickets, setTickets] = useState({});
 
-  // Fetch event data
   useEffect(() => {
     if (!slug) return;
 
     const fetchEvent = async () => {
       setLoading(true);
       try {
-        const response = await get_event(slug); // Pass slug to API
+        const response = await get_event(slug); 
         if (response?.success) {
           setEvent(response.data);
         }
@@ -34,7 +38,6 @@ const EventDetailPage = () => {
     fetchEvent();
   }, [slug]);
 
-  // Initialize ticket quantities when event loads
   useEffect(() => {
     if (event?.ticket_types) {
       const initialTickets = {};
@@ -45,7 +48,6 @@ const EventDetailPage = () => {
     }
   }, [event]);
 
-  // Calculate totals
   const calculateTotal = () => {
     if (!event?.ticket_types) return 0;
     let total = 0;
@@ -71,9 +73,8 @@ const EventDetailPage = () => {
     }));
   };
 
-  // Parse date for display
   const parseEventDate = () => {
-    if (!event?.event_date) return { day: '', month: '' };
+    if (!event?.event_date) return { day: "", month: "" };
     const eventDate = new Date(event.event_date);
     const day = eventDate.getDate().toString();
     const month = eventDate.toLocaleString("pt-PT", { month: "long" });
@@ -112,86 +113,139 @@ const EventDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 mt-20">
-      <div className="relative bg-black text-white pb-12 full-width">
-        <div className="py-6 px-6 lg:px-12">
+      <div className="relative bg-black text-white pb-6 lg:pb-12 full-width">
+        <div className="py-4 lg:py-6 px-4 lg:px-12">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="text-right"></div>
-            <div className="bg-blue-600 text-white px-4 py-2 rounded-lg text-center">
-              <div className="text-2xl font-bold">{day}</div>
+            <div className="bg-blue-600 text-white px-3 lg:px-4 py-2 rounded-lg text-center">
+              <div className="text-xl lg:text-2xl font-bold">{day}</div>
               <div className="text-xs uppercase">{month}</div>
             </div>
           </div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 px-6 lg:px-12">
+        <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 px-4 lg:px-12">
           <div className="relative">
-            {/* Image container */}
-            <div className="absolute top-[-60px] left-0 w-full lg:w-[90%]">
-              <img
-                src={event.banner_image || "/images/event2.png"}
-                alt={event.title}
-                className="w-full rounded-lg shadow-lg"
-              />
+            <div className="relative lg:absolute lg:top-[-60px] lg:left-0 lg:w-full">
+              {event?.images && event.images.length > 0 ? (
+                <div>
+                  <Swiper
+                    spaceBetween={10}
+                    navigation={false}
+                    pagination={{ clickable: true }}
+                    modules={[Navigation, Thumbs , Pagination]}
+                    thumbs={{
+                      swiper:
+                        thumbsSwiper && !thumbsSwiper.destroyed
+                          ? thumbsSwiper
+                          : null,
+                    }}
+                    className="mainSwiper rounded-lg shadow-lg overflow-hidden"
+                  >
+                    {event.images.map((img, i) => (
+                      <SwiperSlide key={i}>
+                        <div className="relative w-full h-[250px] sm:h-[350px] lg:h-[500px]">
+                          <img
+                            src={img}
+                            alt={`${event.title} - ${i + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>                  
+                </div>
+              ) : (
+                <img
+                  src={event.banner_image || "/images/event2.png"}
+                  alt={event.title}
+                  className="w-full rounded-lg shadow-lg hidden"
+                />
+              )}
             </div>
           </div>
 
           {/* Right Side - Event Details */}
-          <div className="text-gray-200 pt-[300px] lg:pt-0">
-            <div className="text-sm">{event.category?.name || "Evento"}</div>
-            <h1 className="text-3xl font-bold">{event.title}</h1>
+          <div className="text-gray-200 lg:pt-0">
+            <div className="text-xs lg:text-sm">
+              {event.category?.name || "Evento"}
+            </div>
+            <h1 className="text-2xl lg:text-3xl font-bold mt-2">
+              {event.title}
+            </h1>
           </div>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Left Side - Event Info */}
-          <div className="relative mt-[380px]">
-            {/* Event Info Cards */}
-            <div className="grid grid-cols-3 gap-4 mt-6">
-              <div className="p-4">
-                <div className="text-gray-600 text-sm mb-1">DURAÇÃO</div>
-                <div className="font-bold">{event.duration_minutes || 0} Minutos</div>
+      <div className="max-w-7xl mx-auto px-4 lg:px-6 py-6 lg:py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+          <div className="relative mt-0 lg:mt-[280px]">
+            <div className="grid grid-cols-3 gap-2 lg:gap-4 mt-4 lg:mt-6">
+              <div className="p-3 lg:p-4">
+                <div className="text-gray-600 text-xs lg:text-sm mb-1">
+                  DURAÇÃO
+                </div>
+                <div className="font-bold text-sm lg:text-base">
+                  {event.duration_minutes || 0} min
+                </div>
               </div>
-              <div className="p-4 border-l">
-                <div className="text-gray-600 text-sm mb-1">CLASSIFICAÇÃO</div>
-                <div className="font-bold">{event.category?.name || "Geral"}</div>
+              <div className="p-3 lg:p-4 border-l">
+                <div className="text-gray-600 text-xs lg:text-sm mb-1">
+                  CLASSIFICAÇÃO
+                </div>
+                <div className="font-bold text-sm lg:text-base">
+                  {event.category?.name || "Geral"}
+                </div>
               </div>
-              <div className="p-4 border-l">
-                <div className="text-gray-600 text-sm mb-1">PROMOTOR</div>
-                <div className="font-bold">{event.venue?.name || "Não especificado"}</div>
+              <div className="p-3 lg:p-4 border-l">
+                <div className="text-gray-600 text-xs lg:text-sm mb-1">
+                  PROMOTOR
+                </div>
+                <div className="font-bold text-sm lg:text-base">
+                  {event.venue?.name || "N/E"}
+                </div>
               </div>
             </div>
 
-            {/* Contact Info */}
-            <div className="p-4 mt-4">
-              <div className="font-bold mb-2">PARA MAIS INFORMAÇÕES 📞</div>
-              <div className="text-sm text-gray-700">926151856 | 936059093</div>
+            <div className="p-3 lg:p-4 mt-4">
+              <div className="font-bold text-sm lg:text-base mb-2">
+                PARA MAIS INFORMAÇÕES 📞
+              </div>
+              <div className="text-xs lg:text-sm text-gray-700">
+                {event.venue?.branch?.phone} | {event.venue?.branch?.manager?.phone}
+              </div>
             </div>
 
-            {/* Description */}
-            <div className="p-4 mt-4">
-              <h3 className="font-bold text-lg mb-3">Descrição Curta</h3>
-              <p className="text-gray-700 mb-3">{event.short_description }</p>
+            <div className="p-3 lg:p-4 mt-4">
+              <h3 className="font-bold text-base lg:text-lg mb-3">
+                Descrição Curta
+              </h3>
+              <p className="text-xs lg:text-base text-gray-700 mb-3">
+                {event.short_description}
+              </p>
             </div>
 
-            {/* Location */}
-            <div className="p-4 mt-4">
-              <h3 className="font-bold text-lg mb-3">LOCALIZAÇÃO</h3>
+            <div className="p-3 lg:p-4 mt-4">
+              <h3 className="font-bold text-base lg:text-lg mb-3">
+                LOCALIZAÇÃO
+              </h3>
               <div className="text-gray-700">
-                <div className="font-semibold">{event.venue?.name}</div>
-                <div>{event.venue?.address || "Localização não disponível"}</div>
+                <div className="font-semibold text-sm lg:text-base">
+                  {event.venue?.name}
+                </div>
+                <div className="text-xs lg:text-sm">
+                  {event.venue?.address || "Localização não disponível"}
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Right Side - Ticket Selection */}
           <div>
-            <div className="bg-white rounded-lg shadow-lg p-6 sticky top-4">
-              <h2 className="text-xl font-bold mb-6">Selecione os Ingressos</h2>
+            <div className="bg-white rounded-lg shadow-lg p-4 lg:p-6 lg:sticky lg:top-4">
+              <h2 className="text-lg lg:text-xl font-bold mb-4 lg:mb-6">
+                Selecione os Ingressos
+              </h2>
 
-              {/* Dynamic Ticket Types */}
               {event.ticket_types?.map((ticket) => {
                 const ticketQty = tickets[ticket.id] || 0;
                 const ticketPrice = parseFloat(ticket.price || 0);
@@ -200,34 +254,42 @@ const EventDetailPage = () => {
                 const isDisabled = ticket.status !== "active";
 
                 return (
-                  <div key={ticket.id} className="border-b pb-6 mb-6">
-                    <div className="flex justify-between items-start mb-3">
+                  <div
+                    key={ticket.id}
+                    className="border-b pb-4 lg:pb-6 mb-4 lg:mb-6"
+                  >
+                    <div className="flex justify-between items-start mb-2 lg:mb-3">
                       <div className="flex-1">
-                        <h3 className="font-bold text-lg">{ticket.name}</h3>
-                        <div className="text-2xl font-bold text-gray-900 mt-1">
+                        <h3 className="font-bold text-base lg:text-lg">
+                          {ticket.name}
+                        </h3>
+                        <div className="text-xl lg:text-2xl font-bold text-gray-900 mt-1">
                           {formatPrice(ticketPrice)} {symbol}
                         </div>
-                        <p className="text-sm text-gray-600 mt-2">
+                        <p className="text-xs lg:text-sm text-gray-600 mt-2">
                           {ticket.description || "Sem descrição."}
                         </p>
                       </div>
                       {ticket.available_tickets > 0 && (
-                        <span className="bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded ml-4">
+                        <span className="bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded ml-3">
                           Restam {ticket.available_tickets}
                         </span>
                       )}
                     </div>
                     {isDisabled && (
-                      <div className="bg-red-50 text-red-600 text-center py-2 px-4 rounded text-sm font-semibold mb-4">
+                      <div className="bg-red-50 text-red-600 text-center py-2 px-3 rounded text-xs lg:text-sm font-semibold mb-4">
                         VENDAS SOMENTE PRESENCIAIS
                       </div>
                     )}
-                    <div className="flex items-center justify-between mt-4">
-                      <div className="flex items-center gap-3" style={{ opacity: isDisabled ? 0.5 : 1 }}>
+                    <div className="flex items-center justify-between mt-3 lg:mt-4">
+                      <div
+                        className="flex items-center gap-3"
+                        style={{ opacity: isDisabled ? 0.5 : 1 }}
+                      >
                         <button
                           onClick={() => handleDecrement(ticket.id)}
                           disabled={isDisabled}
-                          className={`w-8 h-8 rounded flex items-center justify-center ${
+                          className={`w-8 h-8 rounded flex items-center justify-center text-sm ${
                             isDisabled
                               ? "bg-gray-300 text-white cursor-not-allowed"
                               : "bg-black text-white hover:bg-gray-800"
@@ -235,11 +297,13 @@ const EventDetailPage = () => {
                         >
                           −
                         </button>
-                        <span className="w-12 text-center font-bold">{ticketQty}</span>
+                        <span className="w-12 text-center font-bold text-sm">
+                          {ticketQty}
+                        </span>
                         <button
                           onClick={() => handleIncrement(ticket.id)}
                           disabled={isDisabled}
-                          className={`w-8 h-8 rounded flex items-center justify-center ${
+                          className={`w-8 h-8 rounded flex items-center justify-center text-sm ${
                             isDisabled
                               ? "bg-gray-300 text-white cursor-not-allowed"
                               : "bg-black text-white hover:bg-gray-800"
@@ -249,8 +313,10 @@ const EventDetailPage = () => {
                         </button>
                       </div>
                       <div className="text-right">
-                        <div className="text-sm text-gray-600">Subtotal</div>
-                        <div className="font-bold">
+                        <div className="text-xs lg:text-sm text-gray-600">
+                          Subtotal
+                        </div>
+                        <div className="font-bold text-sm lg:text-base">
                           {formatPrice(subtotal)} {symbol}
                         </div>
                       </div>
@@ -258,20 +324,26 @@ const EventDetailPage = () => {
                   </div>
                 );
               }) || (
-                <p className="text-gray-500">Nenhum tipo de ingresso disponível.</p>
+                <p className="text-gray-500 text-sm">
+                  Nenhum tipo de ingresso disponível.
+                </p>
               )}
 
-              {/* Total */}
-              <div className="border-t pt-6">
+              <div className="border-t pt-4 lg:pt-6">
                 <div className="flex justify-between items-center mb-4">
-                  <div className="text-lg font-bold">TOTAL EVENTO</div>
-                  <div className="text-2xl font-bold">
-                    {formatPrice(calculateTotal())} {event.currency?.symbol || "Kz"}
+                  <div className="text-base lg:text-lg font-bold">
+                    TOTAL EVENTO
+                  </div>
+                  <div className="text-xl lg:text-2xl font-bold">
+                    {formatPrice(calculateTotal())}{" "}
+                    {event.currency?.symbol || "Kz"}
                   </div>
                 </div>
-                <button 
-                  className="w-full bg-gray-700 text-white py-4 rounded-lg font-bold text-lg hover:bg-gray-800 transition-colors disabled:opacity-50"
-                  disabled={!event.is_available_for_booking || calculateTotal() === 0}
+                <button
+                  className="w-full bg-gray-700 text-white py-3 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-gray-800 transition-colors disabled:opacity-50"
+                  disabled={
+                    !event.is_available_for_booking || calculateTotal() === 0
+                  }
                 >
                   🛒 Adicionar
                 </button>

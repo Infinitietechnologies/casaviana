@@ -10,23 +10,26 @@ import {
   DrawerFooter,
   useDisclosure,
 } from "@heroui/react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination as SwiperPagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 
 const EventsPage = () => {
   const [activeCategory, setActiveCategory] = useState("all");
-  const [initialEvents, setInitialEvents] = useState([]); // Store initial unfiltered events for featured
-  const [filteredEvents, setFilteredEvents] = useState([]); // Store paginated filtered events for upcoming
+  const [initialEvents, setInitialEvents] = useState([]); 
+  const [filteredEvents, setFilteredEvents] = useState([]); 
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [upcomingLoading, setUpcomingLoading] = useState(false); // Separate loading for upcoming
+  const [upcomingLoading, setUpcomingLoading] = useState(false); 
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const ITEMS_PER_PAGE = 8;
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [tempCategory, setTempCategory] = useState("all"); // Temporary selection in drawer
+  const [tempCategory, setTempCategory] = useState("all");
 
-  // Fetch categories once
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -45,18 +48,15 @@ const EventsPage = () => {
     fetchCategories();
   }, []);
 
-  // Debounce search input
   useEffect(() => {
     const t = setTimeout(() => setDebouncedSearch(searchTerm.trim()), 500);
     return () => clearTimeout(t);
   }, [searchTerm]);
 
-  // Reset page to 1 when filters change
   useEffect(() => {
     setCurrentPage(1);
   }, [activeCategory, debouncedSearch]);
 
-  // Initial fetch - get all events for featured section (no pagination)
   useEffect(() => {
     const fetchInitialEvents = async () => {
       setLoading(true);
@@ -75,7 +75,6 @@ const EventsPage = () => {
     fetchInitialEvents();
   }, []);
 
-  // Fetch filtered events for upcoming section with pagination
   useEffect(() => {
     const fetchFilteredEvents = async () => {
       setUpcomingLoading(true);
@@ -102,7 +101,6 @@ const EventsPage = () => {
     fetchFilteredEvents();
   }, [activeCategory, debouncedSearch, currentPage]);
 
-  // Transform API data to match component structure
   const transformEvent = (event) => {
     const eventDate = new Date(event.event_date);
     const day = eventDate.getDate().toString();
@@ -130,33 +128,25 @@ const EventsPage = () => {
     };
   };
 
-  // Featured events - always show first 4 from initial fetch (no filter)
   const featuredEvents = initialEvents.slice(0, 4).map(transformEvent);
 
-  // Upcoming events - filtered by category and search (paginated)
   const upcomingEvents = filteredEvents.map(transformEvent);
 
-  // Handle drawer apply button
   const handleApplyFilter = () => {
     setActiveCategory(tempCategory);
     onClose();
   };
 
-  // Handle drawer reset
   const handleResetFilter = () => {
     setTempCategory("all");
     setActiveCategory("all");
     setSearchTerm("");
   };
 
-  // Featured Events Skeleton Component
   const FeaturedSkeleton = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
       {Array.from({ length: 4 }).map((_, i) => (
-        <div
-          key={i}
-          className="flex items-center rounded-xl overflow-hidden"
-        >
+        <div key={i} className="flex items-center rounded-xl overflow-hidden">
           <div className="w-[40%] h-[120px] sm:h-[140px] bg-gray-200">
             <Skeleton className="w-full h-full" />
           </div>
@@ -171,7 +161,6 @@ const EventsPage = () => {
     </div>
   );
 
-  // Upcoming Events Skeleton Component
   const UpcomingSkeleton = () => (
     <div className="d-flex flex-wrap event-row">
       {Array.from({ length: 8 }).map((_, i) => (
@@ -191,7 +180,6 @@ const EventsPage = () => {
     </div>
   );
 
-  // Event Card Component
   const EventCard = ({ event }) => (
     <div className="card-event pointer">
       <Link href={`/events/${event.slug}`}>
@@ -221,7 +209,6 @@ const EventsPage = () => {
   return (
     <div className="mt-20">
       <main>
-        {/* Destaques Section - NO FILTERS APPLIED */}
         <section className="text-white py-8 bg-black full-width">
           <div className="px-4 sm:px-6 lg:px-8 xl:px-20">
             <h2 className="text-xl sm:text-2xl font-bold mb-6">Destaques</h2>
@@ -233,53 +220,102 @@ const EventsPage = () => {
                 Nenhum evento em destaque no momento.
               </p>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                {featuredEvents.map((event) => (
-                  <div
-                    key={event.id}
-                    className="flex items-center rounded-xl shadow-md overflow-hidden hover:scale-[1.02] transition-transform duration-200"
+              <>
+                <div className="lg:hidden">
+                  <Swiper
+                    spaceBetween={16}
+                    slidesPerView={1}
+                    pagination={{ clickable: true }}
+                    modules={[SwiperPagination]}
+                    className="featured-swiper"
                   >
-                    <div className="w-[40%] h-[120px] sm:h-[140px] relative bg-black">
-                      <img
-                        src={event.image}
-                        alt={event.title}
-                        className="absolute inset-0 w-full h-full object-cover"
-                      />
-                    </div>
+                    {featuredEvents.map((event) => (
+                      <SwiperSlide key={event.id}>
+                        <div className="flex items-center rounded-xl shadow-md overflow-hidden hover:scale-[1.02] transition-transform duration-200">
+                          <div className="w-[40%] h-[120px] sm:h-[140px] relative bg-black">
+                            <img
+                              src={event.image}
+                              alt={event.title}
+                              className="absolute inset-0 w-full h-full object-cover"
+                            />
+                          </div>
 
-                    <div className="w-[60%] p-3 flex flex-col justify-between bg-white h-[120px] sm:h-[140px]">
-                      <div>
-                        <h3 className="text-gray-900 font-semibold text-sm sm:text-base line-clamp-2">
-                          {event.title}
-                        </h3>
-                        <p className="text-gray-700 text-xs mt-1">
-                          {event.time}
-                        </p>
-                      </div>
+                          <div className="w-[60%] p-3 flex flex-col justify-between bg-white h-[120px] sm:h-[140px]">
+                            <div>
+                              <h3 className="text-gray-900 font-semibold text-sm sm:text-base line-clamp-2">
+                                {event.title}
+                              </h3>
+                              <p className="text-gray-700 text-xs mt-1">
+                                {event.time}
+                              </p>
+                            </div>
 
-                      <div className="flex justify-end mt-2">
-                        <div className="bg-[#007bff] text-white rounded-md text-center px-3 py-1 shadow-md leading-tight">
-                          <div className="text-sm font-bold">{event.day}</div>
-                          <div className="text-[10px] uppercase">
-                            {event.month}
+                            <div className="flex justify-end mt-2">
+                              <div className="bg-[#007bff] text-white rounded-md text-center px-3 py-1 shadow-md leading-tight">
+                                <div className="text-sm font-bold">
+                                  {event.day}
+                                </div>
+                                <div className="text-[10px] uppercase">
+                                  {event.month}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </div>
+
+                <div className="hidden lg:block">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    {featuredEvents.map((event) => (
+                      <div
+                        key={event.id}
+                        className="flex items-center rounded-xl shadow-md overflow-hidden hover:scale-[1.02] transition-transform duration-200"
+                      >
+                        <div className="w-[40%] h-[120px] sm:h-[140px] relative bg-black">
+                          <img
+                            src={event.image}
+                            alt={event.title}
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                        </div>
+
+                        <div className="w-[60%] p-3 flex flex-col justify-between bg-white h-[120px] sm:h-[140px]">
+                          <div>
+                            <h3 className="text-gray-900 font-semibold text-sm sm:text-base line-clamp-2">
+                              {event.title}
+                            </h3>
+                            <p className="text-gray-700 text-xs mt-1">
+                              {event.time}
+                            </p>
+                          </div>
+
+                          <div className="flex justify-end mt-2">
+                            <div className="bg-[#007bff] text-white rounded-md text-center px-3 py-1 shadow-md leading-tight">
+                              <div className="text-sm font-bold">
+                                {event.day}
+                              </div>
+                              <div className="text-[10px] uppercase">
+                                {event.month}
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </div>
+              </>
             )}
           </div>
         </section>
 
-        {/* Upcoming Events Section - WITH FILTERS */}
         <section id="events" className="py-16 bg-white">
           <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="max-w-8xl mx-auto">
-              {/* Header Row: Title + Search + Filter Button */}
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-10 gap-6">
-                {/* Left side - Title & Search */}
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                   <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
                     Próximos eventos
@@ -298,11 +334,16 @@ const EventsPage = () => {
                   />
                 </div>
 
-                {/* Right side - Filter button */}
                 <div className="flex items-center gap-3">
                   {activeCategory !== "all" && (
                     <span className="text-sm text-gray-600">
-                      Filtrado: <span className="font-semibold">{categories.find(c => c.value === activeCategory)?.label}</span>
+                      Filtrado:{" "}
+                      <span className="font-semibold">
+                        {
+                          categories.find((c) => c.value === activeCategory)
+                            ?.label
+                        }
+                      </span>
                     </span>
                   )}
                   <Button
@@ -314,7 +355,6 @@ const EventsPage = () => {
                 </div>
               </div>
 
-              {/* Events Grid */}
               <div className="d-flex flex-wrap event-row" id="upcoming-events">
                 {upcomingLoading ? (
                   <UpcomingSkeleton />
@@ -332,18 +372,17 @@ const EventsPage = () => {
                   ))
                 )}
               </div>
-              <Pagination 
-                showControls 
-                page={currentPage} 
-                total={totalPages} 
-                onChange={setCurrentPage} 
+              <Pagination
+                showControls
+                page={currentPage}
+                total={totalPages}
+                onChange={setCurrentPage}
               />
             </div>
           </div>
         </section>
       </main>
 
-      {/* Filter Drawer */}
       <Drawer isOpen={isOpen} onClose={onClose} placement="right" size="sm">
         <DrawerContent>
           <DrawerHeader className="flex flex-col gap-1">
@@ -354,7 +393,6 @@ const EventsPage = () => {
           </DrawerHeader>
           <DrawerBody>
             <div className="flex flex-wrap gap-2">
-              {/* All Categories Chip */}
               <Chip
                 onClick={() => setTempCategory("all")}
                 className={`cursor-pointer transition-all ${
@@ -368,7 +406,6 @@ const EventsPage = () => {
                 Todos
               </Chip>
 
-              {/* Category Chips */}
               {categories.map((category) => (
                 <Chip
                   key={category.value}
@@ -387,11 +424,7 @@ const EventsPage = () => {
             </div>
           </DrawerBody>
           <DrawerFooter className="gap-2">
-            <Button
-              color="danger"
-              variant="light"
-              onPress={handleResetFilter}
-            >
+            <Button color="danger" variant="light" onPress={handleResetFilter}>
               Clear filter
             </Button>
             <Button

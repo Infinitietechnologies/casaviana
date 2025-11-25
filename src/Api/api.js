@@ -27,13 +27,19 @@ export const logout = async () => {
   }
 };
 
-export const get_events = async (category_slug = null, search = null, page = null, per_page = null) => {
+export const get_events = async (
+  category_slug = null,
+  search = null,
+  page = null,
+  per_page = null
+) => {
   try {
     const params = {
       ...(category_slug && category_slug !== "all" && { category_slug }),
       ...(search && { search }),
       ...(page !== null && { page }),
       ...(per_page !== null && { per_page }),
+      sort_order: "desc",
     };
 
     const response = await api.get("/events", { params });
