@@ -126,7 +126,7 @@ const EventDetailPage = () => {
 
         <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 px-4 lg:px-12">
           <div className="relative">
-            <div className="relative lg:absolute lg:top-[-60px] lg:left-0 lg:w-full">
+            <div className="relative lg:absolute lg:top-[-60px] lg:left-0 lg:w-full ">
               {event?.images && event.images.length > 0 ? (
                 <div>
                   <Swiper
