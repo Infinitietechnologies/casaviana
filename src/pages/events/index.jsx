@@ -17,11 +17,11 @@ import "swiper/css/pagination";
 
 const EventsPage = () => {
   const [activeCategory, setActiveCategory] = useState("all");
-  const [initialEvents, setInitialEvents] = useState([]); 
-  const [filteredEvents, setFilteredEvents] = useState([]); 
+  const [initialEvents, setInitialEvents] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [upcomingLoading, setUpcomingLoading] = useState(false); 
+  const [upcomingLoading, setUpcomingLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -230,8 +230,53 @@ const EventsPage = () => {
                     className="featured-swiper"
                   >
                     {featuredEvents.map((event) => (
-                      <SwiperSlide key={event.id}>
-                        <div className="flex items-center rounded-xl shadow-md overflow-hidden hover:scale-[1.02] transition-transform duration-200">
+                        <SwiperSlide key={event.id}>
+                        <Link href={`/events/${event.slug}`}>
+                          <div className="flex items-center rounded-xl shadow-md overflow-hidden hover:scale-[1.02] transition-transform duration-200">
+                            <div className="w-[40%] h-[120px] sm:h-[140px] relative bg-black">
+                              <img
+                                src={event.image}
+                                alt={event.title}
+                                className="absolute inset-0 w-full h-full object-cover"
+                              />
+                            </div>
+
+                            <div className="w-[60%] p-3 flex flex-col justify-between bg-white h-[120px] sm:h-[140px]">
+                              <div>
+                                <h3 className="text-gray-900 font-semibold text-sm sm:text-base line-clamp-2">
+                                  {event.title}
+                                </h3>
+                                <p className="text-gray-700 text-xs mt-1">
+                                  {event.time}
+                                </p>
+                              </div>
+
+                              <div className="flex justify-end mt-2">
+                                <div className="bg-[#007bff] text-white rounded-md text-center px-3 py-1 shadow-md leading-tight">
+                                  <div className="text-sm font-bold">
+                                    {event.day}
+                                  </div>
+                                  <div className="text-[10px] uppercase">
+                                    {event.month}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          </Link>
+                        </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </div>
+
+                <div className="hidden lg:block">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    {featuredEvents.map((event) => (
+                      <Link href={`/events/${event.slug}`}>
+                        <div
+                          key={event.id}
+                          className="flex items-center rounded-xl shadow-md overflow-hidden hover:scale-[1.02] transition-transform duration-200"
+                        >
                           <div className="w-[40%] h-[120px] sm:h-[140px] relative bg-black">
                             <img
                               src={event.image}
@@ -262,48 +307,7 @@ const EventsPage = () => {
                             </div>
                           </div>
                         </div>
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
-                </div>
-
-                <div className="hidden lg:block">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    {featuredEvents.map((event) => (
-                      <div
-                        key={event.id}
-                        className="flex items-center rounded-xl shadow-md overflow-hidden hover:scale-[1.02] transition-transform duration-200"
-                      >
-                        <div className="w-[40%] h-[120px] sm:h-[140px] relative bg-black">
-                          <img
-                            src={event.image}
-                            alt={event.title}
-                            className="absolute inset-0 w-full h-full object-cover"
-                          />
-                        </div>
-
-                        <div className="w-[60%] p-3 flex flex-col justify-between bg-white h-[120px] sm:h-[140px]">
-                          <div>
-                            <h3 className="text-gray-900 font-semibold text-sm sm:text-base line-clamp-2">
-                              {event.title}
-                            </h3>
-                            <p className="text-gray-700 text-xs mt-1">
-                              {event.time}
-                            </p>
-                          </div>
-
-                          <div className="flex justify-end mt-2">
-                            <div className="bg-[#007bff] text-white rounded-md text-center px-3 py-1 shadow-md leading-tight">
-                              <div className="text-sm font-bold">
-                                {event.day}
-                              </div>
-                              <div className="text-[10px] uppercase">
-                                {event.month}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
