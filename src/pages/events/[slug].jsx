@@ -382,7 +382,7 @@ const EventDetailPage = () => {
 
               <div className="border-t pt-4 lg:pt-6">
                 <div className="flex justify-between items-center mb-4">
-                  <div className="text-base lg:text-lg font-bold">
+                  <div className="text-base lg:text-lg font-bold ">
                     TOTAL EVENTO
                   </div>
                   <div className="text-xl lg:text-2xl font-bold">
