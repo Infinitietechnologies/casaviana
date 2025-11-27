@@ -3,11 +3,12 @@ import { useState, useEffect } from "react";
 import { get_event } from "../../Api/api"; 
 import { Skeleton } from "@heroui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Thumbs ,Pagination } from "swiper/modules";
+import { Navigation, Thumbs, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "swiper/css/pagination";
+
 const EventDetailPage = () => {
   const router = useRouter();
   const { slug } = router.query;
@@ -15,7 +16,6 @@ const EventDetailPage = () => {
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
   const [tickets, setTickets] = useState({});
 
   useEffect(() => {
@@ -48,18 +48,49 @@ const EventDetailPage = () => {
     }
   }, [event]);
 
+  // Calculate the effective price (with discount if available)
+  const getEffectivePrice = (ticket) => {
+    const originalPrice = parseFloat(ticket.price || 0);
+    const discountPrice = parseFloat(ticket.discount_price || 0);
+    
+    // If discount_price exists and is less than original price, use it
+    if (discountPrice > 0 && discountPrice < originalPrice) {
+      return discountPrice;
+    }
+    return originalPrice;
+  };
+
+  // Check if ticket has a discount
+  const hasDiscount = (ticket) => {
+    const originalPrice = parseFloat(ticket.price || 0);
+    const discountPrice = parseFloat(ticket.discount_price || 0);
+    return discountPrice > 0 && discountPrice < originalPrice;
+  };
+
+  // Calculate discount percentage
+  const getDiscountPercentage = (ticket) => {
+    if (!hasDiscount(ticket)) return 0;
+    const originalPrice = parseFloat(ticket.price || 0);
+    const discountPrice = parseFloat(ticket.discount_price || 0);
+    return Math.round(((originalPrice - discountPrice) / originalPrice) * 100);
+  };
+
   const calculateTotal = () => {
     if (!event?.ticket_types) return 0;
     let total = 0;
     event.ticket_types.forEach((ticket) => {
       const qty = tickets[ticket.id] || 0;
-      total += qty * parseFloat(ticket.price || 0);
+      total += qty * getEffectivePrice(ticket);
     });
     return total;
   };
 
   const formatPrice = (price) => {
-    return new Intl.NumberFormat("pt-AO").format(price);
+    const num = parseFloat(price);
+    const parts = num.toFixed(2).split('.');
+    const integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    const decimalPart = parts[1];
+    return `${integerPart},${decimalPart}`;
   };
 
   const handleIncrement = (ticketId) => {
@@ -133,7 +164,7 @@ const EventDetailPage = () => {
                     spaceBetween={10}
                     navigation={false}
                     pagination={{ clickable: true }}
-                    modules={[Navigation, Thumbs , Pagination]}
+                    modules={[Navigation, Thumbs, Pagination]}
                     thumbs={{
                       swiper:
                         thumbsSwiper && !thumbsSwiper.destroyed
@@ -165,7 +196,6 @@ const EventDetailPage = () => {
             </div>
           </div>
 
-          {/* Right Side - Event Details */}
           <div className="text-gray-200 lg:pt-0">
             <div className="text-xs lg:text-sm">
               {event.category?.name || "Evento"}
@@ -248,10 +278,13 @@ const EventDetailPage = () => {
 
               {event.ticket_types?.map((ticket) => {
                 const ticketQty = tickets[ticket.id] || 0;
-                const ticketPrice = parseFloat(ticket.price || 0);
-                const subtotal = ticketQty * ticketPrice;
-                const symbol = ticket.currency?.symbol || "Kz";
+                const originalPrice = parseFloat(ticket.price || 0);
+                const effectivePrice = getEffectivePrice(ticket);
+                const subtotal = ticketQty * effectivePrice;
+                const symbol = ticket.currency?.code;
                 const isDisabled = ticket.status !== "active";
+                const discount = hasDiscount(ticket);
+                const discountPercent = getDiscountPercentage(ticket);
 
                 return (
                   <div
@@ -263,9 +296,25 @@ const EventDetailPage = () => {
                         <h3 className="font-bold text-base lg:text-lg">
                           {ticket.name}
                         </h3>
-                        <div className="text-xl lg:text-2xl font-bold text-gray-900 mt-1">
-                          {formatPrice(ticketPrice)} {symbol}
+                        
+                        {/* Price Display with Discount */}
+                        <div className="flex items-center gap-2 mt-1">
+                          <div className="text-xl lg:text-2xl font-bold text-gray-900">
+                            {formatPrice(effectivePrice)} {symbol}
+                          </div>
+                          
+                          {discount && (
+                            <>
+                              <div className="text-sm lg:text-base text-gray-400 line-through">
+                                {formatPrice(originalPrice)} {symbol}
+                              </div>
+                              <span className="bg-red-500 text-white text-xs px-2 py-1 rounded font-semibold">
+                                -{discountPercent}%
+                              </span>
+                            </>
+                          )}
                         </div>
+
                         <p className="text-xs lg:text-sm text-gray-600 mt-2">
                           {ticket.description || "Sem descrição."}
                         </p>
@@ -276,11 +325,13 @@ const EventDetailPage = () => {
                         </span>
                       )}
                     </div>
+                    
                     {isDisabled && (
                       <div className="bg-red-50 text-red-600 text-center py-2 px-3 rounded text-xs lg:text-sm font-semibold mb-4">
                         VENDAS SOMENTE PRESENCIAIS
                       </div>
                     )}
+                    
                     <div className="flex items-center justify-between mt-3 lg:mt-4">
                       <div
                         className="flex items-center gap-3"
@@ -336,7 +387,7 @@ const EventDetailPage = () => {
                   </div>
                   <div className="text-xl lg:text-2xl font-bold">
                     {formatPrice(calculateTotal())}{" "}
-                    {event.currency?.symbol || "Kz"}
+                    {event.currency?.code}
                   </div>
                 </div>
                 <button
