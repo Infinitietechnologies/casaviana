@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { get_event } from "../../Api/api"; 
+import { get_event } from "../../Api/api";
 import { Skeleton } from "@heroui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Thumbs, Pagination } from "swiper/modules";
@@ -24,7 +24,7 @@ const EventDetailPage = () => {
     const fetchEvent = async () => {
       setLoading(true);
       try {
-        const response = await get_event(slug); 
+        const response = await get_event(slug);
         if (response?.success) {
           setEvent(response.data);
         }
@@ -52,7 +52,7 @@ const EventDetailPage = () => {
   const getEffectivePrice = (ticket) => {
     const originalPrice = parseFloat(ticket.price || 0);
     const discountPrice = parseFloat(ticket.discount_price || 0);
-    
+
     // If discount_price exists and is less than original price, use it
     if (discountPrice > 0 && discountPrice < originalPrice) {
       return discountPrice;
@@ -87,8 +87,8 @@ const EventDetailPage = () => {
 
   const formatPrice = (price) => {
     const num = parseFloat(price);
-    const parts = num.toFixed(2).split('.');
-    const integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    const parts = num.toFixed(2).split(".");
+    const integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     const decimalPart = parts[1];
     return `${integerPart},${decimalPart}`;
   };
@@ -184,7 +184,7 @@ const EventDetailPage = () => {
                         </div>
                       </SwiperSlide>
                     ))}
-                  </Swiper>                  
+                  </Swiper>
                 </div>
               ) : (
                 <img
@@ -242,7 +242,8 @@ const EventDetailPage = () => {
                 PARA MAIS INFORMAÇÕES 📞
               </div>
               <div className="text-xs lg:text-sm text-gray-700">
-                {event.venue?.branch?.phone} | {event.venue?.branch?.manager?.phone}
+                {event.venue?.branch?.phone} |{" "}
+                {event.venue?.branch?.manager?.phone}
               </div>
             </div>
 
@@ -296,13 +297,13 @@ const EventDetailPage = () => {
                         <h3 className="font-bold text-base lg:text-lg">
                           {ticket.name}
                         </h3>
-                        
+
                         {/* Price Display with Discount */}
                         <div className="flex items-center gap-2 mt-1">
                           <div className="text-xl lg:text-2xl font-bold text-gray-900">
                             {formatPrice(effectivePrice)} {symbol}
                           </div>
-                          
+
                           {discount && (
                             <>
                               <div className="text-sm lg:text-base text-gray-400 line-through">
@@ -314,10 +315,6 @@ const EventDetailPage = () => {
                             </>
                           )}
                         </div>
-
-                        <p className="text-xs lg:text-sm text-gray-600 mt-2">
-                          {ticket.description || "Sem descrição."}
-                        </p>
                       </div>
                       {ticket.available_tickets > 0 && (
                         <span className="bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded ml-3">
@@ -325,13 +322,15 @@ const EventDetailPage = () => {
                         </span>
                       )}
                     </div>
-                    
+                    <p className="text-xs lg:text-sm text-gray-600 mt-2">
+                      {ticket.description || "Sem descrição."}
+                    </p>
                     {isDisabled && (
                       <div className="bg-red-50 text-red-600 text-center py-2 px-3 rounded text-xs lg:text-sm font-semibold mb-4">
                         VENDAS SOMENTE PRESENCIAIS
                       </div>
                     )}
-                    
+
                     <div className="flex items-center justify-between mt-3 lg:mt-4">
                       <div
                         className="flex items-center gap-3"
@@ -386,8 +385,7 @@ const EventDetailPage = () => {
                     TOTAL EVENTO
                   </div>
                   <div className="text-xl lg:text-2xl font-bold">
-                    {formatPrice(calculateTotal())}{" "}
-                    {event.currency?.code}
+                    {formatPrice(calculateTotal())} {event.currency?.code}
                   </div>
                 </div>
                 <button
