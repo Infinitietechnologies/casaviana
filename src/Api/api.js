@@ -67,3 +67,36 @@ export const get_categories = async () => {
     // console.log(error);
   }
 };
+
+export const get_blogs = async (
+  category_id = null,
+  search = null,
+  page = null,
+  per_page = null
+) => {
+  try {
+    const params = {
+      ...(category_id && { category_id }),
+      ...(search && { search }),
+      ...(page !== null && { page }),
+      ...(per_page !== null && { per_page }),
+      sort_order: "desc",
+    };
+
+    const response = await api.get("/blogs", { params });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching blogs:", error);
+    return { success: false, error: error.message };
+  }
+};
+
+export const get_blog = async (slug) => {
+  try {
+    const response = await api.get(`/blogs/${slug}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching blog:", error);
+    return { success: false, error: error.message };
+  }
+};

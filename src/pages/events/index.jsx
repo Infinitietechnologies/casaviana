@@ -128,8 +128,12 @@ const EventsPage = () => {
     };
   };
 
-  const featuredEvents = initialEvents.slice(0, 4).map(transformEvent);
-
+  // Filter only highlighted events for featured section
+  const featuredEvents = initialEvents
+    .filter((event) => event.is_highlighted === true)
+    .slice(0, 4)
+    .map(transformEvent);
+    
   const upcomingEvents = filteredEvents.map(transformEvent);
 
   const handleApplyFilter = () => {
@@ -230,7 +234,7 @@ const EventsPage = () => {
                     className="featured-swiper"
                   >
                     {featuredEvents.map((event) => (
-                        <SwiperSlide key={event.id}>
+                      <SwiperSlide key={event.id}>
                         <Link href={`/events/${event.slug}`}>
                           <div className="flex items-center rounded-xl shadow-md overflow-hidden hover:scale-[1.02] transition-transform duration-200">
                             <div className="w-[40%] h-[120px] sm:h-[140px] relative bg-black">
@@ -263,8 +267,8 @@ const EventsPage = () => {
                               </div>
                             </div>
                           </div>
-                          </Link>
-                        </SwiperSlide>
+                        </Link>
+                      </SwiperSlide>
                     ))}
                   </Swiper>
                 </div>
