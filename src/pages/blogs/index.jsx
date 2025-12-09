@@ -172,9 +172,10 @@ export default function BlogPage() {
                         </p>
                       </div>
 
-                      <p className="text-slate-700 leading-relaxed text-sm whitespace-pre-wrap">
-                        {post.content}
-                      </p>
+                      <div 
+                        className="text-slate-700 leading-relaxed text-sm prose prose-slate prose-headings:text-slate-900 prose-p:text-slate-700 prose-a:text-blue-600 prose-strong:text-slate-900"
+                        dangerouslySetInnerHTML={{ __html: post.content }}
+                      />
                     </div>
 
                     {/* Engagement */}

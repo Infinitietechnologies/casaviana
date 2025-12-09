@@ -1,0 +1,25 @@
+{
+  "cardapio": {
+    "title": "Cardápio",
+    "loadingCategories": "Carregando categorias...",
+    "noCategoriesAvailable": "Nenhuma categoria disponível",
+    "casaViana": "CASA VIANA",
+    "dipandaPlaza": "DIPANDA PLAZZA",
+    "quickView": "Visualização Rápida",
+    "description": "Descrição",
+    "price": "Preço",
+    "prepTime": "Tempo de Preparo",
+    "minutes": "minutos",
+    "calories": "Calorias",
+    "cal": "cal",
+    "availability": "Disponibilidade",
+    "available": "Disponível",
+    "unavailable": "Indisponível",
+    "allergens": "Alérgenos",
+    "dietaryTags": "Tags Dietéticas",
+    "close": "Fechar",
+    "addToCart": "Adicionar ao Carrinho",
+    "noItemsFound": "Nenhum item encontrado nesta categoria",
+    "categoryNotFound": "Categoria não encontrada"
+  }
+}

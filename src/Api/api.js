@@ -100,3 +100,29 @@ export const get_blog = async (slug) => {
     return { success: false, error: error.message };
   }
 };
+
+export const get_restaurant_categories = async () => {
+  try {
+    const response = await api.get("/categories/restaurant-categories", {
+      params: { include: "children" },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching restaurant categories:", error);
+    return { success: false, error: error.message };
+  }
+};
+
+export const get_menu_items = async (category_id = null) => {
+  try {
+    const params = {};
+    if (category_id) {
+      params.category_id = category_id;
+    }
+    const response = await api.get("/menu-items", { params });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching menu items:", error);
+    return { success: false, error: error.message };
+  }
+};
