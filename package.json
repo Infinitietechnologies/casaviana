@@ -16,7 +16,7 @@
     "@reduxjs/toolkit": "^2.10.1",
     "axios": "^1.13.2",
     "js-cookie": "^3.0.5",
-    "next": "16.0.3",
+    "next": "^16.0.7",
     "next-i18next": "^15.4.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
@@ -28,7 +28,7 @@
     "@tailwindcss/postcss": "^4.1.17",
     "autoprefixer": "^10.4.22",
     "eslint": "^9",
-    "eslint-config-next": "16.0.3",
+    "eslint-config-next": "^16.0.7",
     "tailwind-variants": "3.1.1",
     "tailwindcss": "^4"
   }
