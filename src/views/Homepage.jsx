@@ -210,7 +210,6 @@ const Homepage = () => {
               </div>
             </Link>
           </div>
-          <Rating/>
           <div className="lg:col-span-4">
             <Swiper
               spaceBetween={10}
