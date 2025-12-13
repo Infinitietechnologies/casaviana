@@ -1,8 +1,12 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { get_event, book_event } from "../../Api/api";
-import Rating from "@/components/Rating/Rating";
 import { addToast } from "@heroui/react";
+import dynamic from "next/dynamic";
+
+const Rating = dynamic(() => import("@/components/Rating/Rating"), {
+  ssr: false,
+});
 import { Skeleton } from "@heroui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Thumbs, Pagination } from "swiper/modules";

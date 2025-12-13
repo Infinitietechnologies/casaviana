@@ -1,7 +1,11 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { get_blog } from "@/Api/api";
-import Rating from "@/components/Rating/Rating";
+import dynamic from "next/dynamic";
+
+const Rating = dynamic(() => import("@/components/Rating/Rating"), {
+  ssr: false,
+});
 
 const BlogDetailPage = () => {
   const router = useRouter();
