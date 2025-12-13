@@ -22,10 +22,9 @@ const LeftSidebar = () => {
       } else if (tab === "Latest") {
         params.sort_by = "created_at";
         params.sort_order = sortOrder;
-      } 
+      }
 
       const res = await api.get("/events", { params });
-      // response shape may be { data: [...] } or { success, data }
       const data = res?.data?.data ?? res?.data ?? [];
       setItems(Array.isArray(data) ? data : []);
     } catch (err) {
@@ -38,12 +37,10 @@ const LeftSidebar = () => {
 
   useEffect(() => {
     fetchForTab(activeTab);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab, sortOrder]);
 
   const onTabClick = (tab) => {
     if (tab === "Latest" && tab === activeTab) {
-      // toggle sort order when clicking Latest while active
       setSortOrder((s) => (s === "desc" ? "asc" : "desc"));
     } else {
       setActiveTab(tab);
@@ -53,7 +50,6 @@ const LeftSidebar = () => {
 
   return (
     <div className="lg:col-span-2 lg:sticky lg:top-24 self-start p-2 sm:p-4 space-y-6">
-      {/* Top Ad image */}
       <div className="w-full overflow-hidden rounded-md border border-gray-200 shadow-sm">
         <Image
           src="/images/images_cms.png"
@@ -64,13 +60,12 @@ const LeftSidebar = () => {
         />
       </div>
 
-      {/* Tabs */}
       <div className="flex border-b border-gray-300">
         {TABS.map((tab) => (
           <button
             key={tab}
             onClick={() => onTabClick(tab)}
-            className={`flex-1 text-center py-2 text-sm font-semibold border-b-2 transition-colors ${
+            className={`flex-1 text-center py-2 text-sm font-semibold border-b-2 transition-colors cursor-pointer ${
               activeTab === tab
                 ? "border-red-600 text-red-600"
                 : "border-transparent hover:border-red-600 hover:text-red-600"
@@ -86,52 +81,48 @@ const LeftSidebar = () => {
         ))}
       </div>
 
-      {/* News items */}
       <div className="space-y-2">
-        <div className="max-h-72 overflow-y-auto space-y-2">
-          {loading && <p className="text-sm text-gray-500">Loading...</p>}
+        {loading && <p className="text-sm text-gray-500">Loading...</p>}
 
-          {!loading &&
-            items.slice(0, 50).map((news, i) => (
-              <div
-                key={news.id ?? i}
-                className="flex items-center gap-3 p-1 hover:bg-gray-50 rounded-md transition-colors"
-              >
-                <div className="w-16 h-16 overflow-hidden rounded-md border border-gray-200 flex-shrink-0">
-                  <Image
-                    src={
-                      news.banner_image ??
-                      news.images?.[0] ??
-                      "/images/swiper3.png"
-                    }
-                    alt={news.title ?? "Event"}
-                    width={64}
-                    height={64}
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-gray-900 truncate">
-                    {news.title}
-                  </p>
-                  <p className="text-xs text-gray-500 flex items-center gap-1">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      className="w-4 h-4 text-gray-400 flex-shrink-0"
-                    >
-                      <path d="M10 2a8 8 0 1 0 8 8A8.01 8.01 0 0 0 10 2Zm.75 8.25V5.75a.75.75 0 0 0-1.5 0v5a.75.75 0 0 0 .22.53l3 3a.75.75 0 1 0 1.06-1.06Z" />
-                    </svg>
-                    {news.event_date ? news.event_date : news.created_at}
-                  </p>
-                </div>
+        {!loading &&
+          items.slice(0, 4).map((news, i) => (
+            <div
+              key={news.id ?? i}
+              className="flex items-center gap-3 p-1 hover:bg-gray-50 rounded-md transition-colors"
+            >
+              <div className="w-16 h-16 overflow-hidden rounded-md border border-gray-200 flex-shrink-0">
+                <Image
+                  src={
+                    news.banner_image ??
+                    news.images?.[0] ??
+                    "/images/swiper3.png"
+                  }
+                  alt={news.title ?? "Event"}
+                  width={64}
+                  height={64}
+                  className="object-cover w-full h-full"
+                />
               </div>
-            ))}
-        </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-gray-900 truncate">
+                  {news.title}
+                </p>
+                <p className="text-xs text-gray-500 flex items-center gap-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="w-4 h-4 text-gray-400 flex-shrink-0"
+                  >
+                    <path d="M10 2a8 8 0 1 0 8 8A8.01 8.01 0 0 0 10 2Zm.75 8.25V5.75a.75.75 0 0 0-1.5 0v5a.75.75 0 0 0 .22.53l3 3a.75.75 0 1 0 1.06-1.06Z" />
+                  </svg>
+                  {news.event_date ? news.event_date : news.created_at}
+                </p>
+              </div>
+            </div>
+          ))}
       </div>
 
-      {/* Bottom Ad image */}
       <div className="w-full overflow-hidden rounded-md border border-gray-200 shadow-sm">
         <Image
           src="/images/dogq.jpg"

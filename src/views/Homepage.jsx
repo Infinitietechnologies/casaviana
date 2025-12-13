@@ -10,6 +10,7 @@ import Link from "next/link";
 import { get_events } from "@/Api/api";
 import RightSidebar from "@/components/RightSidebar";
 import LeftSidebar from "@/components/LeftSidebar";
+import Rating from "@/components/Rating/Rating";
 
 const Homepage = () => {
   // Separate state for each Swiper instance
@@ -209,7 +210,7 @@ const Homepage = () => {
               </div>
             </Link>
           </div>
-
+          <Rating/>
           <div className="lg:col-span-4">
             <Swiper
               spaceBetween={10}

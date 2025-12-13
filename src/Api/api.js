@@ -126,3 +126,44 @@ export const get_menu_items = async (category_id = null) => {
     return { success: false, error: error.message };
   }
 };
+
+export const book_event = async (slug, ticket_type_id, quantity) => {
+  try {
+    // Using params to send query string as specified
+    const response = await api.post(`/events/${slug}/book`, null, {
+      params: { ticket_type_id, quantity },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error booking event:", error);
+    return {
+      success: false,
+      error: error?.response?.data?.message || error.message,
+    };
+  }
+};
+
+export const get_ratings = async (resource = "event", slug) => {
+  try {
+    const suffix = resource === "blog" ? "ratings" : "ratings";
+    const response = await api.get(`/${resource}/${slug}/${suffix}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching ratings:", error);
+    return { success: false, error: error.message };
+  }
+};
+
+export const create_rating = async (resource = "event", slug, data) => {
+  try {
+    const suffix = resource === "blog" ? "ratings" : "ratings";
+    const response = await api.post(`/${resource}/${slug}/${suffix}`, data);
+    return response.data;
+  } catch (error) {
+    console.error("Error creating rating:", error);
+    return {
+      success: false,
+      error: error?.response?.data?.message || error.message,
+    };
+  }
+};

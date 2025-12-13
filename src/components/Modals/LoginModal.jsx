@@ -32,12 +32,20 @@ const LoginModal = () => {
         password,
         type: "username",
       });
-      dispatch(setLogin(res.data));
+      // Dispatch the actual user object. `login()` returns response.data
+      // which contains `{ user, token, ... }`.
+      const userPayload = res?.user || res?.data?.user || res;
+      dispatch(setLogin(userPayload));
+      // Optional: Store token separately if needed (e.g., for API headers)
+      // localStorage.setItem('authToken', res.data.token);
       addToast({
-        title: res.message,
+        title: res?.message || "Logged in",
         color: "success",
       });
       onClose();
+      // Optional: Clear form
+      setUsername("");
+      setPassword("");
     } catch (err) {
       addToast({
         title: err?.response?.data?.message || "Something went wrong",

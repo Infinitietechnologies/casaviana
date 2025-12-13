@@ -118,3 +118,4 @@ export const MenuItemsSkeleton = () => {
 export default CardapioSkeleton;
 
 
+

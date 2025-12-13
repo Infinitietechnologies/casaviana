@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { get_event } from "../../Api/api";
+import { get_event, book_event } from "../../Api/api";
+import Rating from "@/components/Rating/Rating";
+import { addToast } from "@heroui/react";
 import { Skeleton } from "@heroui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Thumbs, Pagination } from "swiper/modules";
@@ -17,6 +19,7 @@ const EventDetailPage = () => {
   const [loading, setLoading] = useState(true);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [tickets, setTickets] = useState({});
+  const [bookingLoading, setBookingLoading] = useState(false);
 
   useEffect(() => {
     if (!slug) return;
@@ -41,8 +44,15 @@ const EventDetailPage = () => {
   useEffect(() => {
     if (event?.ticket_types) {
       const initialTickets = {};
+      let firstSet = false;
       event.ticket_types.forEach((ticket) => {
-        initialTickets[ticket.id] = 0;
+        // Set first active ticket to 1, others to 0
+        if (!firstSet && ticket.status === "active" && ticket.available_tickets > 0) {
+          initialTickets[ticket.id] = 1;
+          firstSet = true;
+        } else {
+          initialTickets[ticket.id] = 0;
+        }
       });
       setTickets(initialTickets);
     }
@@ -83,6 +93,99 @@ const EventDetailPage = () => {
       total += qty * getEffectivePrice(ticket);
     });
     return total;
+  };
+
+  const handleBookEvent = async () => {
+    if (!slug) {
+      addToast({ title: "Evento inválido", color: "danger" });
+      return;
+    }
+    // Build selected tickets
+    const selected = Object.keys(tickets)
+      .map((id) => ({ id, qty: tickets[id] }))
+      .filter((t) => t.qty > 0);
+
+    if (!selected.length) {
+      addToast({ title: "Selecione pelo menos 1 ingresso", color: "danger" });
+      return;
+    }
+
+    setBookingLoading(true);
+    let successCount = 0;
+    let failCount = 0;
+
+    // Perform booking for each ticket type
+    const promises = selected.map(async (t) => {
+      const ticketObj = event.ticket_types?.find(
+        (tt) => `${tt.id}` === `${t.id}`
+      );
+      if (!ticketObj) {
+        failCount += 1;
+        addToast({ title: "Tipo de ingresso inválido", color: "danger" });
+        return;
+      }
+      if (t.qty > (ticketObj.available_tickets || 0)) {
+        failCount += 1;
+        addToast({
+          title: `Quantidade solicitada maior que disponível para ${ticketObj.name}`,
+          color: "danger",
+        });
+        return;
+      }
+      try {
+        const res = await book_event(slug, t.id, t.qty);
+        if (res?.success) {
+          successCount += 1;
+          addToast({
+            title: res.message || "Ingresso reservado com sucesso",
+            color: "success",
+          });
+        } else {
+          failCount += 1;
+          addToast({
+            title: res?.error || res?.message || "Erro ao reservar ingresso",
+            color: "danger",
+          });
+        }
+      } catch (err) {
+        failCount += 1;
+        addToast({
+          title:
+            err?.response?.data?.message ||
+            err.message ||
+            "Erro ao reservar ingresso",
+          color: "danger",
+        });
+      }
+    });
+
+    await Promise.all(promises);
+
+    // Refresh event details to update available tickets
+    try {
+      const response = await get_event(slug);
+      if (response?.success) setEvent(response.data);
+    } catch (err) {
+      console.error("Error refreshing event:", err);
+    }
+
+    if (successCount > 0 && failCount === 0) {
+      addToast({
+        title: `Reserva(s) concluída(s): ${successCount}`,
+        color: "success",
+      });
+      // reset tickets selected
+      const reset = {};
+      Object.keys(tickets).forEach((id) => (reset[id] = 0));
+      setTickets(reset);
+    } else if (successCount > 0 && failCount > 0) {
+      addToast({
+        title: `Sucesso: ${successCount}, Falha: ${failCount}`,
+        color: "warning",
+      });
+    }
+
+    setBookingLoading(false);
   };
 
   const formatPrice = (price) => {
@@ -203,6 +306,9 @@ const EventDetailPage = () => {
             <h1 className="text-2xl lg:text-3xl font-bold mt-2">
               {event.title}
             </h1>
+            <div className="mt-2">
+              <Rating slug={slug} resource="event" />
+            </div>
           </div>
         </div>
       </div>
@@ -318,7 +424,7 @@ const EventDetailPage = () => {
                       </div>
                       {ticket.available_tickets > 0 && (
                         <span className="bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded ml-3">
-                          Restam {ticket.available_tickets}
+                          Available {ticket.available_tickets}
                         </span>
                       )}
                     </div>
@@ -390,11 +496,14 @@ const EventDetailPage = () => {
                 </div>
                 <button
                   className="w-full bg-gray-700 text-white py-3 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-gray-800 transition-colors disabled:opacity-50"
+                  onClick={handleBookEvent}
                   disabled={
-                    !event.is_available_for_booking || calculateTotal() === 0
+                    bookingLoading ||
+                    !event.is_available_for_booking ||
+                    calculateTotal() === 0
                   }
                 >
-                  🛒 Adicionar
+                  {bookingLoading ? "Reservando..." : "Reservar Ingressos"}
                 </button>
               </div>
             </div>
