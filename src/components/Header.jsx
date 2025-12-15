@@ -56,7 +56,11 @@ const Header = () => {
                // We rely on interceptor initializing itself.
                
                // Dispatch login
-               dispatch(setLogin(parsedUser)); // This sets isLoggedIn=true and user=parsedUser
+               // Dispatch login with delay to avoid 'insertBefore' hydration error
+               // similar to the fix in LoginModal.jsx
+               setTimeout(() => {
+                 dispatch(setLogin(parsedUser)); 
+               }, 100);
             } catch (e) {
                 console.error("Failed to parse stored user", e);
                 localStorage.removeItem("user");
