@@ -9,7 +9,6 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-  toast,
   useDisclosure,
 } from "@heroui/react";
 import React, { useState } from "react";
@@ -27,23 +26,37 @@ const LoginModal = () => {
     try {
       setLoading(true);
 
-      const res = await login({
-        username,
+      const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(username);
+      const payload = {
         password,
-        type: "username",
-      });
-      // Dispatch the actual user object. `login()` returns response.data
-      // which contains `{ user, token, ... }`.
+        type: isEmail ? "email" : "username",
+        [isEmail ? "email" : "username"]: username
+      };
+
+      const res = await login(payload);
       const userPayload = res?.user || res?.data?.user || res;
-      dispatch(setLogin(userPayload));
-      // Optional: Store token separately if needed (e.g., for API headers)
-      // localStorage.setItem('authToken', res.data.token);
+      
+      // Close modal first
+      onClose();
+
+      // Wait for modal animation to complete (HeroUI modals typically use 300ms)
+      await new Promise(resolve => setTimeout(resolve, 300));
+
+      // Now safely dispatch and show toast
+      // Delay dispatch to avoid 'insertBefore' error during modal unmount/animation
+      setTimeout(() => {
+        if (typeof window !== "undefined") {
+            localStorage.setItem("user", JSON.stringify(userPayload));
+        }
+        dispatch(setLogin(userPayload));
+      }, 500);
+      
       addToast({
         title: res?.message || "Logged in",
         color: "success",
       });
-      onClose();
-      // Optional: Clear form
+
+      // Clear form
       setUsername("");
       setPassword("");
     } catch (err) {
@@ -70,16 +83,14 @@ const LoginModal = () => {
 
               <ModalBody>
                 <Input
-                  // endContent={<MailIcon className="text-2xl text-default-400" />}
-                  label="Username"
-                  placeholder="Enter your username"
+                  label="Username or Email"
+                  placeholder="Enter your username or email"
                   variant="bordered"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                 />
 
                 <Input
-                  // endContent={<LockIcon className="text-2xl text-default-400" />}
                   label="Password"
                   placeholder="Enter your password"
                   type="password"

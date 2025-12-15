@@ -7,6 +7,10 @@ const Rating = dynamic(() => import("@/components/Rating/Rating"), {
   ssr: false,
 });
 
+const Comment = dynamic(() => import("@/components/Comment/Comment"), {
+  ssr: false,
+});
+
 const BlogDetailPage = () => {
   const router = useRouter();
   const { slug } = router.query;
@@ -111,6 +115,9 @@ const BlogDetailPage = () => {
 
         <div className="mt-12 pt-8 border-t border-gray-200">
           <Rating slug={slug} resource="blog" />
+          <div className="mt-8">
+            <Comment slug={slug} resource="blog" />
+          </div>
         </div>
       </div>
     </div>

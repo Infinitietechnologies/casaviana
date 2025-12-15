@@ -1,9 +1,13 @@
 import api, { setAccessToken } from "./interceptor";
 
-export const login = async ({ type = "username", username, password }) => {
+export const login = async ({ type = "username", username, email, password }) => {
   try {
     const formData = new FormData();
-    formData.append("username", username);
+    if (type === "email") {
+        formData.append("email", email);
+    } else {
+        formData.append("username", username);
+    }
     formData.append("password", password);
     formData.append("type", type);
 
@@ -160,7 +164,42 @@ export const create_rating = async (resource = "event", slug, data) => {
     const response = await api.post(`/${resource}/${slug}/${suffix}`, data);
     return response.data;
   } catch (error) {
-    console.error("Error creating rating:", error);
+    return {
+      success: false,
+      error: error?.response?.data?.message || error.message,
+    };
+  }
+};
+
+export const get_comments = async (resource, slug) => {
+  try {
+    const response = await api.get(`/${resource}/${slug}/comments`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching comments:", error);
+    return { success: false, error: error.message };
+  }
+};
+
+export const create_comment = async (resource, slug, data) => {
+  try {
+    const response = await api.post(`/${resource}/${slug}/comments`, data);
+    return response.data;
+  } catch (error) {
+    console.error("Error creating comment:", error);
+    return {
+      success: false,
+      error: error?.response?.data?.message || error.message,
+    };
+  }
+};
+
+export const report_comment = async (commentId, data) => {
+  try {
+    const response = await api.post(`/comments/${commentId}/report`, data);
+    return response.data;
+  } catch (error) {
+    console.error("Error reporting comment:", error);
     return {
       success: false,
       error: error?.response?.data?.message || error.message,

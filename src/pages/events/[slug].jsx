@@ -7,6 +7,11 @@ import dynamic from "next/dynamic";
 const Rating = dynamic(() => import("@/components/Rating/Rating"), {
   ssr: false,
 });
+
+const Comment = dynamic(() => import("@/components/Comment/Comment"), {
+  ssr: false,
+});
+
 import { Skeleton } from "@heroui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Thumbs, Pagination } from "swiper/modules";
@@ -51,7 +56,11 @@ const EventDetailPage = () => {
       let firstSet = false;
       event.ticket_types.forEach((ticket) => {
         // Set first active ticket to 1, others to 0
-        if (!firstSet && ticket.status === "active" && ticket.available_tickets > 0) {
+        if (
+          !firstSet &&
+          ticket.status === "active" &&
+          ticket.available_tickets > 0
+        ) {
           initialTickets[ticket.id] = 1;
           firstSet = true;
         } else {
@@ -310,9 +319,6 @@ const EventDetailPage = () => {
             <h1 className="text-2xl lg:text-3xl font-bold mt-2">
               {event.title}
             </h1>
-            <div className="mt-2">
-              <Rating slug={slug} resource="event" />
-            </div>
           </div>
         </div>
       </div>
@@ -512,6 +518,13 @@ const EventDetailPage = () => {
               </div>
             </div>
           </div>
+        </div>
+        <div className="mt-2">
+          <Rating slug={slug} resource="event" />
+        </div>
+        <div className="mt-8">
+          <h3 className="text-xl font-bold mb-4">Comments</h3>
+          <Comment slug={slug} resource="event" />
         </div>
       </div>
     </div>

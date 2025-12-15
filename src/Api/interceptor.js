@@ -4,10 +4,18 @@ const api = axios.create();
 const backendUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 // Dynamic token storage
-let ACCESS_TOKEN = null;
+// Dynamic token storage
+let ACCESS_TOKEN = typeof window !== 'undefined' ? localStorage.getItem('authToken') : null;
 
 export const setAccessToken = (token) => {
   ACCESS_TOKEN = token;
+  if (typeof window !== 'undefined') {
+    if (token) {
+      localStorage.setItem('authToken', token);
+    } else {
+      localStorage.removeItem('authToken');
+    }
+  }
 };
 
 api.interceptors.request.use(

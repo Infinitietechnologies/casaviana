@@ -3,10 +3,11 @@ import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import LoginModal from "./Modals/LoginModal";
+import LogoutModal from "./Modals/LogoutModal";
 import { useDispatch, useSelector } from "react-redux";
-import { logout as logoutAction } from "@/store/authSlice";
+import { logout as logoutAction, setLogin } from "@/store/authSlice";
 import { logout } from "@/Api/api";
-import { addToast } from "@heroui/react";
+import { addToast, useDisclosure } from "@heroui/react";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,6 +15,11 @@ const Header = () => {
   const [profileOpen, setProfileOpen] = useState(false);
   const dropdownRef = useRef(null);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const { 
+    isOpen: isLogoutOpen, 
+    onOpen: onLogoutOpen, 
+    onOpenChange: onLogoutOpenChange 
+  } = useDisclosure();
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -33,9 +39,39 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Hydrate state from localStorage
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+        const storedUser = localStorage.getItem("user");
+        const storedToken = localStorage.getItem("authToken"); // Ensure token matches interceptor key
+        
+        if (storedUser && storedToken) {
+            try {
+               const parsedUser = JSON.parse(storedUser);
+               dispatch(logoutAction()); // Reset first to be safe
+               // We need to re-set the token in the interceptor (although it initializes from localStorage, 
+               // redundant calls are safe and ensure sync if we ever change logic)
+               // Note: setAccessToken is not imported from interceptor directly but via api? 
+               // Actually api.js doesn't export setAccessToken. 
+               // We rely on interceptor initializing itself.
+               
+               // Dispatch login
+               dispatch(setLogin(parsedUser)); // This sets isLoggedIn=true and user=parsedUser
+            } catch (e) {
+                console.error("Failed to parse stored user", e);
+                localStorage.removeItem("user");
+            }
+        }
+    }
+  }, [dispatch]);
+
   const handleLogout = async () => {
     try {
       await logout();
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("user");
+        localStorage.removeItem("authToken");
+      }
       dispatch(logoutAction());
       setProfileOpen(false);
       addToast({
@@ -44,6 +80,13 @@ const Header = () => {
       });
     } catch (err) {
       // console.log("Logout failed:", err);
+       // Force client-side logout even if API fails
+       if (typeof window !== "undefined") {
+        localStorage.removeItem("user");
+        localStorage.removeItem("authToken");
+      }
+      dispatch(logoutAction());
+       setProfileOpen(false);
     }
   };
   return (
@@ -295,7 +338,10 @@ const Header = () => {
                     </Link>
 
                     <button
-                      onClick={handleLogout}
+                      onClick={() => {
+                        setProfileOpen(false);
+                        onLogoutOpen();
+                      }}
                       className="w-full text-left px-4 py-2 flex items-center gap-2 text-sm hover:bg-gray-100"
                     >
                       <svg
@@ -427,7 +473,10 @@ const Header = () => {
                     </Link>
 
                     <button
-                      onClick={handleLogout}
+                      onClick={() => {
+                        setProfileOpen(false);
+                        onLogoutOpen();
+                      }}
                       className="w-full text-left px-4 py-2 flex items-center gap-2 text-sm hover:bg-gray-100"
                     >
                       <svg
@@ -561,6 +610,11 @@ const Header = () => {
           </Link>
         </div>
       </div>
+      <LogoutModal 
+        isOpen={isLogoutOpen} 
+        onOpenChange={onLogoutOpenChange} 
+        onConfirm={handleLogout} 
+      />
     </nav>
   );
 };
