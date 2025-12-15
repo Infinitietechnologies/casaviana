@@ -30,33 +30,25 @@ const LoginModal = () => {
       const payload = {
         password,
         type: isEmail ? "email" : "username",
-        [isEmail ? "email" : "username"]: username
+        [isEmail ? "email" : "username"]: username,
       };
 
       const res = await login(payload);
       const userPayload = res?.user || res?.data?.user || res;
-      
-      // Close modal first
-      onClose();
 
-      // Wait for modal animation to complete (HeroUI modals typically use 300ms)
-      await new Promise(resolve => setTimeout(resolve, 300));
+      if (typeof window !== "undefined") {
+        localStorage.setItem("user", JSON.stringify(userPayload));
+      }
 
-      // Now safely dispatch and show toast
-      // Delay dispatch to avoid 'insertBefore' error during modal unmount/animation
-      setTimeout(() => {
-        if (typeof window !== "undefined") {
-            localStorage.setItem("user", JSON.stringify(userPayload));
-        }
-        dispatch(setLogin(userPayload));
-      }, 500);
-      
+      dispatch(setLogin(userPayload));
+
       addToast({
-        title: res?.message || "Logged in",
+        title: res?.message || "Logged in successfully",
         color: "success",
       });
 
-      // Clear form
+      onClose();
+
       setUsername("");
       setPassword("");
     } catch (err) {
