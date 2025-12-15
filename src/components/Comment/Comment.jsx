@@ -185,7 +185,13 @@ const Comment = ({ slug, resource = "events" }) => {
 
   const fetchComments = async () => {
     if (!slug) return;
-    setLoading(true);
+    // Only show loading spinner on initial load (when no comments exist yet)
+    // This prevents the list from unmounting during background refreshes,
+    // which caused the "insertBefore" error.
+    if (comments.length === 0) {
+      setLoading(true);
+    }
+    
     try {
       const res = await get_comments(resource, slug);
       if (res?.success) {
@@ -233,13 +239,17 @@ const Comment = ({ slug, resource = "events" }) => {
           title: res.message || "Comment submitted successfully",
           color: "success",
         });
-        await fetchComments();
+
+        // Clear inputs immediately to remove the reply textarea from DOM
+        // BEFORE the list refreshes. This avoids race conditions.
         if (parentId) {
           setReplyingTo(null);
           setReplyText("");
         } else {
           setNewComment("");
         }
+        
+        await fetchComments();
       } else {
         addToast({
           title: res?.error || "Failed to submit comment",
