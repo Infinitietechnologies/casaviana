@@ -93,7 +93,7 @@ const LoginModal = () => {
               </ModalBody>
 
               <ModalFooter>
-                <Button color="danger" variant="flat" onPress={onClose}>
+                <Button color="" variant="flat" onPress={onClose}>
                   Close
                 </Button>
 

@@ -1,6 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { get_comments, create_comment, report_comment } from "@/Api/api";
-import { addToast, Button, User, Textarea, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, useDisclosure } from "@heroui/react";
+import {
+  addToast,
+  Button,
+  User,
+  Textarea,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  useDisclosure,
+  Avatar,
+} from "@heroui/react";
 import { useSelector } from "react-redux";
 import ReportModal from "../Modals/ReportModal";
 
@@ -26,39 +37,69 @@ const formatTimeAgo = (date) => {
 };
 
 const MoreIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="12" cy="5" r="2" fill="currentColor"/>
-    <circle cx="12" cy="12" r="2" fill="currentColor"/>
-    <circle cx="12" cy="19" r="2" fill="currentColor"/>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="12" cy="5" r="2" fill="currentColor" />
+    <circle cx="12" cy="12" r="2" fill="currentColor" />
+    <circle cx="12" cy="19" r="2" fill="currentColor" />
   </svg>
 );
 
 const FlagIcon = () => (
-   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
     <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
     <line x1="4" y1="22" x2="4" y2="15"></line>
   </svg>
 );
 
 const CollapseIcon = ({ isCollapsed }) => (
-  <svg 
-    width="12" 
-    height="12" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="3" 
-    strokeLinecap="round" 
+  <svg
+    width="12"
+    height="12"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="3"
+    strokeLinecap="round"
     strokeLinejoin="round"
     className="transition-transform duration-200"
-    style={{ transform: isCollapsed ? 'rotate(0deg)' : 'rotate(90deg)' }}
+    style={{ transform: isCollapsed ? "rotate(0deg)" : "rotate(90deg)" }}
   >
     <polyline points="9 18 15 12 9 6"></polyline>
   </svg>
 );
 
-const CommentItem = ({ 
-  comment, 
+const ReplyIcon = ({ size = 14 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" />
+  </svg>
+);
+
+const CommentItem = ({
+  comment,
   isReply = false,
   user,
   replyingTo,
@@ -67,152 +108,133 @@ const CommentItem = ({
   setReplyText,
   submitting,
   handleSubmit,
-  handleReport
+  handleReport,
 }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const hasReplies = comment.replies && comment.replies.length > 0;
+  const hasReplies = comment.replies?.length > 0;
 
   return (
-    <div className={`flex gap-2 ${isReply ? "ml-8 mt-3" : "mb-4"}`}>
-      <div className="flex flex-col items-center w-6 flex-shrink-0">
-        {/* Collapse/Expand Button */}
-        <button
-          onClick={() => setIsCollapsed(!isCollapsed)}
-          className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-white font-bold text-xs hover:opacity-80 transition-opacity relative"
-        >
-          {isCollapsed ? (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <CollapseIcon isCollapsed={true} />
-            </div>
-          ) : (
-            (comment.user?.name || "U").charAt(0).toUpperCase()
-          )}
-        </button>
-        
-        {/* Vertical Line for nested replies */}
-        {!isCollapsed && hasReplies && (
-          <div className="w-0.5 flex-1 bg-gray-200 mt-2"></div>
-        )}
+    <div className={`flex gap-3 ${isReply ? "ml-10 mt-4" : "mb-6"}`}>
+      {/* Avatar */}
+      <div className="flex-shrink-0">
+        <Avatar
+          src={comment.user?.avatar}
+          name={comment.user?.name}
+          size="sm"
+          classNames={{
+            base: "bg-gradient-to-br from-orange-500 to-red-600",
+            name: "text-white font-bold text-sm",
+          }}
+        />
       </div>
 
-      <div className="flex-grow min-w-0">
-        {/* Collapsed View - Only show username and timestamp */}
-        {isCollapsed ? (
-          <div className="flex items-center gap-2 py-1">
-            <span className="font-semibold text-xs text-gray-900">
-              {comment.user?.name}
-            </span>
-            <span className="text-xs text-gray-400">
-              • {formatTimeAgo(comment.created_at)}
-            </span>
-            {hasReplies && (
-              <span className="text-xs text-blue-600 font-medium">
-                [{comment.replies.length} {comment.replies.length === 1 ? 'reply' : 'replies'}]
-              </span>
-            )}
-          </div>
-        ) : (
-          <>
-            {/* Expanded View - Full comment */}
-            <div className="flex items-center gap-2 mb-1">
-              <span className="font-semibold text-xs text-gray-900">
+      {/* Content */}
+      <div className="flex-1 min-w-0">
+        <div className="bg-gray-50 rounded-xl px-4 py-3">
+          {/* Header */}
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-sm font-semibold text-gray-900">
                 {comment.user?.name}
-              </span>
-              <span className="text-xs text-gray-400">
-                • {formatTimeAgo(comment.created_at)}
-              </span>
+              </p>
+              <p className="text-xs text-gray-400">
+                {formatTimeAgo(comment.created_at)}
+              </p>
             </div>
 
-            <p className="text-sm text-gray-800 mb-2 leading-relaxed">{comment.body}</p>
-
-            <div className="flex items-center gap-4 text-xs font-bold text-gray-500">
-              {!isReply && user && (
-                <button
-                  onClick={() => setReplyingTo(replyingTo === comment.id ? null : comment.id)}
-                  className="hover:bg-gray-100 px-2 py-1 rounded transition-colors"
-                >
-                  Reply
+            <Dropdown placement="bottom-end">
+              <DropdownTrigger>
+                <button className="p-1 rounded-full hover:bg-gray-200">
+                  <MoreIcon />
                 </button>
-              )}
+              </DropdownTrigger>
+              <DropdownMenu>
+                <DropdownItem
+                  startContent={<FlagIcon />}
+                  onPress={() => handleReport(comment.id)}
+                >
+                  Report
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </div>
 
-              <Dropdown placement="bottom-start">
-                <DropdownTrigger>
-                  <button className="hover:bg-gray-100 p-1 rounded transition-colors">
-                    <MoreIcon size={16} />
-                  </button>
-                </DropdownTrigger>
-                <DropdownMenu aria-label="Comment actions">
-                  <DropdownItem
-                    key="report"
-                    startContent={<FlagIcon />}
-                    onPress={() => handleReport(comment.id)}
-                  >
-                    Report
-                  </DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
+          {/* Body */}
+          <p className="text-sm text-gray-800 mt-2">{comment.body}</p>
+        </div>
 
-              {hasReplies && (
-                <span className="text-gray-400 ml-auto">
-                  {comment.replies.length} {comment.replies.length === 1 ? 'reply' : 'replies'}
-                </span>
-              )}
+        {/* Actions */}
+        <div className="flex items-center gap-4 text-xs text-gray-500 mt-2 ml-2">
+          {!isReply && user && (
+            <button
+              onClick={() =>
+                setReplyingTo(replyingTo === comment.id ? null : comment.id)
+              }
+              className="flex items-center gap-1 hover:text-blue-600 transition cursor-pointer"
+            >
+              <ReplyIcon size={14} />
+              Reply
+            </button>
+          )}
+
+          {hasReplies && (
+            <button
+              onClick={() => setIsCollapsed(!isCollapsed)}
+              className="flex items-center gap-1 hover:text-blue-600"
+            >
+              <CollapseIcon isCollapsed={isCollapsed} />
+              {comment.replies.length} replies
+            </button>
+          )}
+        </div>
+
+        {/* Reply box */}
+        {replyingTo === comment.id && (
+          <div className="mt-3 ml-2">
+            <Textarea
+              value={replyText}
+              onChange={(e) => setReplyText(e.target.value)}
+              minRows={2}
+            />
+            <div className="flex gap-2 mt-2">
+              <Button
+                size="sm"
+                variant="light"
+                onPress={() => setReplyingTo(null)}
+              >
+                Cancel
+              </Button>
+              <Button
+                size="sm"
+                color="primary"
+                isLoading={submitting}
+                onPress={() => handleSubmit(comment.id, replyText)}
+              >
+                Reply
+              </Button>
             </div>
+          </div>
+        )}
 
-            {replyingTo === comment.id && (
-              <div className="mt-3 ml-0 border-l-2 border-gray-200 pl-4">
-                <Textarea
-                  placeholder={`Reply to ${comment.user?.name}...`}
-                  value={replyText}
-                  onChange={(e) => setReplyText(e.target.value)}
-                  className="mb-2"
-                  minRows={2}
-                  size="sm"
-                />
-                <div className="flex gap-2">
-                  <Button
-                    size="sm"
-                    variant="light"
-                    onPress={() => {
-                      setReplyingTo(null);
-                      setReplyText("");
-                    }}
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    size="sm"
-                    color="primary"
-                    isLoading={submitting}
-                    onPress={() => handleSubmit(comment.id, replyText)}
-                  >
-                    Reply
-                  </Button>
-                </div>
-              </div>
-            )}
-
-            {/* Nested Replies */}
-            {hasReplies && (
-              <div className="mt-3">
-                {comment.replies.map(reply => (
-                  <CommentItem 
-                    key={reply.id} 
-                    comment={reply} 
-                    isReply={true}
-                    user={user}
-                    replyingTo={replyingTo}
-                    setReplyingTo={setReplyingTo}
-                    replyText={replyText}
-                    setReplyText={setReplyText}
-                    submitting={submitting}
-                    handleSubmit={handleSubmit}
-                    handleReport={handleReport}
-                  />
-                ))}
-              </div>
-            )}
-          </>
+        {/* Replies */}
+        {hasReplies && !isCollapsed && (
+          <div className="mt-3 border-l border-gray-200 pl-4">
+            {comment.replies.map((reply) => (
+              <CommentItem
+                key={reply.id}
+                comment={reply}
+                isReply
+                user={user}
+                replyingTo={replyingTo}
+                setReplyingTo={setReplyingTo}
+                replyText={replyText}
+                setReplyText={setReplyText}
+                submitting={submitting}
+                handleSubmit={handleSubmit}
+                handleReport={handleReport}
+              />
+            ))}
+          </div>
         )}
       </div>
     </div>
@@ -228,11 +250,11 @@ const Comment = ({ slug, resource = "events" }) => {
   const [replyingTo, setReplyingTo] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [selectedCommentId, setSelectedCommentId] = useState(null);
-  
-  const { 
-    isOpen: isReportOpen, 
-    onOpen: onReportOpen, 
-    onOpenChange: onReportOpenChange 
+
+  const {
+    isOpen: isReportOpen,
+    onOpen: onReportOpen,
+    onOpenChange: onReportOpenChange,
   } = useDisclosure();
   const [isReporting, setIsReporting] = useState(false);
 
@@ -241,7 +263,7 @@ const Comment = ({ slug, resource = "events" }) => {
     if (comments.length === 0) {
       setLoading(true);
     }
-    
+
     try {
       const res = await get_comments(resource, slug);
       if (res?.success) {
@@ -279,7 +301,7 @@ const Comment = ({ slug, resource = "events" }) => {
     try {
       const payload = {
         body: text,
-        parent_id: parentId
+        parent_id: parentId,
       };
 
       const res = await create_comment(resource, slug, payload);
@@ -296,7 +318,7 @@ const Comment = ({ slug, resource = "events" }) => {
         } else {
           setNewComment("");
         }
-        
+
         await fetchComments();
       } else {
         addToast({
@@ -325,7 +347,7 @@ const Comment = ({ slug, resource = "events" }) => {
 
   const submitReport = async (reason) => {
     if (!selectedCommentId) return;
-    
+
     setIsReporting(true);
     try {
       const res = await report_comment(selectedCommentId, { reason });
@@ -356,12 +378,8 @@ const Comment = ({ slug, resource = "events" }) => {
     <div className="bg-white rounded-lg border border-gray-200">
       <div className="px-4 py-3 border-b border-gray-200">
         <div className="flex items-center gap-2">
-          <h3 className="text-sm font-bold text-gray-900">
-            Comments
-          </h3>
-          <span className="text-xs text-gray-500">
-            ({comments.length})
-          </span>
+          <h3 className="text-sm font-bold text-gray-900">Comments</h3>
+          <span className="text-xs text-gray-500">({comments.length})</span>
         </div>
       </div>
 
@@ -369,7 +387,8 @@ const Comment = ({ slug, resource = "events" }) => {
         {user ? (
           <div className="mb-6">
             <div className="text-xs text-gray-500 mb-2">
-              Comment as <span className="text-blue-600 font-semibold">{user.name}</span>
+              Comment as{" "}
+              <span className="text-blue-600 font-semibold">{user.name}</span>
             </div>
             <Textarea
               placeholder="What are your thoughts?"
@@ -379,7 +398,7 @@ const Comment = ({ slug, resource = "events" }) => {
               minRows={3}
               classNames={{
                 input: "text-sm",
-                inputWrapper: "border-gray-300"
+                inputWrapper: "border-gray-300",
               }}
             />
             <div className="flex justify-end gap-2">
@@ -409,7 +428,6 @@ const Comment = ({ slug, resource = "events" }) => {
           </div>
         )}
 
-
         <div className="space-y-1">
           {loading ? (
             <div className="text-center py-8 text-gray-500 text-sm">
@@ -417,8 +435,8 @@ const Comment = ({ slug, resource = "events" }) => {
             </div>
           ) : comments.length > 0 ? (
             comments.map((comment) => (
-              <CommentItem 
-                key={comment.id} 
+              <CommentItem
+                key={comment.id}
                 comment={comment}
                 user={user}
                 replyingTo={replyingTo}
@@ -433,7 +451,9 @@ const Comment = ({ slug, resource = "events" }) => {
           ) : (
             <div className="text-center py-12">
               <div className="text-4xl mb-2">💬</div>
-              <p className="text-gray-900 font-medium text-sm">No Comments Yet</p>
+              <p className="text-gray-900 font-medium text-sm">
+                No Comments Yet
+              </p>
               <p className="text-gray-500 text-xs mt-1">
                 Be the first to share what you think!
               </p>
@@ -441,8 +461,8 @@ const Comment = ({ slug, resource = "events" }) => {
           )}
         </div>
       </div>
-      <ReportModal 
-        isOpen={isReportOpen} 
+      <ReportModal
+        isOpen={isReportOpen}
         onOpenChange={onReportOpenChange}
         onSubmit={submitReport}
         isSubmitting={isReporting}

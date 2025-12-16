@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { get_ratings, create_rating } from "@/Api/api";
-import { addToast, Button, Modal, ModalBody, ModalContent, ModalHeader, ModalFooter, useDisclosure } from "@heroui/react";
+import {
+  addToast,
+  Button,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  useDisclosure,
+} from "@heroui/react";
 import { Rating as SmastromRating } from "@smastrom/react-rating";
 import { useSelector } from "react-redux";
 
@@ -18,6 +27,8 @@ const Rating = ({ slug, resource = "events" }) => {
   const [title, setTitle] = useState("");
   const [review, setReview] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  // whether the logged-in user already submitted a rating for this resource
+  const [hasUserRated, setHasUserRated] = useState(false);
 
   const fetchRatings = async () => {
     if (!slug) return;
@@ -36,7 +47,8 @@ const Rating = ({ slug, resource = "events" }) => {
         setRatings(items);
 
         if (items.length > 0) {
-          const avgVal = items.reduce((p, c) => p + (c.rating || 0), 0) / items.length;
+          const avgVal =
+            items.reduce((p, c) => p + (c.rating || 0), 0) / items.length;
           setAvg(Number(avgVal.toFixed(1)));
           setCount(items.length);
         } else if (res?.average || res?.avg) {
@@ -56,6 +68,33 @@ const Rating = ({ slug, resource = "events" }) => {
     fetchRatings();
   }, [slug]);
 
+  // Recompute whether current user has already rated whenever ratings or user changes
+  useEffect(() => {
+    if (!user) {
+      setHasUserRated(false);
+      return;
+    }
+
+    const uId = user.id ?? user._id ?? user.email ?? user.name;
+
+    const found = ratings.some((r) => {
+      const ru = r.user ?? {};
+      // various possible id/email/name shapes returned by backend
+      const rId =
+        ru.id ??
+        ru._id ??
+        ru.user_id ??
+        ru.userId ??
+        ru.email ??
+        ru.name ??
+        r.user_id ??
+        r.userId;
+      return rId && uId && String(rId) === String(uId);
+    });
+
+    setHasUserRated(!!found);
+  }, [ratings, user]);
+
   const handleSubmit = async (onClose) => {
     if (!value || value < 1) {
       addToast({ title: "Please select a rating", color: "danger" });
@@ -66,17 +105,26 @@ const Rating = ({ slug, resource = "events" }) => {
       const payload = { rating: value, title, review };
       const res = await create_rating(resource, slug, payload);
       if (res?.success) {
-        addToast({ title: res.message || "Rating submitted", color: "success" });
+        addToast({
+          title: res.message || "Rating submitted",
+          color: "success",
+        });
         await fetchRatings();
         onClose();
         setValue(0);
         setTitle("");
         setReview("");
       } else {
-        addToast({ title: res?.error || "Failed to submit rating", color: "danger" });
+        addToast({
+          title: res?.error || "Failed to submit rating",
+          color: "danger",
+        });
       }
     } catch (err) {
-      addToast({ title: err?.response?.data?.message || err.message, color: "danger" });
+      addToast({
+        title: err?.response?.data?.message || err.message,
+        color: "danger",
+      });
     } finally {
       setSubmitting(false);
     }
@@ -99,50 +147,70 @@ const Rating = ({ slug, resource = "events" }) => {
     <div className="py-6">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-gray-900">Ratings & Reviews</h2>
-      
+        {user && !hasUserRated && (
+          <Button
+            color="primary"
+            onPress={onOpen}
+            size="sm"
+            className="font-semibold"
+          >
+            Write Review
+          </Button>
+        )}
       </div>
 
       {count > 0 ? (
         <>
-          <div className="flex gap-8 mb-8 pb-8 border-b border-gray-200">
-            <div className="flex flex-col items-center justify-center min-w-[200px]">
-              <div className="flex items-baseline gap-2 mb-2">
-                <span className="text-5xl font-bold text-gray-900">{avg.toFixed(1)}</span>
-                <span className="text-3xl text-gray-400">★</span>
+          {/* Compact Rating Summary */}
+          <div className="flex gap-6 mb-8 pb-6 border-b border-gray-200">
+            {/* Left side - Average Rating */}
+            <div className="flex flex-col items-center justify-center min-w-[120px]">
+              <div className="flex items-baseline gap-1 mb-1">
+                <span className="text-4xl font-bold text-gray-900">
+                  {avg.toFixed(1)}
+                </span>
+                <span className="text-2xl text-yellow-500">★</span>
               </div>
-              <div className="text-sm text-gray-600">
-                {count.toLocaleString()} Ratings &
+              <div className="text-xs text-gray-600">
+                {count.toLocaleString()} Ratings
               </div>
-              <div className="text-sm text-gray-600">
+              <div className="text-xs text-gray-600">
                 {ratings.length} Reviews
               </div>
             </div>
 
-            <div className="flex-1 flex flex-col justify-center gap-2">
+            {/* Right side - Star Distribution (Compact) */}
+            <div className="flex-1 flex flex-col justify-center gap-1.5 max-w-md">
               {[5, 4, 3, 2, 1].map((star) => {
                 const starCount = starDistribution[star];
                 const percentage = count > 0 ? (starCount / count) * 100 : 0;
-                
+
                 return (
-                  <div key={star} className="flex items-center gap-3">
-                    <div className="flex items-center gap-1 w-12">
-                      <span className="text-sm font-medium text-gray-700">{star}</span>
-                      <span className="text-yellow-500">★</span>
+                  <div key={star} className="flex items-center gap-2">
+                    <div className="flex items-center gap-0.5 w-8">
+                      <span className="text-xs font-medium text-gray-700">
+                        {star}
+                      </span>
+                      <span className="text-yellow-500 text-xs">★</span>
                     </div>
                     <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
                       <div
                         className={`h-full rounded-full transition-all duration-300 ${
-                          star === 5 ? 'bg-green-500' :
-                          star === 4 ? 'bg-green-400' :
-                          star === 3 ? 'bg-yellow-400' :
-                          star === 2 ? 'bg-orange-400' :
-                          'bg-red-400'
+                          star === 5
+                            ? "bg-green-500"
+                            : star === 4
+                            ? "bg-green-400"
+                            : star === 3
+                            ? "bg-yellow-400"
+                            : star === 2
+                            ? "bg-orange-400"
+                            : "bg-red-400"
                         }`}
                         style={{ width: `${percentage}%` }}
                       />
                     </div>
-                    <span className="text-sm text-gray-600 w-16 text-right">
-                      {starCount.toLocaleString()}
+                    <span className="text-xs text-gray-600 w-8 text-right">
+                      {starCount}
                     </span>
                   </div>
                 );
@@ -150,77 +218,52 @@ const Rating = ({ slug, resource = "events" }) => {
             </div>
           </div>
 
-          <div className="space-y-4">
+          {/* Reviews List */}
+          <div className="space-y-3">
             {ratings.map((rating, index) => {
               const ratingValue = Math.round(rating.rating);
               return (
-                <div key={index} className="border border-gray-200 rounded-lg p-5 bg-white hover:shadow-md transition-shadow">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex items-center gap-3">
-                      <div className={`px-3 py-1 rounded-md text-white font-bold text-sm ${
-                        ratingValue >= 4 ? 'bg-green-600' :
-                        ratingValue === 3 ? 'bg-yellow-500' :
-                        'bg-red-500'
-                      }`}>
-                        {rating.rating.toFixed(1)} ★
-                      </div>
-                      <div>
-                        <div className="font-semibold text-gray-900 text-base">
-                          {rating.title || EMOJI_LABELS[ratingValue - 1] || "Review"}
-                        </div>
-                      </div>
+                <div
+                  key={index}
+                  className="border-b border-gray-200 pb-3 last:border-b-0"
+                >
+                  {/* Rating Badge and Name */}
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="bg-gray-900 text-white px-2 py-0.5 rounded text-xs font-bold min-w-[32px] text-center">
+                      {rating.rating.toFixed(1)} ★
                     </div>
+                    <span className="font-semibold text-gray-900 text-sm">
+                      {rating.user?.name || "Anonymous User"}
+                    </span>
                   </div>
+
+                  {/* Review Title */}
+                  {rating.title && (
+                    <h4 className="font-medium text-gray-900 text-sm mb-1">
+                      {rating.title}
+                    </h4>
+                  )}
 
                   {/* Review Text */}
                   {rating.review && (
-                    <p className="text-gray-700 text-sm leading-relaxed mb-3">
+                    <p className="text-gray-700 text-sm leading-relaxed mb-2">
                       {rating.review}
                     </p>
                   )}
-
-                  <div className="flex items-center gap-2 text-xs text-gray-500">
-                    <span className="flex items-center gap-1">
-                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
-                      </svg>
-                      {rating.user?.name || "Anonymous User"}
-                    </span>
-                    {rating.verified && (
-                      <>
-                        <span>•</span>
-                        <span className="flex items-center gap-1 text-green-600">
-                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                          </svg>
-                          Certified Buyer
-                        </span>
-                      </>
-                    )}
-                    {rating.location && (
-                      <>
-                        <span>•</span>
-                        <span>{rating.location}</span>
-                      </>
-                    )}
-                    {rating.date && (
-                      <>
-                        <span>•</span>
-                        <span>{rating.date}</span>
-                      </>
-                    )}
+                  {/* {console.log(rating)} */}
+                  {/* Date */}
+                  <div className="text-xs text-gray-500">
+                    {/* {rating.created_at || "Recently"} */}
                   </div>
-
                 </div>
               );
             })}
           </div>
 
-          {/* View All Reviews Link */}
-          {ratings.length > 0 && (
-            <div className="mt-6 text-center">
+          {ratings.length > 3 && (
+            <div className="mt-4 text-center">
               <button className="text-blue-600 font-semibold text-sm hover:underline">
-                All {ratings.length} reviews
+                View all {ratings.length} reviews
               </button>
             </div>
           )}
@@ -228,14 +271,14 @@ const Rating = ({ slug, resource = "events" }) => {
       ) : (
         <div className="text-center py-12 bg-gray-50 rounded-xl border border-gray-200">
           <div className="text-5xl mb-4">📝</div>
-          <p className="text-gray-900 font-semibold text-lg mb-2">No reviews yet</p>
-          <p className="text-gray-500 text-sm mb-4">Be the first to share your experience!</p>
-          {user && (
-            <Button
-              color="primary"
-              onPress={onOpen}
-              className="font-semibold"
-            >
+          <p className="text-gray-900 font-semibold text-lg mb-2">
+            No reviews yet
+          </p>
+          <p className="text-gray-500 text-sm mb-4">
+            Be the first to share your experience!
+          </p>
+          {user && !hasUserRated && (
+            <Button color="primary" onPress={onOpen} className="font-semibold">
               Write First Review
             </Button>
           )}
@@ -249,28 +292,37 @@ const Rating = ({ slug, resource = "events" }) => {
         onOpenChange={onOpenChange}
         size="2xl"
         classNames={{
-          base: "bg-white",
-          backdrop: "bg-black/50 backdrop-blur-sm"
+          base: "bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-2xl",
+          backdrop: "bg-black/60 backdrop-blur-md",
         }}
       >
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1 border-b pb-4">
-                <h3 className="text-2xl font-bold text-gray-900">Share Your Experience</h3>
-                <p className="text-sm text-gray-500 font-normal">Your feedback helps others make informed decisions</p>
+              <ModalHeader className="flex flex-col gap-2 border-b border-gray-100 pb-5">
+                <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight">
+                  Share Your Experience
+                </h3>
+                <p className="text-sm text-gray-500 max-w-md">
+                  Your feedback helps others make informed decisions
+                </p>
+                <div className="w-12 h-1 bg-blue-600 rounded-full mt-1" />
               </ModalHeader>
-              <ModalBody className="py-6">
-                {/* Emoji Rating */}
-                <div className="mb-6">
-                  <div className="text-sm font-semibold text-gray-700 mb-3">How would you rate this?</div>
-                  <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 border-2 border-yellow-200">
-                    <div className="flex items-center justify-center gap-2">
+
+              <ModalBody className="py-6 space-y-6">
+                <div>
+                  <div className="text-sm font-semibold text-gray-700 mb-3">
+                    How would you rate this?
+                  </div>
+
+                  <div className="bg-white/70 backdrop-blur-xl rounded-3xl p-6 border border-yellow-200 shadow-inner">
+                    <div className="flex items-center justify-center gap-3">
                       {EMOJIS.map((emoji, i) => {
                         const idx = i + 1;
                         const activeIndex = hoverIndex || value;
                         const isActive = activeIndex >= idx;
                         const isSelected = value === idx;
+
                         return (
                           <button
                             key={i}
@@ -278,64 +330,81 @@ const Rating = ({ slug, resource = "events" }) => {
                             onClick={() => setValue(idx)}
                             onMouseEnter={() => setHoverIndex(idx)}
                             onMouseLeave={() => setHoverIndex(0)}
-                            className={`relative text-4xl p-3 rounded-2xl transition-all duration-200 cursor-pointer ${
-                              isSelected
-                                ? "bg-white shadow-lg scale-125 ring-4 ring-yellow-400"
-                                : isActive
-                                ? "bg-white/50 scale-110 shadow-md"
-                                : "hover:bg-white/30 hover:scale-105"
-                            }`}
+                            className={`relative text-4xl p-4 rounded-2xl transition-all duration-200
+                        ${
+                          isSelected
+                            ? "bg-white scale-125 shadow-xl ring-4 ring-yellow-400"
+                            : isActive
+                            ? "bg-white/80 scale-110 shadow-md"
+                            : "hover:bg-white/60 hover:scale-105"
+                        }`}
                           >
                             {emoji}
                           </button>
                         );
                       })}
                     </div>
-                    <div className="text-center mt-4">
-                      <div className="text-lg font-bold text-gray-800">
-                        {(hoverIndex || value) > 0 ? EMOJI_LABELS[(hoverIndex || value) - 1] : "Select a rating"}
+
+                    <div className="text-center mt-5">
+                      <div className="text-lg font-semibold text-gray-800">
+                        {(hoverIndex || value) > 0
+                          ? EMOJI_LABELS[(hoverIndex || value) - 1]
+                          : "Select a rating"}
                       </div>
-                      <div className="text-sm text-gray-600 mt-1">
-                        {(hoverIndex || value) > 0 ? `${hoverIndex || value} out of 5 stars` : ""}
-                      </div>
+                      {(hoverIndex || value) > 0 && (
+                        <div className="text-sm text-gray-600 mt-1">
+                          {hoverIndex || value} out of 5 stars
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
 
-                {/* Title Input */}
-                <div className="mb-4">
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Review Title</label>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Review Title
+                  </label>
                   <input
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    className="w-full border-2 border-gray-200 rounded-lg p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
-                    placeholder="Sum up your experience in a few words"
+                    placeholder="Sum up your experience"
+                    className="w-full rounded-xl border border-gray-200 bg-white/80 p-3
+              focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all outline-none"
                   />
                 </div>
 
-                {/* Review Textarea */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Your Review</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Your Review
+                  </label>
                   <textarea
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
-                    className="w-full border-2 border-gray-200 rounded-lg p-3 h-32 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none resize-none"
                     placeholder="Share details about your experience..."
+                    className="w-full h-36 resize-none rounded-xl border border-gray-200 bg-white/80 p-3
+              focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all outline-none"
                   />
-                  <div className="text-xs text-gray-500 mt-1">{review.length} characters</div>
+                  <div className="text-xs text-gray-500 mt-1">
+                    {review.length} characters
+                  </div>
                 </div>
               </ModalBody>
 
-              <ModalFooter className="border-t pt-4">
-                <Button color="" variant="flat" onPress={onClose} className="font-semibold">
+              <ModalFooter className="border-t border-gray-100 pt-5 flex gap-3">
+                <Button
+                  variant="flat"
+                  onPress={onClose}
+                  className="font-semibold text-gray-600 hover:bg-gray-100 rounded-xl"
+                >
                   Cancel
                 </Button>
+
                 <Button
                   color="primary"
                   isLoading={submitting}
                   onPress={() => handleSubmit(onClose)}
-                  className="font-semibold bg-gradient-to-r from-blue-600 to-blue-700"
+                  className="font-semibold px-8 rounded-xl shadow-lg"
                 >
                   {submitting ? "Submitting..." : "Submit Review"}
                 </Button>

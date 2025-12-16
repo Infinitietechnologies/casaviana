@@ -106,12 +106,34 @@ const BlogDetailPage = () => {
               })}
             </span>
           )}
+          {blog.category && (
+            <>
+              <span className="mx-2">•</span>
+              <span className="font-medium text-red-600 bg-red-50 px-2 py-0.5 rounded-full text-xs">
+                {blog.category.name}
+              </span>
+            </>
+          )}
         </div>
 
         <div
           className="prose prose-slate max-w-none prose-headings:text-slate-900 prose-p:text-slate-700"
           dangerouslySetInnerHTML={{ __html: blog.content || "" }}
         />
+
+        {/* Tags Section */}
+        {blog.tags && blog.tags.length > 0 && (
+          <div className="mt-8 flex flex-wrap gap-2">
+            {blog.tags.map((tag, index) => (
+              <span 
+                key={index}
+                className="px-3 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full hover:bg-gray-200 transition-colors"
+              >
+                #{tag}
+              </span>
+            ))}
+          </div>
+        )}
 
         <div className="mt-12 pt-8 border-t border-gray-200">
           <Rating slug={slug} resource="blog" />
