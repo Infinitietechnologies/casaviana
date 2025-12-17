@@ -3,35 +3,24 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import api from "../Api/interceptor";
 
-const TABS = ["Trending", "Comments", "Latest"];
-
 const LeftSidebar = () => {
-  const [activeTab, setActiveTab] = useState("Trending");
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [sortOrder, setSortOrder] = useState("desc");
 
-  const fetchForTab = async (tab) => {
+  const fetchTrendingEvents = async () => {
     setLoading(true);
     try {
-      let params = { per_page: 10, sort_order: "desc" };
-
-      if (tab === "Trending") {
-        params.sort_by = "trending_score";
-        params.sort_order = "desc";
-      } else if (tab === "Comments") {
-        params.sort_by = "comments_count";
-        params.sort_order = "desc";
-      } else if (tab === "Latest") {
-        params.sort_by = "created_at";
-        params.sort_order = sortOrder;
-      }
+      let params = { 
+        per_page: 10, 
+        sort_by: "trending_score",
+        sort_order: "desc" 
+      };
 
       const res = await api.get("/events", { params });
       const data = res?.data?.data ?? res?.data ?? [];
       setItems(Array.isArray(data) ? data : []);
     } catch (err) {
-      console.error("Error fetching events for tab", tab, err);
+      console.error("Error fetching trending events:", err);
       setItems([]);
     } finally {
       setLoading(false);
@@ -39,17 +28,8 @@ const LeftSidebar = () => {
   };
 
   useEffect(() => {
-    fetchForTab(activeTab);
-  }, [activeTab, sortOrder]);
-
-  const onTabClick = (tab) => {
-    if (tab === "Latest" && tab === activeTab) {
-      setSortOrder((s) => (s === "desc" ? "asc" : "desc"));
-    } else {
-      setActiveTab(tab);
-      if (tab === "Latest") setSortOrder("desc");
-    }
-  };
+    fetchTrendingEvents();
+  }, []);
 
   return (
     <div className="lg:col-span-2 lg:sticky lg:top-24 self-start p-2 sm:p-4 space-y-6">
@@ -63,26 +43,7 @@ const LeftSidebar = () => {
         />
       </div>
 
-      <div className="flex border-b border-gray-300">
-        {TABS.map((tab) => (
-          <button
-            key={tab}
-            onClick={() => onTabClick(tab)}
-            className={`flex-1 text-center py-2 text-sm font-semibold border-b-2 transition-colors cursor-pointer ${
-              activeTab === tab
-                ? "border-red-600 text-red-600"
-                : "border-transparent hover:border-red-600 hover:text-red-600"
-            }`}
-          >
-            {tab}
-            {tab === "Latest" && activeTab === "Latest" && (
-              <span className="ml-2 text-xs text-gray-500">
-                {sortOrder === "desc" ? "↓" : "↑"}
-              </span>
-            )}
-          </button>
-        ))}
-      </div>
+      <h3 className="text-lg font-semibold text-gray-900 mb-3">Trending</h3>
 
       <div className="space-y-2">
         {loading && <p className="text-sm text-gray-500">Loading...</p>}

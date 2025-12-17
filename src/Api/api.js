@@ -21,6 +21,23 @@ export const login = async ({ type = "username", username, email, password }) =>
   }
 };
 
+export const register = async ({ name, email, phone, password, password_confirmation }) => {
+  try {
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("password", password);
+    formData.append("password_confirmation", password_confirmation);
+
+    let response = await api.post("/auth/register", formData);
+    setAccessToken(response.data.token);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const logout = async () => {
   try {
     let response = await api.post("/auth/logout");

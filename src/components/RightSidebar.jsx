@@ -13,13 +13,11 @@ const RightSidebar = () => {
   };
 
   const handleRedirect = () => {
-    router.push("/posts");
+    router.push("/blogs");
   };
 
-  const [activeTab, setActiveTab] = useState("Trending");
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [sortOrder, setSortOrder] = useState("desc");
   const [menuItems, setMenuItems] = useState([]);
   const [categoriesLoading, setCategoriesLoading] = useState(false);
 
@@ -61,27 +59,20 @@ const RightSidebar = () => {
     }
   };
 
-  const fetchForTab = async (tab) => {
+  const fetchTrendingEvents = async () => {
     setLoading(true);
     try {
-      let params = { per_page: 10, sort_order: "desc" };
-
-      if (tab === "Trending") {
-        params.sort_by = "trending_score";
-        params.sort_order = "desc";
-      } else if (tab === "Comments") {
-        params.sort_by = "comments_count";
-        params.sort_order = "desc";
-      } else if (tab === "Latest") {
-        params.sort_by = "created_at";
-        params.sort_order = sortOrder;
-      }
+      let params = { 
+        per_page: 10, 
+        sort_by: "trending_score",
+        sort_order: "desc" 
+      };
 
       const res = await api.get("/events", { params });
       const data = res?.data?.data ?? res?.data ?? [];
       setItems(Array.isArray(data) ? data : []);
     } catch (err) {
-      console.error("Error fetching right sidebar events:", err);
+      console.error("Error fetching trending events:", err);
       setItems([]);
     } finally {
       setLoading(false);
@@ -90,12 +81,8 @@ const RightSidebar = () => {
 
   useEffect(() => {
     fetchDirectoryCategories();
+    fetchTrendingEvents();
   }, []);
-
-  useEffect(() => {
-    fetchForTab(activeTab);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeTab, sortOrder]);
 
   return (
     <div className="lg:col-span-2 lg:sticky lg:top-24 self-start p-4 bg-white z-20 space-y-6">
@@ -171,30 +158,8 @@ const RightSidebar = () => {
         </div>
       )}
 
-      <div className="flex border-b border-gray-300">
-        {["Trending", "Comments", "Latest"].map((tab) => (
-          <button
-            key={tab}
-            onClick={() => {
-              if (tab === activeTab && tab === "Latest")
-                setSortOrder((s) => (s === "desc" ? "asc" : "desc"));
-              else setActiveTab(tab);
-            }}
-            className={`flex-1 text-center py-2 text-sm font-semibold border-b-2 transition-colors cursor-pointer ${
-              activeTab === tab
-                ? "border-red-600 text-red-600"
-                : "border-transparent hover:border-red-600 hover:text-red-600"
-            }`}
-          >
-            {tab}
-            {tab === "Latest" && activeTab === "Latest" && (
-              <span className="ml-2 text-xs text-gray-500">
-                {sortOrder === "desc" ? "↓" : "↑"}
-              </span>
-            )}
-          </button>
-        ))}
-      </div>
+
+      <h3 className="text-lg font-semibold text-gray-900 mb-3 mt-6">Trending</h3>
 
       <div className="space-y-2">
         {loading && <p className="text-sm text-gray-500">Loading...</p>}

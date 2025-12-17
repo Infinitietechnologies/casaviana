@@ -1,4 +1,4 @@
-import { login } from "@/Api/api";
+import { login, register } from "@/Api/api";
 import { setLogin } from "@/store/authSlice";
 import {
   addToast,
@@ -10,6 +10,8 @@ import {
   ModalFooter,
   ModalHeader,
   useDisclosure,
+  Tabs,
+  Tab,
 } from "@heroui/react";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -18,9 +20,28 @@ const LoginModal = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const dispatch = useDispatch();
 
+  // Login state
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  
+  // Register state
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  
   const [loading, setLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState("login");
+
+  // Password visibility toggles
+  const [isLoginPasswordVisible, setIsLoginPasswordVisible] = useState(false);
+  const [isRegisterPasswordVisible, setIsRegisterPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+
+  const toggleLoginPasswordVisibility = () => setIsLoginPasswordVisible(!isLoginPasswordVisible);
+  const toggleRegisterPasswordVisibility = () => setIsRegisterPasswordVisible(!isRegisterPasswordVisible);
+  const toggleConfirmPasswordVisibility = () => setIsConfirmPasswordVisible(!isConfirmPasswordVisible);
 
   const handleLogin = async (onClose) => {
     try {
@@ -61,6 +82,67 @@ const LoginModal = () => {
     }
   };
 
+  const handleRegister = async (onClose) => {
+    try {
+      setLoading(true);
+
+      // Validation
+      if (!name || !email || !phone || !registerPassword || !confirmPassword) {
+        addToast({
+          title: "Please fill in all fields",
+          color: "warning",
+        });
+        return;
+      }
+
+      if (registerPassword !== confirmPassword) {
+        addToast({
+          title: "Passwords do not match",
+          color: "danger",
+        });
+        return;
+      }
+
+      const payload = {
+        name,
+        email,
+        phone,
+        password: registerPassword,
+        password_confirmation: confirmPassword,
+      };
+
+      const res = await register(payload);
+      const userPayload = res?.user || res?.data?.user || res;
+
+      if (typeof window !== "undefined") {
+        localStorage.setItem("user", JSON.stringify(userPayload));
+      }
+
+      dispatch(setLogin(userPayload));
+
+      addToast({
+        title: res?.message || "Registered successfully",
+        color: "success",
+      });
+
+      onClose();
+
+      // Reset form
+      setName("");
+      setEmail("");
+      setPhone("");
+      setRegisterPassword("");
+      setConfirmPassword("");
+    } catch (err) {
+      addToast({
+        title: err?.response?.data?.message || "Something went wrong",
+        color: "danger",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <Button color="primary" onPress={onOpen}>
@@ -71,25 +153,223 @@ const LoginModal = () => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Log in</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">
+                Welcome
+              </ModalHeader>
 
               <ModalBody>
-                <Input
-                  label="Username or Email"
-                  placeholder="Enter your username or email"
-                  variant="bordered"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
+                <Tabs
+                  selectedKey={activeTab}
+                  onSelectionChange={setActiveTab}
+                  aria-label="Login or Register"
+                  fullWidth
+                >
+                  <Tab key="login" title="Login">
+                    <div className="flex flex-col gap-4 mt-4">
+                      <Input
+                        label="Username or Email"
+                        placeholder="Enter your username or email"
+                        variant="bordered"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                      />
 
-                <Input
-                  label="Password"
-                  placeholder="Enter your password"
-                  type="password"
-                  variant="bordered"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                      <Input
+                        label="Password"
+                        placeholder="Enter your password"
+                        type={isLoginPasswordVisible ? "text" : "password"}
+                        variant="bordered"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        endContent={
+                          <button
+                            className="focus:outline-none"
+                            type="button"
+                            onClick={toggleLoginPasswordVisibility}
+                          >
+                            {isLoginPasswordVisible ? (
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={1.5}
+                                stroke="currentColor"
+                                className="w-5 h-5 text-gray-400"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88"
+                                />
+                              </svg>
+                            ) : (
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={1.5}
+                                stroke="currentColor"
+                                className="w-5 h-5 text-gray-400"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
+                                />
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                />
+                              </svg>
+                            )}
+                          </button>
+                        }
+                      />
+                    </div>
+                  </Tab>
+
+                  <Tab key="register" title="Register">
+                    <div className="flex flex-col gap-4 mt-4">
+                      <Input
+                        label="Name"
+                        placeholder="Enter your full name"
+                        variant="bordered"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        isRequired
+                      />
+
+                      <Input
+                        label="Email"
+                        placeholder="Enter your email"
+                        type="email"
+                        variant="bordered"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        isRequired
+                      />
+
+                      <Input
+                        label="Phone"
+                        placeholder="Enter your phone number"
+                        type="tel"
+                        variant="bordered"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        isRequired
+                      />
+
+                      <Input
+                        label="Password"
+                        placeholder="Enter your password"
+                        type={isRegisterPasswordVisible ? "text" : "password"}
+                        variant="bordered"
+                        value={registerPassword}
+                        onChange={(e) => setRegisterPassword(e.target.value)}
+                        isRequired
+                        endContent={
+                          <button
+                            className="focus:outline-none"
+                            type="button"
+                            onClick={toggleRegisterPasswordVisibility}
+                          >
+                            {isRegisterPasswordVisible ? (
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={1.5}
+                                stroke="currentColor"
+                                className="w-5 h-5 text-gray-400"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88"
+                                />
+                              </svg>
+                            ) : (
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={1.5}
+                                stroke="currentColor"
+                                className="w-5 h-5 text-gray-400"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
+                                />
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                />
+                              </svg>
+                            )}
+                          </button>
+                        }
+                      />
+
+                      <Input
+                        label="Confirm Password"
+                        placeholder="Confirm your password"
+                        type={isConfirmPasswordVisible ? "text" : "password"}
+                        variant="bordered"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        isRequired
+                        endContent={
+                          <button
+                            className="focus:outline-none"
+                            type="button"
+                            onClick={toggleConfirmPasswordVisibility}
+                          >
+                            {isConfirmPasswordVisible ? (
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={1.5}
+                                stroke="currentColor"
+                                className="w-5 h-5 text-gray-400"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88"
+                                />
+                              </svg>
+                            ) : (
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={1.5}
+                                stroke="currentColor"
+                                className="w-5 h-5 text-gray-400"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
+                                />
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                />
+                              </svg>
+                            )}
+                          </button>
+                        }
+                      />
+                    </div>
+                  </Tab>
+                </Tabs>
               </ModalBody>
 
               <ModalFooter>
@@ -97,13 +377,23 @@ const LoginModal = () => {
                   Close
                 </Button>
 
-                <Button
-                  color="primary"
-                  isLoading={loading}
-                  onPress={() => handleLogin(onClose)}
-                >
-                  Sign in
-                </Button>
+                {activeTab === "login" ? (
+                  <Button
+                    color="primary"
+                    isLoading={loading}
+                    onPress={() => handleLogin(onClose)}
+                  >
+                    Sign in
+                  </Button>
+                ) : (
+                  <Button
+                    color="primary"
+                    isLoading={loading}
+                    onPress={() => handleRegister(onClose)}
+                  >
+                    Register
+                  </Button>
+                )}
               </ModalFooter>
             </>
           )}

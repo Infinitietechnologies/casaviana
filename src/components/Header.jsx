@@ -15,6 +15,7 @@ const Header = () => {
   const [profileOpen, setProfileOpen] = useState(false);
   const dropdownRef = useRef(null);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const user = useSelector((state) => state.auth.user);
   const {
     isOpen: isLogoutOpen,
     onOpen: onLogoutOpen,
@@ -277,28 +278,20 @@ const Header = () => {
 
                 {/* Dropdown Menu */}
                 {profileOpen && (
-                  <div className="absolute right-0 top-14 w-48 bg-white text-gray-800 rounded-lg shadow-lg py-2 z-50">
-                    <div className="px-4 py-2 flex items-center gap-2 text-sm font-medium border-b">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.6}
-                        stroke="currentColor"
-                        className="w-4 h-4 text-orange-500"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M17.25 6.75V3.75a.75.75 0 00-.75-.75h-9a.75.75 0 00-.75.75v3a.75.75 0 01-.75.75H4.5a.75.75 0 00-.75.75v11.25A2.25 2.25 0 006 21h12a2.25 2.25 0 002.25-2.25V8.25a.75.75 0 00-.75-.75h-1.5a.75.75 0 01-.75-.75z"
-                        />
-                      </svg>
-                      30,00 AOA
+                  <div className="absolute right-0 top-14 w-56 bg-white text-gray-800 rounded-lg shadow-lg py-2 z-50">
+                    <div className="px-4 py-3 border-b">
+                      <p className="text-sm font-semibold text-gray-900">
+                        {user?.name || user?.username || "User"}
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        {user?.email || "No email"}
+                      </p>
                     </div>
 
                     <Link
                       href="/my-profile"
-                      className="px-4 py-2 flex items-center gap-2 text-sm hover:bg-gray-100"
+                      className="px-4 py-2.5 flex items-center gap-3 text-sm hover:bg-gray-100 transition"
+                      onClick={() => setProfileOpen(false)}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -306,39 +299,15 @@ const Header = () => {
                         viewBox="0 0 24 24"
                         strokeWidth={1.8}
                         stroke="currentColor"
-                        className="w-4 h-4 text-orange-500"
+                        className="w-5 h-5 text-orange-500"
                       >
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 
-              19.5a8.25 8.25 0 0115 0v.75a.75.75 
-              0 01-.75.75H5.25a.75.75 
-              0 01-.75-.75v-.75z"
+                          d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a8.25 8.25 0 0115 0v.75H4.5v-.75z"
                         />
                       </svg>
-                      Perfil
-                    </Link>
-
-                    <Link
-                      href="/"
-                      className="px-4 py-2 flex items-center gap-2 text-sm hover:bg-gray-100"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.8}
-                        stroke="currentColor"
-                        className="w-4 h-4 text-orange-500"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M16.5 8.25V3.75m0 0h-9v4.5m9-4.5l3.75 3.75M7.5 12h9m-9 4.5h9M6 21h12a2.25 2.25 0 002.25-2.25V8.25a.75.75 0 00-.75-.75H4.5a.75.75 0 00-.75.75v10.5A2.25 2.25 0 006 21z"
-                        />
-                      </svg>
-                      Pedidos
+                      Profile
                     </Link>
 
                     <button
@@ -346,7 +315,7 @@ const Header = () => {
                         setProfileOpen(false);
                         onLogoutOpen();
                       }}
-                      className="w-full text-left px-4 py-2 flex items-center gap-2 text-sm hover:bg-gray-100"
+                      className="w-full text-left px-4 py-2.5 flex items-center gap-3 text-sm hover:bg-gray-100 transition"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -354,15 +323,15 @@ const Header = () => {
                         viewBox="0 0 24 24"
                         strokeWidth={1.8}
                         stroke="currentColor"
-                        className="w-4 h-4 text-orange-500"
+                        className="w-5 h-5 text-red-500"
                       >
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          d="M15.75 9V5.25a.75.75 0 00-.75-.75h-6a.75.75 0 00-.75.75V9m6 6v3.75a.75.75 0 01-.75.75h-6a.75.75 0 01-.75-.75V15m9-3H3.75m0 0l3-3m-3 3l3 3"
+                          d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
                         />
                       </svg>
-                      Sair
+                      Logout
                     </button>
                   </div>
                 )}
@@ -412,28 +381,20 @@ const Header = () => {
 
                 {/* Mobile Dropdown Menu */}
                 {profileOpen && (
-                  <div className="absolute right-0 top-12 w-48 bg-white text-gray-800 rounded-lg shadow-lg py-2 z-50">
-                    <div className="px-4 py-2 flex items-center gap-2 text-sm font-medium border-b">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.6}
-                        stroke="currentColor"
-                        className="w-4 h-4 text-orange-500"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M17.25 6.75V3.75a.75.75 0 00-.75-.75h-9a.75.75 0 00-.75.75v3a.75.75 0 01-.75.75H4.5a.75.75 0 00-.75.75v11.25A2.25 2.25 0 006 21h12a2.25 2.25 0 002.25-2.25V8.25a.75.75 0 00-.75-.75h-1.5a.75.75 0 01-.75-.75z"
-                        />
-                      </svg>
-                      30,00 AOA
+                  <div className="absolute right-0 top-12 w-56 bg-white text-gray-800 rounded-lg shadow-lg py-2 z-50">
+                    <div className="px-4 py-3 border-b">
+                      <p className="text-sm font-semibold text-gray-900">
+                        {user?.name || user?.username || "User"}
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        {user?.email || "No email"}
+                      </p>
                     </div>
 
                     <Link
                       href="/my-profile"
-                      className="px-4 py-2 flex items-center gap-2 text-sm hover:bg-gray-100"
+                      className="px-4 py-2.5 flex items-center gap-3 text-sm hover:bg-gray-100 transition"
+                      onClick={() => setProfileOpen(false)}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -441,39 +402,15 @@ const Header = () => {
                         viewBox="0 0 24 24"
                         strokeWidth={1.8}
                         stroke="currentColor"
-                        className="w-4 h-4 text-orange-500"
+                        className="w-5 h-5 text-orange-500"
                       >
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 
-                      19.5a8.25 8.25 0 0115 0v.75a.75.75 
-                      0 01-.75.75H5.25a.75.75 
-                      0 01-.75-.75v-.75z"
+                          d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a8.25 8.25 0 0115 0v.75H4.5v-.75z"
                         />
                       </svg>
-                      Perfil
-                    </Link>
-
-                    <Link
-                      href=""
-                      className="px-4 py-2 flex items-center gap-2 text-sm hover:bg-gray-100"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.8}
-                        stroke="currentColor"
-                        className="w-4 h-4 text-orange-500"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M16.5 8.25V3.75m0 0h-9v4.5m9-4.5l3.75 3.75M7.5 12h9m-9 4.5h9M6 21h12a2.25 2.25 0 002.25-2.25V8.25a.75.75 0 00-.75-.75H4.5a.75.75 0 00-.75.75v10.5A2.25 2.25 0 006 21z"
-                        />
-                      </svg>
-                      Pedidos
+                      Profile
                     </Link>
 
                     <button
@@ -481,7 +418,7 @@ const Header = () => {
                         setProfileOpen(false);
                         onLogoutOpen();
                       }}
-                      className="w-full text-left px-4 py-2 flex items-center gap-2 text-sm hover:bg-gray-100"
+                      className="w-full text-left px-4 py-2.5 flex items-center gap-3 text-sm hover:bg-gray-100 transition"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -489,15 +426,15 @@ const Header = () => {
                         viewBox="0 0 24 24"
                         strokeWidth={1.8}
                         stroke="currentColor"
-                        className="w-4 h-4 text-orange-500"
+                        className="w-5 h-5 text-red-500"
                       >
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          d="M15.75 9V5.25a.75.75 0 00-.75-.75h-6a.75.75 0 00-.75.75V9m6 6v3.75a.75.75 0 01-.75.75h-6a.75.75 0 01-.75-.75V15m9-3H3.75m0 0l3-3m-3 3l3 3"
+                          d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
                         />
                       </svg>
-                      Sair
+                      Logout
                     </button>
                   </div>
                 )}

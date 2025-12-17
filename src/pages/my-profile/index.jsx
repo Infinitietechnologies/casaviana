@@ -6,12 +6,13 @@ import { useSelector } from "react-redux";
 const Profile = () => {
   const router = useRouter();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const user = useSelector((state) => state.auth.user);
 
   useEffect(() => {
     if (!isLoggedIn) {
       router.replace("/"); 
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, router]);
 
   const menuItems = [
     {
@@ -210,8 +211,10 @@ const Profile = () => {
             alt="avatar"
             className="w-20 h-20 rounded-full object-cover border-2 border-amber-500"
           />
-          <h3 className="mt-3 font-semibold text-gray-900">Support User</h3>
-          <p className="text-gray-500 text-sm">test@gmail.com</p>
+          <h3 className="mt-3 font-semibold text-gray-900">
+            {user?.name || user?.username || "User"}
+          </h3>
+          <p className="text-gray-500 text-sm">{user?.email || "No email"}</p>
         </div>
 
         <div className="mt-6 space-y-1">
@@ -234,12 +237,7 @@ const Profile = () => {
 
       {/* Profile Form */}
       <div className="flex-1 bg-white shadow-md rounded-xl p-6 md:p-10">
-        <div className="flex justify-between items-start">
-          <h2 className="text-lg font-semibold text-gray-900">My Profile</h2>
-          <button className="flex items-center gap-2 text-red-500 border border-red-200 hover:bg-red-50 px-4 py-2 rounded-lg text-sm font-medium transition">
-            Delete Account
-          </button>
-        </div>
+        <h2 className="text-lg font-semibold text-gray-900">My Profile</h2>
 
         {/* Avatar Section */}
         <div className="flex flex-col items-center mt-6">
@@ -249,7 +247,7 @@ const Profile = () => {
             className="w-36 h-36 rounded-full border-4 border-amber-500 object-cover"
           />
           <span className="mt-3 font-semibold text-gray-800 text-lg">
-            My Avatar
+            {user?.name || user?.username || "My Avatar"}
           </span>
         </div>
 
@@ -257,76 +255,43 @@ const Profile = () => {
         <form className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
-              User Name <span className="text-red-500">*</span>
+              Name <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
-              placeholder="Support User"
+              placeholder="Enter your name"
+              defaultValue={user?.name || ""}
               className="w-full px-4 py-2.5 rounded-md bg-gray-100 focus:ring-2 focus:ring-amber-500 outline-none"
+              readOnly
             />
           </div>
 
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Mobile <span className="text-red-500">*</span>
+              Username <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
-              placeholder="1212121212"
+              placeholder="Enter your username"
+              defaultValue={user?.username || ""}
               className="w-full px-4 py-2.5 rounded-md bg-gray-100 focus:ring-2 focus:ring-amber-500 outline-none"
+              readOnly
             />
           </div>
 
-          <div>
+          <div className="md:col-span-2">
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               Email <span className="text-red-500">*</span>
             </label>
             <input
               type="email"
-              placeholder="test@gmail.com"
+              placeholder="Enter your email"
+              defaultValue={user?.email || ""}
               className="w-full px-4 py-2.5 rounded-md bg-gray-100 focus:ring-2 focus:ring-amber-500 outline-none"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Old Password
-            </label>
-            <input
-              type="password"
-              placeholder="Enter old password"
-              className="w-full px-4 py-2.5 rounded-md bg-gray-100 focus:ring-2 focus:ring-amber-500 outline-none"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              New Password
-            </label>
-            <input
-              type="password"
-              placeholder="Enter new password"
-              className="w-full px-4 py-2.5 rounded-md bg-gray-100 focus:ring-2 focus:ring-amber-500 outline-none"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Confirm New Password
-            </label>
-            <input
-              type="password"
-              placeholder="Confirm new password"
-              className="w-full px-4 py-2.5 rounded-md bg-gray-100 focus:ring-2 focus:ring-amber-500 outline-none"
+              readOnly
             />
           </div>
         </form>
-
-        <div className="mt-8">
-          <button className="w-full bg-amber-500 hover:bg-amber-600 text-white py-3 rounded-md font-medium transition">
-            Save
-          </button>
-        </div>
       </div>
     </div>
   );
