@@ -15,10 +15,10 @@ const Header = () => {
   const [profileOpen, setProfileOpen] = useState(false);
   const dropdownRef = useRef(null);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const { 
-    isOpen: isLogoutOpen, 
-    onOpen: onLogoutOpen, 
-    onOpenChange: onLogoutOpenChange 
+  const {
+    isOpen: isLogoutOpen,
+    onOpen: onLogoutOpen,
+    onOpenChange: onLogoutOpenChange,
   } = useDisclosure();
 
   const dispatch = useDispatch();
@@ -42,30 +42,30 @@ const Header = () => {
   // Hydrate state from localStorage
   useEffect(() => {
     if (typeof window !== "undefined") {
-        const storedUser = localStorage.getItem("user");
-        const storedToken = localStorage.getItem("authToken"); // Ensure token matches interceptor key
-        
-        if (storedUser && storedToken) {
-            try {
-               const parsedUser = JSON.parse(storedUser);
-               dispatch(logoutAction()); // Reset first to be safe
-               // We need to re-set the token in the interceptor (although it initializes from localStorage, 
-               // redundant calls are safe and ensure sync if we ever change logic)
-               // Note: setAccessToken is not imported from interceptor directly but via api? 
-               // Actually api.js doesn't export setAccessToken. 
-               // We rely on interceptor initializing itself.
-               
-               // Dispatch login
-               // Dispatch login with delay to avoid 'insertBefore' hydration error
-               // similar to the fix in LoginModal.jsx
-               setTimeout(() => {
-                 dispatch(setLogin(parsedUser)); 
-               }, 100);
-            } catch (e) {
-                console.error("Failed to parse stored user", e);
-                localStorage.removeItem("user");
-            }
+      const storedUser = localStorage.getItem("user");
+      const storedToken = localStorage.getItem("authToken"); // Ensure token matches interceptor key
+
+      if (storedUser && storedToken) {
+        try {
+          const parsedUser = JSON.parse(storedUser);
+          dispatch(logoutAction()); // Reset first to be safe
+          // We need to re-set the token in the interceptor (although it initializes from localStorage,
+          // redundant calls are safe and ensure sync if we ever change logic)
+          // Note: setAccessToken is not imported from interceptor directly but via api?
+          // Actually api.js doesn't export setAccessToken.
+          // We rely on interceptor initializing itself.
+
+          // Dispatch login
+          // Dispatch login with delay to avoid 'insertBefore' hydration error
+          // similar to the fix in LoginModal.jsx
+          setTimeout(() => {
+            dispatch(setLogin(parsedUser));
+          }, 100);
+        } catch (e) {
+          console.error("Failed to parse stored user", e);
+          localStorage.removeItem("user");
         }
+      }
     }
   }, [dispatch]);
 
@@ -84,13 +84,13 @@ const Header = () => {
       });
     } catch (err) {
       // console.log("Logout failed:", err);
-       // Force client-side logout even if API fails
-       if (typeof window !== "undefined") {
+      // Force client-side logout even if API fails
+      if (typeof window !== "undefined") {
         localStorage.removeItem("user");
         localStorage.removeItem("authToken");
       }
       dispatch(logoutAction());
-       setProfileOpen(false);
+      setProfileOpen(false);
     }
   };
   return (
@@ -557,67 +557,83 @@ const Header = () => {
             : "max-h-0 py-0"
         }`}
       >
-        {["Início", "Serviços", "Eventos", "Reservar", "Contactos"].map(
-          (item, i) => (
-            <Link
-              key={i}
-              href={
-                item === "Início"
-                  ? "/"
-                  : item === "Eventos"
-                  ? "/events"
-                  : item === "Reservar"
-                  ? "/reserva"
-                  : "#"
-              }
-              className="text-lg font-medium hover:text-gray-200 transition py-2"
-            >
-              {item}
-            </Link>
-          )
-        )}
-        <div className="flex items-center gap-6 mt-2">
-          <Link href="" className="flex items-center gap-1 hover:text-gray-200">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.8}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M8 4l4 4 4-4m4 6v7.5A1.5 1.5 0 0118.5 19h-13A1.5 1.5 0 014 17.5V10A1.5 1.5 0 015.5 8.5h13A1.5 1.5 0 0120 10z"
-              />
-            </svg>
-            <span className="text-lg">TV</span>
+        {[
+          "Início",
+          "Serviços",
+          "Eventos",
+          "Reservar",
+          "Contactos",
+          "Blogs",
+        ].map((item, i) => (
+          <Link
+            key={i}
+            href={
+              item === "Início"
+                ? "/"
+                : item === "Eventos"
+                ? "/events"
+                : item === "Reservar"
+                ? "/reserva"
+                : item === "Blogs"
+                ? "/blogs"
+                : "#"
+            }
+            className="text-lg font-medium hover:text-gray-200 transition py-2"
+          >
+            {item}
           </Link>
-
-          <Link href="" className="flex items-center gap-1 hover:text-gray-200">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.8}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4.5 7.5l15-4.5M3 10.5v6.75A1.75 1.75 0 004.75 19h14.5A1.75 1.75 0 0021 17.25V10.5M6 14.25h.008v.008H6v-.008zm3 0h.008v.008H9v-.008zm3 0h.008v.008H12v-.008z"
-              />
-            </svg>
-            <span className="text-lg">Rádio</span>
+        ))}
+        <div className="flex items-center gap-6 mt-2">
+          <Link
+            href="#"
+            className="group relative flex flex-col items-center hover:text-gray-200"
+          >
+            <div className="flex flex-row items-center justify-center w-16 h-10 rounded-xl bg-red-700 hover:bg-red-800 transition-colors shadow-md">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.8}
+                stroke="currentColor"
+                className="w-6 h-6 mb-1"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M8 4l4 4 4-4m4 6v7.5A1.5 1.5 0 0118.5 19h-13A1.5 1.5 0 014 17.5V10A1.5 1.5 0 015.5 8.5h13A1.5 1.5 0 0120 10z"
+                />
+              </svg>
+              <span className="text-sm font-semibold">TV</span>
+            </div>
+          </Link>
+          <Link
+            href="#"
+            className="group relative flex flex-col items-center hover:text-gray-200"
+          >
+            <div className="flex flex-row items-center justify-center w-20 h-10 rounded-xl bg-red-700 hover:bg-red-800 transition-colors shadow-md">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.8}
+                stroke="currentColor"
+                className="w-6 h-6 mb-1"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4.5 7.5l15-4.5M3 10.5v6.75A1.75 1.75 0 004.75 19h14.5A1.75 1.75 0 0021 17.25V10.5M6 14.25h.008v.008H6v-.008zm3 0h.008v.008H9v-.008zm3 0h.008v.008H12v-.008z"
+                />
+              </svg>
+              <span className="text-sm font-semibold">Rádio</span>
+            </div>
           </Link>
         </div>
       </div>
-      <LogoutModal 
-        isOpen={isLogoutOpen} 
-        onOpenChange={onLogoutOpenChange} 
-        onConfirm={handleLogout} 
+      <LogoutModal
+        isOpen={isLogoutOpen}
+        onOpenChange={onLogoutOpenChange}
+        onConfirm={handleLogout}
       />
     </nav>
   );

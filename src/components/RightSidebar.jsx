@@ -20,6 +20,46 @@ const RightSidebar = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [sortOrder, setSortOrder] = useState("desc");
+  const [menuItems, setMenuItems] = useState([]);
+  const [categoriesLoading, setCategoriesLoading] = useState(false);
+
+  // Fetch directory categories
+  const fetchDirectoryCategories = async () => {
+    setCategoriesLoading(true);
+    try {
+      const res = await api.get("/categories", {
+        params: {
+          include: "children",
+          type: "directory",
+        },
+      });
+      const data = res?.data?.data ?? res?.data ?? [];
+      
+      // Filter only root categories (parent_id is null)
+      const rootCategories = Array.isArray(data)
+        ? data.filter((category) => category.parent_id === null)
+        : [];
+      
+      // Transform to match the existing menu structure
+      const transformedCategories = rootCategories.map((category) => ({
+        id: category.id,
+        name: category.name,
+        slug: category.slug,
+        sub: category.children?.map((child) => ({
+          id: child.id,
+          name: child.name,
+          slug: child.slug,
+        })) || [],
+      }));
+      
+      setMenuItems(transformedCategories);
+    } catch (err) {
+      console.error("Error fetching directory categories:", err);
+      setMenuItems([]);
+    } finally {
+      setCategoriesLoading(false);
+    }
+  };
 
   const fetchForTab = async (tab) => {
     setLoading(true);
@@ -28,6 +68,9 @@ const RightSidebar = () => {
 
       if (tab === "Trending") {
         params.sort_by = "trending_score";
+        params.sort_order = "desc";
+      } else if (tab === "Comments") {
+        params.sort_by = "comments_count";
         params.sort_order = "desc";
       } else if (tab === "Latest") {
         params.sort_by = "created_at";
@@ -46,42 +89,13 @@ const RightSidebar = () => {
   };
 
   useEffect(() => {
+    fetchDirectoryCategories();
+  }, []);
+
+  useEffect(() => {
     fetchForTab(activeTab);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab, sortOrder]);
-
-  const menuItems = [
-    {
-      name: "Aqui Acontece",
-      sub: ["Casamento", "Aniversários", "Eventos Empresariais"],
-    },
-    {
-      name: "Lá Fora",
-      sub: ["Concertos", "Famosos", "Lançamentos", "Night Life"],
-    },
-    {
-      name: "Destinos",
-      sub: ["Praias", "Resorts", "Restaurantes"],
-    },
-    {
-      name: "Em Forma",
-      sub: ["Ginásios", "Saúde", "Alimentação"],
-    },
-    {
-      name: "Clube da Cultura",
-      sub: [
-        "Cinemateca",
-        "Teatro",
-        "Karaoke",
-        "Dança",
-        "Cerâmica",
-        "Pintura",
-        "Escultura",
-        "Literatura",
-      ],
-    },
-    { name: "O Nosso SPORTING" },
-  ];
 
   return (
     <div className="lg:col-span-2 lg:sticky lg:top-24 self-start p-4 bg-white z-20 space-y-6">
@@ -89,67 +103,73 @@ const RightSidebar = () => {
         Directório
       </h2>
 
-      <div className="flex flex-col gap-2">
-        {menuItems.map((item, i) => (
-          <div
-            key={i}
-            className="relative group"
-            onMouseEnter={() => setOpenIndex(i)}
-            onMouseLeave={() => setOpenIndex(null)}
-          >
-            <button
-              onClick={() => toggleSubmenu(i)}
-              className="flex justify-between items-center bg-red-600 text-white font-semibold 
-                px-3 sm:px-4 py-2 rounded-md hover:bg-red-700 transition-colors 
-                text-xs sm:text-sm w-full text-left truncate"
+      {categoriesLoading ? (
+        <p className="text-sm text-gray-500">Loading categories...</p>
+      ) : (
+        <div className="flex flex-col gap-2">
+          {menuItems.map((item, i) => (
+            <div
+              key={item.id || i}
+              className="relative group"
+              onMouseEnter={() => setOpenIndex(i)}
+              onMouseLeave={() => setOpenIndex(null)}
             >
-              {item.name}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                className="w-3 h-3 ml-2"
+              <button
+                onClick={() => toggleSubmenu(i)}
+                className="flex justify-between items-center bg-red-600 text-white font-semibold 
+                  px-3 sm:px-4 py-2 rounded-md hover:bg-red-700 transition-colors 
+                  text-xs sm:text-sm w-full text-left truncate"
               >
-                <path
-                  fillRule="evenodd"
-                  d="M6.646 11.854a.5.5 0 0 0 .708 0l4.146-4.147a.5.5 0 0 0-.708-.707L7 10.793 3.207 6.999a.5.5 0 1 0-.708.707l4.147 4.148z"
-                />
-              </svg>
-            </button>
-
-            {item.sub && openIndex === i && (
-              <div
-                className="hidden lg:block absolute left-[-210px] top-0 bg-[#8c181a] text-white 
-                rounded-md p-2 w-52 z-50"
-              >
-                {item.sub.map((subItem, j) => (
-                  <div
-                    key={j}
-                    onClick={handleRedirect}
-                    className="px-3 py-2 hover:bg-red-800 rounded-md cursor-pointer text-sm whitespace-nowrap"
+                {item.name}
+                {item.sub && item.sub.length > 0 && (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    className="w-3 h-3 ml-2"
                   >
-                    {subItem}
-                  </div>
-                ))}
-              </div>
-            )}
+                    <path
+                      fillRule="evenodd"
+                      d="M6.646 11.854a.5.5 0 0 0 .708 0l4.146-4.147a.5.5 0 0 0-.708-.707L7 10.793 3.207 6.999a.5.5 0 1 0-.708.707l4.147 4.148z"
+                    />
+                  </svg>
+                )}
+              </button>
 
-            {item.sub && openIndex === i && (
-              <div className="lg:hidden bg-[#8c181a] text-white rounded-md p-2 mt-1 z-20">
-                {item.sub.map((subItem, j) => (
-                  <div
-                    key={j}
-                    onClick={handleRedirect}
-                    className="px-3 py-2 hover:bg-red-800 rounded-md cursor-pointer text-sm"
-                  >
-                    {subItem}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
+              {item.sub && item.sub.length > 0 && openIndex === i && (
+                <div
+                  className="hidden lg:block absolute left-[-210px] top-0 bg-[#8c181a] text-white 
+                  rounded-md p-2 w-52 z-50"
+                >
+                  {item.sub.map((subItem, j) => (
+                    <div
+                      key={subItem.id || j}
+                      onClick={handleRedirect}
+                      className="px-3 py-2 hover:bg-red-800 rounded-md cursor-pointer text-sm whitespace-nowrap"
+                    >
+                      {subItem.name}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {item.sub && item.sub.length > 0 && openIndex === i && (
+                <div className="lg:hidden bg-[#8c181a] text-white rounded-md p-2 mt-1 z-20">
+                  {item.sub.map((subItem, j) => (
+                    <div
+                      key={subItem.id || j}
+                      onClick={handleRedirect}
+                      className="px-3 py-2 hover:bg-red-800 rounded-md cursor-pointer text-sm"
+                    >
+                      {subItem.name}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
 
       <div className="flex border-b border-gray-300">
         {["Trending", "Comments", "Latest"].map((tab) => (

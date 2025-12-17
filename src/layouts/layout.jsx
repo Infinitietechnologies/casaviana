@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
 
       <Header />
 
-      <main className="mx-auto max-w-[1900px] px-4 min-h-[75vh] sm:px-6 md:px-4 flex-grow pt-0">
+      <main className="mx-auto max-w-[1900px] px-2 min-h-[75vh] sm:px-6 md:px-4 flex-grow pt-0">
         {children}
 
       </main>

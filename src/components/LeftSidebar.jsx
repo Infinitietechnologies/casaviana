@@ -19,6 +19,9 @@ const LeftSidebar = () => {
       if (tab === "Trending") {
         params.sort_by = "trending_score";
         params.sort_order = "desc";
+      } else if (tab === "Comments") {
+        params.sort_by = "comments_count";
+        params.sort_order = "desc";
       } else if (tab === "Latest") {
         params.sort_by = "created_at";
         params.sort_order = sortOrder;
@@ -85,7 +88,7 @@ const LeftSidebar = () => {
         {loading && <p className="text-sm text-gray-500">Loading...</p>}
 
         {!loading &&
-          items.slice(0, 4).map((news, i) => (
+          items?.slice(0, 4).map((news, i) => (
             <div
               key={news.id ?? i}
               className="flex items-center gap-3 p-1 hover:bg-gray-50 rounded-md transition-colors"
