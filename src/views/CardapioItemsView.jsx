@@ -12,7 +12,7 @@ import MenuItemModal from "@/components/Modals/MenuItemModal";
 
 const CardapioItemsView = () => {
   const router = useRouter();
-  const { slug } = router.query;
+  const { slug, menu_id } = router.query;
   const { t } = useTranslation();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -36,8 +36,8 @@ const CardapioItemsView = () => {
 
           if (foundCategory) {
             setCategory(foundCategory);
-            // Now fetch menu items for this category
-            const menuResponse = await get_menu_items(foundCategory.id);
+            // Now fetch menu items for this category and optionally this menu
+            const menuResponse = await get_menu_items(foundCategory.id, menu_id);
             if (menuResponse?.success && menuResponse?.data) {
               setMenuItems(menuResponse.data);
             }
@@ -51,7 +51,7 @@ const CardapioItemsView = () => {
     };
 
     fetchData();
-  }, [slug]);
+  }, [slug, menu_id]);
 
   const handleQuickView = (item) => {
     setSelectedItem(item);

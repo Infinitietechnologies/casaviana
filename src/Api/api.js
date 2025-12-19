@@ -134,11 +134,34 @@ export const get_restaurant_categories = async () => {
   }
 };
 
-export const get_menu_items = async (category_id = null) => {
+export const get_menus = async () => {
+  try {
+    const response = await api.get("/menus");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching menus:", error);
+    return { success: false, error: error.message };
+  }
+};
+
+export const get_menu_details = async (slug) => {
+  try {
+    const response = await api.get(`/menus/${slug}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching menu details:", error);
+    return { success: false, error: error.message };
+  }
+};
+
+export const get_menu_items = async (category_id = null, menu_id = null) => {
   try {
     const params = {};
     if (category_id) {
       params.category_id = category_id;
+    }
+    if (menu_id) {
+      params.menu_id = menu_id;
     }
     const response = await api.get("/menu-items", { params });
     return response.data;

@@ -2,50 +2,80 @@
 import LeftSidebar from "@/components/LeftSidebar";
 import RightSidebar from "@/components/RightSidebar";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import React, { useState, useEffect } from "react";
-import { get_restaurant_categories } from "@/Api/api";
+import { get_menus, get_menu_details } from "@/Api/api";
 import { CardapioCategoriesSkeleton } from "@/components/Skeletons/CardapioSkeletons";
 
 const CardapioView = () => {
   const router = useRouter();
   const { t } = useTranslation();
+  const [menus, setMenus] = useState([]);
+  const [selectedMenu, setSelectedMenu] = useState(null);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [categoriesLoading, setCategoriesLoading] = useState(false);
 
   useEffect(() => {
-    const fetchCategories = async () => {
+    const fetchMenus = async () => {
       try {
         setLoading(true);
-        const response = await get_restaurant_categories();
-        if (response?.success && response?.data?.children) {
-          // Filter only active categories and map to the required format
-          const activeCategories = response.data.children
-            .filter((cat) => cat.status === "active")
-            .map((cat) => ({
-              id: cat.id,
-              name: cat.name,
-              slug: cat.slug,
-              image: cat.image_url || "/cardapio/default.png",
-            }));
-          setCategories(activeCategories);
+        const response = await get_menus();
+        if (response?.success && Array.isArray(response.data)) {
+          // Show all menus for now as requested
+          const allMenus = response.data;
+          setMenus(allMenus);
+
+          // Find default menu, or pick the first one
+          const defaultMenu = allMenus.find((m) => m.is_default) || allMenus[0];
+          if (defaultMenu) {
+            setSelectedMenu(defaultMenu);
+          }
         }
       } catch (error) {
-        console.error("Error fetching categories:", error);
+        console.error("Error fetching menus:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchCategories();
+    fetchMenus();
   }, []);
 
-  const handleClick = (slug) => {
-    if (slug) {
-      router.push(`/cardapio/${slug}`);
+  useEffect(() => {
+    if (!selectedMenu) return;
+
+    const fetchCategories = async () => {
+      try {
+        setCategoriesLoading(true);
+        const response = await get_menu_details(selectedMenu.slug);
+        if (response?.success && response?.data?.categories) {
+          setCategories(response.data.categories);
+        } else {
+          setCategories([]);
+        }
+      } catch (error) {
+        console.error("Error fetching categories for menu:", error);
+        setCategories([]);
+      } finally {
+        setCategoriesLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, [selectedMenu]);
+
+  const handleClick = (category_slug) => {
+    if (category_slug && selectedMenu) {
+      router.push(`/cardapio/${category_slug}?menu_id=${selectedMenu.id}`);
+    } else if (category_slug) {
+      router.push(`/cardapio/${category_slug}`);
     }
+  };
+
+  const handleMenuSelect = (menu) => {
+    setSelectedMenu(menu);
   };
 
   if (loading) {
@@ -61,25 +91,32 @@ const CardapioView = () => {
           <LeftSidebar />
 
           <div className="lg:col-span-8 py-4 md:py-6 gap-6 flex flex-col items-center">
-            {/* Buttons Section */}
-            <div className="flex flex-col sm:flex-row justify-between items-center w-full px-4 md:px-6 mb-10 gap-3 sm:gap-0">
-              <Link href="/cardapio">
-                <button className="bg-red-600 text-white font-bold text-lg px-6 py-3 rounded-md shadow hover:bg-red-700 transition w-full sm:w-auto">
-                  {t("cardapio.casaViana")}
-                </button>
-              </Link>
-              <Link href="/dipanda-plaza">
-                <span className="bg-gray-400 text-white font-bold text-lg px-6 py-3 rounded-md shadow hover:bg-gray-500 transition w-full sm:w-auto">
-                  {t("cardapio.dipandaPlaza")}
-                </span>
-              </Link>
-            </div>
+            {/* Menus Section */}
+            {menus.length > 0 && (
+              <div className="flex flex-wrap justify-center items-center w-full px-4 md:px-6 mb-10 gap-3">
+                {menus.map((menu) => (
+                  <button
+                    key={menu.id}
+                    onClick={() => handleMenuSelect(menu)}
+                    className={`${
+                      selectedMenu?.id === menu.id ? "bg-red-600" : "bg-gray-400"
+                    } text-white font-bold text-lg px-6 py-3 rounded-md shadow hover:opacity-90 transition w-full sm:w-auto`}
+                  >
+                    {menu.name}
+                  </button>
+                ))}
+              </div>
+            )}
 
             {/* Categories Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-6 w-full px-4 max-w-[1400px] mx-auto">
-              {categories.length === 0 ? (
+              {categoriesLoading ? (
                 <div className="col-span-full text-center py-8">
-                  <p className="text-gray-600">{t("cardapio.noCategoriesAvailable")}</p>
+                  <p className="text-gray-600 font-semibold">{t("cardapio.loadingCategories")}</p>
+                </div>
+              ) : categories.length === 0 ? (
+                <div className="col-span-full text-center py-8">
+                  <p className="text-gray-600 font-semibold">{t("cardapio.noCategoriesAvailable")}</p>
                 </div>
               ) : (
                 categories.map((cat) => (
@@ -89,9 +126,9 @@ const CardapioView = () => {
                     className="flex flex-col items-center rounded transition cursor-pointer"
                   >
                     <div className="flex flex-col items-center w-full">
-                      <div className="w-full aspect-[4/3] overflow-hidden flex items-center justify-center">
+                      <div className="w-full aspect-[4/3] overflow-hidden flex items-center justify-center bg-gray-100 rounded">
                         <Image
-                          src={cat.image}
+                          src={cat.image || "/cardapio/default.png"}
                           alt={cat.name}
                           width={380}
                           height={192}
