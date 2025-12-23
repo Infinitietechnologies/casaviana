@@ -7,18 +7,26 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import Link from "next/link";
-import { get_events } from "@/Api/api";
+import { get_events, get_content_sections } from "@/Api/api";
 import RightSidebar from "@/components/RightSidebar";
 import LeftSidebar from "@/components/LeftSidebar";
 import Rating from "@/components/Rating/Rating";
+import { useDispatch, useSelector } from "react-redux";
+import { setSections, setLoading, setError } from "@/store/contentSectionsSlice";
+import { SectionSwiperSkeleton, TopSliderSkeleton } from "@/components/Skeletons/SwiperSkeletons";
 
 const Homepage = () => {
-  // Separate state for each Swiper instance
+  const dispatch = useDispatch();
+  const { sections, loading: sectionsLoading } = useSelector((state) => state.contentSections);
+  
+  // States for dynamic thumbnails - using an object to track them by section ID
+  const [thumbsSwipers, setThumbsSwipers] = useState({});
   const [thumbsSwiper1, setThumbsSwiper1] = useState(null);
-  const [thumbsSwiper2, setThumbsSwiper2] = useState(null);
-  const [thumbsSwiper3, setThumbsSwiper3] = useState(null);
-  const [thumbsSwiper4, setThumbsSwiper4] = useState(null);
-  const [thumbsSwiper5, setThumbsSwiper5] = useState(null);
+
+  const updateThumbsSwiper = (sectionId, swiper) => {
+    setThumbsSwipers(prev => ({ ...prev, [sectionId]: swiper }));
+  };
+
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggleSubmenu = (i) => {
@@ -63,75 +71,45 @@ const Homepage = () => {
     };
 
     fetchEvents();
+    
+    const fetchContentSections = async () => {
+      if (sections.length > 0) return;
+      
+      dispatch(setLoading(true));
+      try {
+        const res = await get_content_sections();
+        if (res?.success && Array.isArray(res.data)) {
+          dispatch(setSections(res.data));
+        }
+      } catch (err) {
+        dispatch(setError(err.message));
+      } finally {
+        dispatch(setLoading(false));
+      }
+    };
+
+    fetchContentSections();
+
+    // Handle scroll to hash on mount or when sections load
+    if (sections.length > 0 && typeof window !== "undefined" && window.location.hash) {
+      const id = window.location.hash.substring(1);
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 500);
+    }
+
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [dispatch, sections.length]);
 
-  const destaqueItems = [
-    "...",
-    "...",
-    "...",
-    "...",
-    "...",
-    "...",
-    "...",
-    "...",
-    "...",
-    "...",
-  ];
+  const topSection = sections?.[0];
+  const otherSections = sections?.slice(1);
 
-  const sliderImages = [
-    "/images/swiper1.jpeg",
-    "/images/swiper2.png",
-    "/images/swiper3.png",
-    "/images/swiper4.jpeg",
-    "/images/swiper5.jpg",
-    "/images/swiper6.png",
-    "/images/swiper7.jpg",
-  ];
-
-  const sliderCenterImages = [
-    "/images/hotel_swiper1.jpg",
-    "/images/hotel_swiper2.jpeg",
-    "/images/hotel_swiper3.jpeg",
-    "/images/hotel_swiper4.jpeg",
-    "/images/hotel_swiper5.jpeg",
-    "/images/hotel_swiper6.jpeg",
-  ];
-
-  const images = [
-    "/images/beverages1.jpeg",
-    "/images/beverages2.jpeg",
-    "/images/beverages3.png",
-    "/images/beverages4.jpeg",
-    "/images/beverages5.jpeg",
-    "/images/beverages6.jpeg",
-    "/images/beverages7.jpeg",
-    "/images/beverages8.jpeg",
-    "/images/beverages9.jpeg",
-    "/images/beverages10.jpeg",
-  ];
-
-  const hotelImages = [
-    "/images/hotel_swiper1.jpg",
-    "/images/hotel_swiper2.jpeg",
-    "/images/hotel_swiper3.jpeg",
-    "/images/hotel_swiper4.jpeg",
-    "/images/hotel_swiper5.jpeg",
-    "/images/hotel_swiper6.jpeg",
-    "/images/hotel_swiper7.jpeg",
-  ];
-
-  const singerImages = [
-    "/images/singer_swiper1.jpeg",
-    "/images/singer_swiper2.png",
-    "/images/singer_swiper3.jpeg",
-    "/images/singer_swiper4.jpeg",
-    "/images/singer_swiper5.jpeg",
-    "/images/singer_swiper6.jpeg",
-    "/images/singer_swiper7.png",
-  ];
+  const destaqueItems = Array.from({ length: 10 }).map((_, i) => "...");
 
   const menuItems = [
     {
@@ -211,60 +189,66 @@ const Homepage = () => {
             </Link>
           </div>
           <div className="lg:col-span-4">
-            <Swiper
-              spaceBetween={10}
-              navigation={true}
-              modules={[Navigation, Thumbs]}
-              thumbs={{
-                swiper:
-                  thumbsSwiper1 && !thumbsSwiper1.destroyed
-                    ? thumbsSwiper1
-                    : null,
-              }}
-              className="mainSwiper rounded-md overflow-hidden"
-            >
-              {sliderImages.map((img, i) => (
-                <SwiperSlide key={i}>
-                  <div className="relative w-full h-[200px] sm:h-[250px] md:h-[280px] lg:h-[260px]">
-                    <Image
-                      src={img}
-                      alt={`slide-${i}`}
-                      fill
-                      className="object-cover rounded-md"
-                    />
-                    <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-xs px-2 py-1 rounded">
-                      ESPAÇOS
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+            {sectionsLoading ? (
+              <TopSliderSkeleton />
+            ) : topSection ? (
+              <>
+                <Swiper
+                  spaceBetween={10}
+                  navigation={true}
+                  modules={[Navigation, Thumbs]}
+                  thumbs={{
+                    swiper:
+                      thumbsSwiper1 && !thumbsSwiper1.destroyed
+                        ? thumbsSwiper1
+                        : null,
+                  }}
+                  className="mainSwiper rounded-md overflow-hidden"
+                >
+                  {topSection.items?.map((item) => (
+                    <SwiperSlide key={item.id} id={item.slug}>
+                      <div className="relative w-full h-[200px] sm:h-[250px] md:h-[280px] lg:h-[260px]">
+                        <Image
+                          src={item.image || "/cardapio/default.png"}
+                          alt={item.title || "Top Slide"}
+                          fill
+                          className="object-cover rounded-md"
+                        />
+                        <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-xs px-2 py-1 rounded">
+                          {item.title || "ESPAÇOS"}
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
 
-            <Swiper
-              onSwiper={setThumbsSwiper1}
-              spaceBetween={8}
-              slidesPerView={4}
-              breakpoints={{
-                640: { slidesPerView: 5 },
-                768: { slidesPerView: 6 },
-              }}
-              watchSlidesProgress
-              modules={[Thumbs]}
-              className="thumbSwiper mt-2 sm:mt-3"
-            >
-              {sliderImages.map((img, i) => (
-                <SwiperSlide key={i}>
-                  <div className="relative w-full h-[50px] sm:h-[60px] md:h-[80px] cursor-pointer">
-                    <Image
-                      src={img}
-                      alt={`thumb-${i}`}
-                      fill
-                      className="object-cover rounded-md"
-                    />
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                <Swiper
+                  onSwiper={setThumbsSwiper1}
+                  spaceBetween={8}
+                  slidesPerView={4}
+                  breakpoints={{
+                    640: { slidesPerView: 5 },
+                    768: { slidesPerView: 6 },
+                  }}
+                  watchSlidesProgress
+                  modules={[Thumbs]}
+                  className="thumbSwiper mt-2 sm:mt-3"
+                >
+                  {topSection.items?.map((item) => (
+                    <SwiperSlide key={`thumb-${item.id}`}>
+                      <div className="relative w-full h-[50px] sm:h-[60px] md:h-[80px] cursor-pointer">
+                        <Image
+                          src={item.image || "/cardapio/default.png"}
+                          alt={`thumb-${item.title}`}
+                          fill
+                          className="object-cover rounded-md"
+                        />
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </>
+            ) : null}
           </div>
         </div>
       </div>
@@ -277,289 +261,99 @@ const Homepage = () => {
 
           {/* CENTER - All main content */}
           <div className="lg:col-span-8 py-4 md:py-6 gap-6">
-            {/* Original top center content */}
-            <div className="w-full gap-4 grid grid-cols-1 md:gap-6 relative overflow-hidden">
-              {/* Main Slider */}
-              <div className="w-full">
-                <Swiper
-                  slidesPerView={1}
-                  spaceBetween={10}
-                  navigation={true}
-                  modules={[Navigation, Thumbs]}
-                  thumbs={{
-                    swiper:
-                      thumbsSwiper2 && !thumbsSwiper2.destroyed
-                        ? thumbsSwiper2
-                        : null,
-                  }}
-                  className="mainSwiper overflow-hidden rounded-md"
-                >
-                  {sliderCenterImages.map((img, i) => (
-                    <SwiperSlide key={i}>
-                      <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-                        <Image
-                          src={img}
-                          alt={`slide-${i}`}
-                          fill
-                          className="object-cover"
-                        />
-                        <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-xs px-2 py-1">
-                          CASAMENTO
-                        </div>
-                      </div>
-                    </SwiperSlide>
+            {/* Dynamic Content Sections */}
+            {sectionsLoading ? (
+               <div className="w-full space-y-10">
+                  {Array.from({ length: 3 }).map((_, i) => (
+                    <SectionSwiperSkeleton key={i} />
                   ))}
-                </Swiper>
-              </div>
-
-              {/* Thumbnails */}
-              <div className="w-full">
-                <Swiper
-                  onSwiper={setThumbsSwiper2}
-                  spaceBetween={8}
-                  slidesPerView={3}
-                  breakpoints={{
-                    480: { slidesPerView: 4 },
-                    640: { slidesPerView: 5 },
-                    768: { slidesPerView: 6 },
-                  }}
-                  watchSlidesProgress
-                  modules={[Thumbs]}
-                  className="thumbSwiper mt-2 sm:mt-3"
-                >
-                  {sliderCenterImages.map((img, i) => (
-                    <SwiperSlide key={i}>
-                      <div className="relative w-full h-[60px] sm:h-[70px] md:h-[110px] cursor-pointer">
-                        <Image
-                          src={img}
-                          alt={`thumb-${i}`}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </div>
-
-              {/* Red Banner */}
-              <div className="mb-3 sm:mb-4 mt-2 sm:mt-3 w-full">
-                <Image
-                  src="/images/cms-image2.jpg"
-                  alt="Tigra Banner"
-                  width={1920}
-                  height={400}
-                  className="w-full h-auto object-cover rounded-md"
-                />
-              </div>
-            </div>
-
-            {/* BANNER AND BEVERAGE SLIDER */}
-            <div className="max-w-full pt-2 md:pt-3 pb-4 md:pb-6 w-full">
-              {/* Banner */}
-              <div className="mb-0">
-                {/* <Image
-                  src="/images/cms-image2.jpg"
-                  alt="Tigra Banner"
-                  width={1920}
-                  height={400}
-                  className="w-full h-auto object-cover rounded-md"
-                /> */}
-              </div>
-
-              {/* Main Image Slider */}
-              <div className="w-full">
-                {/* Main Slider 3 */}
-                <Swiper
-                  slidesPerView={1}
-                  spaceBetween={10}
-                  navigation={true}
-                  modules={[Navigation, Thumbs]}
-                  thumbs={{
-                    swiper:
-                      thumbsSwiper3 && !thumbsSwiper3.destroyed
-                        ? thumbsSwiper3
-                        : null,
-                  }}
-                  className="mainSwiper rounded-md overflow-hidden"
-                >
-                  {images.map((img, i) => (
-                    <SwiperSlide key={i}>
-                      <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-                        <Image
-                          src={img}
-                          alt={`slide-${i}`}
-                          fill
-                          className="object-cover rounded-md"
-                        />
-                        <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-xs px-2 py-1 rounded">
-                          CASAMENTO
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-
-                {/* Thumbnails */}
-                <Swiper
-                  onSwiper={setThumbsSwiper3}
-                  spaceBetween={8}
-                  slidesPerView={3}
-                  breakpoints={{
-                    480: { slidesPerView: 4 },
-                    640: { slidesPerView: 5 },
-                    768: { slidesPerView: 6 },
-                  }}
-                  watchSlidesProgress
-                  modules={[Thumbs]}
-                  className="thumbSwiper mt-2 sm:mt-3"
-                >
-                  {images.map((img, i) => (
-                    <SwiperSlide key={i}>
-                      <div className="relative w-full h-[60px] sm:h-[70px] md:h-[110px] cursor-pointer">
-                        <Image
-                          src={img}
-                          alt={`thumb-${i}`}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </div>
-
-              {/* Banner */}
-              <div className="mt-6 sm:mt-8 w-full">
-                <Image
-                  src="/images/saf.png"
-                  alt="Tigra Banner"
-                  width={1920}
-                  height={400}
-                  className="w-full h-auto object-cover rounded-md"
-                />
-              </div>
-            </div>
-
-            {/* HOTEL SLIDER */}
-            <div className="max-w-full py-4 md:py-8 w-full">
-              <Swiper
-                slidesPerView={1}
-                spaceBetween={10}
-                navigation={true}
-                modules={[Navigation, Thumbs]}
-                thumbs={{
-                  swiper:
-                    thumbsSwiper4 && !thumbsSwiper4.destroyed
-                      ? thumbsSwiper4
-                      : null,
-                }}
-                className="mainSwiper overflow-hidden rounded-md"
-              >
-                {hotelImages.map((img, i) => (
-                  <SwiperSlide key={i}>
-                    <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-                      <Image
-                        src={img}
-                        alt={`slide-${i}`}
-                        fill
-                        className="object-cover"
-                      />
-                      <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-xs px-2 py-1 rounded">
-                        CASAMENTO
-                      </div>
+               </div>
+            ) : (
+              otherSections?.map((section) => (
+                <div key={section.id} id={section.slug} className="w-full mb-10">
+                  {section.display_title && (
+                    <h2 className="bg-gradient-to-r from-orange-500 to-red-600 text-white text-base sm:text-lg md:text-xl text-center font-bold py-2 px-4 rounded-md mb-6">
+                      {section.display_title}
+                    </h2>
+                  )}
+                  
+                  <div className="w-full gap-4 grid grid-cols-1 md:gap-6 relative overflow-hidden">
+                    {/* Main Slider */}
+                    <div className="w-full">
+                      <Swiper
+                        slidesPerView={1}
+                        spaceBetween={10}
+                        navigation={true}
+                        modules={[Navigation, Thumbs]}
+                        thumbs={{
+                          swiper:
+                            thumbsSwipers[section.id] && !thumbsSwipers[section.id].destroyed
+                              ? thumbsSwipers[section.id]
+                              : null,
+                        }}
+                        className="mainSwiper overflow-hidden rounded-md"
+                      >
+                        {section.items?.map((item) => (
+                          <SwiperSlide key={item.id} id={item.slug}>
+                            <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+                              <Image
+                                src={item.image || "/cardapio/default.png"}
+                                alt={item.title || "Section Item"}
+                                fill
+                                className="object-cover rounded-md"
+                              />
+                              {item.title && (
+                                <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-xs px-2 py-1 rounded">
+                                  {item.title}
+                                </div>
+                              )}
+                              {item.cta_url && (
+                                <Link 
+                                  href={item.cta_url}
+                                  className="absolute top-2 right-2 bg-white/80 hover:bg-white text-red-600 text-xs px-3 py-1.5 rounded-full font-bold transition-all shadow-md"
+                                >
+                                  {item.cta_text || "Veja mais"}
+                                </Link>
+                              )}
+                            </div>
+                          </SwiperSlide>
+                        ))}
+                      </Swiper>
                     </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
 
-              <Swiper
-                onSwiper={setThumbsSwiper4}
-                spaceBetween={8}
-                slidesPerView={3}
-                breakpoints={{
-                  480: { slidesPerView: 4 },
-                  640: { slidesPerView: 5 },
-                  768: { slidesPerView: 6 },
-                }}
-                watchSlidesProgress
-                modules={[Thumbs]}
-                className="thumbSwiper mt-2 sm:mt-3"
-              >
-                {hotelImages.map((img, i) => (
-                  <SwiperSlide key={i}>
-                    <div className="relative w-full h-[60px] sm:h-[70px] md:h-[110px] cursor-pointer">
-                      <Image
-                        src={img}
-                        alt={`thumb-${i}`}
-                        fill
-                        className="object-cover"
-                      />
+                    {/* Thumbnails */}
+                    <div className="w-full">
+                      <Swiper
+                        onSwiper={(swiper) => updateThumbsSwiper(section.id, swiper)}
+                        spaceBetween={8}
+                        slidesPerView={3}
+                        breakpoints={{
+                          480: { slidesPerView: 4 },
+                          640: { slidesPerView: 5 },
+                          768: { slidesPerView: 6 },
+                        }}
+                        watchSlidesProgress
+                        modules={[Thumbs]}
+                        className="thumbSwiper mt-2 sm:mt-3"
+                      >
+                        {section.items?.map((item) => (
+                          <SwiperSlide key={`thumb-${item.id}`}>
+                            <div className="relative w-full h-[50px] sm:h-[70px] md:h-[100px] cursor-pointer">
+                              <Image
+                                src={item.image || "/cardapio/default.png"}
+                                alt={`thumb-${item.title}`}
+                                fill
+                                className="object-cover rounded-md"
+                              />
+                            </div>
+                          </SwiperSlide>
+                        ))}
+                      </Swiper>
                     </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
-
-            {/* SINGER SLIDER */}
-            <div className="max-w-full py-4 md:py-8 w-full">
-              <Swiper
-                slidesPerView={1}
-                spaceBetween={10}
-                navigation={true}
-                modules={[Navigation, Thumbs]}
-                thumbs={{
-                  swiper:
-                    thumbsSwiper5 && !thumbsSwiper5.destroyed
-                      ? thumbsSwiper5
-                      : null,
-                }}
-                className="mainSwiper overflow-hidden rounded-md"
-              >
-                {singerImages.map((img, i) => (
-                  <SwiperSlide key={i}>
-                    <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-                      <Image
-                        src={img}
-                        alt={`slide-${i}`}
-                        fill
-                        className="object-cover"
-                      />
-                      <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-xs px-2 py-1 rounded">
-                        CASAMENTO
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-
-              <Swiper
-                onSwiper={setThumbsSwiper5}
-                spaceBetween={8}
-                slidesPerView={3}
-                breakpoints={{
-                  480: { slidesPerView: 4 },
-                  640: { slidesPerView: 5 },
-                  768: { slidesPerView: 6 },
-                }}
-                watchSlidesProgress
-                modules={[Thumbs]}
-                className="thumbSwiper mt-2 sm:mt-3"
-              >
-                {singerImages.map((img, i) => (
-                  <SwiperSlide key={i}>
-                    <div className="relative w-full h-[60px] sm:h-[70px] md:h-[110px] cursor-pointer">
-                      <Image
-                        src={img}
-                        alt={`thumb-${i}`}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
 
           {/* RIGHT SIDE - DIRECTORY */}

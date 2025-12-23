@@ -111,9 +111,16 @@ const CardapioView = () => {
             {/* Categories Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-6 w-full px-4 max-w-[1400px] mx-auto">
               {categoriesLoading ? (
-                <div className="col-span-full text-center py-8">
-                  <p className="text-gray-600 font-semibold">{t("cardapio.loadingCategories")}</p>
-                </div>
+                Array.from({ length: 6 }).map((_, index) => (
+                  <div key={`skeleton-${index}`} className="flex flex-col items-center rounded transition">
+                    <div className="flex flex-col items-center w-full">
+                      <div className="w-full aspect-[4/3] overflow-hidden flex items-center justify-center bg-gray-200 rounded animate-pulse">
+                        <div className="w-full h-full bg-gray-300" />
+                      </div>
+                      <div className="mt-3 w-full h-6 bg-gray-300 rounded animate-pulse" />
+                    </div>
+                  </div>
+                ))
               ) : categories.length === 0 ? (
                 <div className="col-span-full text-center py-8">
                   <p className="text-gray-600 font-semibold">{t("cardapio.noCategoriesAvailable")}</p>

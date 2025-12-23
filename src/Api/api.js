@@ -246,3 +246,12 @@ export const report_comment = async (commentId, data) => {
     };
   }
 };
+export const get_content_sections = async () => {
+  try {
+    const response = await api.get("/content-sections");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching content sections:", error);
+    return { success: false, error: error.message };
+  }
+};

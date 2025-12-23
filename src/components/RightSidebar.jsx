@@ -2,15 +2,31 @@
 import Image from "next/image";
 import { RightSidebarSkeleton } from "./Skeletons/CommonSkeletons";
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
+import { useSelector } from "react-redux";
 import api from "../Api/interceptor";
 
 const RightSidebar = () => {
   const [openIndex, setOpenIndex] = useState(null);
   const router = useRouter();
+  const pathname = usePathname();
+  const { sections, loading: sectionsLoading } = useSelector((state) => state.contentSections);
 
   const toggleSubmenu = (i) => {
     setOpenIndex(openIndex === i ? null : i);
+  };
+
+  const handleSectionClick = (sectionSlug, itemSlug = null) => {
+    const targetId = itemSlug || sectionSlug;
+    
+    if (pathname === "/") {
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    } else {
+      router.push(`/#${targetId}`);
+    }
   };
 
   const handleRedirect = () => {
@@ -19,46 +35,6 @@ const RightSidebar = () => {
 
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [menuItems, setMenuItems] = useState([]);
-  const [categoriesLoading, setCategoriesLoading] = useState(false);
-
-  // Fetch directory categories
-  const fetchDirectoryCategories = async () => {
-    setCategoriesLoading(true);
-    try {
-      const res = await api.get("/categories", {
-        params: {
-          include: "children",
-          type: "directory",
-        },
-      });
-      const data = res?.data?.data ?? res?.data ?? [];
-      
-      // Filter only root categories (parent_id is null)
-      const rootCategories = Array.isArray(data)
-        ? data.filter((category) => category.parent_id === null)
-        : [];
-      
-      // Transform to match the existing menu structure
-      const transformedCategories = rootCategories.map((category) => ({
-        id: category.id,
-        name: category.name,
-        slug: category.slug,
-        sub: category.children?.map((child) => ({
-          id: child.id,
-          name: child.name,
-          slug: child.slug,
-        })) || [],
-      }));
-      
-      setMenuItems(transformedCategories);
-    } catch (err) {
-      console.error("Error fetching directory categories:", err);
-      setMenuItems([]);
-    } finally {
-      setCategoriesLoading(false);
-    }
-  };
 
   const fetchTrendingEvents = async () => {
     setLoading(true);
@@ -81,11 +57,10 @@ const RightSidebar = () => {
   };
 
   useEffect(() => {
-    fetchDirectoryCategories();
     fetchTrendingEvents();
   }, []);
 
-  if (categoriesLoading || loading) return <RightSidebarSkeleton />;
+  if (sectionsLoading || loading) return <RightSidebarSkeleton />;
 
   return (
     <div className="lg:col-span-2 lg:sticky lg:top-24 self-start p-4 bg-white z-20 space-y-6">
@@ -94,21 +69,21 @@ const RightSidebar = () => {
       </h2>
 
       <div className="flex flex-col gap-2">
-        {menuItems.map((item, i) => (
+        {sections.map((section, i) => (
           <div
-            key={item.id || i}
+            key={section.id || i}
             className="relative group"
             onMouseEnter={() => setOpenIndex(i)}
             onMouseLeave={() => setOpenIndex(null)}
           >
             <button
-              onClick={() => toggleSubmenu(i)}
+              onClick={() => handleSectionClick(section.slug)}
               className="flex justify-between items-center bg-red-600 text-white font-semibold 
                 px-3 sm:px-4 py-2 rounded-md hover:bg-red-700 transition-colors 
                 text-xs sm:text-sm w-full text-left truncate"
             >
-              {item.name}
-              {item.sub && item.sub.length > 0 && (
+              {section.internal_name}
+              {section.items && section.items.length > 0 && (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 16 16"
@@ -123,32 +98,32 @@ const RightSidebar = () => {
               )}
             </button>
 
-            {item.sub && item.sub.length > 0 && openIndex === i && (
+            {section.items && section.items.length > 0 && openIndex === i && (
               <div
                 className="hidden lg:block absolute left-[-210px] top-0 bg-[#8c181a] text-white 
                 rounded-md p-2 w-52 z-50"
               >
-                {item.sub.map((subItem, j) => (
+                {section.items.map((item, j) => (
                   <div
-                    key={subItem.id || j}
-                    onClick={handleRedirect}
+                    key={item.id || j}
+                    onClick={() => handleSectionClick(section.slug, item.slug)}
                     className="px-3 py-2 hover:bg-red-800 rounded-md cursor-pointer text-sm whitespace-nowrap"
                   >
-                    {subItem.name}
+                    {item.title}
                   </div>
                 ))}
               </div>
             )}
 
-            {item.sub && item.sub.length > 0 && openIndex === i && (
+            {section.items && section.items.length > 0 && openIndex === i && (
               <div className="lg:hidden bg-[#8c181a] text-white rounded-md p-2 mt-1 z-20">
-                {item.sub.map((subItem, j) => (
+                {section.items.map((item, j) => (
                   <div
-                    key={subItem.id || j}
-                    onClick={handleRedirect}
+                    key={item.id || j}
+                    onClick={() => handleSectionClick(section.slug, item.slug)}
                     className="px-3 py-2 hover:bg-red-800 rounded-md cursor-pointer text-sm"
                   >
-                    {subItem.name}
+                    {item.title}
                   </div>
                 ))}
               </div>
