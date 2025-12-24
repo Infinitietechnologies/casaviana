@@ -255,3 +255,41 @@ export const get_content_sections = async () => {
     return { success: false, error: error.message };
   }
 };
+
+export const update_profile = async ({ name, email, phone, profile_picture }) => {
+  try {
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    
+    // Only append profile_picture if it's a File object
+    if (profile_picture instanceof File) {
+      formData.append("profile_picture", profile_picture);
+    }
+
+    const response = await api.post("/auth/profile", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    return {
+      success: false,
+      error: error?.response?.data?.message || error.message,
+    };
+  }
+};
+
+// In your Api/api.js file, add:
+export const get_system_settings = async () => {
+  try {
+    const response = await api.get("/system-settings");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching system settings:", error);
+    return { success: false, error: error.message };
+  }
+};

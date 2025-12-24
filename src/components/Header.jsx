@@ -257,25 +257,13 @@ const Header = () => {
                 {/* Profile Icon */}
                 <div
                   onClick={() => setProfileOpen(!profileOpen)}
-                  className="w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full cursor-pointer transition"
+                  className="w-12 h-12 flex items-center justify-center rounded-full cursor-pointer transition overflow-hidden border-2 border-white/30 hover:border-white/50"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.8}
-                    stroke="currentColor"
-                    className="w-5 h-5 text-white"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 
-          19.5a8.25 8.25 0 0115 0v.75a.75.75 
-          0 01-.75.75H5.25a.75.75 
-          0 01-.75-.75v-.75z"
-                    />
-                  </svg>
+                  <img
+                    src={user?.profile_picture || "/images/avatar.png"}
+                    alt="Profile"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
 
                 {/* Dropdown Menu */}
@@ -312,6 +300,30 @@ const Header = () => {
                       Profile
                     </Link>
 
+                    <Link
+                      href="/"
+                      className="px-4 py-2.5 flex items-center gap-3 text-sm hover:bg-gray-100 transition"
+                      onClick={() => setProfileOpen(false)}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-5 h-5 text-orange-500"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M17 9V7a2 2 0 0 0-2-2H5a2 2 
+            0 0 0-2 2v10a2 2 0 0 0 2 
+            2h10a2 2 0 0 0 2-2v-2m4-3H9m0 
+            0 3-3m-3 3 3 3"
+                        />
+                      </svg>
+                      Transactions
+                    </Link>
                     <button
                       onClick={() => {
                         setProfileOpen(false);
@@ -360,25 +372,13 @@ const Header = () => {
                 {/* Profile icon */}
                 <div
                   onClick={() => setProfileOpen(!profileOpen)}
-                  className="w-9 h-9 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full cursor-pointer transition"
+                  className="w-9 h-9 flex items-center justify-center rounded-full cursor-pointer transition overflow-hidden border-2 border-white/30 hover:border-white/50"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.8}
-                    stroke="currentColor"
-                    className="w-5 h-5 text-white"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 
-                  19.5a8.25 8.25 0 0115 0v.75a.75.75 
-                  0 01-.75.75H5.25a.75.75 
-                  0 01-.75-.75v-.75z"
-                    />
-                  </svg>
+                  <img
+                    src={user?.profile_picture || "/images/avatar.png"}
+                    alt="Profile"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
 
                 {/* Mobile Dropdown Menu */}

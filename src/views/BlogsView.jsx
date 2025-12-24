@@ -85,16 +85,43 @@ const BlogsView = () => {
                       }
                     />
 
-                    <div className="p-4">
-                      <h3 className="font-semibold text-slate-900 mb-2 line-clamp-2">
-                        {post.title}
-                      </h3>
-
-                      {post.reading_time && (
-                        <span className="text-xs text-slate-500">
-                          {post.reading_time} min read
-                        </span>
+                    <div className="p-6 flex flex-col flex-grow">
+                      {post.category && (
+                        <Chip className="text-xs font-medium text-red-600 bg-red-50 mb-3">
+                          {post.category.name}
+                        </Chip>
                       )}
+
+                      <Link href={`/blogs/${post.slug}`}>
+                        <h3 className="text-xl font-bold text-slate-900 mb-2 hover:text-red-600 transition-colors">
+                          {post.title}
+                        </h3>
+                      </Link>
+
+                      <p className="text-slate-600 text-sm mb-4 line-clamp-3 flex-grow">
+                        {post.excerpt || "No excerpt available."}
+                      </p>
+
+                      <div className="flex items-center text-sm text-slate-500 mt-auto">
+                        {post.published_at && (
+                          <span>
+                            {new Date(post.published_at).toLocaleDateString(
+                              "en-US",
+                              {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                              }
+                            )}
+                          </span>
+                        )}
+                        {post.reading_time && (
+                          <>
+                            <span className="mx-2">•</span>
+                            <span>{post.reading_time} min read</span>
+                          </>
+                        )}
+                      </div>
                     </div>
                   </Link>
                 ))}

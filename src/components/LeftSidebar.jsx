@@ -46,7 +46,7 @@ const LeftSidebar = () => {
         />
       </div>
 
-      <h3 className="text-lg font-semibold text-gray-900 mb-3">Trending</h3>
+      <h3 className="text-lg font-semibold text-gray-900 mb-3">Eventos Destaques</h3>
 
       <div className="space-y-2">
         {items?.slice(0, 4).map((news, i) => (
