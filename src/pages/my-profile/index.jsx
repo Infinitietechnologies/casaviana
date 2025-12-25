@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSelector, useDispatch } from "react-redux";
+import Link from "next/link";
 import { update_profile } from "@/Api/api";
 import { updateProfile } from "@/store/authSlice";
 
@@ -112,6 +113,7 @@ const Profile = () => {
   const menuItems = [
     {
       name: "My Profile",
+      href: "/my-profile",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -131,6 +133,7 @@ const Profile = () => {
     },
     {
       name: "Orders",
+      href: "#",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -150,6 +153,7 @@ const Profile = () => {
     },
     {
       name: "Favorites",
+      href: "#",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -166,6 +170,7 @@ const Profile = () => {
     },
     {
       name: "Address",
+      href: "#",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -187,6 +192,7 @@ const Profile = () => {
     },
     {
       name: "Wallet",
+      href: "#",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -209,6 +215,7 @@ const Profile = () => {
     },
     {
       name: "Transactions",
+      href: "#",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -230,7 +237,28 @@ const Profile = () => {
       ),
     },
     {
+      name: "Payments",
+      href: "/payments",
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-5 h-5"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"
+          />
+        </svg>
+      ),
+    },
+    {
       name: "Chat",
+      href: "#",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -254,6 +282,7 @@ const Profile = () => {
     },
     {
       name: "Support tickets",
+      href: "#",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -275,6 +304,7 @@ const Profile = () => {
     },
     {
       name: "Refer & Earn",
+      href: "#",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -313,20 +343,24 @@ const Profile = () => {
         </div>
 
         <div className="mt-6 space-y-1">
-          {menuItems.map((item, index) => (
-            <button
-              key={index}
-              className={`w-full flex items-center justify-between text-gray-700 py-2.5 px-4 rounded-lg text-sm transition ${
-                index === 0 ? "bg-red-600 text-white" : ""
-              }`}
-            >
-              <div className="flex items-center gap-3">
-                {item.icon}
-                {item.name}
-              </div>
-              <span>›</span>
-            </button>
-          ))}
+          {menuItems.map((item, index) => {
+            const isActive = router.pathname === item.href || (index === 0 && router.pathname === "/my-profile");
+            return (
+              <Link
+                key={index}
+                href={item.href}
+                className={`w-full flex items-center justify-between py-2.5 px-4 rounded-lg text-sm transition ${
+                  isActive ? "bg-red-600 text-white" : "text-gray-700 hover:bg-gray-100"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  {item.icon}
+                  {item.name}
+                </div>
+                <span>›</span>
+              </Link>
+            );
+          })}
         </div>
       </aside>
 

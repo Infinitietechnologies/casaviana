@@ -293,3 +293,51 @@ export const get_system_settings = async () => {
     return { success: false, error: error.message };
   }
 };
+
+export const get_payments = async () => {
+  try {
+    const response = await api.get("/payments/list");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching payments:", error);
+    return { success: false, error: error.message };
+  }
+};
+
+export const initiate_payment = async ({ payable_type, payable_id, gateway }) => {
+  try {
+    const formData = new FormData();
+    formData.append("payable_type", payable_type);
+    formData.append("payable_id", payable_id);
+    formData.append("gateway", gateway);
+
+    const response = await api.post("/payments/initiate", formData);
+    return response.data;
+  } catch (error) {
+    console.error("Error initiating payment:", error);
+    return {
+      success: false,
+      error: error?.response?.data?.message || error.message,
+    };
+  }
+};
+
+export const upload_payment_proof = async (payment_id, proof_file) => {
+  try {
+    const formData = new FormData();
+    formData.append("proof", proof_file);
+
+    const response = await api.post(`/payments/${payment_id}/proof`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error uploading payment proof:", error);
+    return {
+      success: false,
+      error: error?.response?.data?.message || error.message,
+    };
+  }
+};

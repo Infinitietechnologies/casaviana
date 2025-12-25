@@ -21,5 +21,23 @@
     "addToCart": "Add to Cart",
     "noItemsFound": "No items found in this category",
     "categoryNotFound": "Category not found"
+  },
+  "payments": {
+    "title": "Payment History",
+    "subtitle": "View all your payment transactions",
+    "loading": "Loading payments...",
+    "noPayments": "No payments found",
+    "retry": "Retry",
+    "id": "ID",
+    "date": "Date",
+    "amount": "Amount",
+    "method": "Method",
+    "status": "Status",
+    "reference": "Reference",
+    "completed": "Completed",
+    "pending": "Pending",
+    "failed": "Failed",
+    "cancelled": "Cancelled",
+    "refunded": "Refunded"
   }
 }

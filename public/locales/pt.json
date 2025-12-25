@@ -21,5 +21,23 @@
     "addToCart": "Adicionar ao Carrinho",
     "noItemsFound": "Nenhum item encontrado nesta categoria",
     "categoryNotFound": "Categoria não encontrada"
+  },
+  "payments": {
+    "title": "Histórico de Pagamentos",
+    "subtitle": "Veja todas as suas transações de pagamento",
+    "loading": "Carregando pagamentos...",
+    "noPayments": "Nenhum pagamento encontrado",
+    "retry": "Tentar novamente",
+    "id": "ID",
+    "date": "Data",
+    "amount": "Valor",
+    "method": "Método",
+    "status": "Status",
+    "reference": "Referência",
+    "completed": "Concluído",
+    "pending": "Pendente",
+    "failed": "Falhou",
+    "cancelled": "Cancelado",
+    "refunded": "Reembolsado"
   }
 }

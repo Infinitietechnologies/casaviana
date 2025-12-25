@@ -1,8 +1,10 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { get_event, book_event } from "@/Api/api";
-import { addToast } from "@heroui/react";
+import { useSelector } from "react-redux";
+import { get_event, book_event, initiate_payment } from "@/Api/api";
+import { addToast, useDisclosure } from "@heroui/react";
 import dynamic from "next/dynamic";
+import PaymentInstructionsModal from "@/components/Modals/PaymentInstructionsModal";
 
 const Rating = dynamic(() => import("@/components/Rating/Rating"), {
   ssr: false,
@@ -31,6 +33,14 @@ const EventDetailsView = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [tickets, setTickets] = useState({});
   const [bookingLoading, setBookingLoading] = useState(false);
+  
+  // Payment Modal state
+  const { 
+    isOpen: isPaymentModalOpen, 
+    onOpen: onPaymentModalOpen, 
+    onClose: onPaymentModalClose 
+  } = useDisclosure();
+  const [paymentData, setPaymentData] = useState(null);
 
   useEffect(() => {
     if (!slug) return;
@@ -110,6 +120,34 @@ const EventDetailsView = () => {
     return total;
   };
 
+  const user = useSelector((state) => state.auth.user);
+
+  const initiatePaymentForBooking = async (bookingId) => {
+    console.log("Initiating payment for booking ID:", bookingId);
+    try {
+      const res = await initiate_payment({
+        payable_type: "event_booking",
+        payable_id: bookingId,
+        gateway: "bank_transfer",
+      });
+      
+      console.log("Payment initiation response:", res);
+      
+      if (res?.success) {
+        setPaymentData(res);
+        onPaymentModalOpen();
+      } else {
+        addToast({
+          title: "Erro ao iniciar pagamento",
+          description: res?.error || "Ocorreu um erro ao gerar os dados para pagamento.",
+          color: "danger"
+        });
+      }
+    } catch (error) {
+      console.error("Error initiating payment:", error);
+    }
+  };
+
   const handleBookEvent = async () => {
     if (!slug) {
       addToast({ title: "Evento inválido", color: "danger" });
@@ -155,6 +193,16 @@ const EventDetailsView = () => {
             title: res.message || "Ingresso reservado com sucesso",
             color: "success",
           });
+          
+          // Initiate payment for the successfully booked event
+          console.log("Booking response data:", res.data);
+          const bookingId = res.data?.booking_id || res.booking_id || (typeof res.data === 'number' || typeof res.data === 'string' ? res.data : null);
+          
+          if (bookingId) {
+            await initiatePaymentForBooking(bookingId);
+          } else {
+            console.error("No booking ID found in response:", res);
+          }
         } else {
           failCount += 1;
           addToast({
@@ -511,6 +559,11 @@ const EventDetailsView = () => {
           <Comment slug={slug} resource="event" />
         </div>
       </div>
+      <PaymentInstructionsModal 
+        isOpen={isPaymentModalOpen} 
+        onClose={onPaymentModalClose} 
+        paymentData={paymentData} 
+      />
     </div>
   );
 };
