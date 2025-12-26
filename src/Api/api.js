@@ -341,3 +341,26 @@ export const upload_payment_proof = async (payment_id, proof_file) => {
     };
   }
 };
+
+export const get_advertisements = async () => {
+  try {
+    const response = await api.get(`/advertisements`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching advertisements:", error);
+    return { success: false, error: error.response?.data?.message };
+  }
+};
+
+export const get_random_menu_items = async () => {
+  try {
+    const response = await api.get("/menu-items/random-list");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching random menu items:", error);
+    return {
+      success: false,
+      error: error.response?.data?.message || error.message,
+    };
+  }
+};

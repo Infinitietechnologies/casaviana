@@ -58,7 +58,11 @@ const RightSidebar = () => {
         (blog) => blog.is_featured || blog.featured
       );
 
-      setBlogs(featuredBlogs.length ? featuredBlogs : data);
+      const finalBlogs = featuredBlogs.length ? featuredBlogs : data;
+      setBlogs(finalBlogs);
+      try {
+        localStorage.setItem("featuredBlogs", JSON.stringify(finalBlogs));
+      } catch {}
     } catch (err) {
       console.error("Error fetching featured blogs:", err);
       setBlogs([]);
@@ -68,8 +72,18 @@ const RightSidebar = () => {
   };
 
   useEffect(() => {
-    fetchFeaturedBlogs();
-  }, []);
+    if (pathname === "/") {
+      fetchFeaturedBlogs();
+    } else {
+      try {
+        const cached = localStorage.getItem("featuredBlogs");
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          if (Array.isArray(parsed)) setBlogs(parsed);
+        }
+      } catch {}
+    }
+  }, [pathname]);
 
   if (sectionsLoading || loading) return <RightSidebarSkeleton />;
 
@@ -148,38 +162,35 @@ const RightSidebar = () => {
       </h3>
 
       <div className="space-y-2">
-  {blogs.length === 0 && (
-    <p className="text-sm text-gray-500">No featured blogs found.</p>
-  )}
+        {blogs.length === 0 && (
+          <p className="text-sm text-gray-500">No featured blogs found.</p>
+        )}
 
-  {blogs.slice(0, 4).map((blog, i) => (
-    <div
-      key={blog.id ?? i}
-      className="flex items-center gap-3 p-1 hover:bg-gray-50 rounded-md transition-colors cursor-pointer"
-      onClick={() => router.push(`/blogs/${blog.slug}`)}
-    >
-      <div className="w-16 h-16 overflow-hidden rounded-md border border-gray-200 flex-shrink-0 bg-gray-100">
-        <Image
-          src={blog.featured_image ?? "/images/swiper3.png"}
-          alt={blog.title}
-          width={64}
-          height={64}
-          className="object-cover w-full h-full"
-        />
+        {blogs.slice(0, 4).map((blog, i) => (
+          <div
+            key={blog.id ?? i}
+            className="flex items-center gap-3 p-1 hover:bg-gray-50 rounded-md transition-colors cursor-pointer"
+            onClick={() => router.push(`/blogs/${blog.slug}`)}
+          >
+            <div className="w-16 h-16 overflow-hidden rounded-md border border-gray-200 flex-shrink-0 bg-gray-100">
+              <Image
+                src={blog.featured_image ?? "/images/swiper3.png"}
+                alt={blog.title}
+                width={64}
+                height={64}
+                className="object-cover w-full h-full"
+              />
+            </div>
+
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-semibold text-gray-900 truncate">
+                {blog.title}
+              </p>
+              <p className="text-xs text-gray-500 truncate">{blog.excerpt}</p>
+            </div>
+          </div>
+        ))}
       </div>
-
-      <div className="flex-1 min-w-0">
-        <p className="text-sm font-semibold text-gray-900 truncate">
-          {blog.title}
-        </p>
-        <p className="text-xs text-gray-500">
-          {blog.published_at}
-        </p>
-      </div>
-    </div>
-  ))}
-</div>
-
     </div>
   );
 };

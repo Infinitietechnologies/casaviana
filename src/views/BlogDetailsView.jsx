@@ -21,6 +21,8 @@ const Comment = dynamic(() => import("@/components/Comment/Comment"), {
 });
 
 import { BlogDetailsSkeleton } from "@/components/Skeletons/BlogsSkeletons";
+import LeftSidebar from "@/components/LeftSidebar";
+import RightSidebar from "@/components/RightSidebar";
 
 const BlogDetailsView = () => {
   const router = useRouter();
@@ -80,7 +82,10 @@ const BlogDetailsView = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="max-w-7xl mx-auto px-4 lg:px-6 py-28">
+      <div className="mx-auto px-4 min-h-screen">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <LeftSidebar />
+          <div className="lg:col-span-8 py-28">
         {blog.featured_image && (
           <div className="mb-6 rounded overflow-hidden">
             <img
@@ -194,6 +199,9 @@ const BlogDetailsView = () => {
           <div className="mt-8">
             <Comment slug={slug} resource="blog" />
           </div>
+        </div>
+          </div>
+          <RightSidebar />
         </div>
       </div>
     </div>
