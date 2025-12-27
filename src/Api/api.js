@@ -45,6 +45,8 @@ export const logout = async () => {
   } catch (error) {
     // console.error("Error logging out:", error);
     throw error;
+  }finally {
+    setAccessToken(null); 
   }
 };
 

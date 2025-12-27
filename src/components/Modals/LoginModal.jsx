@@ -143,6 +143,20 @@ const LoginModal = () => {
     }
   };
 
+  // Handle Enter key press for login
+  const handleLoginKeyPress = (e, onClose) => {
+    if (e.key === "Enter" && !loading) {
+      handleLogin(onClose);
+    }
+  };
+
+  // Handle Enter key press for register
+  const handleRegisterKeyPress = (e, onClose) => {
+    if (e.key === "Enter" && !loading) {
+      handleRegister(onClose);
+    }
+  };
+
   return (
     <>
       <Button color="primary" onPress={onOpen}>
@@ -172,6 +186,7 @@ const LoginModal = () => {
                         variant="bordered"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
+                        onKeyPress={(e) => handleLoginKeyPress(e, onClose)}
                       />
 
                       <Input
@@ -181,6 +196,7 @@ const LoginModal = () => {
                         variant="bordered"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        onKeyPress={(e) => handleLoginKeyPress(e, onClose)}
                         endContent={
                           <button
                             className="focus:outline-none"
@@ -237,6 +253,7 @@ const LoginModal = () => {
                         variant="bordered"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        onKeyPress={(e) => handleRegisterKeyPress(e, onClose)}
                         isRequired
                       />
 
@@ -247,6 +264,7 @@ const LoginModal = () => {
                         variant="bordered"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        onKeyPress={(e) => handleRegisterKeyPress(e, onClose)}
                         isRequired
                       />
 
@@ -257,6 +275,7 @@ const LoginModal = () => {
                         variant="bordered"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
+                        onKeyPress={(e) => handleRegisterKeyPress(e, onClose)}
                         isRequired
                       />
 
@@ -267,6 +286,7 @@ const LoginModal = () => {
                         variant="bordered"
                         value={registerPassword}
                         onChange={(e) => setRegisterPassword(e.target.value)}
+                        onKeyPress={(e) => handleRegisterKeyPress(e, onClose)}
                         isRequired
                         endContent={
                           <button
@@ -321,6 +341,7 @@ const LoginModal = () => {
                         variant="bordered"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
+                        onKeyPress={(e) => handleRegisterKeyPress(e, onClose)}
                         isRequired
                         endContent={
                           <button
