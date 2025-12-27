@@ -364,3 +364,24 @@ export const get_random_menu_items = async () => {
     };
   }
 };
+
+export const get_booking = async (page = 1, perPage = 10, status = null) => {
+  try {
+    // Build query string manually
+    let queryString = `page=${page}&per_page=${perPage}`;
+    
+    // Add status filter if provided and not "all"
+    if (status && status !== "all") {
+      queryString += `&status=${status}`;
+    }
+    
+    const response = await api.get(`/bookings?${queryString}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching bookings:", error);
+    return {
+      success: false,
+      error: error.response?.data?.message || error.message,
+    };
+  }
+};

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import Link from "next/link";
@@ -6,6 +6,13 @@ import Link from "next/link";
 const ProfileSidebar = ({ currentPath = "/my-profile" }) => {
   const router = useRouter();
   const user = useSelector((state) => state.auth.user);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+    
+    useEffect(() => {
+      if (!isLoggedIn) {
+        router.replace("/");
+      }
+    }, [isLoggedIn, router]);
 
   const menuItems = [
     {
@@ -29,8 +36,8 @@ const ProfileSidebar = ({ currentPath = "/my-profile" }) => {
       ),
     },
     {
-      name: "Orders",
-      href: "#",
+      name: "Bookings",
+      href: "/bookings",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -237,7 +244,7 @@ const ProfileSidebar = ({ currentPath = "/my-profile" }) => {
               href={item.href}
               className={`w-full flex items-center justify-between py-2.5 px-4 rounded-lg text-sm transition ${
                 isActive
-                  ? "bg-amber-500 text-white"
+                  ? "bg-amber-500 font-white"
                   : "text-gray-700 hover:bg-gray-100"
               }`}
             >
