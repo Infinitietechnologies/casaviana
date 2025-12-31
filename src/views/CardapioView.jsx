@@ -88,9 +88,11 @@ const CardapioView = () => {
 
       <div className="mx-auto px-2 sm:px-4 md:px-8 lg:px-0 min-h-screen">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 relative min-h-screen">
-          <LeftSidebar />
+          <div className="lg:col-span-2 order-3 lg:order-1">
+            <LeftSidebar />
+          </div>
 
-          <div className="lg:col-span-8 py-4 md:py-6 gap-6 flex flex-col items-center">
+          <div className="lg:col-span-8 py-4 md:py-6 gap-6 flex flex-col items-center order-1 lg:order-2">
             {/* Menus Section */}
             {menus.length > 0 && (
               <div className="flex flex-wrap justify-center items-center w-full px-4 md:px-6 mb-10 gap-3">
@@ -152,7 +154,9 @@ const CardapioView = () => {
             </div>
           </div>
 
-          <RightSidebar />
+          <div className="lg:col-span-2 order-2 lg:order-3">
+             <RightSidebar />
+          </div>
         </div>
       </div>
     </>

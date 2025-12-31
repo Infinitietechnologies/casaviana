@@ -66,8 +66,10 @@ const CardapioItemsView = () => {
     return (
       <div className="mx-auto px-2 sm:px-4 md:px-8 lg:px-0 min-h-screen mt-20 sm:mt-20 mb-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 relative min-h-screen">
-          <LeftSidebar />
-          <div className="lg:col-span-8 py-4 md:py-6 gap-6 flex flex-col items-center bg-gradient-to-br from-orange-500 via-orange-600 to-red-600">
+          <div className="lg:col-span-2 order-3 lg:order-1">
+             <LeftSidebar />
+          </div>
+          <div className="lg:col-span-8 py-4 md:py-6 gap-6 flex flex-col items-center bg-gradient-to-br from-orange-500 via-orange-600 to-red-600 order-1 lg:order-2">
             <div className="w-full px-4 md:px-6 max-w-[1400px] mx-auto">
               <div className="text-center py-8">
                 <p className="text-white text-lg">
@@ -76,7 +78,9 @@ const CardapioItemsView = () => {
               </div>
             </div>
           </div>
-          <RightSidebar />
+          <div className="lg:col-span-2 order-2 lg:order-3">
+            <RightSidebar />
+          </div>
         </div>
       </div>
     );
@@ -85,9 +89,11 @@ const CardapioItemsView = () => {
   return (
     <div className="mx-auto px-2 sm:px-4 md:px-8 lg:px-0 min-h-screen mt-20 sm:mt-20 mb-4">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 relative min-h-screen">
-        <LeftSidebar />
+        <div className="lg:col-span-2 order-3 lg:order-1">
+           <LeftSidebar />
+        </div>
 
-        <div className="lg:col-span-8 py-4 md:py-6 gap-6 flex flex-col items-center bg-gradient-to-br from-orange-500 via-orange-600 to-red-600">
+        <div className="lg:col-span-8 py-4 md:py-6 gap-6 flex flex-col items-center bg-gradient-to-br from-orange-500 via-orange-600 to-red-600 order-1 lg:order-2">
           <div className="w-full px-4 md:px-6 max-w-[1400px] mx-auto">
             {/* Empty State */}
             {menuItems.length === 0 ? (
@@ -166,7 +172,9 @@ const CardapioItemsView = () => {
         </div>
 
         {/* Right Sidebar */}
-        <RightSidebar />
+        <div className="lg:col-span-2 order-2 lg:order-3">
+           <RightSidebar />
+        </div>
       </div>
 
       {/* Quick View Modal */}

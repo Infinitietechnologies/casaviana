@@ -5,6 +5,7 @@ import { get_event, book_event, initiate_payment } from "@/Api/api";
 import { addToast, useDisclosure } from "@heroui/react";
 import dynamic from "next/dynamic";
 import PaymentInstructionsModal from "@/components/Modals/PaymentInstructionsModal";
+import PaymentGatewayModal from "@/components/Modals/PaymentGatewayModal";
 
 const Rating = dynamic(() => import("@/components/Rating/Rating"), {
   ssr: false,
@@ -41,6 +42,14 @@ const EventDetailsView = () => {
     onClose: onPaymentModalClose 
   } = useDisclosure();
   const [paymentData, setPaymentData] = useState(null);
+
+  // Payment Gateway Selection Modal state
+  const {
+    isOpen: isGatewayModalOpen,
+    onOpen: onGatewayModalOpen,
+    onClose: onGatewayModalClose
+  } = useDisclosure();
+  const [pendingBookingId, setPendingBookingId] = useState(null);
 
   useEffect(() => {
     if (!slug) return;
@@ -115,21 +124,29 @@ const EventDetailsView = () => {
     let total = 0;
     event.ticket_types.forEach((ticket) => {
       const qty = tickets[ticket.id] || 0;
-      total += qty * getEffectivePrice(ticket);
+      const price = getEffectivePrice(ticket);
+      total += qty * price;
     });
     return total;
   };
 
   const user = useSelector((state) => state.auth.user);
 
-  const initiatePaymentForBooking = async (bookingId) => {
-    console.log("Initiating payment for booking ID:", bookingId);
+  const initiatePaymentForBooking = async (bookingId, gateway = "bank_transfer") => {
+    console.log("Initiating payment for booking ID:", bookingId, "Gateway:", gateway);
     try {
-      const res = await initiate_payment({
+      const paymentPayload = {
         payable_type: "event_booking",
         payable_id: bookingId,
-        gateway: "bank_transfer",
-      });
+        gateway: gateway,
+      };
+
+      // Add phone_number for Multicaixa
+      if (gateway === "multicaixa_express") {
+        paymentPayload.phone_number = "+916354340944"; // Static for now as per requirements
+      }
+
+      const res = await initiate_payment(paymentPayload);
       
       console.log("Payment initiation response:", res);
       
@@ -145,6 +162,18 @@ const EventDetailsView = () => {
       }
     } catch (error) {
       console.error("Error initiating payment:", error);
+      addToast({
+        title: "Erro ao iniciar pagamento",
+        description: "Ocorreu um erro ao processar o pagamento. Por favor, tente novamente.",
+        color: "danger"
+      });
+    }
+  };
+
+  const handleGatewaySelection = (gateway) => {
+    if (pendingBookingId) {
+      initiatePaymentForBooking(pendingBookingId, gateway);
+      setPendingBookingId(null);
     }
   };
 
@@ -194,12 +223,14 @@ const EventDetailsView = () => {
             color: "success",
           });
           
-          // Initiate payment for the successfully booked event
+          // Get booking ID and show gateway selection
           console.log("Booking response data:", res.data);
           const bookingId = res.data?.booking_id || res.booking_id || (typeof res.data === 'number' || typeof res.data === 'string' ? res.data : null);
           
           if (bookingId) {
-            await initiatePaymentForBooking(bookingId);
+            // Store booking ID and show gateway selection modal
+            setPendingBookingId(bookingId);
+            onGatewayModalOpen();
           } else {
             console.error("No booking ID found in response:", res);
           }
@@ -233,10 +264,10 @@ const EventDetailsView = () => {
     }
 
     if (successCount > 0 && failCount === 0) {
-      addToast({
-        title: `Reserva(s) concluída(s): ${successCount}`,
-        color: "success",
-      });
+      // addToast({
+      //   title: `Reserva(s) concluída(s): ${successCount}`,
+      //   color: "success",
+      // });
       // reset tickets selected
       const reset = {};
       Object.keys(tickets).forEach((id) => (reset[id] = 0));
@@ -563,6 +594,11 @@ const EventDetailsView = () => {
         isOpen={isPaymentModalOpen} 
         onClose={onPaymentModalClose} 
         paymentData={paymentData} 
+      />
+      <PaymentGatewayModal
+        isOpen={isGatewayModalOpen}
+        onClose={onGatewayModalClose}
+        onSelectGateway={handleGatewaySelection}
       />
     </div>
   );

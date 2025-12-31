@@ -257,10 +257,12 @@ const Homepage = () => {
       <div className=" mx-auto px-2 sm:px-4 md:px-8 lg:px-0 min-h-screen">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 relative min-h-screen">
           {/* LEFT SIDE - TRENDING / COMMENTS / LATEST */}
-          <LeftSidebar />
+          <div className="lg:col-span-2 order-3 lg:order-1">
+            <LeftSidebar />
+          </div>
 
           {/* CENTER - All main content */}
-          <div className="lg:col-span-8 py-4 md:py-6 gap-6">
+          <div className="lg:col-span-8 py-4 md:py-6 gap-6 order-1 lg:order-2">
             {/* Dynamic Content Sections */}
             {sectionsLoading ? (
                <div className="w-full space-y-10">
@@ -357,7 +359,9 @@ const Homepage = () => {
           </div>
 
           {/* RIGHT SIDE - DIRECTORY */}
-          <RightSidebar />
+          <div className="lg:col-span-2 order-2 lg:order-3">
+             <RightSidebar />
+          </div>
         </div>
       </div>
     </>

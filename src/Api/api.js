@@ -306,17 +306,33 @@ export const get_payments = async () => {
   }
 };
 
-export const initiate_payment = async ({ payable_type, payable_id, gateway }) => {
+export const initiate_payment = async ({ payable_type, payable_id, gateway, phone_number }) => {
   try {
     const formData = new FormData();
     formData.append("payable_type", payable_type);
     formData.append("payable_id", payable_id);
     formData.append("gateway", gateway);
+    if (phone_number) {
+      formData.append("phone_number", phone_number);
+    }
 
     const response = await api.post("/payments/initiate", formData);
     return response.data;
   } catch (error) {
     console.error("Error initiating payment:", error);
+    return {
+      success: false,
+      error: error?.response?.data?.message || error.message,
+    };
+  }
+};
+
+export const check_payment_status = async (reference) => {
+  try {
+    const response = await api.get(`/payments/${reference}/status`);
+    return response.data;
+  } catch (error) {
+    console.error("Error checking payment status:", error);
     return {
       success: false,
       error: error?.response?.data?.message || error.message,
@@ -384,6 +400,62 @@ export const get_booking = async (page = 1, perPage = 10, status = null) => {
     return {
       success: false,
       error: error.response?.data?.message || error.message,
+    };
+  }
+};
+
+export const get_booking_details = async (booking_number) => {
+  try {
+    const response = await api.get(`/bookings/${booking_number}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching booking details:", error);
+    return {
+      success: false,
+      error: error.response?.data?.message || error.message,
+    };
+  }
+};
+
+export const add_to_cart = async (menu_item_id, quantity = 1) => {
+  try {
+    const formData = new FormData();
+    formData.append("menu_item_id", menu_item_id);
+    formData.append("quantity", quantity);
+
+    const response = await api.post("/cart", formData);
+    return response.data;
+  } catch (error) {
+    console.error("Error adding to cart:", error);
+    return {
+      success: false,
+      error: error?.response?.data?.message || error.message,
+    };
+  }
+};
+
+export const get_cart = async () => {
+  try {
+    const response = await api.get("/cart");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching cart:", error);
+    return {
+      success: false,
+      error: error?.response?.data?.message || error.message,
+    };
+  }
+};
+
+export const delete_cart = async () => {
+  try {
+    const response = await api.delete("/cart");
+    return response.data;
+  } catch (error) {
+    console.error("Error clearing cart:", error);
+    return {
+      success: false,
+      error: error?.response?.data?.message || error.message,
     };
   }
 };

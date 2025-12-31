@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import {
@@ -9,10 +9,49 @@ import {
   ModalBody,
   ModalFooter,
   Button,
+  addToast,
 } from "@heroui/react";
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "@/store/cartSlice";
+import { add_to_cart } from "@/Api/api";
 
 const MenuItemModal = ({ isOpen, onOpenChange, selectedItem }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const [addingToCart, setAddingToCart] = useState(false);
+
+  const handleAddToCart = async () => {
+    if (!selectedItem?.id) return;
+
+    setAddingToCart(true);
+    try {
+      const response = await add_to_cart(selectedItem.id, 1);
+      if (response?.success) {
+        dispatch(addItemToCart(response));
+        addToast({
+          title: "Item adicionado ao carrinho",
+          description: response.message || "Item adicionado com sucesso!",
+          color: "success",
+        });
+        onOpenChange(false);
+      } else {
+        addToast({
+          title: "Erro",
+          description: response?.error || "Erro ao adicionar item ao carrinho",
+          color: "danger",
+        });
+      }
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      addToast({
+        title: "Erro",
+        description: "Erro ao adicionar item ao carrinho",
+        color: "danger",
+      });
+    } finally {
+      setAddingToCart(false);
+    }
+  };
 
   return (
     <Modal
@@ -170,10 +209,12 @@ const MenuItemModal = ({ isOpen, onOpenChange, selectedItem }) => {
                   {selectedItem.is_available && (
                     <Button
                       color="primary"
-                      onPress={onClose}
+                      onPress={handleAddToCart}
                       className="bg-red-600 text-white"
+                      isLoading={addingToCart}
+                      isDisabled={addingToCart}
                     >
-                      {t("cardapio.addToCart")}
+                      {addingToCart ? "Adicionando..." : t("cardapio.addToCart")}
                     </Button>
                   )}
                 </ModalFooter>

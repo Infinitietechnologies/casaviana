@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout as logoutAction, setLogin } from "@/store/authSlice";
 import { logout } from "@/Api/api";
 import { addToast, useDisclosure } from "@heroui/react";
+import CartOffcanvas from "./CartOffcanvas";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,10 +17,16 @@ const Header = () => {
   const dropdownRef = useRef(null);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const user = useSelector((state) => state.auth.user);
+  const cartTotalQuantity = useSelector((state) => state.cart.totalQuantity);
   const {
     isOpen: isLogoutOpen,
     onOpen: onLogoutOpen,
     onOpenChange: onLogoutOpenChange,
+  } = useDisclosure();
+  const {
+    isOpen: isCartOpen,
+    onOpen: onCartOpen,
+    onClose: onCartClose,
   } = useDisclosure();
 
   const dispatch = useDispatch();
@@ -95,14 +102,15 @@ const Header = () => {
     }
   };
   return (
-    <nav
-      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 border-b
-        ${
-          isScrolled
-            ? "backdrop-blur-md bg-red-600/60 border-white/20 shadow-lg"
-            : "bg-red-600 border-transparent"
-        }`}
-    >
+    <>
+      <nav
+        className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 border-b
+          ${
+            isScrolled
+              ? "backdrop-blur-md bg-red-600/60 border-white/20 shadow-lg"
+              : "bg-red-600 border-transparent"
+          }`}
+      >
       <div className="max-w-[1900px] mx-auto flex items-center justify-between h-20 px-4 md:px-6">
         {/* LEFT LOGOS */}
         <div className="flex items-center gap-2">
@@ -240,18 +248,25 @@ const Header = () => {
             </Link>
 
             {/* Cart */}
-            <div className="relative">
-              <Image
-                src="/images/online-shopping.png"
-                alt="Cart"
-                width={30}
-                height={30}
-                className="invert"
-              />
-              <span className="absolute -top-1 -right-2 bg-red-800 text-white text-xs rounded-full px-1.5">
-                0
-              </span>
-            </div>
+            {isLoggedIn && (
+              <button
+                onClick={onCartOpen}
+                className="relative cursor-pointer"
+              >
+                <Image
+                  src="/images/online-shopping.png"
+                  alt="Cart"
+                  width={30}
+                  height={30}
+                  className="invert"
+                />
+                {cartTotalQuantity > 0 && (
+                  <span className="absolute -top-1 -right-2 bg-red-800 text-white text-xs rounded-full px-1.5 min-w-[20px] text-center">
+                    {cartTotalQuantity}
+                  </span>
+                )}
+              </button>
+            )}
             {isLoggedIn ? (
               <>
                 {/* Profile Icon */}
@@ -589,12 +604,14 @@ const Header = () => {
           </Link>
         </div>
       </div>
+      </nav>
       <LogoutModal
         isOpen={isLogoutOpen}
         onOpenChange={onLogoutOpenChange}
         onConfirm={handleLogout}
       />
-    </nav>
+      <CartOffcanvas isOpen={isCartOpen} onClose={onCartClose} />
+    </>
   );
 };
 
