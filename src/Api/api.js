@@ -4,9 +4,9 @@ export const login = async ({ type = "username", username, email, password }) =>
   try {
     const formData = new FormData();
     if (type === "email") {
-        formData.append("email", email);
+      formData.append("email", email);
     } else {
-        formData.append("username", username);
+      formData.append("username", username);
     }
     formData.append("password", password);
     formData.append("type", type);
@@ -45,8 +45,8 @@ export const logout = async () => {
   } catch (error) {
     // console.error("Error logging out:", error);
     throw error;
-  }finally {
-    setAccessToken(null); 
+  } finally {
+    setAccessToken(null);
   }
 };
 
@@ -264,7 +264,7 @@ export const update_profile = async ({ name, email, phone, profile_picture }) =>
     formData.append("name", name);
     formData.append("email", email);
     formData.append("phone", phone);
-    
+
     // Only append profile_picture if it's a File object
     if (profile_picture instanceof File) {
       formData.append("profile_picture", profile_picture);
@@ -387,12 +387,12 @@ export const get_booking = async (page = 1, perPage = 10, status = null) => {
   try {
     // Build query string manually
     let queryString = `page=${page}&per_page=${perPage}`;
-    
+
     // Add status filter if provided and not "all"
     if (status && status !== "all") {
       queryString += `&status=${status}`;
     }
-    
+
     const response = await api.get(`/bookings?${queryString}`);
     return response.data;
   } catch (error) {
@@ -457,5 +457,40 @@ export const delete_cart = async () => {
       success: false,
       error: error?.response?.data?.message || error.message,
     };
+  }
+};
+
+export const fetch_all_services = async (
+  search = null,
+  category_id = null,
+  is_featured = null,
+  page = null,
+  per_page = null
+) => {
+  try {
+    const params = {
+      ...(search && { search }),
+      ...(category_id && { category_id }),
+      ...(is_featured !== null && { is_featured }),
+      ...(page !== null && { page }),
+      ...(per_page !== null && { per_page }),
+    };
+
+    const response = await api.get("/services", { params });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching services:", error);
+    return { success: false, error: error.message };
+  }
+};
+
+
+export const fetch_service_details = async (slug) => {
+  try {
+    const response = await api.get(`/services/${slug}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching service details:", error);
+    return { success: false, error: error.message };
   }
 };

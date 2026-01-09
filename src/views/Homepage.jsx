@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import Link from "next/link";
-import { get_events, get_content_sections } from "@/Api/api";
+import { get_events, get_content_sections, fetch_all_services } from "@/Api/api";
 import RightSidebar from "@/components/RightSidebar";
 import LeftSidebar from "@/components/LeftSidebar";
 import Rating from "@/components/Rating/Rating";
@@ -18,7 +18,7 @@ import { SectionSwiperSkeleton, TopSliderSkeleton } from "@/components/Skeletons
 const Homepage = () => {
   const dispatch = useDispatch();
   const { sections, loading: sectionsLoading } = useSelector((state) => state.contentSections);
-  
+
   // States for dynamic thumbnails - using an object to track them by section ID
   const [thumbsSwipers, setThumbsSwipers] = useState({});
   const [thumbsSwiper1, setThumbsSwiper1] = useState(null);
@@ -47,6 +47,7 @@ const Homepage = () => {
   ];
 
   const [eventImages, setEventImages] = useState(eventImagesFallback);
+  const [featuredServices, setFeaturedServices] = useState([]);
 
   React.useEffect(() => {
     let mounted = true;
@@ -70,11 +71,37 @@ const Homepage = () => {
       }
     };
 
+    const fetchFeaturedServices = async () => {
+      try {
+        // search=null, category_id=null, is_featured=1
+        const res = await fetch_all_services(null, null, 1);
+        console.log("Featured Services API Response:", res);
+
+        if (res?.success && Array.isArray(res.data)) {
+          console.log("Setting featured services (direct array):", res.data);
+          setFeaturedServices(res.data);
+        } else if (res?.success && res.data?.data && Array.isArray(res.data.data)) {
+          console.log("Setting featured services (paginated):", res.data.data);
+          // Handle paginated response if applicable, though we want all/list
+          setFeaturedServices(res.data.data);
+        } else {
+          console.warn("Featured services response structure mismatch:", res);
+        }
+      } catch (err) {
+        console.error("Error fetching featured services:", err);
+        if (err.response) {
+          console.error("Response data:", err.response.data);
+          console.error("Response status:", err.response.status);
+        }
+      }
+    };
+
     fetchEvents();
-    
+    fetchFeaturedServices();
+
     const fetchContentSections = async () => {
       if (sections.length > 0) return;
-      
+
       dispatch(setLoading(true));
       try {
         const res = await get_content_sections();
@@ -175,18 +202,36 @@ const Homepage = () => {
             <h2 className="bg-gradient-to-r from-orange-500 to-red-600 text-white text-base sm:text-lg md:text-xl text-center font-bold py-2 px-4 rounded-md mb-4">
               DESTAQUES
             </h2>
-            <Link href="https://centraldipanda.ao/loja-do-cabelo/">
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
-                {destaqueItems.map((item, i) => (
-                  <button
-                    key={i}
-                    className="bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md py-2 sm:py-3 px-3 sm:px-4 text-xs sm:text-sm transition-all"
-                  >
-                    {item}
-                  </button>
-                ))}
-              </div>
-            </Link>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
+              {featuredServices.map((item, i) => (
+                <Link
+                  key={i}
+                  href={`/servicos/${item.slug}`}
+                  className="bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md py-2 sm:py-3 px-3 sm:px-4 text-xs sm:text-sm transition-all flex items-center justify-between"
+                >
+                  <span className="text-white">
+                    {item.title}
+                  </span>
+                  {/* Add Arrow */}
+                  <span className="text-white">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      className="w-4 h-4 ml-2"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                      />
+                    </svg>
+                  </span>
+                </Link>
+              ))}
+            </div>
           </div>
           <div className="lg:col-span-4">
             {sectionsLoading ? (
@@ -265,11 +310,11 @@ const Homepage = () => {
           <div className="lg:col-span-8 py-4 md:py-6 gap-6 order-1 lg:order-2">
             {/* Dynamic Content Sections */}
             {sectionsLoading ? (
-               <div className="w-full space-y-10">
-                  {Array.from({ length: 3 }).map((_, i) => (
-                    <SectionSwiperSkeleton key={i} />
-                  ))}
-               </div>
+              <div className="w-full space-y-10">
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <SectionSwiperSkeleton key={i} />
+                ))}
+              </div>
             ) : (
               otherSections?.map((section) => (
                 <div key={section.id} id={section.slug} className="w-full mb-10">
@@ -278,7 +323,7 @@ const Homepage = () => {
                       {section.display_title}
                     </h2>
                   )}
-                  
+
                   <div className="w-full gap-4 grid grid-cols-1 md:gap-6 relative overflow-hidden">
                     {/* Main Slider */}
                     <div className="w-full">
@@ -310,7 +355,7 @@ const Homepage = () => {
                                 </div>
                               )}
                               {item.cta_url && (
-                                <Link 
+                                <Link
                                   href={item.cta_url}
                                   className="absolute top-2 right-2 bg-white/80 hover:bg-white text-red-600 text-xs px-3 py-1.5 rounded-full font-bold transition-all shadow-md"
                                 >
@@ -360,7 +405,7 @@ const Homepage = () => {
 
           {/* RIGHT SIDE - DIRECTORY */}
           <div className="lg:col-span-2 order-2 lg:order-3">
-             <RightSidebar />
+            <RightSidebar />
           </div>
         </div>
       </div>
