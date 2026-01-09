@@ -4,6 +4,7 @@ import React from "react";
 
 const CategoryMenuPage = () => {
   return <CardapioItemsView />;
+  
 };
 
 export default CategoryMenuPage;
