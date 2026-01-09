@@ -494,3 +494,42 @@ export const fetch_service_details = async (slug) => {
     return { success: false, error: error.message };
   }
 };
+
+export const get_rooms = async () => {
+  try {
+    const response = await api.get("/rooms");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching rooms:", error);
+    return { success: false, error: error.message };
+  }
+};
+
+export const get_addons = async (search = null, type = null) => {
+  try {
+    const params = {};
+    if (search) params.search = search;
+    if (type) params.type = type;
+
+    const response = await api.get("/addons", { params });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching addons:", error);
+    return { success: false, error: error.message };
+  }
+};
+
+export const create_service_booking = async (data) => {
+  try {
+    const response = await api.post("/service-bookings", data);
+    return response.data;
+  } catch (error) {
+    console.error("Error creating service booking:", error);
+    return {
+      success: false,
+      error: error?.response?.data?.message || "Erro ao criar reserva.",
+      errors: error?.response?.data?.errors || null,
+      status: error?.response?.status
+    };
+  }
+};

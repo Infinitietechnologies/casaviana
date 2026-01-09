@@ -11,12 +11,17 @@ import "swiper/css/pagination";
 import { Button } from "@heroui/react";
 import LeftSidebar from "@/components/LeftSidebar";
 import RightSidebar from "@/components/RightSidebar";
+import { useDisclosure } from "@heroui/react";
+import ServiceBookingForm from "@/components/ServiceBookingForm";
+import Drawer from "@/components/Drawer";
 
 const ServiceDetailsView = () => {
     const router = useRouter();
     const { slug } = router.query;
     const [service, setService] = useState(null);
     const [loading, setLoading] = useState(true);
+    const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+    const [isSuccess, setIsSuccess] = useState(false);
 
     useEffect(() => {
         if (!slug) return;
@@ -151,6 +156,13 @@ const ServiceDetailsView = () => {
                                     </p>
                                     <div className="space-y-3">
                                         <Button
+                                            className="w-full font-bold text-white bg-gradient-to-r from-orange-500 to-red-600 shadow-md"
+                                            size="lg"
+                                            onPress={onOpen}
+                                        >
+                                            Reservar Agora
+                                        </Button>
+                                        <Button
                                             as="a"
                                             href={`https://wa.me/message/YOUR_WHATSAPP_LINK?text=Olá, estou interessado no serviço: ${service.title}`}
                                             target="_blank"
@@ -178,6 +190,36 @@ const ServiceDetailsView = () => {
                     <RightSidebar />
                 </div>
             </div>
+
+            <Drawer
+                isOpen={isOpen}
+                onClose={onClose}
+                title={`Reservar ${service.title}`}
+                size="xl"
+            >
+                {isSuccess ? (
+                    <div className="flex flex-col items-center justify-center py-10 text-center space-y-4 h-full">
+                        <div className="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-10 h-10">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                        </div>
+                        <h3 className="text-2xl font-bold text-gray-900">Pedido Enviado!</h3>
+                        <p className="text-gray-600 max-w-md text-lg">
+                            O seu pedido de reserva foi enviado com sucesso. Entraremos em contacto brevemente para confirmar os detalhes.
+                        </p>
+                        <Button color="primary" size="lg" onPress={onClose} className="mt-8 px-8">
+                            Fechar
+                        </Button>
+                    </div>
+                ) : (
+                    <ServiceBookingForm
+                        serviceId={service.id}
+                        onClose={onClose}
+                        onSuccess={() => setIsSuccess(true)}
+                    />
+                )}
+            </Drawer>
         </div >
     );
 };
