@@ -147,7 +147,6 @@ const Header = () => {
               "Início",
               "Serviços",
               "Eventos",
-              "Reservar",
               "Contactos",
               "Blogs",
             ].map((item, i) => (
@@ -158,8 +157,6 @@ const Header = () => {
                     ? "/"
                     : item === "Eventos"
                       ? "/events"
-                      : item === "Reservar"
-                        ? "/reserva"
                         : item === "Serviços"
                           ? "/servicos"
                           : item === "Blogs"
@@ -531,7 +528,6 @@ const Header = () => {
             "Início",
             "Serviços",
             "Eventos",
-            "Reservar",
             "Contactos",
             "Blogs",
           ].map((item, i) => (
@@ -542,8 +538,6 @@ const Header = () => {
                   ? "/"
                   : item === "Eventos"
                     ? "/events"
-                    : item === "Reservar"
-                      ? "/reserva"
                       : item === "Serviços"
                         ? "/servicos"
                         : item === "Blogs"
