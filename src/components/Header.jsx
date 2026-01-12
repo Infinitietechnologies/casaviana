@@ -157,10 +157,12 @@ const Header = () => {
                     ? "/"
                     : item === "Eventos"
                       ? "/events"
-                        : item === "Serviços"
-                          ? "/servicos"
-                          : item === "Blogs"
-                            ? "/blogs"
+                      : item === "Serviços"
+                        ? "/servicos"
+                        : item === "Blogs"
+                          ? "/blogs"
+                          : item === "Contactos"
+                            ? "https://www.casaviana.ao"
                             : "#"
                 }
                 className="relative group transition-colors hover:text-gray-200 text-xl"
@@ -388,6 +390,22 @@ const Header = () => {
               <>
                 {/* Mobile right side */}
                 <div className="flex md:hidden items-center gap-3">
+                  {/* Cart for Mobile */}
+                  <button onClick={onCartOpen} className="relative cursor-pointer">
+                    <Image
+                      src="/images/online-shopping.png"
+                      alt="Cart"
+                      width={30}
+                      height={30}
+                      className="invert"
+                    />
+                    {cartTotalQuantity > 0 && (
+                      <span className="absolute -top-1 -right-2 bg-red-800 text-white text-xs rounded-full px-1.5 min-w-[20px] text-center">
+                        {cartTotalQuantity}
+                      </span>
+                    )}
+                  </button>
+
                   {/* Cardapio small image */}
                   <Link href="/cardapio">
                     <Image
@@ -538,10 +556,12 @@ const Header = () => {
                   ? "/"
                   : item === "Eventos"
                     ? "/events"
-                      : item === "Serviços"
-                        ? "/servicos"
-                        : item === "Blogs"
-                          ? "/blogs"
+                    : item === "Serviços"
+                      ? "/servicos"
+                      : item === "Blogs"
+                        ? "/blogs"
+                        : item === "Contactos"
+                          ? "https://www.casaviana.ao"
                           : "#"
               }
               className="text-lg font-medium hover:text-gray-200 transition py-2"

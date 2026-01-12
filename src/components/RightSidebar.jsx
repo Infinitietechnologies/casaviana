@@ -105,7 +105,7 @@ const RightSidebar = () => {
               onClick={() => handleSectionClick(section.slug)}
               className="flex justify-between items-center bg-red-600 text-white font-semibold 
                 px-3 sm:px-4 py-2 rounded-md hover:bg-red-700 transition-colors 
-                text-xs sm:text-sm w-full text-left truncate"
+                text-lg sm:text-md w-full text-left truncate"
             >
               {section.internal_name}
               {section.items && section.items.length > 0 && (

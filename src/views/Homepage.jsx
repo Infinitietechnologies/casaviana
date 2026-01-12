@@ -177,7 +177,7 @@ const Homepage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6">
           <div className="lg:col-span-3">
             <h2 className="bg-gradient-to-r from-orange-500 to-red-600 text-white text-base sm:text-lg md:text-xl text-center font-bold py-2 px-4 rounded-md mb-4">
-              EVENTOS EM DESTAQUES
+              EVENTOS EM DESTAQUE
             </h2>
             <div className="flex justify-center gap-2 sm:gap-3">
               {eventImages.map((ev, i) => (
@@ -200,7 +200,7 @@ const Homepage = () => {
 
           <div className="lg:col-span-5">
             <h2 className="bg-gradient-to-r from-orange-500 to-red-600 text-white text-base sm:text-lg md:text-xl text-center font-bold py-2 px-4 rounded-md mb-4">
-              DESTAQUES
+              DESTAQUES DO CENTRO CULTURAL  
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
               {featuredServices.map((item, i) => (
@@ -209,7 +209,7 @@ const Homepage = () => {
                   href={`/servicos/${item.slug}`}
                   className="bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md py-2 sm:py-3 px-3 sm:px-4 text-xs sm:text-sm transition-all flex items-center justify-between"
                 >
-                  <span className="text-white">
+                  <span className="text-white text-md">
                     {item.title}
                   </span>
                   {/* Add Arrow */}
@@ -259,7 +259,7 @@ const Homepage = () => {
                           fill
                           className="object-cover rounded-md"
                         />
-                        <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-xs px-2 py-1 rounded">
+                        <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-sm px-2 py-1 rounded">
                           {item.title || "ESPAÇOS"}
                         </div>
                       </div>
@@ -350,7 +350,7 @@ const Homepage = () => {
                                 className="object-cover rounded-md"
                               />
                               {item.title && (
-                                <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-xs px-2 py-1 rounded">
+                                <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-sm px-2 py-1 rounded">
                                   {item.title}
                                 </div>
                               )}
