@@ -87,7 +87,9 @@ const RightSidebar = () => {
   };
 
   useEffect(() => {
-    if (pathname === "/") {
+    console.log(pathname);
+
+    if (blogs != null && categories != null) {
       fetchFeaturedBlogs();
       fetchCategories();
     } else {

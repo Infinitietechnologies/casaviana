@@ -367,11 +367,10 @@ const EventsView = () => {
             <div className="flex flex-wrap gap-2">
               <Chip
                 onClick={() => setTempCategory("all")}
-                className={`cursor-pointer transition-all ${
-                  tempCategory === "all"
+                className={`cursor-pointer transition-all ${tempCategory === "all"
                     ? "bg-blue-600 text-white"
                     : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-                }`}
+                  }`}
                 size="lg"
                 variant={tempCategory === "all" ? "solid" : "flat"}
               >
@@ -382,11 +381,10 @@ const EventsView = () => {
                 <Chip
                   key={category.value}
                   onClick={() => setTempCategory(category.value)}
-                  className={`cursor-pointer transition-all ${
-                    tempCategory === category.value
+                  className={`cursor-pointer transition-all ${tempCategory === category.value
                       ? "bg-blue-600 text-white"
                       : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-                  }`}
+                    }`}
                   size="lg"
                   variant={tempCategory === category.value ? "solid" : "flat"}
                 >

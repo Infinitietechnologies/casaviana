@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { get_blog } from "@/Api/api";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import LayoutView from "./LayoutView";
 
 // Swiper imports
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -21,8 +22,8 @@ const Comment = dynamic(() => import("@/components/Comment/Comment"), {
 });
 
 import { BlogDetailsSkeleton } from "@/components/Skeletons/BlogsSkeletons";
-import LeftSidebar from "@/components/LeftSidebar";
-import RightSidebar from "@/components/RightSidebar";
+import Head from "next/head";
+
 
 const BlogDetailsView = () => {
   const router = useRouter();
@@ -81,134 +82,134 @@ const BlogDetailsView = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="mx-auto px-4 min-h-screen">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          <div className="lg:col-span-2 order-3 lg:order-1">
-            <LeftSidebar />
-          </div>
-          <div className="lg:col-span-8 py-28 order-1 lg:order-2">
-        {blog.featured_image && (
-          <div className="mb-6 rounded overflow-hidden">
-            <img
-              src={blog.featured_image}
-              alt={blog.title}
-              className="w-full h-[40rem] object-cover rounded-lg shadow-md"
-              onError={(e) =>
-                (e.target.src = "/images/D.PRO-POST-no-Ponto-02s-750x375.jpg")
-              }
-            />
-          </div>
-        )}
+    <>
+      <Head>
+        <title>{blog?.title ?? 'view blog details'} - Casa Viana</title>
+        <meta name="description" content={blog?.short_description ?? blog?.description} />
+      </Head>
 
-        <h1 className="text-3xl font-bold text-slate-900 mb-3">{blog.title}</h1>
-        <div className="text-sm text-slate-600 mb-6 flex flex-wrap items-center gap-2">
-          {blog.author && (
-            <span className="font-semibold">
-              {typeof blog.author === "string"
-                ? blog.author
-                : blog.author?.name ||
+      <LayoutView
+        title={blog.title}
+        description={blog.short_description}
+      >
+        <div className="bg-white">
+          {blog.featured_image && (
+            <div className="mb-6 rounded overflow-hidden">
+              <img
+                src={blog.featured_image}
+                alt={blog.title}
+                className="w-full h-[30rem] lg:h-[40rem] object-cover rounded-lg shadow-md"
+                onError={(e) =>
+                  (e.target.src = "/images/D.PRO-POST-no-Ponto-02s-750x375.jpg")
+                }
+              />
+            </div>
+          )}
+
+          <h1 className="text-3xl font-bold text-slate-900 mb-3">{blog.title}</h1>
+          <div className="text-sm text-slate-600 mb-6 flex flex-wrap items-center gap-2">
+            {blog.author && (
+              <span className="font-semibold">
+                {typeof blog.author === "string"
+                  ? blog.author
+                  : blog.author?.name ||
                   blog.author?.username ||
                   blog.author?.email ||
                   "Author"}
-            </span>
-          )}
-          {blog.published_at && (
-            <>
-              <span className="mx-2">•</span>
-              <span>
-                {new Date(blog.published_at).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
               </span>
-            </>
-          )}
-          {blog.reading_time && (
-            <>
-              <span className="mx-2">•</span>
-              <span>{blog.reading_time} min read</span>
-            </>
-          )}
-          {blog.category && (
-            <>
-              <span className="mx-2">•</span>
-              <span className="inline-block text-xs font-medium text-red-600 bg-red-50 px-3 py-1 rounded-full">
-                {blog.category.name}
-              </span>
-            </>
-          )}
-        </div>
-
-        <div
-          className="prose prose-slate max-w-none prose-headings:text-slate-900 prose-p:text-slate-700"
-          dangerouslySetInnerHTML={{ __html: blog.content || "" }}
-        />
-
-        {/* Tags Section */}
-        {blog.tags && blog.tags.length > 0 && (
-          <div className="mt-8 flex flex-wrap gap-2">
-            {blog.tags.map((tag, index) => (
-              <span
-                key={index}
-                className="px-3 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full hover:bg-gray-200 transition-colors"
-              >
-                #{tag}
-              </span>
-            ))}
-          </div>
-        )}
-
-        {/* Related Posts Section */}
-        {relatedPosts.length > 0 && (
-          <section className="mt-20">
-            <h2 className="text-3xl font-bold text-slate-900 mb-10">
-              Related Posts
-            </h2>
-
-            {relatedPosts.length <= 3 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {relatedPosts.map((post) => (
-                  <RelatedPostCard key={post.id} post={post} />
-                ))}
-              </div>
-            ) : (
-              <Swiper
-                modules={[Navigation, Pagination]}
-                spaceBetween={30}
-                slidesPerView={1}
-                navigation
-                pagination={{ clickable: true }}
-                breakpoints={{
-                  640: { slidesPerView: 2 },
-                  1024: { slidesPerView: 3 },
-                }}
-                className="related-posts-swiper"
-              >
-                {relatedPosts.map((post) => (
-                  <SwiperSlide key={post.id}>
-                    <RelatedPostCard post={post} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
             )}
-          </section>
-        )}
+            {blog.published_at && (
+              <>
+                <span className="mx-2">•</span>
+                <span>
+                  {new Date(blog.published_at).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </span>
+              </>
+            )}
+            {blog.reading_time && (
+              <>
+                <span className="mx-2">•</span>
+                <span>{blog.reading_time} min read</span>
+              </>
+            )}
+            {blog.category && (
+              <>
+                <span className="mx-2">•</span>
+                <span className="inline-block text-xs font-medium text-red-600 bg-red-50 px-3 py-1 rounded-full">
+                  {blog.category.name}
+                </span>
+              </>
+            )}
+          </div>
 
-        <div className="mt-20 pt-8 border-t border-gray-200">
-          <Rating slug={slug} resource="blog" />
-          <div className="mt-8">
-            <Comment slug={slug} resource="blog" />
+          <div
+            className="prose prose-slate max-w-none prose-headings:text-slate-900 prose-p:text-slate-700"
+            dangerouslySetInnerHTML={{ __html: blog.content || "" }}
+          />
+
+          {/* Tags Section */}
+          {blog.tags && blog.tags.length > 0 && (
+            <div className="mt-8 flex flex-wrap gap-2">
+              {blog.tags.map((tag, index) => (
+                <span
+                  key={index}
+                  className="px-3 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full hover:bg-gray-200 transition-colors"
+                >
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {/* Related Posts Section */}
+          {relatedPosts.length > 0 && (
+            <section className="mt-20">
+              <h2 className="text-3xl font-bold text-slate-900 mb-10">
+                Related Posts
+              </h2>
+
+              {relatedPosts.length <= 3 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {relatedPosts.map((post) => (
+                    <RelatedPostCard key={post.id} post={post} />
+                  ))}
+                </div>
+              ) : (
+                <Swiper
+                  modules={[Navigation, Pagination]}
+                  spaceBetween={30}
+                  slidesPerView={1}
+                  navigation
+                  pagination={{ clickable: true }}
+                  breakpoints={{
+                    640: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 },
+                  }}
+                  className="related-posts-swiper"
+                >
+                  {relatedPosts.map((post) => (
+                    <SwiperSlide key={post.id}>
+                      <RelatedPostCard post={post} />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              )}
+            </section>
+          )}
+
+          <div className="mt-20 pt-8 border-t border-gray-200">
+            <Rating slug={slug} resource="blog" />
+            <div className="mt-8">
+              <Comment slug={slug} resource="blog" />
+            </div>
           </div>
         </div>
-          </div>
-          <div className="lg:col-span-2 order-2 lg:order-3">
-             <RightSidebar />
-          </div>
-        </div>
-      </div>
-    </div>
+      </LayoutView>
+    </>
   );
 };
 

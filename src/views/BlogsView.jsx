@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import LeftSidebar from "@/components/LeftSidebar";
-import RightSidebar from "@/components/RightSidebar";
 import Link from "next/link";
+import LayoutView from "./LayoutView";
 import { get_blogs, get_categories } from "@/Api/api";
 import { BlogsPageSkeleton } from "@/components/Skeletons/BlogsSkeletons";
 import { Chip, Pagination, Input, Button } from "@heroui/react";
@@ -121,208 +120,185 @@ const BlogsView = () => {
   return (
     <>
       <Head>
-        <title>Blog - Casa Viana</title>
+        <title>Blogs - Casa Viana</title>
         <meta name="description" content="Explore our latest articles, news, and updates at Casa Viana." />
       </Head>
 
-      <div className="bg-white min-h-screen font-sans text-slate-900">
-
-        {/* Header / Filter Section */}
-        <div className="bg-white border-b border-slate-100 sticky top-0 z-20 shadow-sm">
-          <div className="container mx-auto px-4 py-4 lg:py-6">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-              <h1 className="text-2xl lg:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700">
-                Nosso Blog
-              </h1>
-
-              <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
-                <Input
-                  type="text"
-                  placeholder="Pesquisar..."
-                  value={searchTerm}
-                  onValueChange={handleSearch}
-                  classNames={{
-                    inputWrapper: "bg-slate-50 border border-slate-200 hover:bg-slate-100 focus-within:!bg-white shadow-none",
-                  }}
-                  startContent={
-                    <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                  }
-                  className="w-full sm:w-72"
-                  isClearable
-                  onClear={() => handleSearch("")}
-                />
-              </div>
+      <LayoutView
+        title="Nosso Blogs"
+        description="Explore nossos artigos mais recentes, notícias e atualizações."
+      >
+        {/* Search and Filter Section */}
+        <div className="bg-white border-b border-slate-100 rounded-xl p-4 shadow-sm mb-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 w-full">
+              <Input
+                type="text"
+                placeholder="Pesquisar..."
+                value={searchTerm}
+                onValueChange={handleSearch}
+                classNames={{
+                  inputWrapper: "bg-slate-50 border border-slate-200 hover:bg-slate-100 focus-within:!bg-white shadow-none",
+                }}
+                startContent={
+                  <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                }
+                className="w-full"
+                isClearable
+                onClear={() => handleSearch("")}
+              />
             </div>
+          </div>
 
-            {/* Categories Scrollable Row */}
-            <div className="mt-6 flex overflow-x-auto pb-2 scrollbar-hide gap-2">
+          {/* Categories Scrollable Row */}
+          <div className="mt-4 flex overflow-x-auto pb-2 scrollbar-hide gap-2">
+            <button
+              onClick={() => handleCategoryClick('all')}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${activeCategory === 'all'
+                ? 'bg-slate-900 text-white shadow-md'
+                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                }`}
+            >
+              Todos
+            </button>
+            {categories.map((cat) => (
               <button
-                onClick={() => handleCategoryClick('all')}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${activeCategory === 'all'
+                key={cat.id}
+                onClick={() => handleCategoryClick(cat.slug)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${activeCategory === cat.slug
                   ? 'bg-slate-900 text-white shadow-md'
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                   }`}
               >
-                Todos
+                {cat.name}
               </button>
-              {categories.map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => handleCategoryClick(cat.slug)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${activeCategory === cat.slug
-                    ? 'bg-slate-900 text-white shadow-md'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                    }`}
-                >
-                  {cat.name}
-                </button>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
 
-        {/* Main Content */}
-        <div className="container mx-auto px-4 py-8 lg:py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-
-            {/* Sidebar Left */}
-            <div className="hidden lg:block lg:col-span-3 xl:col-span-2">
-              <div className="sticky top-28">
-                <LeftSidebar />
-              </div>
+        {/* Blog Grid */}
+        <div>
+          {loading ? (
+            <BlogsPageSkeleton />
+          ) : error ? (
+            <div className="flex flex-col items-center justify-center py-20 bg-slate-50 rounded-2xl border border-slate-100">
+              <p className="text-red-500 font-medium mb-2">Oops!</p>
+              <p className="text-slate-600">{error}</p>
+              <Button onClick={fetchData} className="mt-4" color="primary" variant="flat">
+                Tentar Novamente
+              </Button>
             </div>
-
-            {/* Blog Grid */}
-            <div className="lg:col-span-9 xl:col-span-7">
-              {loading ? (
-                <BlogsPageSkeleton />
-              ) : error ? (
-                <div className="flex flex-col items-center justify-center py-20 bg-slate-50 rounded-2xl border border-slate-100">
-                  <p className="text-red-500 font-medium mb-2">Oops!</p>
-                  <p className="text-slate-600">{error}</p>
-                  <Button onClick={fetchData} className="mt-4" color="primary" variant="flat">
-                    Tentar Novamente
-                  </Button>
-                </div>
-              ) : blogPosts.length > 0 ? (
-                <>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                    {blogPosts.map((post) => (
-                      <Link
-                        key={post.id}
-                        href={`/blogs/${post.slug || post.id}`}
-                        className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-100"
-                      >
-                        <div className="relative aspect-[16/10] overflow-hidden">
-                          <img
-                            src={
-                              post.featured_image ||
-                              "/images/D.PRO-POST-no-Ponto-02s-750x375.jpg"
-                            }
-                            alt={post.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            onError={(e) =>
-                            (e.target.src =
-                              "/images/D.PRO-POST-no-Ponto-02s-750x375.jpg")
-                            }
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                          {post.category && (
-                            <div className="absolute top-4 left-4">
-                              <Chip
-                                size="sm"
-                                className="bg-white/90 backdrop-blur-md text-slate-800 font-semibold shadow-sm"
-                              >
-                                {post.category.name}
-                              </Chip>
-                            </div>
-                          )}
-                        </div>
-
-                        <div className="p-6 flex flex-col flex-grow">
-                          <div className="flex items-center text-xs text-slate-400 font-medium uppercase tracking-wider mb-3">
-                            {post.published_at && new Date(post.published_at).toLocaleDateString("pt-BR", { day: 'numeric', month: 'short', year: 'numeric' })}
-                            {post.reading_time && (
-                              <>
-                                <span className="mx-2">•</span>
-                                <span>{post.reading_time} min leitura</span>
-                              </>
-                            )}
-                          </div>
-
-                          <h3 className="text-lg font-bold text-slate-900 mb-2 leading-tight group-hover:text-blue-600 transition-colors line-clamp-2">
-                            {post.title}
-                          </h3>
-
-                          <p className="text-slate-600 text-sm line-clamp-3 mb-4 flex-grow">
-                            {post.excerpt || post.content?.substring(0, 100).replace(/<[^>]*>?/gm, '') + "..."}
-                          </p>
-
-                          <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
-                            <span className="text-sm font-semibold text-blue-600 group-hover:underline">Ler mais</span>
-
-                            <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                              </svg>
-                            </div>
-                          </div>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-
-                  {/* Pagination */}
-                  {totalPages > 1 && (
-                    <div className="mt-12 flex justify-center">
-                      <Pagination
-                        total={totalPages}
-                        initialPage={1}
-                        page={currentPage}
-                        onChange={handlePageChange}
-                        showControls
-                        color="primary"
-                        variant="light"
-                      />
-                    </div>
-                  )}
-                </>
-              ) : (
-                <div className="flex flex-col items-center justify-center py-24 text-center">
-                  <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-4">
-                    <svg className="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg font-semibold text-slate-900 mb-1">Nenhum artigo encontrado</h3>
-                  <p className="text-slate-500 max-w-xs mx-auto">Tente ajustar seus termos de pesquisa ou categoria.</p>
-                  <Button
-                    onClick={() => {
-                      setSearchTerm("");
-                      setActiveCategory("all");
-                      router.push({ pathname: router.pathname }, undefined, { shallow: true });
-                    }}
-                    variant="light"
-                    color="primary"
-                    className="mt-4"
+          ) : blogPosts.length > 0 ? (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {blogPosts.map((post) => (
+                  <Link
+                    key={post.id}
+                    href={`/blogs/${post.slug || post.id}`}
+                    className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-100"
                   >
-                    Limpar filtros
-                  </Button>
+                    <div className="relative aspect-[16/10] overflow-hidden">
+                      <img
+                        src={
+                          post.featured_image ||
+                          "/images/D.PRO-POST-no-Ponto-02s-750x375.jpg"
+                        }
+                        alt={post.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        onError={(e) =>
+                        (e.target.src =
+                          "/images/D.PRO-POST-no-Ponto-02s-750x375.jpg")
+                        }
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                      {post.category && (
+                        <div className="absolute top-4 left-4">
+                          <Chip
+                            size="sm"
+                            className="bg-white/90 backdrop-blur-md text-slate-800 font-semibold shadow-sm"
+                          >
+                            {post.category.name}
+                          </Chip>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="p-6 flex flex-col flex-grow">
+                      <div className="flex items-center text-xs text-slate-400 font-medium uppercase tracking-wider mb-3">
+                        {post.published_at && new Date(post.published_at).toLocaleDateString("pt-BR", { day: 'numeric', month: 'short', year: 'numeric' })}
+                        {post.reading_time && (
+                          <>
+                            <span className="mx-2">•</span>
+                            <span>{post.reading_time} min leitura</span>
+                          </>
+                        )}
+                      </div>
+
+                      <h3 className="text-lg font-bold text-slate-900 mb-2 leading-tight group-hover:text-blue-600 transition-colors line-clamp-2">
+                        {post.title}
+                      </h3>
+
+                      <p className="text-slate-600 text-sm line-clamp-3 mb-4 flex-grow">
+                        {post.excerpt || post.content?.substring(0, 100).replace(/<[^>]*>?/gm, '') + "..."}
+                      </p>
+
+                      <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <span className="text-sm font-semibold text-blue-600 group-hover:underline">Ler mais</span>
+
+                        <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="mt-12 flex justify-center">
+                  <Pagination
+                    total={totalPages}
+                    initialPage={1}
+                    page={currentPage}
+                    onChange={handlePageChange}
+                    showControls
+                    color="primary"
+                    variant="light"
+                  />
                 </div>
               )}
+            </>
+          ) : (
+            <div className="flex flex-col items-center justify-center py-24 text-center">
+              <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-4">
+                <svg className="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-1">Nenhum artigo encontrado</h3>
+              <p className="text-slate-500 max-w-xs mx-auto">Tente ajustar seus termos de pesquisa ou categoria.</p>
+              <Button
+                onClick={() => {
+                  setSearchTerm("");
+                  setActiveCategory("all");
+                  router.push({ pathname: router.pathname }, undefined, { shallow: true });
+                }}
+                variant="light"
+                color="primary"
+                className="mt-4"
+              >
+                Limpar filtros
+              </Button>
             </div>
-
-            {/* Sidebar Right */}
-            <div className="lg:col-span-12 xl:col-span-3">
-              <RightSidebar />
-            </div>
-
-          </div>
+          )}
         </div>
-      </div>
+      </LayoutView>
     </>
   );
 };
