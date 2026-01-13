@@ -45,7 +45,7 @@ const ContactUs = () => {
         window.L.marker([38.7020807, -9.4221048], { icon: redIcon })
           .addTo(map)
           .bindPopup(
-            "<b>Casa Viana Cascais</b><br>R. Padre Moisés da Silva, 2750-529<br>Cascais, Portugal"
+            "<b>Casa Viana Cascais</b><br>Estrada de Catete, km20, entre o Kero de Viana e o Kinda Home.<br>Cascais, Portugal"
           )
           .openPopup();
       }
@@ -62,29 +62,24 @@ const ContactUs = () => {
   return (
     <div className="mt-20 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 relative min-h-screen">
-        {/* Left Sidebar */}
         <LeftSidebar />
         <div className="lg:col-span-8 py-4 md:py-6 flex flex-col items-center w-full">
-          {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Contact Us
+              Contate-nos
             </h1>
             <p className="text-lg text-gray-600">
-              Get in touch with Casa Viana Cascais
+              Entre em contacto com Casa Viana Cascais
             </p>
           </div>
 
-          {/* Main Content */}
           <div className="grid grid-cols-1 lg:grid-cols-2 w-full  gap-6">
-            {/* Contact Information */}
             <Card className="shadow-lg">
               <CardBody className="p-6">
                 <h3 className="text-2xl font-semibold mb-6">
-                  Contact Information
+                  Informações de contato
                 </h3>
 
-                {/* Email */}
                 <div className="mb-6">
                   <div className="flex items-center mb-3">
                     <svg
@@ -105,7 +100,6 @@ const ContactUs = () => {
                   </a>
                 </div>
 
-                {/* Phone Numbers */}
                 <div className="mb-6">
                   <div className="flex items-center mb-3">
                     <svg
@@ -155,7 +149,6 @@ const ContactUs = () => {
                   </div>
                 </div>
 
-                {/* Address */}
                 <div className="mb-6">
                   <div className="flex items-center mb-3">
                     <svg
@@ -169,18 +162,16 @@ const ContactUs = () => {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <h5 className="text-lg font-semibold">Address</h5>
+                    <h5 className="text-lg font-semibold">Endereço</h5>
                   </div>
                   <p className="ml-9 text-lg text-gray-700">
-                    R. Padre Moisés da Silva, 2750-529
-                    <br />
+                    Estrada de Catete, km20, entre o Kero de Viana e o Kinda Home
                     Cascais, Portugal
                   </p>
                 </div>
               </CardBody>
             </Card>
 
-            {/* Interactive Map with Marker */}
             <Card className="shadow-lg">
               <CardBody className="p-0">
                 <div
@@ -197,7 +188,6 @@ const ContactUs = () => {
           </div>
         </div>
 
-        {/* Right Sidebar */}
         <RightSidebar />
       </div>
     </div>
