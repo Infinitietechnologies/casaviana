@@ -105,9 +105,10 @@ const Header = () => {
     <>
       <nav
         className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 border-b
-          ${isScrolled
-            ? "backdrop-blur-md bg-red-600/60 border-white/20 shadow-lg"
-            : "bg-red-600 border-transparent"
+          ${
+            isScrolled
+              ? "backdrop-blur-md bg-red-600/60 border-white/20 shadow-lg"
+              : "bg-red-600 border-transparent"
           }`}
       >
         <div className="max-w-[1900px] mx-auto flex items-center justify-between h-20 px-4 md:px-6">
@@ -121,56 +122,34 @@ const Header = () => {
                 height={90}
               />
             </Link>
-            {/* Hide on mobile */}
-            {/* <Link href="https://centraldipanda.ao/" className="hidden md:block">
-            <Image
-              src="/images/mabululu.png"
-              alt="Mabululu"
-              width={60}
-              height={80}
-            />
-          </Link> */}
-
-            {/* <Link href="https://centraldipanda.ao/" className="hidden md:block">
-            <Image
-              src="/images/Centra-Dipanda.png"
-              alt="Central Dipanda"
-              width={60}
-              height={80}
-            />
-          </Link> */}
           </div>
 
           {/* CENTER MENU (desktop only) */}
           <div className="hidden md:flex items-center gap-6 text-sm font-semibold text-white">
-            {[
-              "Início",
-              "Serviços",
-              "Eventos",
-              "Contactos",
-              "Blogs",
-            ].map((item, i) => (
-              <Link
-                key={i}
-                href={
-                  item === "Início"
-                    ? "/"
-                    : item === "Eventos"
+            {["Início", "Serviços", "Eventos", "Contactos", "Blogs"].map(
+              (item, i) => (
+                <Link
+                  key={i}
+                  href={
+                    item === "Início"
+                      ? "/"
+                      : item === "Eventos"
                       ? "/events"
                       : item === "Serviços"
-                        ? "/servicos"
-                        : item === "Blogs"
-                          ? "/blogs"
-                          : item === "Contactos"
-                            ? "https://www.casaviana.ao"
-                            : "#"
-                }
-                className="relative group transition-colors hover:text-gray-200 text-xl"
-              >
-                {item}
-                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white transition-all group-hover:w-full"></span>
-              </Link>
-            ))}
+                      ? "/servicos"
+                      : item === "Blogs"
+                      ? "/blogs"
+                      : item === "Contactos"
+                      ? "/contact-us"
+                      : "#"
+                  }
+                  className="relative group transition-colors hover:text-gray-200 text-xl"
+                >
+                  {item}
+                  <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white transition-all group-hover:w-full"></span>
+                </Link>
+              )
+            )}
 
             {/* TV Icon Box */}
             <Link
@@ -391,7 +370,10 @@ const Header = () => {
                 {/* Mobile right side */}
                 <div className="flex md:hidden items-center gap-3">
                   {/* Cart for Mobile */}
-                  <button onClick={onCartOpen} className="relative cursor-pointer">
+                  <button
+                    onClick={onCartOpen}
+                    className="relative cursor-pointer"
+                  >
                     <Image
                       src="/images/online-shopping.png"
                       alt="Cart"
@@ -537,38 +519,35 @@ const Header = () => {
 
         {/* Mobile Menu Dropdown */}
         <div
-          className={`md:hidden text-white flex flex-col items-center overflow-hidden transition-all duration-300 ease-in-out ${menuOpen
+          className={`md:hidden text-white flex flex-col items-center overflow-hidden transition-all duration-300 ease-in-out ${
+            menuOpen
               ? "max-h-96 py-4 backdrop-blur-md backdrop-saturate-150 bg-red-600/60 border-t border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.08)] relative z-[60]"
               : "max-h-0 py-0"
-            }`}
+          }`}
         >
-          {[
-            "Início",
-            "Serviços",
-            "Eventos",
-            "Contactos",
-            "Blogs",
-          ].map((item, i) => (
-            <Link
-              key={i}
-              href={
-                item === "Início"
-                  ? "/"
-                  : item === "Eventos"
+          {["Início", "Serviços", "Eventos", "Contactos", "Blogs"].map(
+            (item, i) => (
+              <Link
+                key={i}
+                href={
+                  item === "Início"
+                    ? "/"
+                    : item === "Eventos"
                     ? "/events"
                     : item === "Serviços"
-                      ? "/servicos"
-                      : item === "Blogs"
-                        ? "/blogs"
-                        : item === "Contactos"
-                          ? "https://www.casaviana.ao"
-                          : "#"
-              }
-              className="text-lg font-medium hover:text-gray-200 transition py-2"
-            >
-              {item}
-            </Link>
-          ))}
+                    ? "/servicos"
+                    : item === "Blogs"
+                    ? "/blogs"
+                    : item === "Contactos"
+                    ? "https://www.casaviana.ao"
+                    : "#"
+                }
+                className="text-lg font-medium hover:text-gray-200 transition py-2"
+              >
+                {item}
+              </Link>
+            )
+          )}
           <div className="flex items-center gap-6 mt-2">
             <Link
               href="#"

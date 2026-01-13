@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { get_event, book_event, initiate_payment } from "@/Api/api";
 import { addToast, useDisclosure } from "@heroui/react";
@@ -34,12 +34,14 @@ const EventDetailsView = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [tickets, setTickets] = useState({});
   const [bookingLoading, setBookingLoading] = useState(false);
-  
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const videoRef = useRef(null);
+
   // Payment Modal state
-  const { 
-    isOpen: isPaymentModalOpen, 
-    onOpen: onPaymentModalOpen, 
-    onClose: onPaymentModalClose 
+  const {
+    isOpen: isPaymentModalOpen,
+    onOpen: onPaymentModalOpen,
+    onClose: onPaymentModalClose,
   } = useDisclosure();
   const [paymentData, setPaymentData] = useState(null);
 
@@ -47,7 +49,7 @@ const EventDetailsView = () => {
   const {
     isOpen: isGatewayModalOpen,
     onOpen: onGatewayModalOpen,
-    onClose: onGatewayModalClose
+    onClose: onGatewayModalClose,
   } = useDisclosure();
   const [pendingBookingId, setPendingBookingId] = useState(null);
 
@@ -132,8 +134,16 @@ const EventDetailsView = () => {
 
   const user = useSelector((state) => state.auth.user);
 
-  const initiatePaymentForBooking = async (bookingId, gateway = "bank_transfer") => {
-    console.log("Initiating payment for booking ID:", bookingId, "Gateway:", gateway);
+  const initiatePaymentForBooking = async (
+    bookingId,
+    gateway = "bank_transfer"
+  ) => {
+    console.log(
+      "Initiating payment for booking ID:",
+      bookingId,
+      "Gateway:",
+      gateway
+    );
     try {
       const paymentPayload = {
         payable_type: "event_booking",
@@ -147,25 +157,27 @@ const EventDetailsView = () => {
       }
 
       const res = await initiate_payment(paymentPayload);
-      
+
       console.log("Payment initiation response:", res);
-      
+
       if (res?.success) {
         setPaymentData(res);
         onPaymentModalOpen();
       } else {
         addToast({
           title: "Erro ao iniciar pagamento",
-          description: res?.error || "Ocorreu um erro ao gerar os dados para pagamento.",
-          color: "danger"
+          description:
+            res?.error || "Ocorreu um erro ao gerar os dados para pagamento.",
+          color: "danger",
         });
       }
     } catch (error) {
       console.error("Error initiating payment:", error);
       addToast({
         title: "Erro ao iniciar pagamento",
-        description: "Ocorreu um erro ao processar o pagamento. Por favor, tente novamente.",
-        color: "danger"
+        description:
+          "Ocorreu um erro ao processar o pagamento. Por favor, tente novamente.",
+        color: "danger",
       });
     }
   };
@@ -222,11 +234,16 @@ const EventDetailsView = () => {
             title: res.message || "Ingresso reservado com sucesso",
             color: "success",
           });
-          
+
           // Get booking ID and show gateway selection
           console.log("Booking response data:", res.data);
-          const bookingId = res.data?.booking_id || res.booking_id || (typeof res.data === 'number' || typeof res.data === 'string' ? res.data : null);
-          
+          const bookingId =
+            res.data?.booking_id ||
+            res.booking_id ||
+            (typeof res.data === "number" || typeof res.data === "string"
+              ? res.data
+              : null);
+
           if (bookingId) {
             // Store booking ID and show gateway selection modal
             setPendingBookingId(bookingId);
@@ -311,6 +328,34 @@ const EventDetailsView = () => {
 
   const { day, month } = parseEventDate();
 
+  // Handle video play/pause based on active slide
+  const handleSlideChange = (swiper) => {
+    const currentIndex = swiper.activeIndex;
+    setActiveSlideIndex(currentIndex);
+
+    if (videoRef.current) {
+      const totalSlides = event?.images?.length || 0;
+      const videoSlideIndex = event?.video ? totalSlides : -1;
+
+      if (currentIndex === videoSlideIndex) {
+        videoRef.current.play();
+      } else {
+        videoRef.current.pause();
+      }
+    }
+  };
+
+  // Autoplay video when slide becomes active
+  useEffect(() => {
+    if (
+      videoRef.current &&
+      activeSlideIndex === (event?.images?.length || 0) &&
+      event?.video
+    ) {
+      videoRef.current.play();
+    }
+  }, [activeSlideIndex, event]);
+
   if (loading) return <EventDetailsSkeleton />;
 
   if (!event) {
@@ -350,6 +395,7 @@ const EventDetailsView = () => {
                           ? thumbsSwiper
                           : null,
                     }}
+                    onSlideChange={handleSlideChange}
                     className="mainSwiper rounded-lg shadow-lg overflow-hidden"
                   >
                     {event.images.map((img, i) => (
@@ -363,6 +409,21 @@ const EventDetailsView = () => {
                         </div>
                       </SwiperSlide>
                     ))}
+                    {event?.video && (
+                      <SwiperSlide key="video-slide">
+                        <div className="relative w-full h-[250px] sm:h-[350px] lg:h-[500px]">
+                          <video
+                            ref={videoRef}
+                            src={event.video}
+                            className="w-full h-full object-cover"
+                            controls
+                            loop
+                            playsInline
+                            muted={false}
+                          />
+                        </div>
+                      </SwiperSlide>
+                    )}
                   </Swiper>
                 </div>
               ) : (
@@ -502,7 +563,7 @@ const EventDetailsView = () => {
                       )}
                     </div>
                     <p className="text-xs lg:text-sm text-gray-600 mt-2">
-                       {ticket.description || "Sem descrição."}
+                      {ticket.description || "Sem descrição."}
                     </p>
                     {isDisabled && (
                       <div className="bg-red-50 text-red-600 text-center py-2 px-3 rounded text-xs lg:text-sm font-semibold mb-4">
@@ -590,10 +651,10 @@ const EventDetailsView = () => {
           <Comment slug={slug} resource="event" />
         </div>
       </div>
-      <PaymentInstructionsModal 
-        isOpen={isPaymentModalOpen} 
-        onClose={onPaymentModalClose} 
-        paymentData={paymentData} 
+      <PaymentInstructionsModal
+        isOpen={isPaymentModalOpen}
+        onClose={onPaymentModalClose}
+        paymentData={paymentData}
       />
       <PaymentGatewayModal
         isOpen={isGatewayModalOpen}
