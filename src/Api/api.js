@@ -82,9 +82,24 @@ export const get_event = async (slug) => {
   }
 };
 
-export const get_categories = async () => {
+export const get_categories = async (
+  search = null,
+  status = null,
+  type = null,
+  include = "children",
+  page = null,
+  per_page = 100
+) => {
   try {
-    let response = await api.get("/categories");
+    const params = {
+      ...(search !== null && { search }),
+      ...(status !== null && { status }),
+      ...(type !== null && { type }),
+      ...(page !== null && { page }),
+      ...(per_page && { per_page }),
+      ...(include && { include })
+    };
+    let response = await api.get("/categories", { params });
     return response.data;
   } catch (error) {
     // console.log(error);
@@ -93,6 +108,7 @@ export const get_categories = async () => {
 
 export const get_blogs = async (
   category_id = null,
+  category_slug = null,
   search = null,
   page = null,
   per_page = null
@@ -100,6 +116,7 @@ export const get_blogs = async (
   try {
     const params = {
       ...(category_id && { category_id }),
+      ...(category_slug && { category_slug }),
       ...(search && { search }),
       ...(page !== null && { page }),
       ...(per_page !== null && { per_page }),

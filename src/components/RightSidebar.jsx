@@ -3,53 +3,45 @@ import Image from "next/image";
 import { RightSidebarSkeleton } from "./Skeletons/CommonSkeletons";
 import React, { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { useSelector } from "react-redux";
+
 import api from "../Api/interceptor";
-import { get_blogs } from "@/Api/api";
+import { get_blogs, get_categories } from "@/Api/api";
 
 const RightSidebar = () => {
   const [openIndex, setOpenIndex] = useState(null);
   const router = useRouter();
   const pathname = usePathname();
-  const { sections, loading: sectionsLoading } = useSelector(
-    (state) => state.contentSections
-  );
+
 
   const toggleSubmenu = (i) => {
     setOpenIndex(openIndex === i ? null : i);
   };
 
-  const handleSectionClick = (sectionSlug, itemSlug = null) => {
-    const targetId = itemSlug || sectionSlug;
-
-    if (pathname === "/") {
-      const element = document.getElementById(targetId);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    } else {
-      router.push(`/#${targetId}`);
-    }
+  const handleSectionClick = (parentSlug, childSlug = null) => {
+    // If it's a child category (subcategory), use that slug
+    // If it's a parent category, use the parent slug
+    const targetSlug = childSlug || parentSlug;
+    router.push(`/blogs?category_slug=${targetSlug}`);
   };
 
-  const handleRedirect = () => {
-    router.push("/blogs");
-  };
 
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(false);
+
+
 
   const [blogs, setBlogs] = useState([]);
+  const [categories, setCategories] = useState([]);
+
   const [blogsLoading, setBlogsLoading] = useState(false);
+  const [categoriesLoading, setCategoriesLoading] = useState(false);
 
   const fetchFeaturedBlogs = async () => {
     setBlogsLoading(true);
     try {
       const res = await get_blogs(
         null,
-        null, 
-        1, 
-        4 
+        null,
+        1,
+        4
       );
 
       const data = res?.data ?? [];
@@ -62,7 +54,7 @@ const RightSidebar = () => {
       setBlogs(finalBlogs);
       try {
         localStorage.setItem("featuredBlogs", JSON.stringify(finalBlogs));
-      } catch {}
+      } catch { }
     } catch (err) {
       console.error("Error fetching featured blogs:", err);
       setBlogs([]);
@@ -71,9 +63,33 @@ const RightSidebar = () => {
     }
   };
 
+  const fetchCategories = async () => {
+    setCategoriesLoading(true);
+    try {
+      const res = await get_categories(null, null, 'blog');
+      const data = res?.data ?? [];
+
+      // store first 5 with children only to state
+      const topCategories = data
+        .filter(cat => cat.is_root && cat.has_children)
+        .slice(0, 5);
+
+      setCategories(topCategories);
+      try {
+        localStorage.setItem("categories", JSON.stringify(data));
+      } catch { }
+    } catch (err) {
+      console.error("Error fetching categories:", err);
+      setCategories([]);
+    } finally {
+      setCategoriesLoading(false);
+    }
+  };
+
   useEffect(() => {
     if (pathname === "/") {
       fetchFeaturedBlogs();
+      fetchCategories();
     } else {
       try {
         const cached = localStorage.getItem("featuredBlogs");
@@ -81,11 +97,11 @@ const RightSidebar = () => {
           const parsed = JSON.parse(cached);
           if (Array.isArray(parsed)) setBlogs(parsed);
         }
-      } catch {}
+      } catch { }
     }
   }, [pathname]);
 
-  if (sectionsLoading || loading) return <RightSidebarSkeleton />;
+  if (categoriesLoading) return <RightSidebarSkeleton />;
 
   return (
     <div className="lg:col-span-2 lg:sticky lg:top-24 self-start p-4 bg-white z-20 space-y-6">
@@ -94,21 +110,21 @@ const RightSidebar = () => {
       </h2>
 
       <div className="flex flex-col gap-2">
-        {sections.map((section, i) => (
+        {categories.map((category, i) => (
           <div
-            key={section.id || i}
+            key={category.id || i}
             className="relative group"
             onMouseEnter={() => setOpenIndex(i)}
             onMouseLeave={() => setOpenIndex(null)}
           >
             <button
-              onClick={() => handleSectionClick(section.slug)}
+              onClick={() => handleSectionClick(category.slug)}
               className="flex justify-between items-center bg-red-600 text-white font-semibold 
                 px-3 sm:px-4 py-2 rounded-md hover:bg-red-700 transition-colors 
                 text-lg sm:text-md w-full text-left truncate"
             >
-              {section.internal_name}
-              {section.items && section.items.length > 0 && (
+              {category.name}
+              {category.children && category.children.length > 0 && (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 16 16"
@@ -123,32 +139,38 @@ const RightSidebar = () => {
               )}
             </button>
 
-            {section.items && section.items.length > 0 && openIndex === i && (
+            {category.children && category.children.length > 0 && openIndex === i && (
               <div
                 className="hidden lg:block absolute left-[-210px] top-0 bg-[#8c181a] text-white 
                 rounded-md p-2 w-52 z-50"
               >
-                {section.items.map((item, j) => (
+                {category.children.map((child, j) => (
                   <div
-                    key={item.id || j}
-                    onClick={() => handleSectionClick(section.slug, item.slug)}
+                    key={child.id || j}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleSectionClick(category.slug, child.slug);
+                    }}
                     className="px-3 py-2 hover:bg-red-800 rounded-md cursor-pointer text-sm whitespace-nowrap"
                   >
-                    {item.title}
+                    {child.name}
                   </div>
                 ))}
               </div>
             )}
 
-            {section.items && section.items.length > 0 && openIndex === i && (
+            {category.children && category.children.length > 0 && openIndex === i && (
               <div className="lg:hidden bg-[#8c181a] text-white rounded-md p-2 mt-1 z-20">
-                {section.items.map((item, j) => (
+                {category.children.map((child, j) => (
                   <div
-                    key={item.id || j}
-                    onClick={() => handleSectionClick(section.slug, item.slug)}
+                    key={child.id || j}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleSectionClick(category.slug, child.slug);
+                    }}
                     className="px-3 py-2 hover:bg-red-800 rounded-md cursor-pointer text-sm"
                   >
-                    {item.title}
+                    {child.name}
                   </div>
                 ))}
               </div>
