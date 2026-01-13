@@ -209,7 +209,7 @@ const Homepage = () => {
                   href={`/servicos/${item.slug}`}
                   className="bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md py-2 sm:py-3 px-3 sm:px-4 text-xs sm:text-sm transition-all flex items-center justify-between"
                 >
-                  <span className="text-white text-md">
+                  <span className="text-white text-lg">
                     {item.title}
                   </span>
                   {/* Add Arrow */}
