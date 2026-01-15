@@ -197,7 +197,7 @@ const Homepage = () => {
                 eventImages.map((ev, i) => (
                   <div
                     key={i}
-                    className="relative w-[48%] sm:w-[45%] md:w-[48%] h-[240px] sm:h-[260px] md:h-[220px]"
+                    className="relative w-[48%] sm:w-[45%] md:w-[48%] h-[240px] sm:h-[260px] md:h-[290px]"
                   >
                     <Link href={ev.slug || "/events"}>
                       <Image
@@ -269,8 +269,8 @@ const Homepage = () => {
                     const isBlog = topSection.source_filters?.type === "blog";
                     const Wrapper = isBlog ? Link : "div";
                     const wrapperProps = isBlog
-                      ? { href: `/blogs/${item.slug}`, className: "block relative w-full h-[400px] sm:h-[400px] md:h-[280px] lg:h-[220px]" }
-                      : { className: "relative w-full h-[400px] sm:h-[400px] md:h-[280px] lg:h-[180px]" };
+                      ? { href: `/blogs/${item.slug}`, className: "block relative w-full h-[400px] sm:h-[400px] md:h-[280px] lg:h-[260px]" }
+                      : { className: "relative w-full h-[400px] sm:h-[400px] md:h-[280px] lg:h-[300px]" };
 
                     return (
                       <SwiperSlide key={item.id} id={item.slug}>
