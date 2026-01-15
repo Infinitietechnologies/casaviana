@@ -178,7 +178,7 @@ const Homepage = () => {
 
   return (
     <>
-      <div className="mx-auto pt-4 md:pt-8 pb-2 px-2 sm:px-4 mt-20 sm:mt-24">
+      <div className="mx-auto pt-4 md:pt-8 pb-2 px-2 sm:px-4 mt-20 sm:mt-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6">
           <div className="lg:col-span-3">
             <h2 className="bg-gradient-to-r from-orange-500 to-red-600 text-white text-base sm:text-lg md:text-xl text-center font-bold py-2 px-4 rounded-md mb-4">
