@@ -40,8 +40,6 @@ const RightSidebar = () => {
       const res = await get_blogs(
         null,
         null,
-        1,
-        4
       );
 
       const data = res?.data ?? [];
