@@ -46,12 +46,15 @@ const Homepage = () => {
     },
   ];
 
-  const [eventImages, setEventImages] = useState(eventImagesFallback);
+  // const [eventImages, setEventImages] = useState(eventImagesFallback);
+  const [eventImages, setEventImages] = useState([]);
+  const [loadingEvents, setLoadingEvents] = useState(true);
   const [featuredServices, setFeaturedServices] = useState([]);
 
   React.useEffect(() => {
     let mounted = true;
     const fetchEvents = async () => {
+      setLoadingEvents(true);
       try {
         const res = await get_events(null, null, 1, 2);
         if (!mounted) return;
@@ -67,7 +70,9 @@ const Homepage = () => {
           if (items.length > 0) setEventImages(items);
         }
       } catch (err) {
-        // keep fallback
+        console.error("Error fetching events:", err);
+      } finally {
+        if (mounted) setLoadingEvents(false);
       }
     };
 
@@ -180,21 +185,31 @@ const Homepage = () => {
               EVENTOS EM DESTAQUE
             </h2>
             <div className="flex justify-center gap-2 sm:gap-3">
-              {eventImages.map((ev, i) => (
-                <div
-                  key={i}
-                  className="relative w-[48%] sm:w-[45%] md:w-[48%] h-[240px] sm:h-[260px] md:h-[260px]"
-                >
-                  <Link href={ev.slug || "/events"}>
-                    <Image
-                      src={ev.src}
-                      alt={ev.alt}
-                      fill
-                      className="object-cover rounded-md"
-                    />
-                  </Link>
-                </div>
-              ))}
+              {loadingEvents ? (
+                // Skeleton Loader for Events
+                Array.from({ length: 2 }).map((_, i) => (
+                  <div
+                    key={i}
+                    className="relative w-[48%] sm:w-[45%] md:w-[48%] h-[240px] sm:h-[260px] md:h-[260px] bg-gray-200 animate-pulse rounded-md"
+                  />
+                ))
+              ) : (
+                eventImages.map((ev, i) => (
+                  <div
+                    key={i}
+                    className="relative w-[48%] sm:w-[45%] md:w-[48%] h-[240px] sm:h-[260px] md:h-[260px]"
+                  >
+                    <Link href={ev.slug || "/events"}>
+                      <Image
+                        src={ev.src}
+                        alt={ev.alt}
+                        fill
+                        className="object-cover rounded-md"
+                      />
+                    </Link>
+                  </div>
+                ))
+              )}
             </div>
           </div>
 
