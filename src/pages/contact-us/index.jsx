@@ -45,7 +45,7 @@ const ContactUs = () => {
         window.L.marker([38.7020807, -9.4221048], { icon: redIcon })
           .addTo(map)
           .bindPopup(
-            "<b>Casa Viana Luanada - Angola</b><br>Estrada de Catete, km20, entre o Kero de Viana e o Kinda Home.<br>Luanada - Angola"
+            "<br>3C85+HCX, Viana, Luanda, Angola"
           )
           .openPopup();
       }

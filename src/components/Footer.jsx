@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-red-600 text-white w-full py-10 text-center font-bold text-md">
+    <footer className="bg-red-600 text-white w-full py-6 text-center font-bold text-md">
       Copyright © 2026 – CASA VIANA | All rights reserved.
     </footer>
   );
