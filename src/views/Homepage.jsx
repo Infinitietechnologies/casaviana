@@ -178,7 +178,7 @@ const Homepage = () => {
 
   return (
     <>
-      <div className="mx-auto py-4 md:py-8 px-2 sm:px-4 mt-20 sm:mt-24">
+      <div className="mx-auto pt-4 md:pt-8 pb-2 px-2 sm:px-4 mt-20 sm:mt-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6">
           <div className="lg:col-span-3">
             <h2 className="bg-gradient-to-r from-orange-500 to-red-600 text-white text-base sm:text-lg md:text-xl text-center font-bold py-2 px-4 rounded-md mb-4">
@@ -197,7 +197,7 @@ const Homepage = () => {
                 eventImages.map((ev, i) => (
                   <div
                     key={i}
-                    className="relative w-[48%] sm:w-[45%] md:w-[48%] h-[240px] sm:h-[260px] md:h-[260px]"
+                    className="relative w-[48%] sm:w-[45%] md:w-[48%] h-[240px] sm:h-[260px] md:h-[220px]"
                   >
                     <Link href={ev.slug || "/events"}>
                       <Image
@@ -224,7 +224,7 @@ const Homepage = () => {
                   href={`/servicos/${item.slug}`}
                   className="bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md py-2 sm:py-3 px-3 sm:px-4 text-xs sm:text-sm transition-all flex items-center justify-between"
                 >
-                  <span className="text-white text-lg">
+                  <span className="text-white text-md md:text-lg">
                     {item.title}
                   </span>
                   {/* Add Arrow */}
@@ -270,7 +270,7 @@ const Homepage = () => {
                     const Wrapper = isBlog ? Link : "div";
                     const wrapperProps = isBlog
                       ? { href: `/blogs/${item.slug}`, className: "block relative w-full h-[200px] sm:h-[250px] md:h-[280px] lg:h-[220px]" }
-                      : { className: "relative w-full h-[200px] sm:h-[250px] md:h-[280px] lg:h-[220px]" };
+                      : { className: "relative w-full h-[200px] sm:h-[250px] md:h-[280px] lg:h-[180px]" };
 
                     return (
                       <SwiperSlide key={item.id} id={item.slug}>
