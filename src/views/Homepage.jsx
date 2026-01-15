@@ -183,7 +183,7 @@ const Homepage = () => {
               {eventImages.map((ev, i) => (
                 <div
                   key={i}
-                  className="relative w-[48%] sm:w-[45%] md:w-[48%] h-[240px] sm:h-[260px] md:h-[300px]"
+                  className="relative w-[48%] sm:w-[45%] md:w-[48%] h-[240px] sm:h-[260px] md:h-[260px]"
                 >
                   <Link href={ev.slug || "/events"}>
                     <Image
@@ -250,21 +250,29 @@ const Homepage = () => {
                   }}
                   className="mainSwiper rounded-md overflow-hidden"
                 >
-                  {topSection.items?.map((item) => (
-                    <SwiperSlide key={item.id} id={item.slug}>
-                      <div className="relative w-full h-[200px] sm:h-[250px] md:h-[280px] lg:h-[260px]">
-                        <Image
-                          src={item.image || "/cardapio/default.png"}
-                          alt={item.title || "Top Slide"}
-                          fill
-                          className="object-cover rounded-md"
-                        />
-                        <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-sm px-2 py-1 rounded">
-                          {item.title || "ESPAÇOS"}
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                  ))}
+                  {topSection.items?.map((item) => {
+                    const isBlog = topSection.source_filters?.type === "blog";
+                    const Wrapper = isBlog ? Link : "div";
+                    const wrapperProps = isBlog
+                      ? { href: `/blogs/${item.slug}`, className: "block relative w-full h-[200px] sm:h-[250px] md:h-[280px] lg:h-[220px]" }
+                      : { className: "relative w-full h-[200px] sm:h-[250px] md:h-[280px] lg:h-[220px]" };
+
+                    return (
+                      <SwiperSlide key={item.id} id={item.slug}>
+                        <Wrapper {...wrapperProps}>
+                          <Image
+                            src={item.image || "/cardapio/default.png"}
+                            alt={item.title || "Top Slide"}
+                            fill
+                            className="object-cover rounded-md"
+                          />
+                          <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-sm px-2 py-1 rounded">
+                            {item.title || "ESPAÇOS"}
+                          </div>
+                        </Wrapper>
+                      </SwiperSlide>
+                    );
+                  })}
                 </Swiper>
 
                 <Swiper
@@ -340,31 +348,39 @@ const Homepage = () => {
                         }}
                         className="mainSwiper overflow-hidden rounded-md"
                       >
-                        {section.items?.map((item) => (
-                          <SwiperSlide key={item.id} id={item.slug}>
-                            <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-                              <Image
-                                src={item.image || "/cardapio/default.png"}
-                                alt={item.title || "Section Item"}
-                                fill
-                                className="object-cover rounded-md"
-                              />
-                              {item.title && (
-                                <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-sm px-2 py-1 rounded">
-                                  {item.title}
-                                </div>
-                              )}
-                              {item.cta_url && (
-                                <Link
-                                  href={item.cta_url}
-                                  className="absolute top-2 right-2 bg-white/80 hover:bg-white text-red-600 text-xs px-3 py-1.5 rounded-full font-bold transition-all shadow-md"
-                                >
-                                  {item.cta_text || "Veja mais"}
-                                </Link>
-                              )}
-                            </div>
-                          </SwiperSlide>
-                        ))}
+                        {section.items?.map((item) => {
+                          const isBlog = section.source_filters?.type === "blog";
+                          const Wrapper = isBlog ? Link : "div";
+                          const wrapperProps = isBlog
+                            ? { href: `/blogs/${item.slug}`, className: "block relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]" }
+                            : { className: "relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]" };
+
+                          return (
+                            <SwiperSlide key={item.id} id={item.slug}>
+                              <Wrapper {...wrapperProps}>
+                                <Image
+                                  src={item.image || "/cardapio/default.png"}
+                                  alt={item.title || "Section Item"}
+                                  fill
+                                  className="object-cover rounded-md"
+                                />
+                                {item.title && (
+                                  <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-sm px-2 py-1 rounded">
+                                    {item.title}
+                                  </div>
+                                )}
+                                {!isBlog && item.cta_url && (
+                                  <Link
+                                    href={item.cta_url}
+                                    className="absolute top-2 right-2 bg-white/80 hover:bg-white text-red-600 text-xs px-3 py-1.5 rounded-full font-bold transition-all shadow-md"
+                                  >
+                                    {item.cta_text || "Veja mais"}
+                                  </Link>
+                                )}
+                              </Wrapper>
+                            </SwiperSlide>
+                          );
+                        })}
                       </Swiper>
                     </div>
 
@@ -385,7 +401,7 @@ const Homepage = () => {
                       >
                         {section.items?.map((item) => (
                           <SwiperSlide key={`thumb-${item.id}`}>
-                            <div className="relative w-full h-[50px] sm:h-[70px] md:h-[100px] cursor-pointer">
+                            <div className="relative w-full h-[50px] sm:h-[70px] md:h-[130px] cursor-pointer">
                               <Image
                                 src={item.image || "/cardapio/default.png"}
                                 alt={`thumb-${item.title}`}

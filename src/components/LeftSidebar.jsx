@@ -112,7 +112,7 @@ const LeftSidebar = () => {
       </h3>
 
       <div className="space-y-2">
-        {items.slice(0, 4).map((news, i) => (
+        {items.slice(0, 5).map((news, i) => (
           <div
             key={news.id ?? i}
             className="flex items-center gap-3 p-1 hover:bg-gray-50 rounded-md transition-colors"

@@ -45,7 +45,7 @@ const ContactUs = () => {
         window.L.marker([38.7020807, -9.4221048], { icon: redIcon })
           .addTo(map)
           .bindPopup(
-            "<b>Casa Viana Cascais</b><br>Estrada de Catete, km20, entre o Kero de Viana e o Kinda Home.<br>Cascais, Portugal"
+            "<b>Casa Viana Luanada - Angola</b><br>Estrada de Catete, km20, entre o Kero de Viana e o Kinda Home.<br>Luanada - Angola"
           )
           .openPopup();
       }
@@ -69,7 +69,7 @@ const ContactUs = () => {
               Contate-nos
             </h1>
             <p className="text-lg text-gray-600">
-              Entre em contacto com Casa Viana Cascais
+              Entre em contacto com Casa Viana Luanada - Angola
             </p>
           </div>
 
@@ -166,7 +166,7 @@ const ContactUs = () => {
                   </div>
                   <p className="ml-9 text-lg text-gray-700">
                     Estrada de Catete, km20, entre o Kero de Viana e o Kinda Home
-                    Cascais, Portugal
+                    Luanada - Angola
                   </p>
                 </div>
               </CardBody>
