@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { LeftSidebarSkeleton } from "./Skeletons/CommonSkeletons";
@@ -113,9 +114,17 @@ const LeftSidebar = () => {
 
       <div className="space-y-2">
         {items.slice(0, 5).map((news, i) => (
-          <div
+          <Link
+            href={
+              news.category?.slug
+                ? {
+                    pathname: `/cardapio/${news.category.slug}`,
+                    query: news.menus?.[0]?.id ? { menu_id: news.menus[0].id } : {},
+                  }
+                : "#"
+            }
             key={news.id ?? i}
-            className="flex items-center gap-3 p-1 hover:bg-gray-50 rounded-md transition-colors"
+            className="flex items-center gap-3 p-1 hover:bg-gray-50 rounded-md transition-colors cursor-pointer"
           >
             <div className="w-16 h-16 overflow-hidden rounded-md flex-shrink-0">
               <Image
@@ -139,7 +148,7 @@ const LeftSidebar = () => {
                 {news.category?.name}
               </p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
