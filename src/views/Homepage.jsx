@@ -269,8 +269,8 @@ const Homepage = () => {
                     const isBlog = topSection.source_filters?.type === "blog";
                     const Wrapper = isBlog ? Link : "div";
                     const wrapperProps = isBlog
-                      ? { href: `/blogs/${item.slug}`, className: "block relative w-full h-[200px] sm:h-[250px] md:h-[280px] lg:h-[220px]" }
-                      : { className: "relative w-full h-[200px] sm:h-[250px] md:h-[280px] lg:h-[180px]" };
+                      ? { href: `/blogs/${item.slug}`, className: "block relative w-full h-[400px] sm:h-[400px] md:h-[280px] lg:h-[220px]" }
+                      : { className: "relative w-full h-[400px] sm:h-[400px] md:h-[280px] lg:h-[180px]" };
 
                     return (
                       <SwiperSlide key={item.id} id={item.slug}>
@@ -304,7 +304,7 @@ const Homepage = () => {
                 >
                   {topSection.items?.map((item) => (
                     <SwiperSlide key={`thumb-${item.id}`}>
-                      <div className="relative w-full h-[50px] sm:h-[60px] md:h-[80px] cursor-pointer">
+                      <div className="relative w-full h-[80px] sm:h-[60px] md:h-[80px] cursor-pointer">
                         <Image
                           src={item.image || "/cardapio/default.png"}
                           alt={`thumb-${item.title}`}
@@ -416,7 +416,7 @@ const Homepage = () => {
                       >
                         {section.items?.map((item) => (
                           <SwiperSlide key={`thumb-${item.id}`}>
-                            <div className="relative w-full h-[50px] sm:h-[70px] md:h-[130px] cursor-pointer">
+                            <div className="relative w-full h-[80px] sm:h-[70px] md:h-[130px] cursor-pointer">
                               <Image
                                 src={item.image || "/cardapio/default.png"}
                                 alt={`thumb-${item.title}`}
