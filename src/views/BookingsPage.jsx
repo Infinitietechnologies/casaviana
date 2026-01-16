@@ -27,22 +27,22 @@ const statusColorMap = {
 };
 
 const statusOptions = [
-  { key: "all", label: "All Status" },
-  { key: "pending", label: "Pending" },
-  { key: "confirmed", label: "Confirmed" },
+  { key: "all", label: "Todos os Estados" },
+  { key: "pending", label: "Pendente" },
+  { key: "confirmed", label: "Confirmado" },
 ];
 
 const TableSkeleton = () => (
   <Table aria-label="Loading bookings">
     <TableHeader>
-      <TableColumn>BOOKING #</TableColumn>
-      <TableColumn>EVENT</TableColumn>
-      <TableColumn>TICKET TYPE</TableColumn>
-      <TableColumn>QTY</TableColumn>
-      <TableColumn>AMOUNT</TableColumn>
-      <TableColumn>STATUS</TableColumn>
-      <TableColumn>BOOKED AT</TableColumn>
-      <TableColumn>ACTIONS</TableColumn>
+      <TableColumn>RESERVA #</TableColumn>
+      <TableColumn>EVENTO</TableColumn>
+      <TableColumn>TIPO DE BILHETE</TableColumn>
+      <TableColumn>QTD</TableColumn>
+      <TableColumn>VALOR</TableColumn>
+      <TableColumn>ESTADO</TableColumn>
+      <TableColumn>RESERVADO EM</TableColumn>
+      <TableColumn>AÇÕES</TableColumn>
     </TableHeader>
     <TableBody>
       {[...Array(5)].map((_, index) => (
@@ -116,12 +116,12 @@ export default function BookingsPage() {
         setTotalPages(paginationData.last_page || 1);
         setTotalRecords(paginationData.total || 0);
       } else {
-        setError(response?.error || "Failed to load bookings");
+        setError(response?.error || "Falha ao carregar reservas");
         setBookings([]);
       }
     } catch (err) {
       console.error("Failed to fetch bookings", err);
-      setError("Failed to load bookings");
+      setError("Falha ao carregar reservas");
       setBookings([]);
     } finally {
       setLoading(false);
@@ -141,7 +141,7 @@ export default function BookingsPage() {
 
   const formatDate = (dateString) => {
     if (!dateString) return "-";
-    return new Date(dateString).toLocaleDateString("en-US", {
+    return new Date(dateString).toLocaleDateString("pt-AO", {
       year: "numeric",
       month: "short",
       day: "numeric",
@@ -150,7 +150,7 @@ export default function BookingsPage() {
 
   const formatDateTime = (dateString) => {
     if (!dateString) return "-";
-    return new Date(dateString).toLocaleString("en-US", {
+    return new Date(dateString).toLocaleString("pt-AO", {
       year: "numeric",
       month: "short",
       day: "numeric",
@@ -163,10 +163,14 @@ export default function BookingsPage() {
     setLoadingBookingId(bookingNumber);
     try {
       const response = await get_booking_details(bookingNumber);
-      if (response && (response.success || response.success === undefined) && response.data) {
-          // The API returns { success: true, data: { ... } }
-          setSelectedBooking(response.data);
-          setIsDetailsOpen(true);
+      if (
+        response &&
+        (response.success || response.success === undefined) &&
+        response.data
+      ) {
+        // The API returns { success: true, data: { ... } }
+        setSelectedBooking(response.data);
+        setIsDetailsOpen(true);
       } else {
         console.error("Failed to load details", response);
       }
@@ -206,7 +210,7 @@ export default function BookingsPage() {
               onPress={fetchBookings}
               className="bg-amber-500 text-white font-semibold"
             >
-              Retry
+              Tentar novamente
             </Button>
           </div>
         </div>
@@ -220,9 +224,11 @@ export default function BookingsPage() {
 
       <div className="flex-1">
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-gray-900">Event Bookings</h1>
+          <h1 className="text-3xl font-bold text-gray-900">
+            Reservas de Eventos
+          </h1>
           <p className="text-gray-600 mt-2">
-            View all your event ticket bookings
+            Veja todas as suas reservas de bilhetes de eventos
           </p>
         </div>
 
@@ -231,10 +237,10 @@ export default function BookingsPage() {
           <div className="flex flex-col sm:flex-row gap-4 items-end">
             <div className="flex-1 max-w-xs">
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Filter by Status
+                Filtrar por Estado
               </label>
               <Select
-                placeholder="Select status"
+                placeholder="Selecione o estado"
                 selectedKeys={new Set([statusFilter])}
                 onSelectionChange={handleStatusChange}
                 className="max-w-xs"
@@ -272,7 +278,7 @@ export default function BookingsPage() {
                     </svg>
                   }
                 >
-                  Clear Filters
+                  Limpar Filtros
                 </Button>
               )}
               <Button
@@ -296,7 +302,7 @@ export default function BookingsPage() {
                   </svg>
                 }
               >
-                Refresh
+                Atualizar
               </Button>
             </div>
           </div>
@@ -320,7 +326,7 @@ export default function BookingsPage() {
                   />
                 </svg>
                 <span>
-                  <strong>{totalRecords}</strong> total bookings
+                  <strong>{totalRecords}</strong> total de reservas
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -339,7 +345,8 @@ export default function BookingsPage() {
                   />
                 </svg>
                 <span>
-                  Page <strong>{page}</strong> of <strong>{totalPages}</strong>
+                  Página <strong>{page}</strong> de{" "}
+                  <strong>{totalPages}</strong>
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -358,7 +365,7 @@ export default function BookingsPage() {
                   />
                 </svg>
                 <span>
-                  Showing <strong>{perPage}</strong> per page
+                  Mostrando <strong>{perPage}</strong> por página
                 </span>
               </div>
             </div>
@@ -386,13 +393,13 @@ export default function BookingsPage() {
             </svg>
             <p className="text-gray-600 text-lg">
               {statusFilter !== "all"
-                ? `No ${statusFilter} bookings found`
-                : "No bookings found"}
+                ? `Nenhuma reserva encontrada para o estado ${statusFilter}`
+                : "Nenhuma reserva encontrada"}
             </p>
             <p className="text-gray-500 text-sm mt-2">
               {statusFilter !== "all"
-                ? "Try selecting a different status filter"
-                : "Your event bookings will appear here"}
+                ? "Tente selecionar um filtro de estado diferente"
+                : "Suas reservas de eventos aparecerão aqui"}
             </p>
             {statusFilter !== "all" && (
               <Button
@@ -407,7 +414,7 @@ export default function BookingsPage() {
           <div className="bg-white rounded-lg shadow overflow-hidden">
             <div className="overflow-x-auto">
               <Table
-                aria-label="Bookings table"
+                aria-label="Tabela de reservas"
                 className="min-w-full"
                 bottomContent={
                   totalPages > 1 ? (
@@ -425,14 +432,14 @@ export default function BookingsPage() {
                 }
               >
                 <TableHeader>
-                  <TableColumn>BOOKING #</TableColumn>
-                  <TableColumn>EVENT</TableColumn>
-                  <TableColumn>TICKET TYPE</TableColumn>
-                  <TableColumn>QTY</TableColumn>
-                  <TableColumn>AMOUNT</TableColumn>
-                  <TableColumn>STATUS</TableColumn>
-                  <TableColumn>BOOKED AT</TableColumn>
-                  <TableColumn>ACTIONS</TableColumn>
+                  <TableColumn>RESERVA #</TableColumn>
+                  <TableColumn>EVENTO</TableColumn>
+                  <TableColumn>TIPO DE BILHETE</TableColumn>
+                  <TableColumn>QTD</TableColumn>
+                  <TableColumn>VALOR</TableColumn>
+                  <TableColumn>ESTADO</TableColumn>
+                  <TableColumn>RESERVADO EM</TableColumn>
+                  <TableColumn>AÇÕES</TableColumn>
                 </TableHeader>
 
                 <TableBody>
@@ -483,7 +490,13 @@ export default function BookingsPage() {
                           variant="flat"
                           className="capitalize"
                         >
-                          {booking.status}
+                          {booking.status === "confirmed"
+                            ? "Confirmado"
+                            : booking.status === "pending"
+                            ? "Pendente"
+                            : booking.status === "cancelled"
+                            ? "Cancelado"
+                            : booking.status}
                         </Chip>
                       </TableCell>
 
@@ -499,14 +512,33 @@ export default function BookingsPage() {
                           size="sm"
                           variant="light"
                           color="primary"
-                          onPress={() => handleViewDetails(booking.booking_number)}
-                          isLoading={loadingBookingId === booking.booking_number}
-                          aria-label="View Details"
+                          onPress={() =>
+                            handleViewDetails(booking.booking_number)
+                          }
+                          isLoading={
+                            loadingBookingId === booking.booking_number
+                          }
+                          aria-label="Ver Detalhes"
                         >
                           {!loadingBookingId && (
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth={1.5}
+                              stroke="currentColor"
+                              className="w-5 h-5"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
+                              />
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                              />
                             </svg>
                           )}
                         </Button>
@@ -520,10 +552,10 @@ export default function BookingsPage() {
         )}
       </div>
 
-      <BookingDetailsModal 
-        isOpen={isDetailsOpen} 
-        onOpenChange={setIsDetailsOpen} 
-        booking={selectedBooking} 
+      <BookingDetailsModal
+        isOpen={isDetailsOpen}
+        onOpenChange={setIsDetailsOpen}
+        booking={selectedBooking}
       />
     </div>
   );
