@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
-    "postbuild": "node -e \"import fs from 'fs'; fs.copyFileSync('public/.htaccess', 'out/.htaccess')\"",
     "start": "next start",
     "lint": "eslint"
   },
