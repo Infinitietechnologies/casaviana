@@ -10,10 +10,18 @@ import {
   addToast,
 } from "@heroui/react";
 import { useRouter } from "next/router";
-import { check_payment_status } from "@/Api/api";
+import { check_payment_status, get_cart } from "@/Api/api";
+import { useDispatch } from "react-redux";
+import { setCart } from "@/store/cartSlice";
 
-const PaymentInstructionsModal = ({ isOpen, onClose, paymentData }) => {
+const PaymentInstructionsModal = ({ 
+  isOpen, 
+  onClose, 
+  paymentData, 
+  shouldUpdateCart = true 
+}) => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const [isPolling, setIsPolling] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState(null);
   const pollingIntervalRef = useRef(null);
@@ -25,6 +33,21 @@ const PaymentInstructionsModal = ({ isOpen, onClose, paymentData }) => {
   // Check if this is Multicaixa Express payment
   const action = paymentData?.data?.action;
   const isMulticaixa = action === "multicaixa_token" || !!paymentUrl;
+
+  const updateCart = async () => {
+    try {
+      const res = await get_cart();
+      if (res?.success && res.data) {
+        dispatch(setCart({
+          items: res.data.items || [],
+          cart_id: res.data.id || null, 
+          final_total: res.final_total || 0,
+        }));
+      }
+    } catch (error) {
+      console.error("Failed to update cart:", error);
+    }
+  };
 
   useEffect(() => {
     // Only poll for Multicaixa Express payments
@@ -49,6 +72,12 @@ const PaymentInstructionsModal = ({ isOpen, onClose, paymentData }) => {
               }
               setIsPolling(false);
               setPaymentStatus("succeeded");
+              
+              // Refresh cart on success (it should be empty)
+              if (shouldUpdateCart) {
+                await updateCart();
+              }
+
               addToast({
                 title: "Pagamento bem-sucedido",
                 description: "Seu pagamento foi processado com sucesso!",
@@ -94,20 +123,23 @@ const PaymentInstructionsModal = ({ isOpen, onClose, paymentData }) => {
         pollingIntervalRef.current = null;
       }
     };
-  }, [isOpen, paymentReference, isMulticaixa, onClose, router]);
+  }, [isOpen, paymentReference, isMulticaixa, onClose, router, dispatch, shouldUpdateCart]);
 
-  const handleClose = () => {
-    // Prevent closing if payment is in progress
-    if (isPolling && paymentStatus !== "succeeded" && paymentStatus !== "failed") {
-      return;
-    }
-    
+  const handleClose = async () => {
+    // Stop polling and clean up
+
     if (pollingIntervalRef.current) {
       clearInterval(pollingIntervalRef.current);
       pollingIntervalRef.current = null;
     }
     setIsPolling(false);
     setPaymentStatus(null);
+    
+    // Update cart when closing modal manually, but only if requested
+    if (shouldUpdateCart) {
+      await updateCart();
+    }
+    
     onClose();
   };
 
@@ -135,6 +167,14 @@ const PaymentInstructionsModal = ({ isOpen, onClose, paymentData }) => {
               <ModalBody className="p-0">
                 {paymentUrl && (
                   <div className="relative w-full bg-white">
+                    <button 
+                      onClick={handleClose}
+                      className="absolute right-2 top-2 z-50 p-2 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all border border-gray-100"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
                     <iframe
                       src={paymentUrl}
                       className="w-full border-0"

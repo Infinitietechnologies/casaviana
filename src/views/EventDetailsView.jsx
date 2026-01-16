@@ -52,6 +52,7 @@ const EventDetailsView = () => {
     onClose: onGatewayModalClose,
   } = useDisclosure();
   const [pendingBookingId, setPendingBookingId] = useState(null);
+  const [isPaymentLoading, setIsPaymentLoading] = useState(false);
 
   useEffect(() => {
     if (!slug) return;
@@ -163,6 +164,7 @@ const EventDetailsView = () => {
       if (res?.success) {
         setPaymentData(res);
         onPaymentModalOpen();
+        return true;
       } else {
         addToast({
           title: "Erro ao iniciar pagamento",
@@ -170,6 +172,7 @@ const EventDetailsView = () => {
             res?.error || "Ocorreu um erro ao gerar os dados para pagamento.",
           color: "danger",
         });
+        return false;
       }
     } catch (error) {
       console.error("Error initiating payment:", error);
@@ -179,12 +182,16 @@ const EventDetailsView = () => {
           "Ocorreu um erro ao processar o pagamento. Por favor, tente novamente.",
         color: "danger",
       });
+      return false;
     }
   };
 
-  const handleGatewaySelection = (gateway) => {
+  const handleGatewaySelection = async (gateway) => {
     if (pendingBookingId) {
-      initiatePaymentForBooking(pendingBookingId, gateway);
+      setIsPaymentLoading(true);
+      await initiatePaymentForBooking(pendingBookingId, gateway);
+      setIsPaymentLoading(false);
+      onGatewayModalClose();
       setPendingBookingId(null);
     }
   };
@@ -629,7 +636,7 @@ const EventDetailsView = () => {
                   </div>
                 </div>
                 <button
-                  className="w-full bg-gray-700 text-white py-3 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-gray-800 transition-colors disabled:opacity-50"
+                  className="w-full bg-gray-700 text-white py-3 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-gray-800 transition-colors cursor-pointer disabled:opacity-50"
                   onClick={handleBookEvent}
                   disabled={
                     bookingLoading ||
@@ -647,7 +654,7 @@ const EventDetailsView = () => {
           <Rating slug={slug} resource="event" />
         </div>
         <div className="mt-8">
-          <h3 className="text-xl font-bold mb-4">Comments</h3>
+          <h3 className="text-xl font-bold mb-4">Comentários</h3>
           <Comment slug={slug} resource="event" />
         </div>
       </div>
@@ -655,11 +662,13 @@ const EventDetailsView = () => {
         isOpen={isPaymentModalOpen}
         onClose={onPaymentModalClose}
         paymentData={paymentData}
+        shouldUpdateCart={false}
       />
       <PaymentGatewayModal
         isOpen={isGatewayModalOpen}
         onClose={onGatewayModalClose}
         onSelectGateway={handleGatewaySelection}
+        isLoading={isPaymentLoading}
       />
     </div>
   );

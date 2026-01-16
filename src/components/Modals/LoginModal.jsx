@@ -64,7 +64,7 @@ const LoginModal = () => {
       dispatch(setLogin(userPayload));
 
       addToast({
-        title: res?.message || "Logged in successfully",
+        title: res?.message || "Login efetuado com sucesso",
         color: "success",
       });
 
@@ -74,7 +74,7 @@ const LoginModal = () => {
       setPassword("");
     } catch (err) {
       addToast({
-        title: err?.response?.data?.message || "Something went wrong",
+        title: err?.response?.data?.message || "Algo correu mal",
         color: "danger",
       });
     } finally {
@@ -89,7 +89,7 @@ const LoginModal = () => {
       // Validation
       if (!name || !email || !phone || !registerPassword || !confirmPassword) {
         addToast({
-          title: "Please fill in all fields",
+          title: "Por favor, preencha todos os campos",
           color: "warning",
         });
         return;
@@ -97,7 +97,7 @@ const LoginModal = () => {
 
       if (registerPassword !== confirmPassword) {
         addToast({
-          title: "Passwords do not match",
+          title: "As palavras-passe não coincidem",
           color: "danger",
         });
         return;
@@ -121,7 +121,7 @@ const LoginModal = () => {
       dispatch(setLogin(userPayload));
 
       addToast({
-        title: res?.message || "Registered successfully",
+        title: res?.message || "Registado com sucesso",
         color: "success",
       });
 
@@ -135,7 +135,7 @@ const LoginModal = () => {
       setConfirmPassword("");
     } catch (err) {
       addToast({
-        title: err?.response?.data?.message || "Something went wrong",
+        title: err?.response?.data?.message || "Algo correu mal",
         color: "danger",
       });
     } finally {
@@ -160,7 +160,7 @@ const LoginModal = () => {
   return (
     <>
       <Button color="primary" onPress={onOpen}>
-        Login
+        Entrar
       </Button>
 
       <Modal isOpen={isOpen} placement="top-center" onOpenChange={onOpenChange}>
@@ -168,21 +168,21 @@ const LoginModal = () => {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Welcome
+                Bem-vindo
               </ModalHeader>
 
               <ModalBody>
                 <Tabs
                   selectedKey={activeTab}
                   onSelectionChange={setActiveTab}
-                  aria-label="Login or Register"
+                  aria-label="Login ou Registar"
                   fullWidth
                 >
-                  <Tab key="login" title="Login">
+                  <Tab key="login" title="Entrar">
                     <div className="flex flex-col gap-4 mt-4">
                       <Input
-                        label="Username or Email"
-                        placeholder="Enter your username or email"
+                        label="Nome de Utilizador ou Email"
+                        placeholder="Insira o seu nome de utilizador ou email"
                         variant="bordered"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
@@ -190,8 +190,8 @@ const LoginModal = () => {
                       />
 
                       <Input
-                        label="Password"
-                        placeholder="Enter your password"
+                        label="Palavra-passe"
+                        placeholder="Insira a sua palavra-passe"
                         type={isLoginPasswordVisible ? "text" : "password"}
                         variant="bordered"
                         value={password}
@@ -245,11 +245,11 @@ const LoginModal = () => {
                     </div>
                   </Tab>
 
-                  <Tab key="register" title="Register">
+                  <Tab key="register" title="Registar">
                     <div className="flex flex-col gap-4 mt-4">
                       <Input
-                        label="Name"
-                        placeholder="Enter your full name"
+                        label="Nome"
+                        placeholder="Insira o seu nome completo"
                         variant="bordered"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
@@ -259,7 +259,7 @@ const LoginModal = () => {
 
                       <Input
                         label="Email"
-                        placeholder="Enter your email"
+                        placeholder="Insira o seu email"
                         type="email"
                         variant="bordered"
                         value={email}
@@ -269,8 +269,8 @@ const LoginModal = () => {
                       />
 
                       <Input
-                        label="Phone"
-                        placeholder="Enter your phone number"
+                        label="Telefone"
+                        placeholder="Insira o seu número de telefone"
                         type="tel"
                         variant="bordered"
                         value={phone}
@@ -280,8 +280,8 @@ const LoginModal = () => {
                       />
 
                       <Input
-                        label="Password"
-                        placeholder="Enter your password"
+                        label="Palavra-passe"
+                        placeholder="Insira a sua palavra-passe"
                         type={isRegisterPasswordVisible ? "text" : "password"}
                         variant="bordered"
                         value={registerPassword}
@@ -335,8 +335,8 @@ const LoginModal = () => {
                       />
 
                       <Input
-                        label="Confirm Password"
-                        placeholder="Confirm your password"
+                        label="Confirmar Palavra-passe"
+                        placeholder="Confirme a sua palavra-passe"
                         type={isConfirmPasswordVisible ? "text" : "password"}
                         variant="bordered"
                         value={confirmPassword}
@@ -395,7 +395,7 @@ const LoginModal = () => {
 
               <ModalFooter>
                 <Button color="" variant="flat" onPress={onClose}>
-                  Close
+                  Fechar
                 </Button>
 
                 {activeTab === "login" ? (
@@ -404,7 +404,7 @@ const LoginModal = () => {
                     isLoading={loading}
                     onPress={() => handleLogin(onClose)}
                   >
-                    Sign in
+                    Entrar
                   </Button>
                 ) : (
                   <Button
@@ -412,7 +412,7 @@ const LoginModal = () => {
                     isLoading={loading}
                     onPress={() => handleRegister(onClose)}
                   >
-                    Register
+                    Registar
                   </Button>
                 )}
               </ModalFooter>

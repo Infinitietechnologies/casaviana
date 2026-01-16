@@ -14,7 +14,7 @@ import { Rating as SmastromRating } from "@smastrom/react-rating";
 import { useSelector } from "react-redux";
 
 const EMOJIS = ["😡", "🙁", "😐", "🙂", "😄"];
-const EMOJI_LABELS = ["Very Bad", "Bad", "Average", "Good", "Excellent"];
+const EMOJI_LABELS = ["Muito Mau", "Mau", "Médio", "Bom", "Excelente"];
 
 const Rating = ({ slug, resource = "events" }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -97,7 +97,7 @@ const Rating = ({ slug, resource = "events" }) => {
 
   const handleSubmit = async (onClose) => {
     if (!value || value < 1) {
-      addToast({ title: "Please select a rating", color: "danger" });
+      addToast({ title: "Por favor selecione uma avaliação", color: "danger" });
       return;
     }
     setSubmitting(true);
@@ -106,7 +106,7 @@ const Rating = ({ slug, resource = "events" }) => {
       const res = await create_rating(resource, slug, payload);
       if (res?.success) {
         addToast({
-          title: res.message || "Rating submitted",
+          title: res.message || "Avaliação enviada",
           color: "success",
         });
         await fetchRatings();
@@ -116,7 +116,7 @@ const Rating = ({ slug, resource = "events" }) => {
         setReview("");
       } else {
         addToast({
-          title: res?.error || "Failed to submit rating",
+          title: res?.error || "Falha ao enviar avaliação",
           color: "danger",
         });
       }
@@ -146,7 +146,7 @@ const Rating = ({ slug, resource = "events" }) => {
   return (
     <div className="py-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">Ratings & Reviews</h2>
+        <h2 className="text-2xl font-bold text-gray-900">Avaliações e Críticas</h2>
         {user && !hasUserRated && (
           <Button
             color="primary"
@@ -154,7 +154,7 @@ const Rating = ({ slug, resource = "events" }) => {
             size="sm"
             className="font-semibold"
           >
-            Write Review
+            Escrever Avaliação
           </Button>
         )}
       </div>
@@ -172,10 +172,10 @@ const Rating = ({ slug, resource = "events" }) => {
                 <span className="text-2xl text-yellow-500">★</span>
               </div>
               <div className="text-xs text-gray-600">
-                {count.toLocaleString()} Ratings
+                {count.toLocaleString()} Avaliações
               </div>
               <div className="text-xs text-gray-600">
-                {ratings.length} Reviews
+                {ratings.length} Críticas
               </div>
             </div>
 
@@ -233,7 +233,7 @@ const Rating = ({ slug, resource = "events" }) => {
                       {rating.rating.toFixed(1)} ★
                     </div>
                     <span className="font-semibold text-gray-900 text-sm">
-                      {rating.user?.name || "Anonymous User"}
+                      {rating.user?.name || "Utilizador Anónimo"}
                     </span>
                   </div>
 
@@ -263,7 +263,7 @@ const Rating = ({ slug, resource = "events" }) => {
           {ratings.length > 3 && (
             <div className="mt-4 text-center">
               <button className="text-blue-600 font-semibold text-sm hover:underline">
-                View all {ratings.length} reviews
+                Ver todas as {ratings.length} críticas
               </button>
             </div>
           )}
@@ -272,14 +272,14 @@ const Rating = ({ slug, resource = "events" }) => {
         <div className="text-center py-12 bg-gray-50 rounded-xl border border-gray-200">
           <div className="text-5xl mb-4">📝</div>
           <p className="text-gray-900 font-semibold text-lg mb-2">
-            No reviews yet
+            Ainda sem avaliações
           </p>
           <p className="text-gray-500 text-sm mb-4">
-            Be the first to share your experience!
+            Seja o primeiro a partilhar a sua experiência!
           </p>
           {user && !hasUserRated && (
             <Button color="primary" onPress={onOpen} className="font-semibold">
-              Write First Review
+              Escrever Primeira Avaliação
             </Button>
           )}
         </div>
@@ -301,10 +301,10 @@ const Rating = ({ slug, resource = "events" }) => {
             <>
               <ModalHeader className="flex flex-col gap-2 border-b border-gray-100 pb-5">
                 <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight">
-                  Share Your Experience
+                  Partilhe a Sua Experiência
                 </h3>
                 <p className="text-sm text-gray-500 max-w-md">
-                  Your feedback helps others make informed decisions
+                  O seu feedback ajuda outros a tomar decisões informadas
                 </p>
                 <div className="w-12 h-1 bg-blue-600 rounded-full mt-1" />
               </ModalHeader>
@@ -312,7 +312,7 @@ const Rating = ({ slug, resource = "events" }) => {
               <ModalBody className="py-6 space-y-6">
                 <div>
                   <div className="text-sm font-semibold text-gray-700 mb-3">
-                    How would you rate this?
+                    Como avalia isto?
                   </div>
 
                   <div className="bg-white/70 backdrop-blur-xl rounded-3xl p-6 border border-yellow-200 shadow-inner">
@@ -349,11 +349,11 @@ const Rating = ({ slug, resource = "events" }) => {
                       <div className="text-lg font-semibold text-gray-800">
                         {(hoverIndex || value) > 0
                           ? EMOJI_LABELS[(hoverIndex || value) - 1]
-                          : "Select a rating"}
+                          : "Selecione uma avaliação"}
                       </div>
                       {(hoverIndex || value) > 0 && (
                         <div className="text-sm text-gray-600 mt-1">
-                          {hoverIndex || value} out of 5 stars
+                          {hoverIndex || value} de 5 estrelas
                         </div>
                       )}
                     </div>
@@ -362,13 +362,13 @@ const Rating = ({ slug, resource = "events" }) => {
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Review Title
+                    Título da Avaliação
                   </label>
                   <input
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    placeholder="Sum up your experience"
+                    placeholder="Resuma a sua experiência"
                     className="w-full rounded-xl border border-gray-200 bg-white/80 p-3
               focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all outline-none"
                   />
@@ -376,17 +376,17 @@ const Rating = ({ slug, resource = "events" }) => {
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Your Review
+                    A Sua Avaliação
                   </label>
                   <textarea
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
-                    placeholder="Share details about your experience..."
+                    placeholder="Partilhe detalhes sobre a sua experiência..."
                     className="w-full h-36 resize-none rounded-xl border border-gray-200 bg-white/80 p-3
               focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all outline-none"
                   />
                   <div className="text-xs text-gray-500 mt-1">
-                    {review.length} characters
+                    {review.length} caracteres
                   </div>
                 </div>
               </ModalBody>
@@ -397,7 +397,7 @@ const Rating = ({ slug, resource = "events" }) => {
                   onPress={onClose}
                   className="font-semibold text-gray-600 hover:bg-gray-100 rounded-xl"
                 >
-                  Cancel
+                  Cancelar
                 </Button>
 
                 <Button
@@ -406,7 +406,7 @@ const Rating = ({ slug, resource = "events" }) => {
                   onPress={() => handleSubmit(onClose)}
                   className="font-semibold px-8 rounded-xl shadow-lg"
                 >
-                  {submitting ? "Submitting..." : "Submit Review"}
+                  {submitting ? "A enviar..." : "Enviar Avaliação"}
                 </Button>
               </ModalFooter>
             </>

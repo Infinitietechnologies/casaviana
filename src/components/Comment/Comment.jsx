@@ -19,21 +19,21 @@ const formatTimeAgo = (date) => {
   const seconds = Math.floor((new Date() - new Date(date)) / 1000);
 
   let interval = seconds / 31536000;
-  if (interval > 1) return Math.floor(interval) + "y ago";
+  if (interval > 1) return Math.floor(interval) + " anos atrás";
 
   interval = seconds / 2592000;
-  if (interval > 1) return Math.floor(interval) + "mo ago";
+  if (interval > 1) return Math.floor(interval) + " meses atrás";
 
   interval = seconds / 86400;
-  if (interval > 1) return Math.floor(interval) + "d ago";
+  if (interval > 1) return Math.floor(interval) + " dias atrás";
 
   interval = seconds / 3600;
-  if (interval > 1) return Math.floor(interval) + "h ago";
+  if (interval > 1) return Math.floor(interval) + " h atrás";
 
   interval = seconds / 60;
-  if (interval > 1) return Math.floor(interval) + "m ago";
+  if (interval > 1) return Math.floor(interval) + " min atrás";
 
-  return Math.floor(seconds) + "s ago";
+  return Math.floor(seconds) + " s atrás";
 };
 
 const MoreIcon = () => (
@@ -153,7 +153,7 @@ const CommentItem = ({
                   startContent={<FlagIcon />}
                   onPress={() => handleReport(comment.id)}
                 >
-                  Report
+                  Denunciar
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
@@ -173,7 +173,7 @@ const CommentItem = ({
               className="flex items-center gap-1 hover:text-blue-600 transition cursor-pointer"
             >
               <ReplyIcon size={14} />
-              Reply
+              Responder
             </button>
           )}
 
@@ -183,7 +183,7 @@ const CommentItem = ({
               className="flex items-center gap-1 hover:text-blue-600"
             >
               <CollapseIcon isCollapsed={isCollapsed} />
-              {comment.replies.length} replies
+              {comment.replies.length} respostas
             </button>
           )}
         </div>
@@ -202,7 +202,7 @@ const CommentItem = ({
                 variant="light"
                 onPress={() => setReplyingTo(null)}
               >
-                Cancel
+                Cancelar
               </Button>
               <Button
                 size="sm"
@@ -210,7 +210,7 @@ const CommentItem = ({
                 isLoading={submitting}
                 onPress={() => handleSubmit(comment.id, replyText)}
               >
-                Reply
+                Responder
               </Button>
             </div>
           </div>
@@ -288,12 +288,12 @@ const Comment = ({ slug, resource = "events" }) => {
 
   const handleSubmit = async (parentId = null, text) => {
     if (!text.trim()) {
-      addToast({ title: "Please enter a comment", color: "danger" });
+      addToast({ title: "Por favor insira um comentário", color: "danger" });
       return;
     }
 
     if (!user) {
-      addToast({ title: "Please login to comment", color: "warning" });
+      addToast({ title: "Por favor faça login para comentar", color: "warning" });
       return;
     }
 
@@ -308,7 +308,7 @@ const Comment = ({ slug, resource = "events" }) => {
 
       if (res?.success) {
         addToast({
-          title: res.message || "Comment submitted successfully",
+          title: res.message || "Comentário enviado com sucesso",
           color: "success",
         });
 
@@ -322,7 +322,7 @@ const Comment = ({ slug, resource = "events" }) => {
         await fetchComments();
       } else {
         addToast({
-          title: res?.error || "Failed to submit comment",
+          title: res?.error || "Falha ao enviar comentário",
           color: "danger",
         });
       }
@@ -338,7 +338,7 @@ const Comment = ({ slug, resource = "events" }) => {
 
   const handleReport = (commentId) => {
     if (!user) {
-      addToast({ title: "Please login to report comments", color: "warning" });
+      addToast({ title: "Por favor faça login para denunciar", color: "warning" });
       return;
     }
     setSelectedCommentId(commentId);
@@ -353,19 +353,19 @@ const Comment = ({ slug, resource = "events" }) => {
       const res = await report_comment(selectedCommentId, { reason });
       if (res?.success) {
         addToast({
-          title: "Report submitted successfully",
+          title: "Denúncia enviada com sucesso",
           color: "success",
         });
         onReportOpenChange(false);
       } else {
         addToast({
-          title: res?.error || "Failed to submit report",
+          title: res?.error || "Falha ao enviar denúncia",
           color: "danger",
         });
       }
     } catch (err) {
       addToast({
-        title: "An error occurred",
+        title: "Ocorreu um erro",
         color: "danger",
       });
     } finally {
@@ -378,7 +378,7 @@ const Comment = ({ slug, resource = "events" }) => {
     <div className="bg-white rounded-lg border border-gray-200">
       <div className="px-4 py-3 border-b border-gray-200">
         <div className="flex items-center gap-2">
-          <h3 className="text-sm font-bold text-gray-900">Comments</h3>
+          <h3 className="text-sm font-bold text-gray-900">Comentários</h3>
           <span className="text-xs text-gray-500">({comments.length})</span>
         </div>
       </div>
@@ -387,11 +387,11 @@ const Comment = ({ slug, resource = "events" }) => {
         {user ? (
           <div className="mb-6">
             <div className="text-xs text-gray-500 mb-2">
-              Comment as{" "}
+              Comentar como{" "}
               <span className="text-blue-600 font-semibold">{user.name}</span>
             </div>
             <Textarea
-              placeholder="What are your thoughts?"
+              placeholder="O que está a pensar?"
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
               className="mb-2"
@@ -407,7 +407,7 @@ const Comment = ({ slug, resource = "events" }) => {
                 variant="light"
                 onPress={() => setNewComment("")}
               >
-                Cancel
+                Cancelar
               </Button>
               <Button
                 size="sm"
@@ -416,14 +416,14 @@ const Comment = ({ slug, resource = "events" }) => {
                 onPress={() => handleSubmit(null, newComment)}
                 isDisabled={!newComment.trim()}
               >
-                Comment
+                Comentar
               </Button>
             </div>
           </div>
         ) : (
           <div className="bg-gray-50 rounded-lg p-4 text-center mb-6 border border-gray-200">
             <p className="text-sm text-gray-600">
-              Log in or sign up to leave a comment
+              Entre ou registe-se para deixar um comentário
             </p>
           </div>
         )}
@@ -431,7 +431,7 @@ const Comment = ({ slug, resource = "events" }) => {
         <div className="space-y-1">
           {loading ? (
             <div className="text-center py-8 text-gray-500 text-sm">
-              Loading comments...
+              A carregar comentários...
             </div>
           ) : comments.length > 0 ? (
             comments.map((comment) => (
@@ -452,10 +452,10 @@ const Comment = ({ slug, resource = "events" }) => {
             <div className="text-center py-12">
               <div className="text-4xl mb-2">💬</div>
               <p className="text-gray-900 font-medium text-sm">
-                No Comments Yet
+                Ainda Sem Comentários
               </p>
               <p className="text-gray-500 text-xs mt-1">
-                Be the first to share what you think!
+                Seja o primeiro a partilhar o que pensa!
               </p>
             </div>
           )}

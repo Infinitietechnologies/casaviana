@@ -13,11 +13,33 @@ import { get_system_settings } from "@/Api/api";
 import { setSettings, setLoading, setError } from "@/store/systemSettingsSlice";
 import MaintenancePage from "@/components/MaintenancePage";
 
+import { get_cart } from "@/Api/api";
+import { setCart } from "@/store/cartSlice";
+
 function AppContent({ Component, pageProps }) {
   const dispatch = useDispatch();
   const router = useRouter();
   const { settings, loading } = useSelector((state) => state.systemSettings);
   const [isInitialized, setIsInitialized] = useState(false);
+
+  useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const res = await get_cart();
+        if (res?.success && res.data) {
+          dispatch(setCart({
+            items: res.data.items || [],
+            cart_id: res.data.id || null, 
+            final_total: res.final_total || 0,
+          }));
+        }
+      } catch (error) {
+        console.error("Failed to fetch cart:", error);
+      }
+    };
+
+    fetchCart();
+  }, [dispatch]);
 
   useEffect(() => {
     const fetchSystemSettings = async () => {
