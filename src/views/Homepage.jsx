@@ -197,7 +197,7 @@ const Homepage = () => {
                 eventImages.map((ev, i) => (
                   <div
                     key={i}
-                    className="relative w-[48%] sm:w-[45%] md:w-[48%] h-[240px] sm:h-[260px] md:h-[290px]"
+                    className="relative w-[48%] sm:w-[45%] md:w-[48%] h-[240px] sm:h-[260px] md:h-[330px]"
                   >
                     <Link href={ev.slug || "/events"}>
                       <Image
