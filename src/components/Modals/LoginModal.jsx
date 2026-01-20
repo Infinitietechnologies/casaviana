@@ -1,5 +1,6 @@
-import { login, register } from "@/Api/api";
+import { login, register, get_cart } from "@/Api/api";
 import { setLogin } from "@/store/authSlice";
+import { setCart } from "@/store/cartSlice";
 import {
   addToast,
   Button,
@@ -12,9 +13,11 @@ import {
   useDisclosure,
   Tabs,
   Tab,
+  DatePicker,
 } from "@heroui/react";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { today, getLocalTimeZone } from "@internationalized/date";
 
 const LoginModal = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -23,25 +26,31 @@ const LoginModal = () => {
   // Login state
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  
+
   // Register state
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [birthdate, setBirthdate] = useState(null);
   const [registerPassword, setRegisterPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  
+
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("login");
 
   // Password visibility toggles
   const [isLoginPasswordVisible, setIsLoginPasswordVisible] = useState(false);
-  const [isRegisterPasswordVisible, setIsRegisterPasswordVisible] = useState(false);
-  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+  const [isRegisterPasswordVisible, setIsRegisterPasswordVisible] =
+    useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
+    useState(false);
 
-  const toggleLoginPasswordVisibility = () => setIsLoginPasswordVisible(!isLoginPasswordVisible);
-  const toggleRegisterPasswordVisibility = () => setIsRegisterPasswordVisible(!isRegisterPasswordVisible);
-  const toggleConfirmPasswordVisibility = () => setIsConfirmPasswordVisible(!isConfirmPasswordVisible);
+  const toggleLoginPasswordVisibility = () =>
+    setIsLoginPasswordVisible(!isLoginPasswordVisible);
+  const toggleRegisterPasswordVisibility = () =>
+    setIsRegisterPasswordVisible(!isRegisterPasswordVisible);
+  const toggleConfirmPasswordVisibility = () =>
+    setIsConfirmPasswordVisible(!isConfirmPasswordVisible);
 
   const handleLogin = async (onClose) => {
     try {
@@ -62,6 +71,22 @@ const LoginModal = () => {
       }
 
       dispatch(setLogin(userPayload));
+
+      // Fetch cart after login
+      try {
+        const cartRes = await get_cart();
+        if (cartRes?.success && cartRes.data) {
+          dispatch(
+            setCart({
+              items: cartRes.data.items || [],
+              cart_id: cartRes.data.id || null,
+              final_total: cartRes.final_total || 0,
+            }),
+          );
+        }
+      } catch (error) {
+        console.error("Failed to fetch cart after login", error);
+      }
 
       addToast({
         title: res?.message || "Login efetuado com sucesso",
@@ -95,6 +120,18 @@ const LoginModal = () => {
         return;
       }
 
+      // Validate birthdate if provided
+      if (birthdate) {
+        const todayDate = today(getLocalTimeZone());
+        if (birthdate.compare(todayDate) >= 0) {
+          addToast({
+            title: "A data de nascimento deve ser anterior a hoje",
+            color: "danger",
+          });
+          return;
+        }
+      }
+
       if (registerPassword !== confirmPassword) {
         addToast({
           title: "As palavras-passe não coincidem",
@@ -111,6 +148,11 @@ const LoginModal = () => {
         password_confirmation: confirmPassword,
       };
 
+      // Add birthdate if provided (format: YYYY-MM-DD)
+      if (birthdate) {
+        payload.birthdate = birthdate.toString();
+      }
+
       const res = await register(payload);
       const userPayload = res?.user || res?.data?.user || res;
 
@@ -119,6 +161,22 @@ const LoginModal = () => {
       }
 
       dispatch(setLogin(userPayload));
+
+      // Fetch cart after registration
+      try {
+        const cartRes = await get_cart();
+        if (cartRes?.success && cartRes.data) {
+          dispatch(
+            setCart({
+              items: cartRes.data.items || [],
+              cart_id: cartRes.data.id || null,
+              final_total: cartRes.final_total || 0,
+            }),
+          );
+        }
+      } catch (error) {
+        console.error("Failed to fetch cart after registration", error);
+      }
 
       addToast({
         title: res?.message || "Registado com sucesso",
@@ -131,6 +189,7 @@ const LoginModal = () => {
       setName("");
       setEmail("");
       setPhone("");
+      setBirthdate(null);
       setRegisterPassword("");
       setConfirmPassword("");
     } catch (err) {
@@ -277,6 +336,16 @@ const LoginModal = () => {
                         onChange={(e) => setPhone(e.target.value)}
                         onKeyPress={(e) => handleRegisterKeyPress(e, onClose)}
                         isRequired
+                      />
+
+                      <DatePicker
+                        label="Data de Nascimento"
+                        variant="bordered"
+                        value={birthdate}
+                        onChange={setBirthdate}
+                        showMonthAndYearPickers
+                        maxValue={today(getLocalTimeZone())}
+                        description=""
                       />
 
                       <Input

@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { update_profile } from "@/Api/api";
 import { updateProfile } from "@/store/authSlice";
 import ProfileSidebar from "@/views/ProfileSidebar";
+import { DatePicker } from "@heroui/react";
+import { parseDate, today, getLocalTimeZone } from "@internationalized/date";
 
 const Profile = () => {
   const router = useRouter();
@@ -18,6 +20,7 @@ const Profile = () => {
     email: "",
     phone: "",
   });
+  const [birthdate, setBirthdate] = useState(null);
   const [profilePicture, setProfilePicture] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -37,6 +40,34 @@ const Profile = () => {
         email: user.email || "",
         phone: user.phone || "",
       });
+      // Parse birthdate if exists
+      if (user.birthdate) {
+        try {
+          let dateString = user.birthdate;
+
+          // Check if it's in ISO format with time (e.g., 1999-07-15T00:00:00.000000Z)
+          if (dateString.includes("T")) {
+            dateString = dateString.split("T")[0];
+          }
+
+          // Check if it matches YYYY-MM-DD format
+          const isoMatch = dateString.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+          if (isoMatch) {
+            setBirthdate(parseDate(dateString));
+          } else {
+            // Try to parse as a regular date and convert to YYYY-MM-DD
+            const date = new Date(user.birthdate);
+            if (!isNaN(date.getTime())) {
+              const year = date.getFullYear();
+              const month = String(date.getMonth() + 1).padStart(2, "0");
+              const day = String(date.getDate()).padStart(2, "0");
+              setBirthdate(parseDate(`${year}-${month}-${day}`));
+            }
+          }
+        } catch (e) {
+          console.error("Failed to parse birthdate:", e);
+        }
+      }
     }
   }, [user]);
 
@@ -81,12 +112,20 @@ const Profile = () => {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
+        birthdate: birthdate ? birthdate.toString() : null,
         profile_picture: profilePicture,
       });
 
       if (response.success !== false) {
         // Update Redux store with new user data
+        const userData = response.user ?? response.data?.user ?? response;
         dispatch(updateProfile(response));
+
+        // Also update localStorage to keep in sync
+        if (typeof window !== "undefined") {
+          localStorage.setItem("user", JSON.stringify(userData));
+        }
+
         setMessage({ type: "success", text: "Profile updated successfully!" });
 
         // Clear preview and file input
@@ -248,7 +287,7 @@ const Profile = () => {
             />
           </div>
 
-          <div className="md:col-span-2">
+          <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               Phone <span className="text-red-500">*</span>
             </label>
@@ -260,6 +299,25 @@ const Profile = () => {
               onChange={handleInputChange}
               required
               className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Data de Nascimento
+            </label>
+            <DatePicker
+              value={birthdate}
+              onChange={setBirthdate}
+              showMonthAndYearPickers
+              maxValue={today(getLocalTimeZone())}
+              className="w-full"
+              variant="bordered"
+              classNames={{
+                base: "w-full",
+                inputWrapper:
+                  "bg-gray-50 border border-gray-200 hover:border-gray-300",
+              }}
             />
           </div>
 

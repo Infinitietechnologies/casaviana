@@ -14,7 +14,7 @@ import {
 const BookingDetailsModal = ({ isOpen, onOpenChange, booking }) => {
   if (!booking) return null;
 
-  const { event, items } = booking;
+  const { items } = booking;
 
   const formatAmount = (amount) => {
     if (!amount) return "0.00 AOA";
@@ -75,60 +75,39 @@ const BookingDetailsModal = ({ isOpen, onOpenChange, booking }) => {
                   {booking.status === "confirmed"
                     ? "Confirmado"
                     : booking.status === "pending"
-                    ? "Pendente"
-                    : booking.status === "cancelled"
-                    ? "Cancelado"
-                    : booking.status}
+                      ? "Pendente"
+                      : booking.status === "cancelled"
+                        ? "Cancelado"
+                        : booking.status}
                 </Chip>
               </div>
             </ModalHeader>
             <ModalBody>
-              {/* Event Details */}
-              {event && (
-                <div className="bg-gray-50 p-4 rounded-lg mb-2">
-                  <h3 className="font-bold text-lg mb-3 text-gray-900">
-                    {event.title}
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-6 text-sm">
-                    <div>
-                      <span className="text-gray-500 block text-xs uppercase tracking-wide">
-                        Data do Evento
-                      </span>
-                      <span className="font-medium text-gray-900">
-                        {new Date(event.event_date).toLocaleDateString()}
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text-gray-500 block text-xs uppercase tracking-wide">
-                        Local
-                      </span>
-                      <span className="font-medium text-gray-900">
-                        {event.venue?.name || "-"}
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text-gray-500 block text-xs uppercase tracking-wide">
-                        Valor Total
-                      </span>
-                      <span className="font-bold text-lg text-primary-600">
-                        {formatAmount(booking.total_amount)}
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text-gray-500 block text-xs uppercase tracking-wide">
-                        Total de Bilhetes
-                      </span>
-                      <span className="font-medium text-gray-900">
-                        {booking.total_tickets}
-                      </span>
-                    </div>
+              {/* Booking Summary */}
+              <div className="bg-gray-50 p-4 rounded-lg mb-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-6 text-sm">
+                  <div>
+                    <span className="text-gray-500 block text-xs uppercase tracking-wide">
+                      Valor Total
+                    </span>
+                    <span className="font-bold text-lg text-primary-600">
+                      {formatAmount(booking.total_amount)}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-gray-500 block text-xs uppercase tracking-wide">
+                      Total de Bilhetes
+                    </span>
+                    <span className="font-medium text-gray-900">
+                      {booking.total_tickets}
+                    </span>
                   </div>
                 </div>
-              )}
+              </div>
 
               <Divider className="my-2" />
 
-              {/* Tickets List */}
+              {/* Tickets List - Boarding Pass Style */}
               <div>
                 <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
                   Bilhetes
@@ -136,70 +115,98 @@ const BookingDetailsModal = ({ isOpen, onOpenChange, booking }) => {
                     {items?.length || 0}
                   </Chip>
                 </h3>
-                <div className="space-y-3">
+                <div className="space-y-4">
                   {items &&
                     items.map((item, index) => (
                       <div
                         key={item.id || index}
-                        className="border border-gray-200 rounded-lg p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white hover:border-gray-300 transition-colors"
+                        className="relative overflow-hidden rounded-xl shadow-md bg-white border border-gray-100"
+                        style={{
+                          background:
+                            "linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%)",
+                        }}
                       >
-                        <div className="flex-1">
-                          <div className="flex flex-wrap items-center gap-2 mb-1">
-                            <h4 className="font-bold text-gray-900 text-base">
-                              {item.ticket_type?.name ||
-                                item.metadata?.ticket_type_name ||
-                                "Bilhete"}
-                            </h4>
-                            {item.item_type && (
-                              <Chip
-                                size="sm"
-                                variant="dot"
-                                color="primary"
-                                className="border-none"
-                              >
-                                {item.item_type}
-                              </Chip>
-                            )}
-                          </div>
-
-                          <div className="text-sm text-gray-600 space-y-1">
-                            {item.metadata?.ticket_code && (
-                              <p className="flex items-center gap-2">
-                                <span className="text-gray-500 text-xs uppercase">
-                                  Código:
-                                </span>
-                                <span className="font-mono bg-gray-100 px-2 py-0.5 rounded text-gray-800 font-medium select-all">
-                                  {item.metadata.ticket_code}
-                                </span>
+                        {/* Blue Header - Boarding Class Style */}
+                        <div
+                          className="relative px-4 py-2.5 text-white overflow-hidden"
+                          style={{
+                            background:
+                              "linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%)",
+                          }}
+                        >
+                          <div className="relative z-10 flex justify-between items-center">
+                            <div>
+                              <p className="text-xs font-semibold uppercase tracking-wider">
+                                {item.ticket_type?.name ||
+                                  item.metadata?.ticket_type_name ||
+                                  "Ingresso VIP"}
                               </p>
-                            )}
-                            {(item.seat_label || item.table_number) && (
-                              <p className="text-xs text-gray-500">
-                                {item.table_number &&
-                                  `Mesa: ${item.table_number} `}
-                                {item.seat_label &&
-                                  `Assento: ${item.seat_label}`}
-                              </p>
-                            )}
+                              {item.item_type && (
+                                <p className="text-[10px] opacity-80 capitalize">
+                                  {item.item_type}
+                                </p>
+                              )}
+                            </div>
+                            <div className="text-right">
+                              <div className="flex items-center gap-1.5">
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="currentColor"
+                                  viewBox="0 0 20 20"
+                                >
+                                  <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                                </svg>
+                                <span className="text-[10px] font-semibold">
+                                  Casa Viana
+                                </span>
+                              </div>
+                            </div>
                           </div>
+                        </div>
 
-                          {/* QR Code Display */}
+                        {/* Main Content - Horizontal Layout */}
+                        <div className="flex items-center gap-4 px-4 py-4">
+                          {/* Left Side - QR Code */}
                           {item.metadata?.qr_code_full_url && (
-                            <div className="mt-2">
-                              <img
-                                src={item.metadata.qr_code_full_url}
-                                alt={`QR Code for ${item.metadata.ticket_code}`}
-                                className="w-24 h-24 object-contain border border-gray-100 rounded bg-white p-1"
-                              />
+                            <div className="flex-shrink-0">
+                              <div className="bg-white p-2 rounded-lg shadow-sm border border-gray-200">
+                                <img
+                                  src={item.metadata.qr_code_full_url}
+                                  alt={`QR Code for ${item.metadata.ticket_code}`}
+                                  className="w-24 h-24 object-contain"
+                                />
+                              </div>
                             </div>
                           )}
+
+                          {/* Middle - Ticket Code */}
+                          <div className="flex-1">
+                            {item.metadata?.ticket_code && (
+                              <div>
+                                <p className="text-[10px] text-gray-500 uppercase tracking-wide mb-1">
+                                  Código
+                                </p>
+                                <p className="font-mono font-bold text-xs text-gray-900 tracking-wider break-all">
+                                  {item.metadata.ticket_code}
+                                </p>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Right Side - Price */}
+                          <div className="flex-shrink-0 text-right border-l border-dashed border-gray-300 pl-4">
+                            <p className="text-[10px] text-gray-500 uppercase tracking-wide mb-1">
+                              Valor do Bilhete
+                            </p>
+                            <p className="text-lg font-bold text-blue-600 whitespace-nowrap">
+                              {formatAmount(item.price_paid)}
+                            </p>
+                          </div>
                         </div>
 
-                        <div className="flex flex-col sm:items-end gap-1 w-full sm:w-auto mt-2 sm:mt-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-gray-100 font-mono">
-                          <span className="font-bold text-gray-900">
-                            {formatAmount(item.price_paid)}
-                          </span>
-                        </div>
+                        {/* Decorative side notches */}
+                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-gray-50 rounded-r-full -ml-1.5"></div>
+                        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-gray-50 rounded-l-full -mr-1.5"></div>
                       </div>
                     ))}
 

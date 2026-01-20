@@ -87,7 +87,7 @@ const EventsView = () => {
           category,
           search,
           currentPage,
-          ITEMS_PER_PAGE
+          ITEMS_PER_PAGE,
         );
         if (eventsResponse?.success) {
           setFilteredEvents(eventsResponse.data || []);
@@ -104,11 +104,24 @@ const EventsView = () => {
   }, [activeCategory, debouncedSearch, currentPage]);
 
   const transformEvent = (event) => {
-    const eventDate = new Date(event.event_date);
-    const day = eventDate.getDate().toString();
-    const month = eventDate
-      .toLocaleString("en-US", { month: "long" })
+    // Parse date from API (format: YYYY-MM-DD)
+    // Split manually to avoid timezone issues
+    const [year, monthNum, dayNum] = event.event_date.split("-");
+
+    // Create date object for formatting
+    const dateObj = new Date(
+      parseInt(year),
+      parseInt(monthNum) - 1,
+      parseInt(dayNum),
+    );
+
+    // Get month name in Portuguese (short form, e.g., "Nov")
+    const monthName = dateObj
+      .toLocaleString("pt-PT", { month: "short" })
       .toUpperCase();
+
+    // Format as "Month Year" (e.g., "NOV 2025")
+    const monthWithYear = `${monthName} ${year}`;
 
     return {
       id: event.id,
@@ -116,8 +129,8 @@ const EventsView = () => {
       time: event.start_time ? `At ${event.start_time}` : "All Day",
       slug: event.slug,
       date: event.event_date,
-      day: day,
-      month: month,
+      day: dayNum,
+      month: monthWithYear,
       category: event.category?.name || "Uncategorized",
       image: event.banner_image || event.images?.[0] || "/images/event2.png",
       showBadge: event.status === "published" && event.is_available_for_booking,
@@ -367,10 +380,11 @@ const EventsView = () => {
             <div className="flex flex-wrap gap-2">
               <Chip
                 onClick={() => setTempCategory("all")}
-                className={`cursor-pointer transition-all ${tempCategory === "all"
+                className={`cursor-pointer transition-all ${
+                  tempCategory === "all"
                     ? "bg-blue-600 text-white"
                     : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-                  }`}
+                }`}
                 size="lg"
                 variant={tempCategory === "all" ? "solid" : "flat"}
               >
@@ -381,10 +395,11 @@ const EventsView = () => {
                 <Chip
                   key={category.value}
                   onClick={() => setTempCategory(category.value)}
-                  className={`cursor-pointer transition-all ${tempCategory === category.value
+                  className={`cursor-pointer transition-all ${
+                    tempCategory === category.value
                       ? "bg-blue-600 text-white"
                       : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-                    }`}
+                  }`}
                   size="lg"
                   variant={tempCategory === category.value ? "solid" : "flat"}
                 >
