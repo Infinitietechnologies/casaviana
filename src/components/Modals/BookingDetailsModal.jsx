@@ -62,16 +62,20 @@ const BookingDetailsModal = ({ isOpen, onOpenChange, booking }) => {
         {(onClose) => (
           <>
             <ModalHeader className="flex flex-col gap-1">
-              <div className="flex justify-between items-center pr-8">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pr-8">
                 <div>
-                  <h2 className="text-xl font-bold">
+                  <h2 className="text-lg sm:text-xl font-bold">
                     Reserva #{booking.booking_number}
                   </h2>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-xs sm:text-sm text-gray-500">
                     {formatDate(booking.created_at)}
                   </p>
                 </div>
-                <Chip color={getStatusColor(booking.status)} variant="flat">
+                <Chip
+                  color={getStatusColor(booking.status)}
+                  variant="flat"
+                  size="sm"
+                >
                   {booking.status === "confirmed"
                     ? "Confirmado"
                     : booking.status === "pending"
@@ -84,18 +88,18 @@ const BookingDetailsModal = ({ isOpen, onOpenChange, booking }) => {
             </ModalHeader>
             <ModalBody>
               {/* Booking Summary */}
-              <div className="bg-gray-50 p-4 rounded-lg mb-2">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-6 text-sm">
+              <div className="bg-gray-50 p-3 sm:p-4 rounded-lg mb-2">
+                <div className="grid grid-cols-2 gap-3 sm:gap-6 text-sm">
                   <div>
-                    <span className="text-gray-500 block text-xs uppercase tracking-wide">
+                    <span className="text-gray-500 block text-[10px] sm:text-xs uppercase tracking-wide">
                       Valor Total
                     </span>
-                    <span className="font-bold text-lg text-primary-600">
+                    <span className="font-bold text-base sm:text-lg text-primary-600">
                       {formatAmount(booking.total_amount)}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-500 block text-xs uppercase tracking-wide">
+                    <span className="text-gray-500 block text-[10px] sm:text-xs uppercase tracking-wide">
                       Total de Bilhetes
                     </span>
                     <span className="font-medium text-gray-900">
@@ -109,7 +113,7 @@ const BookingDetailsModal = ({ isOpen, onOpenChange, booking }) => {
 
               {/* Tickets List - Boarding Pass Style */}
               <div>
-                <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
+                <h3 className="font-semibold text-base sm:text-lg mb-3 sm:mb-4 flex items-center gap-2">
                   Bilhetes
                   <Chip size="sm" variant="solid" className="h-5 min-w-5">
                     {items?.length || 0}
@@ -147,60 +151,49 @@ const BookingDetailsModal = ({ isOpen, onOpenChange, booking }) => {
                                 </p>
                               )}
                             </div>
-                            <div className="text-right">
-                              <div className="flex items-center gap-1.5">
-                                <svg
-                                  className="w-4 h-4"
-                                  fill="currentColor"
-                                  viewBox="0 0 20 20"
-                                >
-                                  <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
-                                </svg>
-                                <span className="text-[10px] font-semibold">
-                                  Casa Viana
-                                </span>
-                              </div>
-                            </div>
                           </div>
                         </div>
 
-                        {/* Main Content - Horizontal Layout */}
-                        <div className="flex items-center gap-4 px-4 py-4">
-                          {/* Left Side - QR Code */}
+                        {/* Main Content - Responsive Layout */}
+                        <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 px-3 sm:px-4 py-3 sm:py-4">
+                          {/* QR Code */}
                           {item.metadata?.qr_code_full_url && (
                             <div className="flex-shrink-0">
                               <div className="bg-white p-2 rounded-lg shadow-sm border border-gray-200">
                                 <img
                                   src={item.metadata.qr_code_full_url}
                                   alt={`QR Code for ${item.metadata.ticket_code}`}
-                                  className="w-24 h-24 object-contain"
+                                  className="w-20 h-20 sm:w-24 sm:h-24 object-contain"
                                 />
                               </div>
                             </div>
                           )}
 
-                          {/* Middle - Ticket Code */}
-                          <div className="flex-1">
-                            {item.metadata?.ticket_code && (
-                              <div>
-                                <p className="text-[10px] text-gray-500 uppercase tracking-wide mb-1">
-                                  Código
-                                </p>
-                                <p className="font-mono font-bold text-xs text-gray-900 tracking-wider break-all">
-                                  {item.metadata.ticket_code}
-                                </p>
-                              </div>
-                            )}
-                          </div>
+                          {/* Ticket Code and Price - Stack on mobile */}
+                          <div className="flex-1 w-full flex flex-col sm:flex-row gap-3 sm:gap-4">
+                            {/* Ticket Code */}
+                            <div className="flex-1 text-center sm:text-left">
+                              {item.metadata?.ticket_code && (
+                                <div>
+                                  <p className="text-[10px] text-gray-500 uppercase tracking-wide mb-1">
+                                    Código
+                                  </p>
+                                  <p className="font-mono font-bold text-xs sm:text-sm text-gray-900 tracking-wider break-all">
+                                    {item.metadata.ticket_code}
+                                  </p>
+                                </div>
+                              )}
+                            </div>
 
-                          {/* Right Side - Price */}
-                          <div className="flex-shrink-0 text-right border-l border-dashed border-gray-300 pl-4">
-                            <p className="text-[10px] text-gray-500 uppercase tracking-wide mb-1">
-                              Valor do Bilhete
-                            </p>
-                            <p className="text-lg font-bold text-blue-600 whitespace-nowrap">
-                              {formatAmount(item.price_paid)}
-                            </p>
+                            {/* Price */}
+                            <div className="flex-shrink-0 text-center sm:text-right sm:border-l border-dashed border-gray-300 sm:pl-4">
+                              <p className="text-[10px] text-gray-500 uppercase tracking-wide mb-1">
+                                Valor do Bilhete
+                              </p>
+                              <p className="text-base sm:text-lg font-bold text-blue-600 whitespace-nowrap">
+                                {formatAmount(item.price_paid)}
+                              </p>
+                            </div>
                           </div>
                         </div>
 
