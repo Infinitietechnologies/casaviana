@@ -488,10 +488,16 @@ const EventDetailsView = () => {
               <div className="font-bold text-sm lg:text-base mb-2">
                 PARA MAIS INFORMAÇÕES 📞
               </div>
-              <div className="text-xs lg:text-sm text-gray-700">
-                {event.venue?.branch?.phone} |{" "}
-                {event.venue?.branch?.manager?.phone}
-              </div>
+              {event.venue?.branch?.phone || event.venue?.branch?.manager?.phone ? (
+                <div className="text-xs lg:text-sm text-gray-700">
+                  {(Array.isArray(event.venue?.branch?.phone) ? event.venue.branch.phone : (event.venue?.branch?.phone || "").toString().split(",")).map((p) => p.trim()).join(" | ")} |{" "}
+                  {event.venue?.branch?.manager?.phone}
+                </div>
+              ) : (
+                <div className="text-xs lg:text-sm text-gray-700">
+                  N/A
+                </div>
+              )}
             </div>
 
             <div className="p-3 lg:p-4 mt-4">
@@ -586,11 +592,10 @@ const EventDetailsView = () => {
                         <button
                           onClick={() => handleDecrement(ticket.id)}
                           disabled={isDisabled}
-                          className={`w-8 h-8 rounded flex items-center justify-center text-sm ${
-                            isDisabled
-                              ? "bg-gray-300 text-white cursor-not-allowed"
-                              : "bg-black text-white hover:bg-gray-800"
-                          }`}
+                          className={`w-8 h-8 rounded flex items-center justify-center text-sm ${isDisabled
+                            ? "bg-gray-300 text-white cursor-not-allowed"
+                            : "bg-black text-white hover:bg-gray-800"
+                            }`}
                         >
                           −
                         </button>
@@ -600,11 +605,10 @@ const EventDetailsView = () => {
                         <button
                           onClick={() => handleIncrement(ticket.id)}
                           disabled={isDisabled}
-                          className={`w-8 h-8 rounded flex items-center justify-center text-sm ${
-                            isDisabled
-                              ? "bg-gray-300 text-white cursor-not-allowed"
-                              : "bg-black text-white hover:bg-gray-800"
-                          }`}
+                          className={`w-8 h-8 rounded flex items-center justify-center text-sm ${isDisabled
+                            ? "bg-gray-300 text-white cursor-not-allowed"
+                            : "bg-black text-white hover:bg-gray-800"
+                            }`}
                         >
                           +
                         </button>
@@ -621,10 +625,10 @@ const EventDetailsView = () => {
                   </div>
                 );
               }) || (
-                <p className="text-gray-500 text-sm">
-                  Nenhum tipo de ingresso disponível.
-                </p>
-              )}
+                  <p className="text-gray-500 text-sm">
+                    Nenhum tipo de ingresso disponível.
+                  </p>
+                )}
 
               <div className="border-t pt-4 lg:pt-6">
                 <div className="flex justify-between items-center mb-4">

@@ -24,12 +24,17 @@ function AppContent({ Component, pageProps }) {
 
   useEffect(() => {
     const fetchCart = async () => {
+      if (typeof window !== "undefined") {
+        const token = localStorage.getItem("authToken");
+        if (!token) return;
+      }
+
       try {
         const res = await get_cart();
         if (res?.success && res.data) {
           dispatch(setCart({
             items: res.data.items || [],
-            cart_id: res.data.id || null, 
+            cart_id: res.data.id || null,
             final_total: res.final_total || 0,
           }));
         }
@@ -84,7 +89,7 @@ function AppContent({ Component, pageProps }) {
         </div>
 
         <div className="text-center relative z-10">
-       
+
 
           <div className="relative w-24 h-24 mx-auto mb-6">
             <div className="absolute inset-0 border-4 border-red-200 rounded-full"></div>
@@ -98,7 +103,7 @@ function AppContent({ Component, pageProps }) {
           <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-600 mb-4 animate-pulse">
             CASA VIANA
           </h2>
-          
+
           <p className="text-gray-600 mb-6">A carregar...</p>
 
           <div className="flex justify-center gap-2">
