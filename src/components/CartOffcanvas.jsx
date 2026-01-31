@@ -39,17 +39,22 @@ const CartOffcanvas = ({ isOpen, onClose }) => {
   const [updatingItems, setUpdatingItems] = useState({});
 
   const handleUpdateQuantity = async (item, delta) => {
-    if (parseInt(item.quantity) + delta < 1) return;
+    const newQuantity = parseInt(item.quantity) + delta;
+    if (newQuantity < 1) return;
 
     setUpdatingItems((prev) => ({ ...prev, [item.id]: true }));
     try {
-      const response = await add_to_cart(item.menu_item_id, delta);
+      const response = await add_to_cart(item.menu_item_id, newQuantity);
 
       if (response?.success) {
         // Fetch updated cart to ensure totals and quantities are synced
         const cartRes = await get_cart();
-        if (cartRes) { // responses usually are the data directly from get_cart in api.js checks
-          dispatch(setCart(cartRes));
+        if (cartRes?.success && cartRes.data) {
+          dispatch(setCart({
+            items: cartRes.data.items,
+            cart_id: cartRes.data.id,
+            final_total: cartRes.final_total
+          }));
         }
       } else {
         addToast({
