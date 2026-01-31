@@ -49,8 +49,8 @@ const ServiceDetailsView = () => {
     service?.images && service.images.length > 0
       ? service.images
       : service?.cover_image
-      ? [service.cover_image]
-      : ["/images/placeholder-service.png"];
+        ? [service.cover_image]
+        : ["/images/placeholder-service.png"];
 
   // Autoplay video when slide becomes active
   useEffect(() => {
@@ -126,7 +126,8 @@ const ServiceDetailsView = () => {
                   <div className="h-[250px] sm:h-[350px] lg:h-[400px] rounded-lg overflow-hidden shadow-lg bg-gray-900">
                     <Swiper
                       spaceBetween={10}
-                      navigation={imagesToDisplay.length > 1 || service?.video}
+                      // navigation={imagesToDisplay.length > 1 || service?.video}
+                      navigation={false}
                       pagination={{ clickable: true }}
                       modules={[Navigation, Pagination]}
                       onSlideChange={handleSlideChange}
@@ -193,9 +194,9 @@ const ServiceDetailsView = () => {
                       {service.price === 0
                         ? "Sob Consulta"
                         : new Intl.NumberFormat("ao-AO", {
-                            style: "currency",
-                            currency: "AOA",
-                          }).format(service.price)}
+                          style: "currency",
+                          currency: "AOA",
+                        }).format(service.price)}
                       {service.pricing_type &&
                         service.pricing_type !== "fixed" && (
                           <span className="text-sm text-gray-400 font-normal ml-2 capitalize">

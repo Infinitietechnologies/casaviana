@@ -17,7 +17,7 @@ const Header = () => {
   const dropdownRef = useRef(null);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const user = useSelector((state) => state.auth.user);
-  const cartTotalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const cartItemsCount = useSelector((state) => state.cart.items.length);
   const {
     isOpen: isLogoutOpen,
     onOpen: onLogoutOpen,
@@ -236,9 +236,9 @@ const Header = () => {
                     height={30}
                     className="invert"
                   />
-                  {cartTotalQuantity > 0 && (
+                  {cartItemsCount > 0 && (
                     <span className="absolute -top-1 -right-2 bg-red-800 text-white text-xs rounded-full px-1.5 min-w-[20px] text-center">
-                      {cartTotalQuantity}
+                      {cartItemsCount}
                     </span>
                   )}
                 </button>
@@ -380,9 +380,9 @@ const Header = () => {
                       height={30}
                       className="invert"
                     />
-                    {cartTotalQuantity > 0 && (
+                    {cartItemsCount > 0 && (
                       <span className="absolute -top-1 -right-2 bg-red-800 text-white text-xs rounded-full px-1.5 min-w-[20px] text-center">
-                        {cartTotalQuantity}
+                        {cartItemsCount}
                       </span>
                     )}
                   </button>
@@ -412,8 +412,8 @@ const Header = () => {
                   {/* Mobile Dropdown Menu */}
                   {profileOpen && (
                     <div className="absolute right-0 top-12 w-56 bg-white text-gray-800 rounded-lg shadow-lg py-2 z-50"
-                        onMouseDown={(e) => e.stopPropagation()}
-                      >
+                      onMouseDown={(e) => e.stopPropagation()}
+                    >
                       <div className="px-4 py-3 border-b">
                         <p className="text-sm font-semibold text-gray-900">
                           {user?.name || user?.username || "User"}
@@ -565,8 +565,8 @@ const Header = () => {
         {/* Mobile Menu Dropdown */}
         <div
           className={`md:hidden text-white flex flex-col items-center overflow-hidden transition-all duration-300 ease-in-out ${menuOpen
-              ? "max-h-96 py-4 backdrop-blur-md backdrop-saturate-150 bg-red-600/60 border-t border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.08)] relative z-[60]"
-              : "max-h-0 py-0"
+            ? "max-h-96 py-4 backdrop-blur-md backdrop-saturate-150 bg-red-600/60 border-t border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.08)] relative z-[60]"
+            : "max-h-0 py-0"
             }`}
         >
           {["Início", "Serviços", "Eventos", "Contactos", "Blogs"].map(

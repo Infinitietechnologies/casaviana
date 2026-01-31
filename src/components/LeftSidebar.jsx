@@ -72,7 +72,6 @@ const LeftSidebar = () => {
   };
 
   useEffect(() => {
-    fetchRandomMenuItems();
     fetchAdvertisements();
     fetchServices();
     if (pathname !== "/") {

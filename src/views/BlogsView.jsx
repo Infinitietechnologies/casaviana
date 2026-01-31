@@ -117,6 +117,11 @@ const BlogsView = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Calculate header image
+  const STOCK_IMAGE = "/images/cms-image2.jpg";
+  const activeCategoryData = categories.find(c => c.slug === activeCategory);
+  const headerImage = activeCategoryData?.image_url || STOCK_IMAGE;
+
   return (
     <>
       <Head>
@@ -127,6 +132,7 @@ const BlogsView = () => {
       <LayoutView
         title="Nosso Blogs"
         description="Explore nossos artigos mais recentes, notícias e atualizações."
+        backgroundImage={headerImage}
       >
         {/* Search and Filter Section */}
         <div className="bg-white border-b border-slate-100 rounded-xl p-4 shadow-sm mb-6">

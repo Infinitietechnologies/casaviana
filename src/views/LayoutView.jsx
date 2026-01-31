@@ -6,7 +6,8 @@ import RightSidebar from "@/components/RightSidebar";
 const LayoutView = ({
     children,
     title = "Nossos Serviços",
-    description = "Explore a variedade de serviços que oferecemos."
+    description = "Explore a variedade de serviços que oferecemos.",
+    backgroundImage = null
 }) => {
     return (
         <div className="mt-20">
@@ -15,9 +16,18 @@ const LayoutView = ({
                     <LeftSidebar />
 
                     <div className="lg:col-span-8 py-4 md:py-6 gap-6 flex flex-col">
-                        <section className="py-8 bg-black rounded-xl px-4 sm:px-6 lg:px-8 xl:px-20 text-white shadow-lg">
-                            <h1 className="text-3xl font-bold">{title}</h1>
-                            <p className="text-gray-300 mt-2">{description}</p>
+                        <section
+                            className={`py-8 rounded-xl px-4 sm:px-6 lg:px-8 xl:px-20 text-white shadow-lg relative overflow-hidden ${!backgroundImage ? 'bg-black' : ''}`}
+                            style={backgroundImage ? {
+                                backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url(${backgroundImage})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center'
+                            } : {}}
+                        >
+                            <div className="relative z-10">
+                                <h1 className="text-3xl font-bold">{title}</h1>
+                                <p className="text-gray-200 mt-2">{description}</p>
+                            </div>
                         </section>
 
                         {children}

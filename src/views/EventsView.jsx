@@ -16,6 +16,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import { EventsPageSkeleton } from "@/components/Skeletons/EventsSkeletons";
+import Head from "next/head";
 
 const EventsView = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -191,29 +192,76 @@ const EventsView = () => {
   );
 
   return (
-    <div className="mt-20">
-      <main>
-        <section className="text-white py-8 bg-black full-width">
-          <div className="px-4 sm:px-6 lg:px-8 xl:px-20">
-            <h2 className="text-xl sm:text-2xl font-bold mb-6">Destaques</h2>
+    <>
+      <Head>
+        <title>{`Eventos - Casa Viana`}</title>
+        <meta name="description" content="Explore os eventos da Casa Viana." />
+      </Head>
 
-            {featuredEvents.length === 0 ? (
-              <p className="text-gray-400">
-                Nenhum evento em destaque no momento.
-              </p>
-            ) : (
-              <>
-                <div className="lg:hidden">
-                  <Swiper
-                    spaceBetween={16}
-                    slidesPerView={1}
-                    pagination={{ clickable: true }}
-                    modules={[SwiperPagination]}
-                    className="featured-swiper"
-                  >
-                    {featuredEvents.map((event) => (
-                      <SwiperSlide key={event.id}>
-                        <Link href={`/events/${event.slug}`}>
+      <div className="mt-20">
+        <main>
+          <section className="text-white py-8 bg-black full-width">
+            <div className="px-4 sm:px-6 lg:px-8 xl:px-20">
+              <h2 className="text-xl sm:text-2xl font-bold mb-6">Destaques</h2>
+
+              {featuredEvents.length === 0 ? (
+                <p className="text-gray-400">
+                  Nenhum evento em destaque no momento.
+                </p>
+              ) : (
+                <>
+                  <div className="lg:hidden">
+                    <Swiper
+                      spaceBetween={16}
+                      slidesPerView={1}
+                      pagination={{ clickable: true }}
+                      modules={[SwiperPagination]}
+                      className="featured-swiper"
+                    >
+                      {featuredEvents.map((event) => (
+                        <SwiperSlide key={event.id}>
+                          <Link href={`/events/${event.slug}`}>
+                            <div className="flex items-center rounded-xl shadow-md overflow-hidden hover:scale-[1.02] transition-transform duration-200">
+                              <div className="w-[40%] h-[120px] sm:h-[140px] relative bg-black">
+                                <img
+                                  src={event.image}
+                                  alt={event.title}
+                                  className="absolute inset-0 w-full h-full object-cover"
+                                />
+                              </div>
+
+                              <div className="w-[60%] p-3 flex flex-col justify-between bg-white h-[120px] sm:h-[140px]">
+                                <div>
+                                  <h3 className="text-gray-900 font-semibold text-sm sm:text-base line-clamp-2">
+                                    {event.title}
+                                  </h3>
+                                  <p className="text-gray-700 text-xs mt-1">
+                                    {event.time}
+                                  </p>
+                                </div>
+
+                                <div className="flex justify-end mt-2">
+                                  <div className="bg-[#007bff] text-white rounded-md text-center px-3 py-1 shadow-md leading-tight">
+                                    <div className="text-sm font-bold">
+                                      {event.day}
+                                    </div>
+                                    <div className="text-[10px] uppercase">
+                                      {event.month}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </Link>
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
+                  </div>
+
+                  <div className="hidden lg:block">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                      {featuredEvents.map((event) => (
+                        <Link href={`/events/${event.slug}`} key={event.id}>
                           <div className="flex items-center rounded-xl shadow-md overflow-hidden hover:scale-[1.02] transition-transform duration-200">
                             <div className="w-[40%] h-[120px] sm:h-[140px] relative bg-black">
                               <img
@@ -246,183 +294,141 @@ const EventsView = () => {
                             </div>
                           </div>
                         </Link>
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
-                </div>
-
-                <div className="hidden lg:block">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    {featuredEvents.map((event) => (
-                      <Link href={`/events/${event.slug}`} key={event.id}>
-                        <div className="flex items-center rounded-xl shadow-md overflow-hidden hover:scale-[1.02] transition-transform duration-200">
-                          <div className="w-[40%] h-[120px] sm:h-[140px] relative bg-black">
-                            <img
-                              src={event.image}
-                              alt={event.title}
-                              className="absolute inset-0 w-full h-full object-cover"
-                            />
-                          </div>
-
-                          <div className="w-[60%] p-3 flex flex-col justify-between bg-white h-[120px] sm:h-[140px]">
-                            <div>
-                              <h3 className="text-gray-900 font-semibold text-sm sm:text-base line-clamp-2">
-                                {event.title}
-                              </h3>
-                              <p className="text-gray-700 text-xs mt-1">
-                                {event.time}
-                              </p>
-                            </div>
-
-                            <div className="flex justify-end mt-2">
-                              <div className="bg-[#007bff] text-white rounded-md text-center px-3 py-1 shadow-md leading-tight">
-                                <div className="text-sm font-bold">
-                                  {event.day}
-                                </div>
-                                <div className="text-[10px] uppercase">
-                                  {event.month}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </Link>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </>
-            )}
-          </div>
-        </section>
-
-        <section id="events" className="py-16 bg-white">
-          <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
-            <div className="max-w-8xl mx-auto">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-10 gap-6">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
-                    Próximos eventos
-                  </h2>
-                  <Input
-                    type="text"
-                    placeholder="Procurar evento"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    variant="bordered"
-                    className="mt-1 sm:mt-0 sm:ml-4 w-full sm:w-60"
-                    classNames={{
-                      input: "text-sm",
-                      inputWrapper: "h-10",
-                    }}
-                  />
-                </div>
-
-                <div className="flex items-center gap-3">
-                  {activeCategory !== "all" && (
-                    <span className="text-sm text-gray-600">
-                      Filtrado:{" "}
-                      <span className="font-semibold">
-                        {
-                          categories.find((c) => c.value === activeCategory)
-                            ?.label
-                        }
-                      </span>
-                    </span>
-                  )}
-                  <Button
-                    onPress={onOpen}
-                    className="bg-black text-white hover:bg-gray-800"
-                  >
-                    Filtros
-                  </Button>
-                </div>
-              </div>
-
-              <div className="d-flex flex-wrap event-row" id="upcoming-events">
-                {upcomingLoading ? (
-                  <div className="w-full text-center py-12">
-                    <p className="text-gray-500 text-lg">Carregando...</p>
-                  </div>
-                ) : upcomingEvents.length === 0 ? (
-                  <div className="w-full text-center py-12">
-                    <p className="text-gray-500 text-lg">
-                      {debouncedSearch
-                        ? "Nenhum evento encontrado com esse termo de pesquisa."
-                        : "Nenhum evento disponível no momento."}
-                    </p>
-                  </div>
-                ) : (
-                  upcomingEvents.map((event) => (
-                    <EventCard key={event.id} event={event} />
-                  ))
-                )}
-              </div>
-              <Pagination
-                showControls
-                page={currentPage}
-                total={totalPages}
-                onChange={setCurrentPage}
-              />
+                </>
+              )}
             </div>
-          </div>
-        </section>
-      </main>
+          </section>
 
-      <Drawer isOpen={isOpen} onClose={onClose} placement="right" size="sm">
-        <DrawerContent>
-          <DrawerHeader className="flex flex-col gap-1">
-            <h2 className="text-xl font-bold">Filtrar Eventos</h2>
-            <p className="text-sm text-gray-500">
-              Selecione uma categoria para filtrar
-            </p>
-          </DrawerHeader>
-          <DrawerBody>
-            <div className="flex flex-wrap gap-2">
-              <Chip
-                onClick={() => setTempCategory("all")}
-                className={`cursor-pointer transition-all ${
-                  tempCategory === "all"
+          <section id="events" className="py-16 bg-white">
+            <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+              <div className="max-w-8xl mx-auto">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-10 gap-6">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                    <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+                      Próximos eventos
+                    </h2>
+                    <Input
+                      type="text"
+                      placeholder="Procurar evento"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      variant="bordered"
+                      className="mt-1 sm:mt-0 sm:ml-4 w-full sm:w-60"
+                      classNames={{
+                        input: "text-sm",
+                        inputWrapper: "h-10",
+                      }}
+                    />
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    {activeCategory !== "all" && (
+                      <span className="text-sm text-gray-600">
+                        Filtrado:{" "}
+                        <span className="font-semibold">
+                          {
+                            categories.find((c) => c.value === activeCategory)
+                              ?.label
+                          }
+                        </span>
+                      </span>
+                    )}
+                    <Button
+                      onPress={onOpen}
+                      className="bg-black text-white hover:bg-gray-800"
+                    >
+                      Filtros
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="d-flex flex-wrap event-row" id="upcoming-events">
+                  {upcomingLoading ? (
+                    <div className="w-full text-center py-12">
+                      <p className="text-gray-500 text-lg">Carregando...</p>
+                    </div>
+                  ) : upcomingEvents.length === 0 ? (
+                    <div className="w-full text-center py-12">
+                      <p className="text-gray-500 text-lg">
+                        {debouncedSearch
+                          ? "Nenhum evento encontrado com esse termo de pesquisa."
+                          : "Nenhum evento disponível no momento."}
+                      </p>
+                    </div>
+                  ) : (
+                    upcomingEvents.map((event) => (
+                      <EventCard key={event.id} event={event} />
+                    ))
+                  )}
+                </div>
+                <Pagination
+                  showControls
+                  page={currentPage}
+                  total={totalPages}
+                  onChange={setCurrentPage}
+                />
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <Drawer isOpen={isOpen} onClose={onClose} placement="right" size="sm">
+          <DrawerContent>
+            <DrawerHeader className="flex flex-col gap-1">
+              <h2 className="text-xl font-bold">Filtrar Eventos</h2>
+              <p className="text-sm text-gray-500">
+                Selecione uma categoria para filtrar
+              </p>
+            </DrawerHeader>
+            <DrawerBody>
+              <div className="flex flex-wrap gap-2">
+                <Chip
+                  onClick={() => setTempCategory("all")}
+                  className={`cursor-pointer transition-all ${tempCategory === "all"
                     ? "bg-blue-600 text-white"
                     : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-                }`}
-                size="lg"
-                variant={tempCategory === "all" ? "solid" : "flat"}
-              >
-                Todos
-              </Chip>
+                    }`}
+                  size="lg"
+                  variant={tempCategory === "all" ? "solid" : "flat"}
+                >
+                  Todos
+                </Chip>
 
-              {categories.map((category) => (
-                <Chip
-                  key={category.value}
-                  onClick={() => setTempCategory(category.value)}
-                  className={`cursor-pointer transition-all ${
-                    tempCategory === category.value
+                {categories.map((category) => (
+                  <Chip
+                    key={category.value}
+                    onClick={() => setTempCategory(category.value)}
+                    className={`cursor-pointer transition-all ${tempCategory === category.value
                       ? "bg-blue-600 text-white"
                       : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-                  }`}
-                  size="lg"
-                  variant={tempCategory === category.value ? "solid" : "flat"}
-                >
-                  {category.label}
-                </Chip>
-              ))}
-            </div>
-          </DrawerBody>
-          <DrawerFooter className="gap-2">
-            <Button color="danger" variant="light" onPress={handleResetFilter}>
-              Clear filter
-            </Button>
-            <Button
-              color="primary"
-              onPress={handleApplyFilter}
-              className="bg-blue-600"
-            >
-              Apply filter
-            </Button>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
-    </div>
+                      }`}
+                    size="lg"
+                    variant={tempCategory === category.value ? "solid" : "flat"}
+                  >
+                    {category.label}
+                  </Chip>
+                ))}
+              </div>
+            </DrawerBody>
+            <DrawerFooter className="gap-2">
+              <Button color="danger" variant="light" onPress={handleResetFilter}>
+                Clear filter
+              </Button>
+              <Button
+                color="primary"
+                onPress={handleApplyFilter}
+                className="bg-blue-600"
+              >
+                Apply filter
+              </Button>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
+      </div>
+    </>
   );
 };
 

@@ -11,8 +11,8 @@ import {
   addToast,
   useDisclosure,
 } from "@heroui/react";
-import { initiate_payment, delete_cart } from "@/Api/api";
-import { clearCart } from "@/store/cartSlice";
+import { initiate_payment, delete_cart, add_to_cart, get_cart } from "@/Api/api";
+import { clearCart, addItemToCart, setCart } from "@/store/cartSlice";
 import PaymentGatewayModal from "./Modals/PaymentGatewayModal";
 import PaymentInstructionsModal from "./Modals/PaymentInstructionsModal";
 
@@ -22,20 +22,48 @@ const CartOffcanvas = ({ isOpen, onClose }) => {
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [clearLoading, setClearLoading] = useState(false);
   const [selectedGateway, setSelectedGateway] = useState(null);
-  
+
   const {
     isOpen: isGatewayModalOpen,
     onOpen: onGatewayModalOpen,
     onClose: onGatewayModalClose,
   } = useDisclosure();
-  
+
   const {
     isOpen: isPaymentModalOpen,
     onOpen: onPaymentModalOpen,
     onClose: onPaymentModalClose,
   } = useDisclosure();
-  
+
   const [paymentData, setPaymentData] = useState(null);
+  const [updatingItems, setUpdatingItems] = useState({});
+
+  const handleUpdateQuantity = async (item, delta) => {
+    if (parseInt(item.quantity) + delta < 1) return;
+
+    setUpdatingItems((prev) => ({ ...prev, [item.id]: true }));
+    try {
+      const response = await add_to_cart(item.menu_item_id, delta);
+
+      if (response?.success) {
+        // Fetch updated cart to ensure totals and quantities are synced
+        const cartRes = await get_cart();
+        if (cartRes) { // responses usually are the data directly from get_cart in api.js checks
+          dispatch(setCart(cartRes));
+        }
+      } else {
+        addToast({
+          title: "Erro",
+          description: response?.error || "Erro ao atualizar quantidade",
+          color: "danger",
+        });
+      }
+    } catch (error) {
+      console.error("Error updating quantity:", error);
+    } finally {
+      setUpdatingItems((prev) => ({ ...prev, [item.id]: false }));
+    }
+  };
 
   const formatPrice = (price) => {
     const num = parseFloat(price);
@@ -59,7 +87,7 @@ const CartOffcanvas = ({ isOpen, onClose }) => {
 
   const handleClearCart = async () => {
     if (cart.items.length === 0) return;
-    
+
     setClearLoading(true);
     try {
       const res = await delete_cart();
@@ -79,11 +107,11 @@ const CartOffcanvas = ({ isOpen, onClose }) => {
       }
     } catch (error) {
       console.error("Error clearing cart:", error);
-       addToast({
-          title: "Erro",
-          description: "Erro ao esvaziar carrinho",
-          color: "danger",
-        });
+      addToast({
+        title: "Erro",
+        description: "Erro ao esvaziar carrinho",
+        color: "danger",
+      });
     } finally {
       setClearLoading(false);
     }
@@ -97,7 +125,7 @@ const CartOffcanvas = ({ isOpen, onClose }) => {
   const initiatePaymentForCart = async (gateway) => {
     // Get cart_id from the first item (all items share the same cart_id)
     const cartId = cart.items.length > 0 ? cart.items[0].cart_id : cart.cartId;
-    
+
     if (!cartId) {
       addToast({
         title: "Erro",
@@ -165,10 +193,10 @@ const CartOffcanvas = ({ isOpen, onClose }) => {
               </p>
             </div>
             {cart.items.length > 0 && (
-              <Button 
-                size="sm" 
-                color="danger" 
-                variant="light" 
+              <Button
+                size="sm"
+                color="danger"
+                variant="light"
                 onPress={handleClearCart}
                 isLoading={clearLoading}
               >
@@ -212,13 +240,37 @@ const CartOffcanvas = ({ isOpen, onClose }) => {
                       <h3 className="font-semibold text-lg">
                         {item.menu_item?.name || "Item"}
                       </h3>
-                      <p className="text-sm text-gray-600 mt-1">
-                        Quantidade: {item.quantity}
-                      </p>
+                      <div className="flex items-center gap-3 mt-2">
+                        <Button
+                          isIconOnly
+                          size="sm"
+                          variant="flat"
+                          color="default"
+                          onPress={() => handleUpdateQuantity(item, -1)}
+                          isDisabled={updatingItems[item.id] || parseInt(item.quantity) <= 1}
+                          className="w-8 h-8 min-w-8"
+                        >
+                          -
+                        </Button>
+                        <span className="font-semibold min-w-[20px] text-center text-sm">
+                          {item.quantity}
+                        </span>
+                        <Button
+                          isIconOnly
+                          size="sm"
+                          variant="flat"
+                          color="primary"
+                          onPress={() => handleUpdateQuantity(item, 1)}
+                          isLoading={updatingItems[item.id]}
+                          className="w-8 h-8 min-w-8"
+                        >
+                          +
+                        </Button>
+                      </div>
                       <p className="text-lg font-bold text-red-600 mt-2">
                         {formatPrice(
                           parseFloat(item.menu_item?.price || 0) *
-                            parseInt(item.quantity || 1)
+                          parseInt(item.quantity || 1)
                         )}{" "}
                         {item.menu_item?.currency?.code || "Kz"}
                       </p>
