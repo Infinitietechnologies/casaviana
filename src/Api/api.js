@@ -1,6 +1,11 @@
 import api, { setAccessToken } from "./interceptor";
 
-export const login = async ({ type = "username", username, email, password }) => {
+export const login = async ({
+  type = "username",
+  username,
+  email,
+  password,
+}) => {
   try {
     const formData = new FormData();
     if (type === "email") {
@@ -21,12 +26,22 @@ export const login = async ({ type = "username", username, email, password }) =>
   }
 };
 
-export const register = async ({ name, email, phone, password, password_confirmation }) => {
+export const register = async ({
+  name,
+  email,
+  phone,
+  birthdate,
+  password,
+  password_confirmation,
+}) => {
   try {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("email", email);
     formData.append("phone", phone);
+    if (birthdate) {
+      formData.append("birthdate", birthdate);
+    }
     formData.append("password", password);
     formData.append("password_confirmation", password_confirmation);
 
@@ -54,7 +69,7 @@ export const get_events = async (
   category_slug = null,
   search = null,
   page = null,
-  per_page = null
+  per_page = null,
 ) => {
   try {
     const params = {
@@ -88,7 +103,7 @@ export const get_categories = async (
   type = null,
   include = "children",
   page = null,
-  per_page = 100
+  per_page = 100,
 ) => {
   try {
     const params = {
@@ -97,7 +112,7 @@ export const get_categories = async (
       ...(type !== null && { type }),
       ...(page !== null && { page }),
       ...(per_page && { per_page }),
-      ...(include && { include })
+      ...(include && { include }),
     };
     let response = await api.get("/categories", { params });
     return response.data;
@@ -111,7 +126,7 @@ export const get_blogs = async (
   category_slug = null,
   search = null,
   page = null,
-  per_page = null
+  per_page = null,
 ) => {
   try {
     const params = {
@@ -275,12 +290,23 @@ export const get_content_sections = async () => {
   }
 };
 
-export const update_profile = async ({ name, email, phone, profile_picture }) => {
+export const update_profile = async ({
+  name,
+  email,
+  phone,
+  birthdate,
+  profile_picture,
+}) => {
   try {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("email", email);
     formData.append("phone", phone);
+
+    // Only append birthdate if provided
+    if (birthdate) {
+      formData.append("birthdate", birthdate);
+    }
 
     // Only append profile_picture if it's a File object
     if (profile_picture instanceof File) {
@@ -323,7 +349,12 @@ export const get_payments = async () => {
   }
 };
 
-export const initiate_payment = async ({ payable_type, payable_id, gateway, phone_number }) => {
+export const initiate_payment = async ({
+  payable_type,
+  payable_id,
+  gateway,
+  phone_number,
+}) => {
   try {
     const formData = new FormData();
     formData.append("payable_type", payable_type);
@@ -482,7 +513,7 @@ export const fetch_all_services = async (
   category_id = null,
   is_featured = null,
   page = null,
-  per_page = null
+  per_page = null,
 ) => {
   try {
     const params = {
@@ -500,7 +531,6 @@ export const fetch_all_services = async (
     return { success: false, error: error.message };
   }
 };
-
 
 export const fetch_service_details = async (slug) => {
   try {
@@ -546,7 +576,17 @@ export const create_service_booking = async (data) => {
       success: false,
       error: error?.response?.data?.message || "Erro ao criar reserva.",
       errors: error?.response?.data?.errors || null,
-      status: error?.response?.status
+      status: error?.response?.status,
     };
+  }
+};
+
+export const get_payment_gateways = async () => {
+  try {
+    const response = await api.get("/payment-gateways");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching payment gateways:", error);
+    return { success: false, error: error.message };
   }
 };

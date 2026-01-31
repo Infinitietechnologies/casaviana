@@ -8,26 +8,47 @@ import {
   Button,
   RadioGroup,
   Radio,
-  Card,
-  CardBody,
+  Spinner,
 } from "@heroui/react";
 import Image from "next/image";
+import { get_payment_gateways } from "@/Api/api";
 
 const PaymentGatewayModal = ({
   isOpen,
   onClose,
   onSelectGateway,
-  allowedGateways = null,
   isLoading = false,
 }) => {
   const [selectedGateway, setSelectedGateway] = useState(null);
+  const [gateways, setGateways] = useState([]);
+  const [loadingGateways, setLoadingGateways] = useState(false);
 
-  // Reset selection when modal opens/closes
+  // Fetch gateways when modal opens
   useEffect(() => {
-    if (!isOpen) {
+    if (isOpen) {
+      fetchGateways();
+    } else {
       setSelectedGateway(null);
     }
   }, [isOpen]);
+
+  const fetchGateways = async () => {
+    setLoadingGateways(true);
+    try {
+      const response = await get_payment_gateways();
+      if (response?.success !== false && response?.data) {
+        // Filter only enabled gateways
+        const enabledGateways = response.data.filter(
+          (gateway) => gateway.is_enabled,
+        );
+        setGateways(enabledGateways);
+      }
+    } catch (error) {
+      console.error("Failed to fetch payment gateways:", error);
+    } finally {
+      setLoadingGateways(false);
+    }
+  };
 
   const handleConfirm = () => {
     if (selectedGateway) {
@@ -35,15 +56,33 @@ const PaymentGatewayModal = ({
     }
   };
 
-  const isGatewayAllowed = (gateway) => {
-    return allowedGateways === null || allowedGateways.includes(gateway);
+  const getGatewayIcon = (gateway) => {
+    switch (gateway) {
+      case "bank_transfer":
+        return "🏦";
+      case "multicaixa_express":
+        return null; // Use image instead
+      default:
+        return "💳";
+    }
+  };
+
+  const getGatewayDescription = (gateway) => {
+    switch (gateway) {
+      case "bank_transfer":
+        return "Transfira diretamente para a nossa conta bancária";
+      case "multicaixa_express":
+        return "Pagamento online seguro via Multicaixa";
+      default:
+        return "";
+    }
   };
 
   return (
-    <Modal 
-      isOpen={isOpen} 
-      onClose={onClose} 
-      size="md" 
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      size="md"
       isDismissable={!isLoading}
       hideCloseButton={isLoading}
     >
@@ -51,16 +90,29 @@ const PaymentGatewayModal = ({
         {(onClose) => (
           <>
             <ModalHeader className="flex flex-col gap-1 text-2xl font-bold relative">
-              {isLoading ? "Processando Pagamento" : "Selecione o Método de Pagamento"}
+              {isLoading
+                ? "Processando Pagamento"
+                : "Selecione o Método de Pagamento"}
               {isLoading && (
-                 <button 
-                   onClick={onClose}
-                   className="absolute right-4 top-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
-                 >
-                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                   </svg>
-                 </button>
+                <button
+                  onClick={onClose}
+                  className="absolute right-4 top-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 text-gray-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
               )}
             </ModalHeader>
             <ModalBody className="py-6">
@@ -77,6 +129,19 @@ const PaymentGatewayModal = ({
                     A aguardar confirmação do pagamento...
                   </div>
                 </div>
+              ) : loadingGateways ? (
+                <div className="flex flex-col items-center justify-center py-8">
+                  <Spinner size="lg" color="primary" />
+                  <p className="mt-4 text-gray-500">
+                    A carregar métodos de pagamento...
+                  </p>
+                </div>
+              ) : gateways.length === 0 ? (
+                <div className="text-center py-8">
+                  <p className="text-gray-500">
+                    Nenhum método de pagamento disponível
+                  </p>
+                </div>
               ) : (
                 <RadioGroup
                   value={selectedGateway}
@@ -85,51 +150,43 @@ const PaymentGatewayModal = ({
                     wrapper: "gap-4",
                   }}
                 >
-                  {isGatewayAllowed("bank_transfer") && (
+                  {gateways.map((gateway) => (
                     <Radio
-                      value="bank_transfer"
+                      key={gateway.id}
+                      value={gateway.gateway}
                       classNames={{
                         base: "inline-flex m-0 bg-content1 hover:bg-content2 items-center justify-between flex-row-reverse max-w-full cursor-pointer rounded-lg gap-4 p-4 border-2 border-transparent data-[selected=true]:border-primary",
                       }}
                     >
                       <div className="flex items-center gap-3 w-full">
-                        <div className="text-3xl">🏦</div>
+                        {gateway.gateway === "multicaixa_express" ? (
+                          <Image
+                            src="/images/express.png"
+                            alt={gateway.display_name}
+                            width={32}
+                            height={32}
+                          />
+                        ) : (
+                          <div className="text-3xl">
+                            {getGatewayIcon(gateway.gateway)}
+                          </div>
+                        )}
                         <div className="flex-1">
                           <h3 className="font-bold text-lg text-gray-900">
-                            Transferência Bancária
+                            {gateway.display_name}
                           </h3>
                           <p className="text-sm text-gray-600 mt-1">
-                            Transfira diretamente para a nossa conta bancária
+                            {gateway.instructions ||
+                              getGatewayDescription(gateway.gateway)}
                           </p>
                         </div>
                       </div>
                     </Radio>
-                  )}
-
-                  {isGatewayAllowed("multicaixa_express") && (
-                    <Radio
-                      value="multicaixa_express"
-                      classNames={{
-                        base: "inline-flex m-0 bg-content1 hover:bg-content2 items-center justify-between flex-row-reverse max-w-full cursor-pointer rounded-lg gap-4 p-4 border-2 border-transparent data-[selected=true]:border-primary",
-                      }}
-                    >
-                      <div className="flex items-center gap-3 w-full">
-                        <Image src="/images/express.png" alt="Multicaixa Express" width={32} height={32} />
-                        <div className="flex-1">
-                          <h3 className="font-bold text-lg text-gray-900">
-                            Multicaixa Express
-                          </h3>
-                          <p className="text-sm text-gray-600 mt-1">
-                            Pagamento online seguro via Multicaixa
-                          </p>
-                        </div>
-                      </div>
-                    </Radio>
-                  )}
+                  ))}
                 </RadioGroup>
               )}
             </ModalBody>
-            {!isLoading && (
+            {!isLoading && !loadingGateways && gateways.length > 0 && (
               <ModalFooter>
                 <Button color="" variant="light" onPress={onClose}>
                   Cancelar

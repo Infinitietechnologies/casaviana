@@ -137,13 +137,13 @@ const EventDetailsView = () => {
 
   const initiatePaymentForBooking = async (
     bookingId,
-    gateway = "bank_transfer"
+    gateway = "bank_transfer",
   ) => {
     console.log(
       "Initiating payment for booking ID:",
       bookingId,
       "Gateway:",
-      gateway
+      gateway,
     );
     try {
       const paymentPayload = {
@@ -218,7 +218,7 @@ const EventDetailsView = () => {
     // Perform booking for each ticket type
     const promises = selected.map(async (t) => {
       const ticketObj = event.ticket_types?.find(
-        (tt) => `${tt.id}` === `${t.id}`
+        (tt) => `${tt.id}` === `${t.id}`,
       );
       if (!ticketObj) {
         failCount += 1;
@@ -327,10 +327,27 @@ const EventDetailsView = () => {
 
   const parseEventDate = () => {
     if (!event?.event_date) return { day: "", month: "" };
-    const eventDate = new Date(event.event_date);
-    const day = eventDate.getDate().toString();
-    const month = eventDate.toLocaleString("pt-PT", { month: "long" });
-    return { day, month };
+
+    // Parse date from API (format: YYYY-MM-DD)
+    // Split manually to avoid timezone issues
+    const [year, monthNum, dayNum] = event.event_date.split("-");
+
+    // Create date object for formatting
+    const dateObj = new Date(
+      parseInt(year),
+      parseInt(monthNum) - 1,
+      parseInt(dayNum),
+    );
+
+    // Get month name in Portuguese (short form, e.g., "Nov")
+    const monthName = dateObj
+      .toLocaleString("pt-PT", { month: "short" })
+      .toUpperCase();
+
+    // Format as "Month Year" (e.g., "NOV 2025")
+    const monthWithYear = `${monthName} ${year}`;
+
+    return { day: dayNum, month: monthWithYear };
   };
 
   const { day, month } = parseEventDate();
@@ -488,15 +505,19 @@ const EventDetailsView = () => {
               <div className="font-bold text-sm lg:text-base mb-2">
                 PARA MAIS INFORMAÇÕES 📞
               </div>
-              {event.venue?.branch?.phone || event.venue?.branch?.manager?.phone ? (
+              {event.venue?.branch?.phone ||
+              event.venue?.branch?.manager?.phone ? (
                 <div className="text-xs lg:text-sm text-gray-700">
-                  {(Array.isArray(event.venue?.branch?.phone) ? event.venue.branch.phone : (event.venue?.branch?.phone || "").toString().split(",")).map((p) => p.trim()).join(" | ")} |{" "}
-                  {event.venue?.branch?.manager?.phone}
+                  {(Array.isArray(event.venue?.branch?.phone)
+                    ? event.venue.branch.phone
+                    : (event.venue?.branch?.phone || "").toString().split(",")
+                  )
+                    .map((p) => p.trim())
+                    .join(" | ")}{" "}
+                  | {event.venue?.branch?.manager?.phone}
                 </div>
               ) : (
-                <div className="text-xs lg:text-sm text-gray-700">
-                  N/A
-                </div>
+                <div className="text-xs lg:text-sm text-gray-700">N/A</div>
               )}
             </div>
 
@@ -592,10 +613,11 @@ const EventDetailsView = () => {
                         <button
                           onClick={() => handleDecrement(ticket.id)}
                           disabled={isDisabled}
-                          className={`w-8 h-8 rounded flex items-center justify-center text-sm ${isDisabled
-                            ? "bg-gray-300 text-white cursor-not-allowed"
-                            : "bg-black text-white hover:bg-gray-800"
-                            }`}
+                          className={`w-8 h-8 rounded flex items-center justify-center text-sm ${
+                            isDisabled
+                              ? "bg-gray-300 text-white cursor-not-allowed"
+                              : "bg-black text-white hover:bg-gray-800"
+                          }`}
                         >
                           −
                         </button>
@@ -605,10 +627,11 @@ const EventDetailsView = () => {
                         <button
                           onClick={() => handleIncrement(ticket.id)}
                           disabled={isDisabled}
-                          className={`w-8 h-8 rounded flex items-center justify-center text-sm ${isDisabled
-                            ? "bg-gray-300 text-white cursor-not-allowed"
-                            : "bg-black text-white hover:bg-gray-800"
-                            }`}
+                          className={`w-8 h-8 rounded flex items-center justify-center text-sm ${
+                            isDisabled
+                              ? "bg-gray-300 text-white cursor-not-allowed"
+                              : "bg-black text-white hover:bg-gray-800"
+                          }`}
                         >
                           +
                         </button>
@@ -625,10 +648,10 @@ const EventDetailsView = () => {
                   </div>
                 );
               }) || (
-                  <p className="text-gray-500 text-sm">
-                    Nenhum tipo de ingresso disponível.
-                  </p>
-                )}
+                <p className="text-gray-500 text-sm">
+                  Nenhum tipo de ingresso disponível.
+                </p>
+              )}
 
               <div className="border-t pt-4 lg:pt-6">
                 <div className="flex justify-between items-center mb-4">

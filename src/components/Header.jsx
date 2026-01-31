@@ -147,7 +147,7 @@ const Header = () => {
                   {item}
                   <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white transition-all group-hover:w-full"></span>
                 </Link>
-              )
+              ),
             )}
 
             {/* TV Icon Box */}
@@ -313,7 +313,7 @@ const Header = () => {
                         Bookings
                       </Link>
                       <Link
-                        href="/"
+                        href="/payments"
                         className="px-4 py-2.5 flex items-center gap-3 text-sm hover:bg-gray-100 transition"
                         onClick={() => setProfileOpen(false)}
                       >
@@ -411,7 +411,9 @@ const Header = () => {
 
                   {/* Mobile Dropdown Menu */}
                   {profileOpen && (
-                    <div className="absolute right-0 top-12 w-56 bg-white text-gray-800 rounded-lg shadow-lg py-2 z-50">
+                    <div className="absolute right-0 top-12 w-56 bg-white text-gray-800 rounded-lg shadow-lg py-2 z-50"
+                        onMouseDown={(e) => e.stopPropagation()}
+                      >
                       <div className="px-4 py-3 border-b">
                         <p className="text-sm font-semibold text-gray-900">
                           {user?.name || user?.username || "User"}
@@ -432,7 +434,7 @@ const Header = () => {
                           viewBox="0 0 24 24"
                           strokeWidth={1.8}
                           stroke="currentColor"
-                          className="w-5 h-5 text-orange-500"
+                          className="w-5 h-5"
                         >
                           <path
                             strokeLinecap="round"
@@ -441,6 +443,50 @@ const Header = () => {
                           />
                         </svg>
                         Profile
+                      </Link>
+
+                      <Link
+                        href="/bookings"
+                        className="px-4 py-2.5 flex items-center gap-3 text-sm hover:bg-gray-100 transition"
+                        onClick={() => setProfileOpen(false)}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-5 h-5"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M9 12.75L11.25 15l4.5-4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"
+                          />
+                        </svg>
+                        Bookings
+                      </Link>
+
+                      <Link
+                        href="/payments"
+                        className="px-4 py-2.5 flex items-center gap-3 text-sm hover:bg-gray-100 transition"
+                        onClick={() => setProfileOpen(false)}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-5 h-5"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z"
+                          />
+                        </svg>
+                        Payments
                       </Link>
 
                       <button
@@ -544,7 +590,7 @@ const Header = () => {
               >
                 {item}
               </Link>
-            )
+            ),
           )}
           <div className="flex items-center gap-6 mt-2">
             <Link
