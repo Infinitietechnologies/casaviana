@@ -80,13 +80,10 @@ const Homepage = () => {
       try {
         // search=null, category_id=null, is_featured=1
         const res = await fetch_all_services(null, null, 1);
-        console.log("Featured Services API Response:", res);
 
         if (res?.success && Array.isArray(res.data)) {
-          console.log("Setting featured services (direct array):", res.data);
           setFeaturedServices(res.data);
         } else if (res?.success && res.data?.data && Array.isArray(res.data.data)) {
-          console.log("Setting featured services (paginated):", res.data.data);
           // Handle paginated response if applicable, though we want all/list
           setFeaturedServices(res.data.data);
         } else {
@@ -215,7 +212,7 @@ const Homepage = () => {
 
           <div className="lg:col-span-5">
             <h2 className="bg-gradient-to-r from-orange-500 to-red-600 text-white text-base sm:text-lg md:text-xl text-center font-bold py-2 px-4 rounded-md mb-4">
-              DESTAQUES DO CENTRO CULTURAL  
+              DESTAQUES DO CENTRO CULTURAL
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
               {featuredServices.map((item, i) => (

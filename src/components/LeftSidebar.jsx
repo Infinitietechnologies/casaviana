@@ -5,7 +5,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { LeftSidebarSkeleton } from "./Skeletons/CommonSkeletons";
-import { get_advertisements, get_random_menu_items } from "@/Api/api";
+import { get_advertisements, get_random_menu_items, fetch_all_services } from "@/Api/api";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
@@ -17,6 +17,7 @@ const LeftSidebar = () => {
 
   const [items, setItems] = useState([]);
   const [ads, setAds] = useState([]);
+  const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const fetchRandomMenuItems = async () => {
@@ -28,7 +29,7 @@ const LeftSidebar = () => {
         setItems(res.data);
         try {
           localStorage.setItem("randomMenuItems", JSON.stringify(res.data));
-        } catch {}
+        } catch { }
       } else {
         setItems([]);
       }
@@ -48,18 +49,33 @@ const LeftSidebar = () => {
         setAds(res.data);
         try {
           localStorage.setItem("homeAdvertisements", JSON.stringify(res.data));
-        } catch {}
+        } catch { }
       }
     } catch (err) {
       console.error("Error fetching advertisements:", err);
     }
   };
 
+  const fetchServices = async () => {
+    try {
+      const res = await fetch_all_services();
+
+      if (res?.success) {
+        setServices(res.data.data);
+        try {
+          localStorage.setItem("homeServices", JSON.stringify(res.data));
+        } catch { }
+      }
+    } catch (err) {
+      console.error("Error fetching services:", err);
+    }
+  };
+
   useEffect(() => {
-    if (pathname === "/") {
-      fetchRandomMenuItems();
-      fetchAdvertisements();
-    } else {
+    fetchRandomMenuItems();
+    fetchAdvertisements();
+    fetchServices();
+    if (pathname !== "/") {
       try {
         const cachedItems = localStorage.getItem("randomMenuItems");
         if (cachedItems) {
@@ -72,7 +88,13 @@ const LeftSidebar = () => {
           const parsedAds = JSON.parse(cachedAds);
           if (Array.isArray(parsedAds)) setAds(parsedAds);
         }
-      } catch {}
+
+        const cachedServices = localStorage.getItem("homeServices");
+        if (cachedServices) {
+          const parsedServices = JSON.parse(cachedServices);
+          if (Array.isArray(parsedServices)) setServices(parsedServices);
+        }
+      } catch { }
     }
   }, [pathname]);
 
@@ -109,31 +131,30 @@ const LeftSidebar = () => {
       )}
 
       <h3 className="text-lg font-semibold text-gray-900 mb-3">
-        Cardapios Destaques
+        Nossos serviços
       </h3>
 
       <div className="space-y-2">
-        {items.slice(0, 5).map((news, i) => (
+        {services.slice(0, 5).map((service, i) => (
           <Link
             href={
-              news.category?.slug
+              service.slug
                 ? {
-                    pathname: `/cardapio/${news.category.slug}`,
-                    query: news.menus?.[0]?.id ? { menu_id: news.menus[0].id } : {},
-                  }
+                  pathname: `/servicos/${service.slug}`
+                }
                 : "#"
             }
-            key={news.id ?? i}
+            key={service.id ?? i}
             className="flex items-center gap-3 p-1 hover:bg-gray-50 rounded-md transition-colors cursor-pointer"
           >
             <div className="w-16 h-16 overflow-hidden rounded-md flex-shrink-0">
               <Image
                 src={
-                  news.image ??
-                  news.images?.[0] ??
+                  service.cover_image ??
+                  service.images?.[0] ??
                   "/images/swiper3.png"
                 }
-                alt={news.name ?? "Menu Item"}
+                alt={service.title ?? "Menu Item"}
                 width={64}
                 height={64}
                 className="object-cover w-full h-full"
@@ -142,10 +163,13 @@ const LeftSidebar = () => {
 
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold truncate">
-                {news.name}
+                {service.title}
               </p>
               <p className="text-xs text-gray-500 truncate">
-                {news.category?.name}
+                {service.category?.name}
+              </p>
+              <p className="text-xs text-gray-500 truncate">
+                {service?.short_description}
               </p>
             </div>
           </Link>

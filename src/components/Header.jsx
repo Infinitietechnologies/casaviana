@@ -105,10 +105,9 @@ const Header = () => {
     <>
       <nav
         className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 border-b
-          ${
-            isScrolled
-              ? "backdrop-blur-md bg-red-600/60 border-white/20 shadow-lg"
-              : "bg-red-600 border-transparent"
+          ${isScrolled
+            ? "bg-red-600 border-transparent shadow-lg"
+            : "bg-red-600 border-transparent"
           }`}
       >
         <div className="max-w-[1900px] mx-auto flex items-center justify-between h-20 px-4 md:px-6">
@@ -134,14 +133,14 @@ const Header = () => {
                     item === "Início"
                       ? "/"
                       : item === "Eventos"
-                      ? "/events"
-                      : item === "Serviços"
-                      ? "/servicos"
-                      : item === "Blogs"
-                      ? "/blogs"
-                      : item === "Contactos"
-                      ? "/contact-us"
-                      : "#"
+                        ? "/events"
+                        : item === "Serviços"
+                          ? "/servicos"
+                          : item === "Blogs"
+                            ? "/blogs"
+                            : item === "Contactos"
+                              ? "/contact-us"
+                              : "#"
                   }
                   className="relative group transition-colors hover:text-gray-200 text-xl"
                 >
@@ -519,11 +518,10 @@ const Header = () => {
 
         {/* Mobile Menu Dropdown */}
         <div
-          className={`md:hidden text-white flex flex-col items-center overflow-hidden transition-all duration-300 ease-in-out ${
-            menuOpen
+          className={`md:hidden text-white flex flex-col items-center overflow-hidden transition-all duration-300 ease-in-out ${menuOpen
               ? "max-h-96 py-4 backdrop-blur-md backdrop-saturate-150 bg-red-600/60 border-t border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.08)] relative z-[60]"
               : "max-h-0 py-0"
-          }`}
+            }`}
         >
           {["Início", "Serviços", "Eventos", "Contactos", "Blogs"].map(
             (item, i) => (
@@ -533,14 +531,14 @@ const Header = () => {
                   item === "Início"
                     ? "/"
                     : item === "Eventos"
-                    ? "/events"
-                    : item === "Serviços"
-                    ? "/servicos"
-                    : item === "Blogs"
-                    ? "/blogs"
-                    : item === "Contactos"
-                    ? "https://www.casaviana.ao"
-                    : "#"
+                      ? "/events"
+                      : item === "Serviços"
+                        ? "/servicos"
+                        : item === "Blogs"
+                          ? "/blogs"
+                          : item === "Contactos"
+                            ? "https://www.casaviana.ao"
+                            : "#"
                 }
                 className="text-lg font-medium hover:text-gray-200 transition py-2"
               >

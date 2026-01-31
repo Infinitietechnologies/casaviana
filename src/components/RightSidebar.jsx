@@ -69,8 +69,7 @@ const RightSidebar = () => {
 
       // store first 5 with children only to state
       const topCategories = data
-        .filter(cat => cat.is_root)
-        .slice(0, 7);
+        .filter(cat => cat.is_root);
 
       setCategories(topCategories);
       try {
