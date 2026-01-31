@@ -598,11 +598,11 @@ const EventDetailsView = () => {
                             )}
                           </div>
                         </div>
-                        {ticket.available_tickets > 0 && (
+                        {/* {ticket.available_tickets > 0 && (
                           <span className="bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded ml-3">
                             Available {ticket.available_tickets}
                           </span>
-                        )}
+                        )} */}
                       </div>
                       <p className="text-xs lg:text-sm text-gray-600 mt-2">
                         {ticket.description || "Sem descrição."}
