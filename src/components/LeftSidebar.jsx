@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { LeftSidebarSkeleton } from "./Skeletons/CommonSkeletons";
 import { get_advertisements, get_random_menu_items, fetch_all_services } from "@/Api/api";
+import { useTranslation } from "react-i18next";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
@@ -13,6 +14,7 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
 const LeftSidebar = () => {
+  const { t } = useTranslation();
   const pathname = usePathname();
 
   const [items, setItems] = useState([]);
@@ -117,7 +119,7 @@ const LeftSidebar = () => {
               <SwiperSlide key={ad.id}>
                 <Image
                   src={ad.image_url}
-                  alt={ad.title || "Advertisement"}
+                  alt={ad.title || t("sidebar.left.advertisement_alt")}
                   width={600}
                   height={400}
                   className="w-full h-auto object-contain"
@@ -130,7 +132,7 @@ const LeftSidebar = () => {
       )}
 
       <h3 className="text-lg font-semibold text-gray-900 mb-3">
-        Nossos serviços
+        {t("sidebar.left.services_title")}
       </h3>
 
       <div className="space-y-2">
@@ -153,7 +155,7 @@ const LeftSidebar = () => {
                   service.images?.[0] ??
                   "/images/swiper3.png"
                 }
-                alt={service.title ?? "Menu Item"}
+                alt={service.title ?? t("sidebar.left.menu_item_alt")}
                 width={64}
                 height={64}
                 className="object-cover w-full h-full"

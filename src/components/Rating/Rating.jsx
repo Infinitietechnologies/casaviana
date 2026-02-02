@@ -12,11 +12,12 @@ import {
 } from "@heroui/react";
 import { Rating as SmastromRating } from "@smastrom/react-rating";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const EMOJIS = ["😡", "🙁", "😐", "🙂", "😄"];
-const EMOJI_LABELS = ["Muito Mau", "Mau", "Médio", "Bom", "Excelente"];
 
 const Rating = ({ slug, resource = "events" }) => {
+  const { t } = useTranslation();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { user } = useSelector((state) => state.auth);
   const [ratings, setRatings] = useState([]);
@@ -29,6 +30,14 @@ const Rating = ({ slug, resource = "events" }) => {
   const [submitting, setSubmitting] = useState(false);
   // whether the logged-in user already submitted a rating for this resource
   const [hasUserRated, setHasUserRated] = useState(false);
+
+  const EMOJI_LABELS = [
+    t("ratings.labels.very_bad"),
+    t("ratings.labels.bad"),
+    t("ratings.labels.medium"),
+    t("ratings.labels.good"),
+    t("ratings.labels.excellent"),
+  ];
 
   const fetchRatings = async () => {
     if (!slug) return;
@@ -97,7 +106,7 @@ const Rating = ({ slug, resource = "events" }) => {
 
   const handleSubmit = async (onClose) => {
     if (!value || value < 1) {
-      addToast({ title: "Por favor selecione uma avaliação", color: "danger" });
+      addToast({ title: t("ratings.toasts.select_rating"), color: "danger" });
       return;
     }
     setSubmitting(true);
@@ -106,7 +115,7 @@ const Rating = ({ slug, resource = "events" }) => {
       const res = await create_rating(resource, slug, payload);
       if (res?.success) {
         addToast({
-          title: res.message || "Avaliação enviada",
+          title: res.message || t("ratings.toasts.success"),
           color: "success",
         });
         await fetchRatings();
@@ -116,7 +125,7 @@ const Rating = ({ slug, resource = "events" }) => {
         setReview("");
       } else {
         addToast({
-          title: res?.error || "Falha ao enviar avaliação",
+          title: res?.error || t("ratings.toasts.error"),
           color: "danger",
         });
       }
@@ -146,7 +155,7 @@ const Rating = ({ slug, resource = "events" }) => {
   return (
     <div className="py-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">Avaliações e Críticas</h2>
+        <h2 className="text-2xl font-bold text-gray-900">{t("ratings.title")}</h2>
         {user && !hasUserRated && (
           <Button
             color="primary"
@@ -154,7 +163,7 @@ const Rating = ({ slug, resource = "events" }) => {
             size="sm"
             className="font-semibold"
           >
-            Escrever Avaliação
+            {t("ratings.write_review")}
           </Button>
         )}
       </div>
@@ -172,10 +181,10 @@ const Rating = ({ slug, resource = "events" }) => {
                 <span className="text-2xl text-yellow-500">★</span>
               </div>
               <div className="text-xs text-gray-600">
-                {count.toLocaleString()} Avaliações
+                {count.toLocaleString()} {t("ratings.ratings")}
               </div>
               <div className="text-xs text-gray-600">
-                {ratings.length} Críticas
+                {ratings.length} {t("ratings.reviews")}
               </div>
             </div>
 
@@ -195,17 +204,16 @@ const Rating = ({ slug, resource = "events" }) => {
                     </div>
                     <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
                       <div
-                        className={`h-full rounded-full transition-all duration-300 ${
-                          star === 5
+                        className={`h-full rounded-full transition-all duration-300 ${star === 5
                             ? "bg-green-500"
                             : star === 4
-                            ? "bg-green-400"
-                            : star === 3
-                            ? "bg-yellow-400"
-                            : star === 2
-                            ? "bg-orange-400"
-                            : "bg-red-400"
-                        }`}
+                              ? "bg-green-400"
+                              : star === 3
+                                ? "bg-yellow-400"
+                                : star === 2
+                                  ? "bg-orange-400"
+                                  : "bg-red-400"
+                          }`}
                         style={{ width: `${percentage}%` }}
                       />
                     </div>
@@ -263,7 +271,7 @@ const Rating = ({ slug, resource = "events" }) => {
           {ratings.length > 3 && (
             <div className="mt-4 text-center">
               <button className="text-blue-600 font-semibold text-sm hover:underline">
-                Ver todas as {ratings.length} críticas
+                {t("ratings.view_all", { count: ratings.length })}
               </button>
             </div>
           )}
@@ -272,14 +280,14 @@ const Rating = ({ slug, resource = "events" }) => {
         <div className="text-center py-12 bg-gray-50 rounded-xl border border-gray-200">
           <div className="text-5xl mb-4">📝</div>
           <p className="text-gray-900 font-semibold text-lg mb-2">
-            Ainda sem avaliações
+            {t("ratings.no_ratings")}
           </p>
           <p className="text-gray-500 text-sm mb-4">
-            Seja o primeiro a partilhar a sua experiência!
+            {t("ratings.be_first")}
           </p>
           {user && !hasUserRated && (
             <Button color="primary" onPress={onOpen} className="font-semibold">
-              Escrever Primeira Avaliação
+              {t("ratings.write_first")}
             </Button>
           )}
         </div>
@@ -301,10 +309,10 @@ const Rating = ({ slug, resource = "events" }) => {
             <>
               <ModalHeader className="flex flex-col gap-2 border-b border-gray-100 pb-5">
                 <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight">
-                  Partilhe a Sua Experiência
+                  {t("ratings.modal.title")}
                 </h3>
                 <p className="text-sm text-gray-500 max-w-md">
-                  O seu feedback ajuda outros a tomar decisões informadas
+                  {t("ratings.modal.subtitle")}
                 </p>
                 <div className="w-12 h-1 bg-blue-600 rounded-full mt-1" />
               </ModalHeader>
@@ -312,7 +320,7 @@ const Rating = ({ slug, resource = "events" }) => {
               <ModalBody className="py-6 space-y-6">
                 <div>
                   <div className="text-sm font-semibold text-gray-700 mb-3">
-                    Como avalia isto?
+                    {t("ratings.modal.how_rate")}
                   </div>
 
                   <div className="bg-white/70 backdrop-blur-xl rounded-3xl p-6 border border-yellow-200 shadow-inner">
@@ -331,13 +339,12 @@ const Rating = ({ slug, resource = "events" }) => {
                             onMouseEnter={() => setHoverIndex(idx)}
                             onMouseLeave={() => setHoverIndex(0)}
                             className={`relative text-4xl p-4 rounded-2xl transition-all duration-200
-                        ${
-                          isSelected
-                            ? "bg-white scale-125 shadow-xl ring-4 ring-yellow-400"
-                            : isActive
-                            ? "bg-white/80 scale-110 shadow-md"
-                            : "hover:bg-white/60 hover:scale-105"
-                        }`}
+                        ${isSelected
+                                ? "bg-white scale-125 shadow-xl ring-4 ring-yellow-400"
+                                : isActive
+                                  ? "bg-white/80 scale-110 shadow-md"
+                                  : "hover:bg-white/60 hover:scale-105"
+                              }`}
                           >
                             {emoji}
                           </button>
@@ -349,11 +356,11 @@ const Rating = ({ slug, resource = "events" }) => {
                       <div className="text-lg font-semibold text-gray-800">
                         {(hoverIndex || value) > 0
                           ? EMOJI_LABELS[(hoverIndex || value) - 1]
-                          : "Selecione uma avaliação"}
+                          : t("ratings.modal.select_rating")}
                       </div>
                       {(hoverIndex || value) > 0 && (
                         <div className="text-sm text-gray-600 mt-1">
-                          {hoverIndex || value} de 5 estrelas
+                          {hoverIndex || value} {t("ratings.modal.of_5")}
                         </div>
                       )}
                     </div>
@@ -362,13 +369,13 @@ const Rating = ({ slug, resource = "events" }) => {
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Título da Avaliação
+                    {t("ratings.modal.review_title")}
                   </label>
                   <input
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    placeholder="Resuma a sua experiência"
+                    placeholder={t("ratings.modal.title_placeholder")}
                     className="w-full rounded-xl border border-gray-200 bg-white/80 p-3
               focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all outline-none"
                   />
@@ -376,17 +383,17 @@ const Rating = ({ slug, resource = "events" }) => {
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    A Sua Avaliação
+                    {t("ratings.modal.review_body")}
                   </label>
                   <textarea
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
-                    placeholder="Partilhe detalhes sobre a sua experiência..."
+                    placeholder={t("ratings.modal.body_placeholder")}
                     className="w-full h-36 resize-none rounded-xl border border-gray-200 bg-white/80 p-3
               focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all outline-none"
                   />
                   <div className="text-xs text-gray-500 mt-1">
-                    {review.length} caracteres
+                    {review.length} {t("ratings.modal.chars")}
                   </div>
                 </div>
               </ModalBody>
@@ -397,7 +404,7 @@ const Rating = ({ slug, resource = "events" }) => {
                   onPress={onClose}
                   className="font-semibold text-gray-600 hover:bg-gray-100 rounded-xl"
                 >
-                  Cancelar
+                  {t("comments.cancel", { defaultValue: "Cancelar" })}
                 </Button>
 
                 <Button
@@ -406,7 +413,7 @@ const Rating = ({ slug, resource = "events" }) => {
                   onPress={() => handleSubmit(onClose)}
                   className="font-semibold px-8 rounded-xl shadow-lg"
                 >
-                  {submitting ? "A enviar..." : "Enviar Avaliação"}
+                  {submitting ? t("ratings.modal.submitting") : t("ratings.modal.submit")}
                 </Button>
               </ModalFooter>
             </>

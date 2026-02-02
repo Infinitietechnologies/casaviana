@@ -10,8 +10,10 @@ import {
   Chip,
   Divider,
 } from "@heroui/react";
+import { useTranslation } from "react-i18next";
 
 const BookingDetailsModal = ({ isOpen, onOpenChange, booking }) => {
+  const { t } = useTranslation();
   if (!booking) return null;
 
   const { items } = booking;
@@ -63,6 +65,19 @@ const BookingDetailsModal = ({ isOpen, onOpenChange, booking }) => {
     }
   };
 
+  const getStatusLabel = (status) => {
+    switch (status) {
+      case "confirmed":
+        return t("bookings.status.confirmed");
+      case "pending":
+        return t("bookings.status.pending");
+      case "cancelled":
+        return t("bookings.status.cancelled");
+      default:
+        return status;
+    }
+  };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -77,7 +92,7 @@ const BookingDetailsModal = ({ isOpen, onOpenChange, booking }) => {
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pr-8">
                 <div>
                   <h2 className="text-lg sm:text-xl font-bold">
-                    Reserva #{booking.booking_number}
+                    {t("bookings.details.reservation_number")}{booking.booking_number}
                   </h2>
                   <p className="text-xs sm:text-sm text-gray-500">
                     {formatDate(booking.created_at)}
@@ -88,13 +103,7 @@ const BookingDetailsModal = ({ isOpen, onOpenChange, booking }) => {
                   variant="flat"
                   size="sm"
                 >
-                  {booking.status === "confirmed"
-                    ? "Confirmado"
-                    : booking.status === "pending"
-                      ? "Pendente"
-                      : booking.status === "cancelled"
-                        ? "Cancelado"
-                        : booking.status}
+                  {getStatusLabel(booking.status)}
                 </Chip>
               </div>
             </ModalHeader>
@@ -104,7 +113,7 @@ const BookingDetailsModal = ({ isOpen, onOpenChange, booking }) => {
                 <div className="grid grid-cols-2 gap-3 sm:gap-6 text-sm">
                   <div>
                     <span className="text-gray-500 block text-[10px] sm:text-xs uppercase tracking-wide">
-                      Valor Total
+                      {t("bookings.details.total_amount")}
                     </span>
                     <span className="font-bold text-base sm:text-lg text-primary-600">
                       {formatAmount(booking.total_amount)}
@@ -112,7 +121,7 @@ const BookingDetailsModal = ({ isOpen, onOpenChange, booking }) => {
                   </div>
                   <div>
                     <span className="text-gray-500 block text-[10px] sm:text-xs uppercase tracking-wide">
-                      Total de Bilhetes
+                      {t("bookings.details.total_tickets")}
                     </span>
                     <span className="font-medium text-gray-900">
                       {booking.total_tickets}
@@ -126,7 +135,7 @@ const BookingDetailsModal = ({ isOpen, onOpenChange, booking }) => {
               {/* Tickets List - Vertical Ticket Card Style */}
               <div>
                 <h3 className="font-semibold text-base sm:text-lg mb-3 sm:mb-4 flex items-center gap-2">
-                  Bilhetes
+                  {t("bookings.details.tickets")}
                   <Chip size="sm" variant="solid" className="h-5 min-w-5">
                     {items?.length || 0}
                   </Chip>
@@ -152,7 +161,7 @@ const BookingDetailsModal = ({ isOpen, onOpenChange, booking }) => {
                             <p className="text-xs font-semibold uppercase tracking-wider mb-1">
                               {item.ticket_type?.name ||
                                 item.metadata?.ticket_type_name ||
-                                "Ingresso VIP"}
+                                t("bookings.details.vip_ticket")}
                             </p>
                             {item.item_type && (
                               <p className="text-[10px] opacity-80 capitalize">
@@ -199,7 +208,7 @@ const BookingDetailsModal = ({ isOpen, onOpenChange, booking }) => {
                                     d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
                                   />
                                 </svg>
-                                Download
+                                {t("bookings.details.download")}
                               </button>
                             </div>
                           )}
@@ -208,7 +217,7 @@ const BookingDetailsModal = ({ isOpen, onOpenChange, booking }) => {
                           {item.metadata?.ticket_code && (
                             <div className="w-full text-center">
                               <p className="text-[10px] text-gray-500 uppercase tracking-wide mb-1">
-                                Código do Bilhete
+                                {t("bookings.details.ticket_code")}
                               </p>
                               <p className="font-mono font-bold text-sm text-gray-900 tracking-wider break-all px-2">
                                 {item.metadata.ticket_code}
@@ -219,7 +228,7 @@ const BookingDetailsModal = ({ isOpen, onOpenChange, booking }) => {
                           {/* Price */}
                           <div className="w-full text-center pt-2 border-t border-dashed border-gray-300">
                             <p className="text-[10px] text-gray-500 uppercase tracking-wide mb-1">
-                              Valor do Bilhete
+                              {t("bookings.details.ticket_value")}
                             </p>
                             <p className="text-xl font-bold text-blue-600">
                               {formatAmount(item.price_paid)}
@@ -235,7 +244,7 @@ const BookingDetailsModal = ({ isOpen, onOpenChange, booking }) => {
 
                   {(!items || items.length === 0) && (
                     <div className="col-span-full text-center py-8 text-gray-500 italic">
-                      Detalhes do bilhete indisponíveis.
+                      {t("bookings.details.tickets_unavailable")}
                     </div>
                   )}
                 </div>
@@ -243,7 +252,7 @@ const BookingDetailsModal = ({ isOpen, onOpenChange, booking }) => {
             </ModalBody>
             <ModalFooter>
               <Button color="danger" variant="light" onPress={onClose}>
-                Fechar
+                {t("modals.actions.close")}
               </Button>
             </ModalFooter>
           </>

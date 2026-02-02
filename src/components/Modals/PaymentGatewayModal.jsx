@@ -12,6 +12,7 @@ import {
 } from "@heroui/react";
 import Image from "next/image";
 import { get_payment_gateways } from "@/Api/api";
+import { useTranslation } from "react-i18next";
 
 const PaymentGatewayModal = ({
   isOpen,
@@ -19,6 +20,7 @@ const PaymentGatewayModal = ({
   onSelectGateway,
   isLoading = false,
 }) => {
+  const { t } = useTranslation();
   const [selectedGateway, setSelectedGateway] = useState(null);
   const [gateways, setGateways] = useState([]);
   const [loadingGateways, setLoadingGateways] = useState(false);
@@ -68,14 +70,13 @@ const PaymentGatewayModal = ({
   };
 
   const getGatewayDescription = (gateway) => {
-    switch (gateway) {
-      case "bank_transfer":
-        return "Transfira diretamente para a nossa conta bancária";
-      case "multicaixa_express":
-        return "Pagamento online seguro via Multicaixa";
-      default:
-        return "";
+    if (gateway === "bank_transfer") {
+      return t("modals.payment_gateway.descriptions.bank_transfer");
     }
+    if (gateway === "multicaixa_express") {
+      return t("modals.payment_gateway.descriptions.multicaixa_express");
+    }
+    return "";
   };
 
   return (
@@ -91,8 +92,8 @@ const PaymentGatewayModal = ({
           <>
             <ModalHeader className="flex flex-col gap-1 text-2xl font-bold relative">
               {isLoading
-                ? "Processando Pagamento"
-                : "Selecione o Método de Pagamento"}
+                ? t("modals.payment_gateway.processing")
+                : t("modals.payment_gateway.select_method")}
               {isLoading && (
                 <button
                   onClick={onClose}
@@ -126,20 +127,20 @@ const PaymentGatewayModal = ({
                     </div>
                   </div>
                   <div className="text-center text-gray-500 mt-4">
-                    A aguardar confirmação do pagamento...
+                    {t("modals.payment_gateway.waiting_confirmation")}
                   </div>
                 </div>
               ) : loadingGateways ? (
                 <div className="flex flex-col items-center justify-center py-8">
                   <Spinner size="lg" color="primary" />
                   <p className="mt-4 text-gray-500">
-                    A carregar métodos de pagamento...
+                    {t("modals.payment_gateway.loading")}
                   </p>
                 </div>
               ) : gateways.length === 0 ? (
                 <div className="text-center py-8">
                   <p className="text-gray-500">
-                    Nenhum método de pagamento disponível
+                    {t("modals.payment_gateway.no_methods")}
                   </p>
                 </div>
               ) : (
@@ -189,14 +190,14 @@ const PaymentGatewayModal = ({
             {!isLoading && !loadingGateways && gateways.length > 0 && (
               <ModalFooter>
                 <Button color="" variant="light" onPress={onClose}>
-                  Cancelar
+                  {t("modals.actions.cancel")}
                 </Button>
                 <Button
                   color="danger"
                   onPress={handleConfirm}
                   isDisabled={!selectedGateway}
                 >
-                  Continuar
+                  {t("modals.actions.continue")}
                 </Button>
               </ModalFooter>
             )}

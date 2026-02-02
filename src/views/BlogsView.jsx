@@ -6,8 +6,10 @@ import { get_blogs, get_categories } from "@/Api/api";
 import { BlogsPageSkeleton } from "@/components/Skeletons/BlogsSkeletons";
 import { Chip, Pagination, Input, Button } from "@heroui/react";
 import Head from "next/head";
+import { useTranslation } from "react-i18next";
 
 const BlogsView = () => {
+  const { t, i18n } = useTranslation();
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   const [blogPosts, setBlogPosts] = useState([]);
@@ -64,30 +66,22 @@ const BlogsView = () => {
 
       if (blogsResponse?.data) {
         setBlogPosts(blogsResponse.data);
-        // Assuming response wrapper has meta or links for pagination. 
-        // If standard Laravel paginate resource: { data: [...], meta: { last_page: ... } }
-        // Adjust based on actual API response structure which I should have checked, but will assume standard/safe defaults.
-        // If no meta, we might just have data.
-        // To be safe, I'd need to inspect the API response, but for now I'll check if meta exists.
         if (blogsResponse.meta) {
           setTotalPages(blogsResponse.meta.last_page);
         } else {
-          // Fallback if no meta provided
           setTotalPages(1);
         }
       } else if (Array.isArray(blogsResponse)) {
-        // If it returns direct array without pagination wrapper
         setBlogPosts(blogsResponse);
       }
 
       if (categoriesResponse) {
-
         setCategories(categoriesResponse.data);
       }
 
       setError(null);
     } catch (err) {
-      setError("Failed to load content");
+      setError(t("pages.blogs.error_loading"));
       console.error(err);
     } finally {
       setLoading(false);
@@ -125,13 +119,13 @@ const BlogsView = () => {
   return (
     <>
       <Head>
-        <title>Blogs - Casa Viana</title>
-        <meta name="description" content="Explore our latest articles, news, and updates at Casa Viana." />
+        <title>{t("pages.blogs.title")} - Casa Viana</title>
+        <meta name="description" content={t("pages.blogs.subtitle")} />
       </Head>
 
       <LayoutView
-        title="Nosso Blogs"
-        description="Explore nossos artigos mais recentes, notícias e atualizações."
+        title={t("pages.blogs.title")}
+        description={t("pages.blogs.subtitle")}
         backgroundImage={headerImage}
       >
         {/* Search and Filter Section */}
@@ -140,7 +134,7 @@ const BlogsView = () => {
             <div className="flex flex-col sm:flex-row gap-4 w-full">
               <Input
                 type="text"
-                placeholder="Pesquisar..."
+                placeholder={t("pages.blogs.search_placeholder")}
                 value={searchTerm}
                 onValueChange={handleSearch}
                 classNames={{
@@ -167,7 +161,7 @@ const BlogsView = () => {
                 : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                 }`}
             >
-              Todos
+              {t("pages.blogs.all")}
             </button>
             {categories.map((cat) => (
               <button
@@ -190,10 +184,10 @@ const BlogsView = () => {
             <BlogsPageSkeleton />
           ) : error ? (
             <div className="flex flex-col items-center justify-center py-20 bg-slate-50 rounded-2xl border border-slate-100">
-              <p className="text-red-500 font-medium mb-2">Oops!</p>
+              <p className="text-red-500 font-medium mb-2">{t("pages.blogs.oops")}</p>
               <p className="text-slate-600">{error}</p>
               <Button onClick={fetchData} className="mt-4" color="primary" variant="flat">
-                Tentar Novamente
+                {t("pages.blogs.try_again")}
               </Button>
             </div>
           ) : blogPosts.length > 0 ? (
@@ -234,11 +228,11 @@ const BlogsView = () => {
 
                     <div className="p-6 flex flex-col flex-grow">
                       <div className="flex items-center text-xs text-slate-400 font-medium uppercase tracking-wider mb-3">
-                        {post.published_at && new Date(post.published_at).toLocaleDateString("pt-BR", { day: 'numeric', month: 'short', year: 'numeric' })}
+                        {post.published_at && new Date(post.published_at).toLocaleDateString(i18n.language, { day: 'numeric', month: 'short', year: 'numeric' })}
                         {post.reading_time && (
                           <>
                             <span className="mx-2">•</span>
-                            <span>{post.reading_time} min leitura</span>
+                            <span>{post.reading_time} {t("pages.blogs.min_read")}</span>
                           </>
                         )}
                       </div>
@@ -252,7 +246,7 @@ const BlogsView = () => {
                       </p>
 
                       <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
-                        <span className="text-sm font-semibold text-blue-600 group-hover:underline">Ler mais</span>
+                        <span className="text-sm font-semibold text-blue-600 group-hover:underline">{t("pages.blogs.read_more")}</span>
 
                         <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -287,8 +281,8 @@ const BlogsView = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-1">Nenhum artigo encontrado</h3>
-              <p className="text-slate-500 max-w-xs mx-auto">Tente ajustar seus termos de pesquisa ou categoria.</p>
+              <h3 className="text-lg font-semibold text-slate-900 mb-1">{t("pages.blogs.no_articles")}</h3>
+              <p className="text-slate-500 max-w-xs mx-auto">{t("pages.blogs.no_articles_desc")}</p>
               <Button
                 onClick={() => {
                   setSearchTerm("");
@@ -299,7 +293,7 @@ const BlogsView = () => {
                 color="primary"
                 className="mt-4"
               >
-                Limpar filtros
+                {t("pages.blogs.clear_filters")}
               </Button>
             </div>
           )}
@@ -310,4 +304,3 @@ const BlogsView = () => {
 };
 
 export default BlogsView;
-

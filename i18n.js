@@ -3,6 +3,7 @@ import { initReactI18next } from "react-i18next";
 import Cookies from "js-cookie";
 import enTranslations from "./public/locales/en.json" with { type: "json" };
 import ptTranslations from "./public/locales/pt.json" with { type: "json" };
+import zhTranslations from "./public/locales/zh.json" with { type: "json" };
 
 const LANGUAGE_KEY = "app_language";
 
@@ -22,6 +23,9 @@ if (!i18n.isInitialized) {
       },
       pt: {
         translation: ptTranslations,
+      },
+      zh: {
+        translation: zhTranslations,
       },
     },
     lng: getInitialLanguage(),

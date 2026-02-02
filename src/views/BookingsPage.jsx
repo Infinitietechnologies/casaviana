@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import {
   Table,
   TableHeader,
@@ -19,6 +19,7 @@ import {
 import { get_booking, get_booking_details } from "@/Api/api";
 import BookingDetailsModal from "../components/Modals/BookingDetailsModal";
 import ProfileSidebar from "./ProfileSidebar";
+import { useTranslation } from "react-i18next";
 
 const statusColorMap = {
   confirmed: "success",
@@ -26,61 +27,8 @@ const statusColorMap = {
   cancelled: "danger",
 };
 
-const statusOptions = [
-  { key: "all", label: "Todos os Estados" },
-  { key: "pending", label: "Pendente" },
-  { key: "confirmed", label: "Confirmado" },
-];
-
-const TableSkeleton = () => (
-  <Table aria-label="Loading bookings">
-    <TableHeader>
-      <TableColumn>RESERVA #</TableColumn>
-      <TableColumn>EVENTO</TableColumn>
-      <TableColumn>TIPO DE BILHETE</TableColumn>
-      <TableColumn>QTD</TableColumn>
-      <TableColumn>VALOR</TableColumn>
-      <TableColumn>ESTADO</TableColumn>
-      <TableColumn>RESERVADO EM</TableColumn>
-      <TableColumn>AÇÕES</TableColumn>
-    </TableHeader>
-    <TableBody>
-      {[...Array(5)].map((_, index) => (
-        <TableRow key={index}>
-          <TableCell>
-            <Skeleton className="h-4 w-24 rounded" />
-          </TableCell>
-          <TableCell>
-            <div className="flex flex-col gap-2">
-              <Skeleton className="h-4 w-32 rounded" />
-              <Skeleton className="h-3 w-20 rounded" />
-            </div>
-          </TableCell>
-          <TableCell>
-            <Skeleton className="h-4 w-28 rounded" />
-          </TableCell>
-          <TableCell>
-            <Skeleton className="h-4 w-8 rounded" />
-          </TableCell>
-          <TableCell>
-            <Skeleton className="h-4 w-24 rounded" />
-          </TableCell>
-          <TableCell>
-            <Skeleton className="h-6 w-20 rounded-full" />
-          </TableCell>
-          <TableCell>
-            <Skeleton className="h-4 w-32 rounded" />
-          </TableCell>
-          <TableCell>
-            <Skeleton className="h-8 w-8 rounded-full" />
-          </TableCell>
-        </TableRow>
-      ))}
-    </TableBody>
-  </Table>
-);
-
 export default function BookingsPage() {
+  const { t } = useTranslation();
   const [bookings, setBookings] = useState([]);
   const [page, setPage] = useState(1);
   const [perPage] = useState(10);
@@ -92,6 +40,12 @@ export default function BookingsPage() {
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [loadingBookingId, setLoadingBookingId] = useState(null);
+
+  const statusOptions = useMemo(() => [
+    { key: "all", label: t("bookings.status.all") },
+    { key: "pending", label: t("bookings.status.pending") },
+    { key: "confirmed", label: t("bookings.status.confirmed") },
+  ], [t]);
 
   useEffect(() => {
     fetchBookings();
@@ -116,12 +70,12 @@ export default function BookingsPage() {
         setTotalPages(paginationData.last_page || 1);
         setTotalRecords(paginationData.total || 0);
       } else {
-        setError(response?.error || "Falha ao carregar reservas");
+        setError(response?.error || t("bookings.error.fetch_failed"));
         setBookings([]);
       }
     } catch (err) {
       console.error("Failed to fetch bookings", err);
-      setError("Falha ao carregar reservas");
+      setError(t("bookings.error.fetch_failed"));
       setBookings([]);
     } finally {
       setLoading(false);
@@ -186,6 +140,54 @@ export default function BookingsPage() {
     return `${parseFloat(amount).toLocaleString()} AOA`;
   };
 
+  const TableSkeleton = () => (
+    <Table aria-label={t("bookings.title")}>
+      <TableHeader>
+        <TableColumn>{t("bookings.table.booking_number")}</TableColumn>
+        <TableColumn>{t("bookings.table.event")}</TableColumn>
+        <TableColumn>{t("bookings.table.ticket_type")}</TableColumn>
+        <TableColumn>{t("bookings.table.quantity")}</TableColumn>
+        <TableColumn>{t("bookings.table.amount")}</TableColumn>
+        <TableColumn>{t("bookings.table.status")}</TableColumn>
+        <TableColumn>{t("bookings.table.booked_at")}</TableColumn>
+        <TableColumn>{t("bookings.table.actions")}</TableColumn>
+      </TableHeader>
+      <TableBody>
+        {[...Array(5)].map((_, index) => (
+          <TableRow key={index}>
+            <TableCell>
+              <Skeleton className="h-4 w-24 rounded" />
+            </TableCell>
+            <TableCell>
+              <div className="flex flex-col gap-2">
+                <Skeleton className="h-4 w-32 rounded" />
+                <Skeleton className="h-3 w-20 rounded" />
+              </div>
+            </TableCell>
+            <TableCell>
+              <Skeleton className="h-4 w-28 rounded" />
+            </TableCell>
+            <TableCell>
+              <Skeleton className="h-4 w-8 rounded" />
+            </TableCell>
+            <TableCell>
+              <Skeleton className="h-4 w-24 rounded" />
+            </TableCell>
+            <TableCell>
+              <Skeleton className="h-6 w-20 rounded-full" />
+            </TableCell>
+            <TableCell>
+              <Skeleton className="h-4 w-32 rounded" />
+            </TableCell>
+            <TableCell>
+              <Skeleton className="h-8 w-8 rounded-full" />
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  );
+
   if (error && !loading) {
     return (
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 mt-24 px-4 mb-8">
@@ -210,7 +212,7 @@ export default function BookingsPage() {
               onPress={fetchBookings}
               className="bg-amber-500 text-white font-semibold"
             >
-              Tentar novamente
+              {t("bookings.error.retry")}
             </Button>
           </div>
         </div>
@@ -225,10 +227,10 @@ export default function BookingsPage() {
       <div className="flex-1">
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-gray-900">
-            Reservas de Eventos
+            {t("bookings.title")}
           </h1>
           <p className="text-gray-600 mt-2">
-            Veja todas as suas reservas de bilhetes de eventos
+            {t("bookings.subtitle")}
           </p>
         </div>
 
@@ -237,10 +239,10 @@ export default function BookingsPage() {
           <div className="flex flex-col sm:flex-row gap-4 items-end">
             <div className="flex-1 max-w-xs">
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Filtrar por Estado
+                {t("bookings.filters.status")}
               </label>
               <Select
-                placeholder="Selecione o estado"
+                placeholder={t("bookings.filters.select_status")}
                 selectedKeys={new Set([statusFilter])}
                 onSelectionChange={handleStatusChange}
                 className="max-w-xs"
@@ -278,7 +280,7 @@ export default function BookingsPage() {
                     </svg>
                   }
                 >
-                  Limpar Filtros
+                  {t("bookings.filters.clear")}
                 </Button>
               )}
               <Button
@@ -302,7 +304,7 @@ export default function BookingsPage() {
                   </svg>
                 }
               >
-                Atualizar
+                {t("bookings.filters.refresh")}
               </Button>
             </div>
           </div>
@@ -326,7 +328,7 @@ export default function BookingsPage() {
                   />
                 </svg>
                 <span>
-                  <strong>{totalRecords}</strong> total de reservas
+                  <strong>{totalRecords}</strong> {t("bookings.pagination.total_bookings")}
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -345,7 +347,7 @@ export default function BookingsPage() {
                   />
                 </svg>
                 <span>
-                  Página <strong>{page}</strong> de{" "}
+                  {t("bookings.pagination.page")} <strong>{page}</strong> {t("bookings.pagination.of")}{" "}
                   <strong>{totalPages}</strong>
                 </span>
               </div>
@@ -365,7 +367,7 @@ export default function BookingsPage() {
                   />
                 </svg>
                 <span>
-                  Mostrando <strong>{perPage}</strong> por página
+                  {t("bookings.pagination.showing")} <strong>{perPage}</strong> {t("bookings.pagination.per_page")}
                 </span>
               </div>
             </div>
@@ -393,20 +395,20 @@ export default function BookingsPage() {
             </svg>
             <p className="text-gray-600 text-lg">
               {statusFilter !== "all"
-                ? `Nenhuma reserva encontrada para o estado ${statusFilter}`
-                : "Nenhuma reserva encontrada"}
+                ? t("bookings.empty.filtered", { status: statusFilter })
+                : t("bookings.empty.title")}
             </p>
             <p className="text-gray-500 text-sm mt-2">
               {statusFilter !== "all"
-                ? "Tente selecionar um filtro de estado diferente"
-                : "Suas reservas de eventos aparecerão aqui"}
+                ? t("bookings.empty.filtered_subtitle")
+                : t("bookings.empty.subtitle")}
             </p>
             {statusFilter !== "all" && (
               <Button
                 onPress={handleClearFilters}
                 className="mt-4 bg-amber-500 text-white"
               >
-                Clear Filters
+                {t("bookings.empty.clear_filters")}
               </Button>
             )}
           </div>
@@ -414,7 +416,7 @@ export default function BookingsPage() {
           <div className="bg-white rounded-lg shadow overflow-hidden">
             <div className="overflow-x-auto">
               <Table
-                aria-label="Tabela de reservas"
+                aria-label={t("bookings.title")}
                 className="min-w-full"
                 bottomContent={
                   totalPages > 1 ? (
@@ -432,14 +434,14 @@ export default function BookingsPage() {
                 }
               >
                 <TableHeader>
-                  <TableColumn>RESERVA #</TableColumn>
-                  <TableColumn>EVENTO</TableColumn>
-                  <TableColumn>TIPO DE BILHETE</TableColumn>
-                  <TableColumn>QTD</TableColumn>
-                  <TableColumn>VALOR</TableColumn>
-                  <TableColumn>ESTADO</TableColumn>
-                  <TableColumn>RESERVADO EM</TableColumn>
-                  <TableColumn>AÇÕES</TableColumn>
+                  <TableColumn>{t("bookings.table.booking_number")}</TableColumn>
+                  <TableColumn>{t("bookings.table.event")}</TableColumn>
+                  <TableColumn>{t("bookings.table.ticket_type")}</TableColumn>
+                  <TableColumn>{t("bookings.table.quantity")}</TableColumn>
+                  <TableColumn>{t("bookings.table.amount")}</TableColumn>
+                  <TableColumn>{t("bookings.table.status")}</TableColumn>
+                  <TableColumn>{t("bookings.table.booked_at")}</TableColumn>
+                  <TableColumn>{t("bookings.table.actions")}</TableColumn>
                 </TableHeader>
 
                 <TableBody>
@@ -490,13 +492,7 @@ export default function BookingsPage() {
                           variant="flat"
                           className="capitalize"
                         >
-                          {booking.status === "confirmed"
-                            ? "Confirmado"
-                            : booking.status === "pending"
-                            ? "Pendente"
-                            : booking.status === "cancelled"
-                            ? "Cancelado"
-                            : booking.status}
+                          {t(`bookings.status.${booking.status}`) || booking.status}
                         </Chip>
                       </TableCell>
 
@@ -518,7 +514,7 @@ export default function BookingsPage() {
                           isLoading={
                             loadingBookingId === booking.booking_number
                           }
-                          aria-label="Ver Detalhes"
+                          aria-label={t("bookings.actions.view_details")}
                         >
                           {!loadingBookingId && (
                             <svg

@@ -3,7 +3,7 @@ import "@/styles/globals.css";
 import { HeroUIProvider } from "@heroui/system";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
-import { I18nextProvider } from "react-i18next";
+import { I18nextProvider, useTranslation } from "react-i18next";
 import i18n from "@/utils/i18n";
 import { ToastProvider } from "@heroui/react";
 import { useEffect, useState } from "react";
@@ -21,6 +21,7 @@ function AppContent({ Component, pageProps }) {
   const router = useRouter();
   const { settings, loading } = useSelector((state) => state.systemSettings);
   const [isInitialized, setIsInitialized] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchCart = async () => {
@@ -104,7 +105,7 @@ function AppContent({ Component, pageProps }) {
             CASA VIANA
           </h2>
 
-          <p className="text-gray-600 mb-6">A carregar...</p>
+          <p className="text-gray-600 mb-6" suppressHydrationWarning>{t("loading_system")}</p>
 
           <div className="flex justify-center gap-2">
             <div className="w-3 h-3 bg-red-500 rounded-full animate-bounce"></div>

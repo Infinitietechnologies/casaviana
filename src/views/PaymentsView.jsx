@@ -20,9 +20,11 @@ import {
 import PaymentProofModal from "@/components/Modals/PaymentProofModal";
 import { useRouter } from "next/navigation";
 import ProfileSidebar from "./ProfileSidebar";
+import { useTranslation } from "react-i18next";
 
 const PaymentsView = () => {
   const router = useRouter();
+  const { t, i18n } = useTranslation();
   const [payments, setPayments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -50,10 +52,10 @@ const PaymentsView = () => {
       if (response?.success !== false && response?.data) {
         setPayments(response.data);
       } else {
-        setError(response?.error || "Failed to load payments");
+        setError(response?.error || t("payments.error"));
       }
     } catch (err) {
-      setError("Failed to load payments");
+      setError(t("payments.error"));
       console.error(err);
     } finally {
       setLoading(false);
@@ -91,7 +93,7 @@ const PaymentsView = () => {
 
   const formatDate = (dateString) => {
     if (!dateString) return "N/A";
-    return new Date(dateString).toLocaleDateString("en-US", {
+    return new Date(dateString).toLocaleDateString(i18n.language, {
       year: "numeric",
       month: "short",
       day: "numeric",
@@ -128,14 +130,13 @@ const PaymentsView = () => {
     <div className="bg-white rounded-lg shadow overflow-hidden">
       <Table aria-label="Loading payments">
         <TableHeader>
-          <TableColumn>ID</TableColumn>
-          <TableColumn>DATE</TableColumn>
-          <TableColumn>AMOUNT</TableColumn>
-          <TableColumn>METHOD</TableColumn>
-          <TableColumn>STATUS</TableColumn>
-          <TableColumn>TYPE</TableColumn>
-          {/* <TableColumn>REFERENCE</TableColumn> */}
-          <TableColumn>ACTIONS</TableColumn>
+          <TableColumn>{t("payments.table.id")}</TableColumn>
+          <TableColumn>{t("payments.table.date")}</TableColumn>
+          <TableColumn>{t("payments.table.amount")}</TableColumn>
+          <TableColumn>{t("payments.table.method")}</TableColumn>
+          <TableColumn>{t("payments.table.status")}</TableColumn>
+          <TableColumn>{t("payments.table.type")}</TableColumn>
+          <TableColumn>{t("payments.table.actions")}</TableColumn>
         </TableHeader>
         <TableBody>
           {[...Array(5)].map((_, index) => (
@@ -158,9 +159,6 @@ const PaymentsView = () => {
               <TableCell>
                 <Skeleton className="h-4 w-24 rounded" />
               </TableCell>
-              {/* <TableCell>
-                <Skeleton className="h-4 w-32 rounded" />
-              </TableCell> */}
               <TableCell>
                 <Skeleton className="h-8 w-28 rounded" />
               </TableCell>
@@ -195,7 +193,7 @@ const PaymentsView = () => {
               onPress={fetchPayments}
               className="bg-amber-500 text-white font-semibold"
             >
-              Retry
+              {t("payments.retry")}
             </Button>
           </div>
         </div>
@@ -209,9 +207,9 @@ const PaymentsView = () => {
 
       <div className="flex-1">
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-gray-900">Payment History</h1>
+          <h1 className="text-3xl font-bold text-gray-900">{t("payments.title")}</h1>
           <p className="text-gray-600 mt-2">
-            View all your payment transactions
+            {t("payments.subtitle")}
           </p>
         </div>
 
@@ -229,12 +227,12 @@ const PaymentsView = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={1.5}
-                d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"
+                d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5z"
               />
             </svg>
-            <p className="text-gray-600 text-lg">No payments found</p>
+            <p className="text-gray-600 text-lg">{t("payments.no_payments")}</p>
             <p className="text-gray-500 text-sm mt-2">
-              Your payment history will appear here
+              {t("payments.no_payments_desc")}
             </p>
           </div>
         ) : (
@@ -242,14 +240,13 @@ const PaymentsView = () => {
             <div className="overflow-x-auto">
               <Table aria-label="Payments table" className="min-w-full">
                 <TableHeader>
-                  <TableColumn>ID</TableColumn>
-                  <TableColumn>DATE</TableColumn>
-                  <TableColumn>AMOUNT</TableColumn>
-                  <TableColumn>METHOD</TableColumn>
-                  <TableColumn>STATUS</TableColumn>
-                  <TableColumn>TYPE</TableColumn>
-                  {/* <TableColumn>REFERENCE</TableColumn> */}
-                  <TableColumn>ACTIONS</TableColumn>
+                  <TableColumn>{t("payments.table.id")}</TableColumn>
+                  <TableColumn>{t("payments.table.date")}</TableColumn>
+                  <TableColumn>{t("payments.table.amount")}</TableColumn>
+                  <TableColumn>{t("payments.table.method")}</TableColumn>
+                  <TableColumn>{t("payments.table.status")}</TableColumn>
+                  <TableColumn>{t("payments.table.type")}</TableColumn>
+                  <TableColumn>{t("payments.table.actions")}</TableColumn>
                 </TableHeader>
                 <TableBody>
                   {payments.map((payment) => {
@@ -278,8 +275,8 @@ const PaymentsView = () => {
                           <span className="text-sm capitalize text-gray-700">
                             {getStringValue(
                               payment.gateway ||
-                                payment.payment_method ||
-                                payment.method
+                              payment.payment_method ||
+                              payment.method
                             )}
                           </span>
                         </TableCell>
@@ -290,7 +287,7 @@ const PaymentsView = () => {
                             size="sm"
                             className="capitalize"
                           >
-                            {getStringValue(payment.status)}
+                            {t(`payments.status.${statusKey}`) || getStringValue(payment.status)}
                           </Chip>
                         </TableCell>
                         <TableCell>
@@ -302,11 +299,6 @@ const PaymentsView = () => {
                             {payment.payable_type || "N/A"}
                           </Chip>
                         </TableCell>
-                        {/* <TableCell>
-                          <span className="font-mono text-xs text-gray-600">
-                            {payment.payable_details.reference}
-                          </span>
-                        </TableCell> */}
                         <TableCell>
                           {showUpload ? (
                             <Button
@@ -344,7 +336,7 @@ const PaymentsView = () => {
                                 </svg>
                               }
                             >
-                              
+
                             </Button>
                           ) : payment.proof_file_url ? (
                             <Button
@@ -372,14 +364,14 @@ const PaymentsView = () => {
                                   <path
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                    d="M15 12a3 3 0 1 1-6 0 3 3 0 016 0z"
                                   />
                                 </svg>
                               }
                             ></Button>
                           ) : (
                             <span className="text-xs text-gray-400">
-                              Nenhuma ação
+                              {t("payments.actions.no_action")}
                             </span>
                           )}
                         </TableCell>
@@ -412,7 +404,7 @@ const PaymentsView = () => {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Payment Proof
+                {t("payments.modal.title")}
               </ModalHeader>
               <ModalBody>
                 <div className="flex justify-center items-center">
@@ -425,18 +417,8 @@ const PaymentsView = () => {
               </ModalBody>
               <ModalFooter>
                 <Button color="default" variant="light" onPress={onClose}>
-                  Close
+                  {t("payments.modal.close")}
                 </Button>
-                {/* <Button
-                  color="primary"
-                  as="a"
-                  href={selectedImage}
-                  download
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Download
-                </Button> */}
               </ModalFooter>
             </>
           )}

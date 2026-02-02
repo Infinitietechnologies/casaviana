@@ -10,14 +10,15 @@ import Link from "next/link";
 import { get_events, get_content_sections, fetch_all_services } from "@/Api/api";
 import RightSidebar from "@/components/RightSidebar";
 import LeftSidebar from "@/components/LeftSidebar";
-import Rating from "@/components/Rating/Rating";
 import { useDispatch, useSelector } from "react-redux";
 import { setSections, setLoading, setError } from "@/store/contentSectionsSlice";
 import { SectionSwiperSkeleton, TopSliderSkeleton } from "@/components/Skeletons/SwiperSkeletons";
+import { useTranslation } from "react-i18next";
 
 const Homepage = () => {
   const dispatch = useDispatch();
   const { sections, loading: sectionsLoading } = useSelector((state) => state.contentSections);
+  const { t } = useTranslation();
 
   // States for dynamic thumbnails - using an object to track them by section ID
   const [thumbsSwipers, setThumbsSwipers] = useState({});
@@ -27,26 +28,6 @@ const Homepage = () => {
     setThumbsSwipers(prev => ({ ...prev, [sectionId]: swiper }));
   };
 
-  const [openIndex, setOpenIndex] = useState(null);
-
-  const toggleSubmenu = (i) => {
-    setOpenIndex(openIndex === i ? null : i);
-  };
-
-  const eventImagesFallback = [
-    {
-      src: "/images/Imagem WhatsApp 2025-10-31 às 11.05.57_e8acca07.jpg",
-      alt: "Event 1",
-      slug: "/events/calema-no-clube-s/",
-    },
-    {
-      src: "/images/Imagem WhatsApp 2025-10-31 às 11.06.20_11115bdf.jpg",
-      alt: "Event 2",
-      slug: "/events/calema-no-clube-s/",
-    },
-  ];
-
-  // const [eventImages, setEventImages] = useState(eventImagesFallback);
   const [eventImages, setEventImages] = useState([]);
   const [loadingEvents, setLoadingEvents] = useState(true);
   const [featuredServices, setFeaturedServices] = useState([]);
@@ -138,48 +119,15 @@ const Homepage = () => {
   const topSection = sections?.[0];
   const otherSections = sections?.slice(1);
 
-  const destaqueItems = Array.from({ length: 10 }).map((_, i) => "...");
-
-  const menuItems = [
-    {
-      name: "Aqui Acontece",
-      sub: ["Casamento", "Aniversários", "Eventos Empresariais"],
-    },
-    {
-      name: "Lá Fora",
-      sub: ["Concertos", "Famosos", "Lançamentos", "Night Life"],
-    },
-    {
-      name: "Destinos",
-      sub: ["Praias", "Resorts", "Restaurantes"],
-    },
-    {
-      name: "Em Forma",
-      sub: ["Ginásios", "Saúde", "Alimentação"],
-    },
-    {
-      name: "Clube da Cultura",
-      sub: [
-        "Cinemateca",
-        "Teatro",
-        "Karaoke",
-        "Dança",
-        "Cerâmica",
-        "Pintura",
-        "Escultura",
-        "Literatura",
-      ],
-    },
-    { name: "O Nosso SPORTING" },
-  ];
+  // Removed unused menuItems
 
   return (
     <>
       <div className="mx-auto pt-4 md:pt-8 pb-2 px-2 sm:px-4 mt-20 sm:mt-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6">
           <div className="lg:col-span-3">
-            <h2 className="bg-gradient-to-r from-orange-500 to-red-600 text-white text-base sm:text-lg md:text-xl text-center font-bold py-2 px-4 rounded-md mb-4">
-              EVENTOS EM DESTAQUE
+            <h2 className="bg-gradient-to-r from-orange-500 to-red-600 text-white text-base sm:text-lg md:text-xl text-center font-bold py-2 px-4 rounded-md mb-4 uppercase">
+              {t("home.events.featured_title")}
             </h2>
             <div className="flex justify-center gap-2 sm:gap-3">
               {loadingEvents ? (
@@ -211,8 +159,8 @@ const Homepage = () => {
           </div>
 
           <div className="lg:col-span-5">
-            <h2 className="bg-gradient-to-r from-orange-500 to-red-600 text-white text-base sm:text-lg md:text-xl text-center font-bold py-2 px-4 rounded-md mb-4">
-              DESTAQUES DO CENTRO CULTURAL
+            <h2 className="bg-gradient-to-r from-orange-500 to-red-600 text-white text-base sm:text-lg md:text-xl text-center font-bold py-2 px-4 rounded-md mb-4 uppercase">
+              {t("home.featured.title")}
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-3">
               {featuredServices.map((item, i) => (
@@ -274,12 +222,12 @@ const Homepage = () => {
                         <Wrapper {...wrapperProps}>
                           <Image
                             src={item.image || "/cardapio/default.png"}
-                            alt={item.title || "Top Slide"}
+                            alt={item.title || t("home.hero_title")}
                             fill
                             className="object-cover rounded-md"
                           />
                           <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 bg-red-600 text-white text-sm px-2 py-1 rounded">
-                            {item.title || "ESPAÇOS"}
+                            {item.title || t("home.sections.spaces_default")}
                           </div>
                         </Wrapper>
                       </SwiperSlide>
@@ -339,7 +287,7 @@ const Homepage = () => {
               otherSections?.map((section) => (
                 <div key={section.id} id={section.slug} className="w-full mb-10">
                   {section.display_title && (
-                    <h2 className="bg-gradient-to-r from-orange-500 to-red-600 text-white text-base sm:text-lg md:text-xl text-center font-bold py-2 px-4 rounded-md mb-6">
+                    <h2 className="bg-gradient-to-r from-orange-500 to-red-600 text-white text-base sm:text-lg md:text-xl text-center font-bold py-2 px-4 rounded-md mb-6 uppercase">
                       {section.display_title}
                     </h2>
                   )}
@@ -386,7 +334,7 @@ const Homepage = () => {
                                     href={item.cta_url}
                                     className="absolute top-2 right-2 bg-white/80 hover:bg-white text-red-600 text-xs px-3 py-1.5 rounded-full font-bold transition-all shadow-md"
                                   >
-                                    {item.cta_text || "Veja mais"}
+                                    {item.cta_text || t("home.cta.view_more")}
                                   </Link>
                                 )}
                               </Wrapper>

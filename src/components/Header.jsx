@@ -9,8 +9,11 @@ import { logout as logoutAction, setLogin } from "@/store/authSlice";
 import { logout } from "@/Api/api";
 import { addToast, useDisclosure } from "@heroui/react";
 import CartOffcanvas from "./CartOffcanvas";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
+  const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
@@ -87,7 +90,7 @@ const Header = () => {
       dispatch(logoutAction());
       setProfileOpen(false);
       addToast({
-        title: "Logged out successfully",
+        title: t("header.logout_success"),
         color: "danger",
       });
     } catch (err) {
@@ -101,6 +104,15 @@ const Header = () => {
       setProfileOpen(false);
     }
   };
+
+  const menuItems = [
+    { key: "home", label: t("header.home"), href: "/" },
+    { key: "services", label: t("header.services"), href: "/servicos" },
+    { key: "events", label: t("header.events"), href: "/events" },
+    { key: "contact", label: t("header.contact"), href: "/contact-us" },
+    { key: "blogs", label: t("header.blogs"), href: "/blogs" },
+  ];
+
   return (
     <>
       <nav
@@ -125,30 +137,16 @@ const Header = () => {
 
           {/* CENTER MENU (desktop only) */}
           <div className="hidden md:flex items-center gap-6 text-sm font-semibold text-white">
-            {["Início", "Serviços", "Eventos", "Contactos", "Blogs"].map(
-              (item, i) => (
-                <Link
-                  key={i}
-                  href={
-                    item === "Início"
-                      ? "/"
-                      : item === "Eventos"
-                        ? "/events"
-                        : item === "Serviços"
-                          ? "/servicos"
-                          : item === "Blogs"
-                            ? "/blogs"
-                            : item === "Contactos"
-                              ? "/contact-us"
-                              : "#"
-                  }
-                  className="relative group transition-colors hover:text-gray-200 text-xl"
-                >
-                  {item}
-                  <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white transition-all group-hover:w-full"></span>
-                </Link>
-              ),
-            )}
+            {menuItems.map((item, i) => (
+              <Link
+                key={i}
+                href={item.href}
+                className="relative group transition-colors hover:text-gray-200 text-xl"
+              >
+                {item.label}
+                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white transition-all group-hover:w-full"></span>
+              </Link>
+            ))}
 
             {/* TV Icon Box */}
             <Link
@@ -170,7 +168,7 @@ const Header = () => {
                     d="M8 4l4 4 4-4m4 6v7.5A1.5 1.5 0 0118.5 19h-13A1.5 1.5 0 014 17.5V10A1.5 1.5 0 015.5 8.5h13A1.5 1.5 0 0120 10z"
                   />
                 </svg>
-                <span className="text-sm font-semibold">TV</span>
+                <span className="text-sm font-semibold">{t("header.icons.tv")}</span>
               </div>
             </Link>
 
@@ -194,13 +192,14 @@ const Header = () => {
                     d="M4.5 7.5l15-4.5M3 10.5v6.75A1.75 1.75 0 004.75 19h14.5A1.75 1.75 0 0021 17.25V10.5M6 14.25h.008v.008H6v-.008zm3 0h.008v.008H9v-.008zm3 0h.008v.008H12v-.008z"
                   />
                 </svg>
-                <span className="text-sm font-semibold">Rádio</span>
+                <span className="text-sm font-semibold">{t("header.icons.radio")}</span>
               </div>
             </Link>
           </div>
 
           {/* RIGHT SIDE */}
           <div className="flex items-center gap-4">
+            <LanguageSwitcher />
             {/* Desktop right side */}
             <div
               className="hidden md:flex items-center gap-4 relative"
@@ -262,10 +261,10 @@ const Header = () => {
                     <div className="absolute right-0 top-14 w-56 bg-white text-gray-800 rounded-lg shadow-lg py-2 z-50">
                       <div className="px-4 py-3 border-b">
                         <p className="text-sm font-semibold text-gray-900">
-                          {user?.name || user?.username || "User"}
+                          {user?.name || user?.username || t("profile.sidebar.default_user")}
                         </p>
                         <p className="text-xs text-gray-500">
-                          {user?.email || "No email"}
+                          {user?.email || t("profile.sidebar.no_email")}
                         </p>
                       </div>
 
@@ -288,7 +287,7 @@ const Header = () => {
                             d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a8.25 8.25 0 0115 0v.75H4.5v-.75z"
                           />
                         </svg>
-                        Profile
+                        {t("profile.sidebar.my_profile")}
                       </Link>
 
                       <Link
@@ -310,7 +309,7 @@ const Header = () => {
                             d="M9 12.75L11.25 15l4.5-4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"
                           />
                         </svg>
-                        Bookings
+                        {t("profile.sidebar.bookings")}
                       </Link>
                       <Link
                         href="/payments"
@@ -331,7 +330,7 @@ const Header = () => {
                             d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z"
                           />
                         </svg>
-                        Payments
+                        {t("profile.sidebar.payments")}
                       </Link>
                       <button
                         onClick={() => {
@@ -354,7 +353,7 @@ const Header = () => {
                             d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
                           />
                         </svg>
-                        Logout
+                        {t("header.logout")}
                       </button>
                     </div>
                   )}
@@ -416,10 +415,10 @@ const Header = () => {
                     >
                       <div className="px-4 py-3 border-b">
                         <p className="text-sm font-semibold text-gray-900">
-                          {user?.name || user?.username || "User"}
+                          {user?.name || user?.username || t("profile.sidebar.default_user")}
                         </p>
                         <p className="text-xs text-gray-500">
-                          {user?.email || "No email"}
+                          {user?.email || t("profile.sidebar.no_email")}
                         </p>
                       </div>
 
@@ -442,7 +441,7 @@ const Header = () => {
                             d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a8.25 8.25 0 0115 0v.75H4.5v-.75z"
                           />
                         </svg>
-                        Profile
+                        {t("profile.sidebar.my_profile")}
                       </Link>
 
                       <Link
@@ -464,9 +463,8 @@ const Header = () => {
                             d="M9 12.75L11.25 15l4.5-4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"
                           />
                         </svg>
-                        Bookings
+                        {t("profile.sidebar.bookings")}
                       </Link>
-
                       <Link
                         href="/payments"
                         className="px-4 py-2.5 flex items-center gap-3 text-sm hover:bg-gray-100 transition"
@@ -486,7 +484,7 @@ const Header = () => {
                             d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z"
                           />
                         </svg>
-                        Payments
+                        {t("profile.sidebar.payments")}
                       </Link>
 
                       <button
@@ -510,7 +508,7 @@ const Header = () => {
                             d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
                           />
                         </svg>
-                        Logout
+                        {t("header.logout")}
                       </button>
                     </div>
                   )}
@@ -569,29 +567,15 @@ const Header = () => {
             : "max-h-0 py-0"
             }`}
         >
-          {["Início", "Serviços", "Eventos", "Contactos", "Blogs"].map(
-            (item, i) => (
-              <Link
-                key={i}
-                href={
-                  item === "Início"
-                    ? "/"
-                    : item === "Eventos"
-                      ? "/events"
-                      : item === "Serviços"
-                        ? "/servicos"
-                        : item === "Blogs"
-                          ? "/blogs"
-                          : item === "Contactos"
-                            ? "https://www.casaviana.ao"
-                            : "#"
-                }
-                className="text-lg font-medium hover:text-gray-200 transition py-2"
-              >
-                {item}
-              </Link>
-            ),
-          )}
+          {menuItems.map((item, i) => (
+            <Link
+              key={i}
+              href={item.href}
+              className="text-lg font-medium hover:text-gray-200 transition py-2"
+            >
+              {item.label}
+            </Link>
+          ))}
           <div className="flex items-center gap-6 mt-2">
             <Link
               href="#"
@@ -612,7 +596,7 @@ const Header = () => {
                     d="M8 4l4 4 4-4m4 6v7.5A1.5 1.5 0 0118.5 19h-13A1.5 1.5 0 014 17.5V10A1.5 1.5 0 015.5 8.5h13A1.5 1.5 0 0120 10z"
                   />
                 </svg>
-                <span className="text-sm font-semibold">TV</span>
+                <span className="text-sm font-semibold">{t("header.icons.tv")}</span>
               </div>
             </Link>
             <Link
@@ -634,7 +618,7 @@ const Header = () => {
                     d="M4.5 7.5l15-4.5M3 10.5v6.75A1.75 1.75 0 004.75 19h14.5A1.75 1.75 0 0021 17.25V10.5M6 14.25h.008v.008H6v-.008zm3 0h.008v.008H9v-.008zm3 0h.008v.008H12v-.008z"
                   />
                 </svg>
-                <span className="text-sm font-semibold">Rádio</span>
+                <span className="text-sm font-semibold">{t("header.icons.radio")}</span>
               </div>
             </Link>
           </div>

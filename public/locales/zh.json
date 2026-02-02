@@ -1,0 +1,611 @@
+{
+    "header": {
+        "home": "首页",
+        "services": "服务",
+        "events": "活动",
+        "contact": "联系我们",
+        "blogs": "博客",
+        "login": "登录",
+        "logout": "注销",
+        "logout_success": "注销成功",
+        "icons": {
+            "tv": "电视",
+            "radio": "广播"
+        }
+    },
+    "auth": {
+        "login": "登录",
+        "register": "注册",
+        "login_modal": {
+            "welcome": "欢迎",
+            "username_email_label": "用户名或电子邮件",
+            "username_email_placeholder": "输入您的用户名或电子邮件",
+            "password_label": "密码",
+            "password_placeholder": "输入您的密码"
+        },
+        "register_modal": {
+            "name_label": "姓名",
+            "name_placeholder": "输入您的全名",
+            "email_label": "电子邮件",
+            "email_placeholder": "输入您的电子邮件",
+            "phone_label": "电话",
+            "phone_placeholder": "输入您的电话号码",
+            "birthdate_label": "出生日期",
+            "confirm_password_label": "确认密码",
+            "confirm_password_placeholder": "确认您的密码"
+        },
+        "toasts": {
+            "login_success": "登录成功",
+            "generic_error": "出了点问题",
+            "fill_all_fields": "请填写所有必填项",
+            "birthdate_invalid": "出生日期必须早于今天",
+            "password_mismatch": "密码不匹配",
+            "register_success": "注册成功"
+        }
+    },
+    "footer": {
+        "copyright": "版权所有 © {{year}} – CASA VIANA | 保留所有权利。"
+    },
+    "cardapio": {
+        "description": "描述",
+        "price": "价格",
+        "prepTime": "准备时间",
+        "minutes": "分钟",
+        "calories": "卡路里",
+        "cal": "卡",
+        "availability": "可用性",
+        "available": "有货",
+        "unavailable": "无货",
+        "allergens": "过敏原",
+        "dietaryTags": "饮食标签",
+        "close": "关闭",
+        "addToCart": "添加到购物车",
+        "adding": "添加中...",
+        "add_success": {
+            "title": "已添加到购物车",
+            "message": "商品已成功添加！"
+        },
+        "add_error": {
+            "title": "错误",
+            "message": "添加到购物车失败"
+        },
+        "noItemsFound": "此类别中未找到商品",
+        "categoryNotFound": "未找到类别"
+    },
+    "orders": {
+        "title": "我的订单",
+        "subtitle": "查看您的食品订单历史",
+        "details": {
+            "order_number": "订单 #",
+            "total_amount": "总金额",
+            "items_count": "商品数量",
+            "order_items": "订单商品",
+            "item_unavailable": "商品不可用",
+            "items_details_unavailable": "商品详情不可用。"
+        },
+        "status": {
+            "all": "所有状态",
+            "pending": "待处理",
+            "completed": "已完成",
+            "cancelled": "已取消",
+            "processing": "处理中",
+            "delivered": "已送达"
+        },
+        "table": {
+            "order_number": "订单号 #",
+            "items": "商品",
+            "total_amount": "总金额",
+            "status": "状态",
+            "date": "日期",
+            "actions": "操作"
+        },
+        "error": {
+            "fetch_failed": "加载订单失败",
+            "retry": "重试"
+        },
+        "filters": {
+            "status": "按状态筛选",
+            "select_status": "选择状态",
+            "search": "搜索",
+            "search_placeholder": "搜索订单...",
+            "clear": "清除",
+            "refresh": "刷新"
+        },
+        "pagination": {
+            "total_orders": "订单总数",
+            "page": "页",
+            "of": "共"
+        },
+        "empty": {
+            "filtered": "未找到符合当前筛选条件的订单",
+            "title": "您还没有订购任何食品",
+            "filtered_subtitle": "尝试清除筛选条件或更改搜索内容",
+            "subtitle": "浏览我们的菜单并下第一单！",
+            "clear_filters": "清除筛选"
+        },
+        "item": {
+            "no_items": "订单无商品",
+            "more_items": "+ {{count}} 其他商品"
+        },
+        "actions": {
+            "view_details": "查看详情"
+        }
+    },
+    "profile": {
+        "sidebar": {
+            "my_profile": "我的资料",
+            "bookings": "预订",
+            "orders": "订单",
+            "favorites": "收藏",
+            "address": "地址",
+            "wallet": "钱包",
+            "transactions": "交易",
+            "payments": "付款",
+            "chat": "聊天",
+            "support_tickets": "工单",
+            "refer_earn": "推荐并赚取",
+            "default_user": "用户",
+            "no_email": "无邮箱"
+        }
+    },
+    "sidebar": {
+        "left": {
+            "services_title": "我们的服务",
+            "advertisement_alt": "广告",
+            "menu_item_alt": "菜单项"
+        },
+        "right": {
+            "directory_title": "目录",
+            "recent_posts_title": "最新发布",
+            "no_blogs": "未找到精选博客。"
+        }
+    },
+    "home": {
+        "events": {
+            "featured_title": "精选活动"
+        },
+        "featured": {
+            "title": "文化中心精选"
+        },
+        "cta": {
+            "view_more": "查看更多"
+        },
+        "sections": {
+            "spaces_default": "空间"
+        }
+    },
+    "bookings": {
+        "title": "活动预订",
+        "subtitle": "查看您所有的活动门票预订",
+        "status": {
+            "all": "所有状态",
+            "pending": "待处理",
+            "confirmed": "已确认",
+            "cancelled": "已取消"
+        },
+        "table": {
+            "booking_number": "预订号 #",
+            "event": "活动",
+            "ticket_type": "票种",
+            "quantity": "数量",
+            "amount": "金额",
+            "status": "状态",
+            "booked_at": "预订时间",
+            "actions": "操作"
+        },
+        "error": {
+            "fetch_failed": "加载预订失败",
+            "retry": "重试"
+        },
+        "filters": {
+            "status": "按状态筛选",
+            "select_status": "选择状态",
+            "clear": "清除筛选",
+            "refresh": "刷新"
+        },
+        "pagination": {
+            "total_bookings": "总预订数",
+            "page": "页",
+            "of": "共",
+            "showing": "显示",
+            "per_page": "每页"
+        },
+        "empty": {
+            "filtered": "未找到状态为 {{status}} 的预订",
+            "title": "未找到预订",
+            "filtered_subtitle": "尝试选择不同的状态筛选",
+            "subtitle": "您的活动预订将显示在这里",
+            "clear_filters": "清除筛选"
+        },
+        "actions": {
+            "view_details": "查看详情"
+        },
+        "details": {
+            "reservation_number": "预订 #",
+            "total_amount": "总金额",
+            "total_tickets": "总票数",
+            "tickets": "门票",
+            "ticket_code": "票务代码",
+            "ticket_value": "票价",
+            "tickets_unavailable": "票务详情不可用。",
+            "vip_ticket": "VIP 票"
+        }
+    },
+    "pages": {
+        "home": {
+            "hero_title": "欢迎来到 Casa Viana",
+            "hero_subtitle": "最佳的活动和服务体验",
+            "featured_services": "特色服务",
+            "upcoming_events": "即将举行的活动",
+            "view_all": "查看全部"
+        },
+        "services": {
+            "title": "我们的服务",
+            "subtitle": "探索我们提供的各种服务。",
+            "search_placeholder": "搜索服务",
+            "filtered_by": "筛选:",
+            "filter_button": "筛选",
+            "no_results": "未找到符合搜索条件的服务。",
+            "no_services": "当前没有可用服务。",
+            "price_on_request": "价格面议",
+            "drawer": {
+                "title": "筛选服务",
+                "subtitle": "选择一个类别进行筛选",
+                "all": "全部",
+                "clear": "清除筛选",
+                "apply": "应用筛选"
+            },
+            "details": {
+                "not_found": "未找到服务。",
+                "min_capacity": "最小容量",
+                "max_capacity": "最大容量",
+                "min_notice": "最少提前通知",
+                "hours": "小时",
+                "people": "人",
+                "description_title": "服务详情",
+                "no_description": "没有可用的额外说明。",
+                "interested_title": "对这项服务感兴趣？",
+                "interested_text": "请联系我们以检查可用性并进行预订。",
+                "book_now": "立即预订",
+                "contact_us": "联系我们",
+                "success_title": "请求已发送！",
+                "success_message": "您的预订请求已成功发送。我们将尽快联系您确认详情。",
+                "close_button": "关闭"
+            }
+        },
+        "events": {
+            "title": "活动",
+            "highlights": "精彩活动",
+            "upcoming": "即将举行的活动",
+            "search_placeholder": "搜索活动",
+            "buy_ticket": "购买门票",
+            "sold_out": "已售罄",
+            "registration_open": "报名开启",
+            "all_day": "全天",
+            "uncategorized": "未分类",
+            "no_highlights": "当前没有精彩活动。",
+            "no_results": "未找到符合搜索条件的活动。",
+            "no_events": "当前没有可用活动。",
+            "details": {
+                "not_found": "未找到活动",
+                "duration": "时长",
+                "min": "分钟",
+                "classification": "分类",
+                "general": "一般",
+                "promoter": "发起人",
+                "info_title": "信息与预订",
+                "short_description": "简短描述",
+                "location": "地点",
+                "location_unavailable": "地点不可用",
+                "select_tickets": "选择门票",
+                "download": "下载",
+                "no_ticket_description": "无可用描述",
+                "sales_in_person": "仅限现场销售",
+                "subtotal": "小计",
+                "total_event": "活动总计",
+                "book_tickets": "预订门票",
+                "booking": "预订中...",
+                "event_ended": "该活动已结束",
+                "bookings_closed": "该活动的预订已关闭。",
+                "reviews": "评论",
+                "toasts": {
+                    "invalid_event": "无效活动",
+                    "select_one": "请至少选择 1 张门票",
+                    "invalid_ticket": "无效的门票类型",
+                    "quantity_exceeded": "{{name}} 的请求数量超过可用数量",
+                    "success": "门票预订成功",
+                    "error": "预订门票时出错",
+                    "init_payment_error": "发起支付错误",
+                    "mixed_results": "成功: {{success}}, 失败: {{fail}}"
+                }
+            }
+        },
+        "blogs": {
+            "title": "我们的博客",
+            "subtitle": "探索我们的最新文章、新闻和更新。",
+            "search_placeholder": "搜索...",
+            "all": "全部",
+            "read_more": "阅读更多",
+            "min_read": "分钟阅读",
+            "oops": "哎呀！",
+            "error_loading": "加载内容失败",
+            "try_again": "重试",
+            "no_articles": "未找到文章",
+            "no_articles_desc": "尝试调整您的搜索词或类别。",
+            "clear_filters": "清除筛选",
+            "details": {
+                "error_fetching": "获取文章时出错",
+                "not_found": "未找到文章。",
+                "author": "作者",
+                "related_posts": "相关文章",
+                "no_image": "无图片",
+                "no_excerpt": "无摘要可用。"
+            }
+        }
+    },
+    "layout": {
+        "services": {
+            "default_title": "我们的服务",
+            "default_description": "探索我们提供的各种服务。"
+        }
+    },
+    "cart": {
+        "title": "购物车",
+        "item_count_singular": "件商品",
+        "item_count_plural": "件商品",
+        "total": "总计:",
+        "actions": {
+            "clear": "清空",
+            "checkout": "结账"
+        },
+        "empty": {
+            "title": "购物车为空",
+            "description": "结账前请先添加商品"
+        },
+        "empty_state": {
+            "title": "您的购物车是空的"
+        },
+        "error": {
+            "title": "错误",
+            "update_quantity": "更新数量出错",
+            "clear": "清空购物车出错",
+            "cart_id_not_found": "找不到购物车ID",
+            "payment_initiation": "发起支付出错",
+            "payment_processing": "处理支付时发生错误。",
+            "payment_processing_retry": "处理支付时发生错误。请重试。"
+        },
+        "success": {
+            "title": "成功",
+            "clear": "购物车已清空"
+        }
+    },
+    "service_booking": {
+        "form": {
+            "date_label": "预订日期",
+            "time_label": "开始时间",
+            "room_label": "房间 / 空间",
+            "room_placeholder": "选择房间（可选）",
+            "guests_label": "宾客人数",
+            "event_type_label": "活动类型",
+            "event_type_placeholder": "选择活动类型",
+            "other_type_placeholder": "指定活动类型...",
+            "name_label": "全名",
+            "email_label": "电子邮件",
+            "institution_label": "组织 / 机构",
+            "institution_placeholder": "可选",
+            "phone_label": "电话",
+            "whatsapp_label": "WhatsApp 号码",
+            "notes_label": "备注 / 说明",
+            "notes_placeholder": "关于活动的更多细节...",
+            "addons_title": "附加服务 (Addons)",
+            "addons_subtitle": "点击查看可用的额外服务",
+            "login_button": "登录",
+            "cancel_button": "取消",
+            "submit_button": "确认预订",
+            "optional": "可选"
+        },
+        "errors": {
+            "login_required": "您必须登录才能进行预订。",
+            "generic_error": "发送预订时发生错误。",
+            "connection_error": "连接错误。请重试。"
+        },
+        "event_types": {
+            "Casamento": "婚礼",
+            "Aniversário": "生日",
+            "Reserva de Almoço": "午餐预订",
+            "Reserva de Jantar": "晚餐预订",
+            "Encomenda": "订单",
+            "Reserva Empresarial": "企业预订",
+            "Conferência": "会议",
+            "Reunião": "聚会",
+            "Outro": "其他"
+        }
+    },
+    "modals": {
+        "actions": {
+            "cancel": "取消",
+            "logout": "注销",
+            "continue": "继续"
+        },
+        "logout": {
+            "title": "确认注销",
+            "message": "您确定要注销吗？"
+        },
+        "report": {
+            "title": "举报评论",
+            "description": "请提供举报此评论的理由。",
+            "placeholder": "在此输入您的理由...",
+            "submit": "提交举报"
+        },
+        "payment_gateway": {
+            "processing": "正在处理付款",
+            "select_method": "选择付款方式",
+            "waiting_confirmation": "等待付款确认...",
+            "loading": "正在加载付款方式...",
+            "no_methods": "没有可用的付款方式",
+            "descriptions": {
+                "bank_transfer": "直接转账到我们的银行账户",
+                "multicaixa_express": "通过 Multicaixa 进行安全在线支付"
+            }
+        },
+        "payment_result": {
+            "success": {
+                "title": "支付成功",
+                "description": "您的支付已成功处理！"
+            },
+            "failed": {
+                "title": "支付失败",
+                "description": "支付未能处理。请利用重试。"
+            }
+        },
+        "payment_instructions": {
+            "title": "继续支付",
+            "message": "请使用以下详细信息进行银行转账。",
+            "reference": "参考号:",
+            "total_amount": "总金额:",
+            "bank_details": "银行详情:",
+            "iban": "IBAN:",
+            "account": "账户:"
+        },
+        "proof": {
+            "title": "上传支付凭证",
+            "select_image": "点击选择图片",
+            "file_info": "PNG, JPG 最大 5MB",
+            "loading": "上传中...",
+            "submit": "上传凭证",
+            "validation": {
+                "invalid_type": "请选择有效的图像文件 (JPG, PNG)。",
+                "size_limit": "文件大小必须小于 5MB。",
+                "error_title": "验证错误",
+                "no_file": "请选择凭证文件。"
+            },
+            "success": {
+                "title": "成功",
+                "message": "凭证上传成功！"
+            },
+            "error": {
+                "upload_title": "上传错误",
+                "generic": "上传凭证时出错。",
+                "unexpected": "发生意外错误。"
+            }
+        }
+    },
+    "payments": {
+        "title": "支付历史",
+        "subtitle": "查看您所有的支付交易",
+        "error": "加载支付失败",
+        "retry": "重试",
+        "no_payments": "未找到支付记录",
+        "no_payments_desc": "您的支付历史将显示在这里",
+        "table": {
+            "id": "ID",
+            "date": "日期",
+            "amount": "金额",
+            "method": "方式",
+            "status": "状态",
+            "type": "类型",
+            "actions": "操作"
+        },
+        "status": {
+            "completed": "已完成",
+            "paid": "已支付",
+            "pending": "待处理",
+            "proof_uploaded": "凭证已上传",
+            "failed": "失败",
+            "cancelled": "已取消"
+        },
+        "actions": {
+            "no_action": "无操作",
+            "upload_proof": "上传凭证",
+            "view_proof": "查看凭证"
+        },
+        "modal": {
+            "title": "支付凭证",
+            "close": "关闭"
+        }
+    },
+    "maintenance": {
+        "title": "维护中",
+        "default_message": "我们正在改进系统以提供更好的体验。我们将很快回来！",
+        "start": "开始:",
+        "end": "预计结束:",
+        "footer": "感谢您的理解"
+    },
+    "comments": {
+        "title": "评论",
+        "reply": "回复",
+        "replies": "回复",
+        "report": "举报",
+        "cancel": "取消",
+        "submit": "评论",
+        "placeholder": "你在想什么？",
+        "login_to_comment": "登录或注册以发表评论",
+        "login_to_report": "请登录后举报",
+        "loading": "加载评论...",
+        "no_comments": "暂无评论",
+        "be_first": "成为第一个分享想法的人！",
+        "comment_as": "评论身份",
+        "time": {
+            "years": "年前",
+            "months": "个月前",
+            "days": "天前",
+            "hours": "小时前",
+            "minutes": "分钟前",
+            "seconds": "秒前"
+        },
+        "toasts": {
+            "empty": "请输入评论",
+            "login_required": "请登录后评论",
+            "success": "评论提交成功",
+            "error": "评论提交失败",
+            "report_success": "举报提交成功",
+            "report_error": "举报提交失败"
+        }
+    },
+    "ratings": {
+        "title": "评价与评论",
+        "write_review": "写评价",
+        "reviews": "评论",
+        "ratings": "评价",
+        "no_ratings": "暂无评价",
+        "be_first": "成为第一个分享体验的人！",
+        "write_first": "写第一条评价",
+        "view_all": "查看所有 {{count}} 条评论",
+        "modal": {
+            "title": "分享您的体验",
+            "subtitle": "您的反馈有助于他人做出明智决定",
+            "how_rate": "您如何评价？",
+            "select_rating": "选择评分",
+            "of_5": "满分 5 星",
+            "review_title": "评价标题",
+            "title_placeholder": "总结您的体验",
+            "review_body": "您的评价",
+            "body_placeholder": "分享关于您体验的细节...",
+            "submit": "提交评价",
+            "submitting": "提交中...",
+            "chars": "字符"
+        },
+        "labels": {
+            "very_bad": "非常差",
+            "bad": "差",
+            "medium": "一般",
+            "good": "好",
+            "excellent": "优秀"
+        },
+        "toasts": {
+            "select_rating": "请选择评分",
+            "success": "评价已提交",
+            "error": "评价提交失败"
+        }
+    },
+    "404": {
+        "title": "哎呀！页面未找到",
+        "message": "您寻找的页面似乎已迷路。让我们带您回到正轨！",
+        "back_home": "返回首页",
+        "go_back": "返回"
+    },
+    "meta": {
+        "description": "Casa Viana 餐厅和海鲜 - 最好的海鲜。"
+    },
+    "loading_system": "加载中..."
+}

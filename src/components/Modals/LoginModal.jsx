@@ -18,8 +18,10 @@ import {
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { today, getLocalTimeZone } from "@internationalized/date";
+import { useTranslation } from "react-i18next";
 
 const LoginModal = () => {
+  const { t } = useTranslation();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const dispatch = useDispatch();
 
@@ -89,7 +91,7 @@ const LoginModal = () => {
       }
 
       addToast({
-        title: res?.message || "Login efetuado com sucesso",
+        title: res?.message || t("auth.toasts.login_success"),
         color: "success",
       });
 
@@ -99,7 +101,7 @@ const LoginModal = () => {
       setPassword("");
     } catch (err) {
       addToast({
-        title: err?.response?.data?.message || "Algo correu mal",
+        title: err?.response?.data?.message || t("auth.toasts.generic_error"),
         color: "danger",
       });
     } finally {
@@ -114,7 +116,7 @@ const LoginModal = () => {
       // Validation
       if (!name || !email || !phone || !registerPassword || !confirmPassword) {
         addToast({
-          title: "Por favor, preencha todos os campos",
+          title: t("auth.toasts.fill_all_fields"),
           color: "warning",
         });
         return;
@@ -125,7 +127,7 @@ const LoginModal = () => {
         const todayDate = today(getLocalTimeZone());
         if (birthdate.compare(todayDate) >= 0) {
           addToast({
-            title: "A data de nascimento deve ser anterior a hoje",
+            title: t("auth.toasts.birthdate_invalid"),
             color: "danger",
           });
           return;
@@ -134,7 +136,7 @@ const LoginModal = () => {
 
       if (registerPassword !== confirmPassword) {
         addToast({
-          title: "As palavras-passe não coincidem",
+          title: t("auth.toasts.password_mismatch"),
           color: "danger",
         });
         return;
@@ -179,7 +181,7 @@ const LoginModal = () => {
       }
 
       addToast({
-        title: res?.message || "Registado com sucesso",
+        title: res?.message || t("auth.toasts.register_success"),
         color: "success",
       });
 
@@ -194,7 +196,7 @@ const LoginModal = () => {
       setConfirmPassword("");
     } catch (err) {
       addToast({
-        title: err?.response?.data?.message || "Algo correu mal",
+        title: err?.response?.data?.message || t("auth.toasts.generic_error"),
         color: "danger",
       });
     } finally {
@@ -219,7 +221,7 @@ const LoginModal = () => {
   return (
     <>
       <Button color="primary" onPress={onOpen}>
-        Entrar
+        {t("header.login")}
       </Button>
 
       <Modal isOpen={isOpen} placement="top-center" onOpenChange={onOpenChange}>
@@ -227,7 +229,7 @@ const LoginModal = () => {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Bem-vindo
+                {t("auth.login_modal.welcome")}
               </ModalHeader>
 
               <ModalBody>
@@ -237,11 +239,11 @@ const LoginModal = () => {
                   aria-label="Login ou Registar"
                   fullWidth
                 >
-                  <Tab key="login" title="Entrar">
+                  <Tab key="login" title={t("auth.login")}>
                     <div className="flex flex-col gap-4 mt-4">
                       <Input
-                        label="Nome de Utilizador ou Email"
-                        placeholder="Insira o seu nome de utilizador ou email"
+                        label={t("auth.login_modal.username_email_label")}
+                        placeholder={t("auth.login_modal.username_email_placeholder")}
                         variant="bordered"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
@@ -249,8 +251,8 @@ const LoginModal = () => {
                       />
 
                       <Input
-                        label="Palavra-passe"
-                        placeholder="Insira a sua palavra-passe"
+                        label={t("auth.login_modal.password_label")}
+                        placeholder={t("auth.login_modal.password_placeholder")}
                         type={isLoginPasswordVisible ? "text" : "password"}
                         variant="bordered"
                         value={password}
@@ -304,11 +306,11 @@ const LoginModal = () => {
                     </div>
                   </Tab>
 
-                  <Tab key="register" title="Registar">
+                  <Tab key="register" title={t("auth.register")}>
                     <div className="flex flex-col gap-4 mt-4">
                       <Input
-                        label="Nome"
-                        placeholder="Insira o seu nome completo"
+                        label={t("auth.register_modal.name_label")}
+                        placeholder={t("auth.register_modal.name_placeholder")}
                         variant="bordered"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
@@ -317,8 +319,8 @@ const LoginModal = () => {
                       />
 
                       <Input
-                        label="Email"
-                        placeholder="Insira o seu email"
+                        label={t("auth.register_modal.email_label")}
+                        placeholder={t("auth.register_modal.email_placeholder")}
                         type="email"
                         variant="bordered"
                         value={email}
@@ -328,8 +330,8 @@ const LoginModal = () => {
                       />
 
                       <Input
-                        label="Telefone"
-                        placeholder="Insira o seu número de telefone"
+                        label={t("auth.register_modal.phone_label")}
+                        placeholder={t("auth.register_modal.phone_placeholder")}
                         type="tel"
                         variant="bordered"
                         value={phone}
@@ -339,7 +341,7 @@ const LoginModal = () => {
                       />
 
                       <DatePicker
-                        label="Data de Nascimento"
+                        label={t("auth.register_modal.birthdate_label")}
                         variant="bordered"
                         value={birthdate}
                         onChange={setBirthdate}
@@ -349,8 +351,8 @@ const LoginModal = () => {
                       />
 
                       <Input
-                        label="Palavra-passe"
-                        placeholder="Insira a sua palavra-passe"
+                        label={t("auth.login_modal.password_label")}
+                        placeholder={t("auth.login_modal.password_placeholder")}
                         type={isRegisterPasswordVisible ? "text" : "password"}
                         variant="bordered"
                         value={registerPassword}
@@ -404,8 +406,8 @@ const LoginModal = () => {
                       />
 
                       <Input
-                        label="Confirmar Palavra-passe"
-                        placeholder="Confirme a sua palavra-passe"
+                        label={t("auth.register_modal.confirm_password_label")}
+                        placeholder={t("auth.register_modal.confirm_password_placeholder")}
                         type={isConfirmPasswordVisible ? "text" : "password"}
                         variant="bordered"
                         value={confirmPassword}
@@ -464,7 +466,7 @@ const LoginModal = () => {
 
               <ModalFooter>
                 <Button color="" variant="flat" onPress={onClose}>
-                  Fechar
+                  {t("modals.actions.close")}
                 </Button>
 
                 {activeTab === "login" ? (
@@ -473,7 +475,7 @@ const LoginModal = () => {
                     isLoading={loading}
                     onPress={() => handleLogin(onClose)}
                   >
-                    Entrar
+                    {t("auth.login")}
                   </Button>
                 ) : (
                   <Button
@@ -481,7 +483,7 @@ const LoginModal = () => {
                     isLoading={loading}
                     onPress={() => handleRegister(onClose)}
                   >
-                    Registar
+                    {t("auth.register")}
                   </Button>
                 )}
               </ModalFooter>

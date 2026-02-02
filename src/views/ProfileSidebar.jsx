@@ -2,11 +2,13 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 const ProfileSidebar = ({ currentPath = "/my-profile" }) => {
   const router = useRouter();
   const user = useSelector((state) => state.auth.user);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -16,7 +18,7 @@ const ProfileSidebar = ({ currentPath = "/my-profile" }) => {
 
   const menuItems = [
     {
-      name: "My Profile",
+      name: t("profile.sidebar.my_profile"),
       href: "/my-profile",
       icon: (
         <svg
@@ -36,7 +38,7 @@ const ProfileSidebar = ({ currentPath = "/my-profile" }) => {
       ),
     },
     {
-      name: "Bookings",
+      name: t("profile.sidebar.bookings"),
       href: "/bookings",
       icon: (
         <svg
@@ -56,7 +58,7 @@ const ProfileSidebar = ({ currentPath = "/my-profile" }) => {
       ),
     },
     {
-      name: "Orders",
+      name: t("profile.sidebar.orders"),
       href: "/orders",
       icon: (
         <svg
@@ -76,7 +78,7 @@ const ProfileSidebar = ({ currentPath = "/my-profile" }) => {
       ),
     },
     {
-      name: "Favorites",
+      name: t("profile.sidebar.favorites"),
       href: "#",
       icon: (
         <svg
@@ -90,7 +92,7 @@ const ProfileSidebar = ({ currentPath = "/my-profile" }) => {
       ),
     },
     {
-      name: "Address",
+      name: t("profile.sidebar.address"),
       href: "#",
       icon: (
         <svg
@@ -115,7 +117,7 @@ const ProfileSidebar = ({ currentPath = "/my-profile" }) => {
       ),
     },
     {
-      name: "Wallet",
+      name: t("profile.sidebar.wallet"),
       href: "#",
       icon: (
         <svg
@@ -135,7 +137,7 @@ const ProfileSidebar = ({ currentPath = "/my-profile" }) => {
       ),
     },
     {
-      name: "Transactions",
+      name: t("profile.sidebar.transactions"),
       href: "#",
       icon: (
         <svg
@@ -155,7 +157,7 @@ const ProfileSidebar = ({ currentPath = "/my-profile" }) => {
       ),
     },
     {
-      name: "Payments",
+      name: t("profile.sidebar.payments"),
       href: "/payments",
       icon: (
         <svg
@@ -175,7 +177,7 @@ const ProfileSidebar = ({ currentPath = "/my-profile" }) => {
       ),
     },
     {
-      name: "Chat",
+      name: t("profile.sidebar.chat"),
       href: "#",
       icon: (
         <svg
@@ -195,7 +197,7 @@ const ProfileSidebar = ({ currentPath = "/my-profile" }) => {
       ),
     },
     {
-      name: "Support Tickets",
+      name: t("profile.sidebar.support_tickets"),
       href: "/#",
       icon: (
         <svg
@@ -215,7 +217,7 @@ const ProfileSidebar = ({ currentPath = "/my-profile" }) => {
       ),
     },
     {
-      name: "Refer & Earn",
+      name: t("profile.sidebar.refer_earn"),
       href: "/#",
       icon: (
         <svg
@@ -250,9 +252,9 @@ const ProfileSidebar = ({ currentPath = "/my-profile" }) => {
           className="w-20 h-20 rounded-full object-cover border-2 border-amber-500"
         />
         <h3 className="mt-3 font-semibold text-gray-900">
-          {user?.name || user?.username || "User"}
+          {user?.name || user?.username || t("profile.sidebar.default_user")}
         </h3>
-        <p className="text-gray-500 text-sm">{user?.email || "No email"}</p>
+        <p className="text-gray-500 text-sm">{user?.email || t("profile.sidebar.no_email")}</p>
       </div>
 
       <div className="mt-6 space-y-1">

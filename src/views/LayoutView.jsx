@@ -2,13 +2,19 @@
 import React from "react";
 import LeftSidebar from "@/components/LeftSidebar";
 import RightSidebar from "@/components/RightSidebar";
+import { useTranslation } from "react-i18next";
 
 const LayoutView = ({
     children,
-    title = "Nossos Serviços",
-    description = "Explore a variedade de serviços que oferecemos.",
+    title,
+    description,
     backgroundImage = null
 }) => {
+    const { t } = useTranslation();
+
+    const displayTitle = title || t("layout.services.default_title");
+    const displayDescription = description || t("layout.services.default_description");
+
     return (
         <div className="mt-20">
             <div className="mx-auto px-2 sm:px-4 md:px-8 lg:px-0 min-h-screen">
@@ -21,12 +27,13 @@ const LayoutView = ({
                             style={backgroundImage ? {
                                 backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url(${backgroundImage})`,
                                 backgroundSize: 'cover',
-                                backgroundPosition: 'center'
+                                backgroundPosition: 'center',
+                                height: '198px'
                             } : {}}
                         >
                             <div className="relative z-10">
-                                <h1 className="text-3xl font-bold">{title}</h1>
-                                <p className="text-gray-200 mt-2">{description}</p>
+                                <h1 className="text-3xl font-bold">{displayTitle}</h1>
+                                <p className="text-gray-200 mt-2">{displayDescription}</p>
                             </div>
                         </section>
 

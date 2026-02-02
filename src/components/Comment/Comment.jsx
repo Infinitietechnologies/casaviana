@@ -14,26 +14,27 @@ import {
 } from "@heroui/react";
 import { useSelector } from "react-redux";
 import ReportModal from "../Modals/ReportModal";
+import { useTranslation } from "react-i18next";
 
-const formatTimeAgo = (date) => {
+const formatTimeAgo = (date, t) => {
   const seconds = Math.floor((new Date() - new Date(date)) / 1000);
 
   let interval = seconds / 31536000;
-  if (interval > 1) return Math.floor(interval) + " anos atrás";
+  if (interval > 1) return Math.floor(interval) + " " + t("comments.time.years");
 
   interval = seconds / 2592000;
-  if (interval > 1) return Math.floor(interval) + " meses atrás";
+  if (interval > 1) return Math.floor(interval) + " " + t("comments.time.months");
 
   interval = seconds / 86400;
-  if (interval > 1) return Math.floor(interval) + " dias atrás";
+  if (interval > 1) return Math.floor(interval) + " " + t("comments.time.days");
 
   interval = seconds / 3600;
-  if (interval > 1) return Math.floor(interval) + " h atrás";
+  if (interval > 1) return Math.floor(interval) + " " + t("comments.time.hours");
 
   interval = seconds / 60;
-  if (interval > 1) return Math.floor(interval) + " min atrás";
+  if (interval > 1) return Math.floor(interval) + " " + t("comments.time.minutes");
 
-  return Math.floor(seconds) + " s atrás";
+  return Math.floor(seconds) + " " + t("comments.time.seconds");
 };
 
 const MoreIcon = () => (
@@ -110,6 +111,7 @@ const CommentItem = ({
   handleSubmit,
   handleReport,
 }) => {
+  const { t } = useTranslation();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const hasReplies = comment.replies?.length > 0;
 
@@ -138,7 +140,7 @@ const CommentItem = ({
                 {comment.user?.name}
               </p>
               <p className="text-xs text-gray-400">
-                {formatTimeAgo(comment.created_at)}
+                {formatTimeAgo(comment.created_at, t)}
               </p>
             </div>
 
@@ -153,7 +155,7 @@ const CommentItem = ({
                   startContent={<FlagIcon />}
                   onPress={() => handleReport(comment.id)}
                 >
-                  Denunciar
+                  {t("comments.report")}
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
@@ -173,7 +175,7 @@ const CommentItem = ({
               className="flex items-center gap-1 hover:text-blue-600 transition cursor-pointer"
             >
               <ReplyIcon size={14} />
-              Responder
+              {t("comments.reply")}
             </button>
           )}
 
@@ -183,7 +185,7 @@ const CommentItem = ({
               className="flex items-center gap-1 hover:text-blue-600"
             >
               <CollapseIcon isCollapsed={isCollapsed} />
-              {comment.replies.length} respostas
+              {comment.replies.length} {t("comments.replies")}
             </button>
           )}
         </div>
@@ -202,7 +204,7 @@ const CommentItem = ({
                 variant="light"
                 onPress={() => setReplyingTo(null)}
               >
-                Cancelar
+                {t("comments.cancel")}
               </Button>
               <Button
                 size="sm"
@@ -210,7 +212,7 @@ const CommentItem = ({
                 isLoading={submitting}
                 onPress={() => handleSubmit(comment.id, replyText)}
               >
-                Responder
+                {t("comments.reply")}
               </Button>
             </div>
           </div>
@@ -242,6 +244,7 @@ const CommentItem = ({
 };
 
 const Comment = ({ slug, resource = "events" }) => {
+  const { t } = useTranslation();
   const { user } = useSelector((state) => state.auth);
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -288,12 +291,12 @@ const Comment = ({ slug, resource = "events" }) => {
 
   const handleSubmit = async (parentId = null, text) => {
     if (!text.trim()) {
-      addToast({ title: "Por favor insira um comentário", color: "danger" });
+      addToast({ title: t("comments.toasts.empty"), color: "danger" });
       return;
     }
 
     if (!user) {
-      addToast({ title: "Por favor faça login para comentar", color: "warning" });
+      addToast({ title: t("comments.toasts.login_required"), color: "warning" });
       return;
     }
 
@@ -308,7 +311,7 @@ const Comment = ({ slug, resource = "events" }) => {
 
       if (res?.success) {
         addToast({
-          title: res.message || "Comentário enviado com sucesso",
+          title: res.message || t("comments.toasts.success"),
           color: "success",
         });
 
@@ -322,7 +325,7 @@ const Comment = ({ slug, resource = "events" }) => {
         await fetchComments();
       } else {
         addToast({
-          title: res?.error || "Falha ao enviar comentário",
+          title: res?.error || t("comments.toasts.error"),
           color: "danger",
         });
       }
@@ -338,7 +341,7 @@ const Comment = ({ slug, resource = "events" }) => {
 
   const handleReport = (commentId) => {
     if (!user) {
-      addToast({ title: "Por favor faça login para denunciar", color: "warning" });
+      addToast({ title: t("comments.toasts.login_required"), color: "warning" });
       return;
     }
     setSelectedCommentId(commentId);
@@ -353,19 +356,19 @@ const Comment = ({ slug, resource = "events" }) => {
       const res = await report_comment(selectedCommentId, { reason });
       if (res?.success) {
         addToast({
-          title: "Denúncia enviada com sucesso",
+          title: t("comments.toasts.report_success"),
           color: "success",
         });
         onReportOpenChange(false);
       } else {
         addToast({
-          title: res?.error || "Falha ao enviar denúncia",
+          title: res?.error || t("comments.toasts.report_error"),
           color: "danger",
         });
       }
     } catch (err) {
       addToast({
-        title: "Ocorreu um erro",
+        title: t("comments.toasts.report_error"),
         color: "danger",
       });
     } finally {
@@ -378,7 +381,7 @@ const Comment = ({ slug, resource = "events" }) => {
     <div className="bg-white rounded-lg border border-gray-200">
       <div className="px-4 py-3 border-b border-gray-200">
         <div className="flex items-center gap-2">
-          <h3 className="text-sm font-bold text-gray-900">Comentários</h3>
+          <h3 className="text-sm font-bold text-gray-900">{t("comments.title")}</h3>
           <span className="text-xs text-gray-500">({comments.length})</span>
         </div>
       </div>
@@ -387,11 +390,11 @@ const Comment = ({ slug, resource = "events" }) => {
         {user ? (
           <div className="mb-6">
             <div className="text-xs text-gray-500 mb-2">
-              Comentar como{" "}
+              {t("comments.comment_as")}{" "}
               <span className="text-blue-600 font-semibold">{user.name}</span>
             </div>
             <Textarea
-              placeholder="O que está a pensar?"
+              placeholder={t("comments.placeholder")}
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
               className="mb-2"
@@ -407,7 +410,7 @@ const Comment = ({ slug, resource = "events" }) => {
                 variant="light"
                 onPress={() => setNewComment("")}
               >
-                Cancelar
+                {t("comments.cancel")}
               </Button>
               <Button
                 size="sm"
@@ -416,14 +419,14 @@ const Comment = ({ slug, resource = "events" }) => {
                 onPress={() => handleSubmit(null, newComment)}
                 isDisabled={!newComment.trim()}
               >
-                Comentar
+                {t("comments.submit")}
               </Button>
             </div>
           </div>
         ) : (
           <div className="bg-gray-50 rounded-lg p-4 text-center mb-6 border border-gray-200">
             <p className="text-sm text-gray-600">
-              Entre ou registe-se para deixar um comentário
+              {t("comments.login_to_comment")}
             </p>
           </div>
         )}
@@ -431,7 +434,7 @@ const Comment = ({ slug, resource = "events" }) => {
         <div className="space-y-1">
           {loading ? (
             <div className="text-center py-8 text-gray-500 text-sm">
-              A carregar comentários...
+              {t("comments.loading")}
             </div>
           ) : comments.length > 0 ? (
             comments.map((comment) => (
@@ -452,10 +455,10 @@ const Comment = ({ slug, resource = "events" }) => {
             <div className="text-center py-12">
               <div className="text-4xl mb-2">💬</div>
               <p className="text-gray-900 font-medium text-sm">
-                Ainda Sem Comentários
+                {t("comments.no_comments")}
               </p>
               <p className="text-gray-500 text-xs mt-1">
-                Seja o primeiro a partilhar o que pensa!
+                {t("comments.be_first")}
               </p>
             </div>
           )}

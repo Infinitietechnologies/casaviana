@@ -6,6 +6,7 @@ import { addToast, useDisclosure } from "@heroui/react";
 import dynamic from "next/dynamic";
 import PaymentInstructionsModal from "@/components/Modals/PaymentInstructionsModal";
 import PaymentGatewayModal from "@/components/Modals/PaymentGatewayModal";
+import { useTranslation } from "react-i18next";
 
 const Rating = dynamic(() => import("@/components/Rating/Rating"), {
   ssr: false,
@@ -27,6 +28,7 @@ import { EventDetailsSkeleton } from "@/components/Skeletons/EventsSkeletons";
 import Head from "next/head";
 
 const EventDetailsView = () => {
+  const { t } = useTranslation();
   const router = useRouter();
   const { slug } = router.query;
 
@@ -168,7 +170,7 @@ const EventDetailsView = () => {
         return true;
       } else {
         addToast({
-          title: "Erro ao iniciar pagamento",
+          title: t("pages.events.details.toasts.init_payment_error"),
           description:
             res?.error || "Ocorreu um erro ao gerar os dados para pagamento.",
           color: "danger",
@@ -178,7 +180,7 @@ const EventDetailsView = () => {
     } catch (error) {
       console.error("Error initiating payment:", error);
       addToast({
-        title: "Erro ao iniciar pagamento",
+        title: t("pages.events.details.toasts.init_payment_error"),
         description:
           "Ocorreu um erro ao processar o pagamento. Por favor, tente novamente.",
         color: "danger",
@@ -199,7 +201,7 @@ const EventDetailsView = () => {
 
   const handleBookEvent = async () => {
     if (!slug) {
-      addToast({ title: "Evento inválido", color: "danger" });
+      addToast({ title: t("pages.events.details.toasts.invalid_event"), color: "danger" });
       return;
     }
     // Build selected tickets
@@ -208,7 +210,7 @@ const EventDetailsView = () => {
       .filter((t) => t.qty > 0);
 
     if (!selected.length) {
-      addToast({ title: "Selecione pelo menos 1 ingresso", color: "danger" });
+      addToast({ title: t("pages.events.details.toasts.select_one"), color: "danger" });
       return;
     }
 
@@ -223,13 +225,13 @@ const EventDetailsView = () => {
       );
       if (!ticketObj) {
         failCount += 1;
-        addToast({ title: "Tipo de ingresso inválido", color: "danger" });
+        addToast({ title: t("pages.events.details.toasts.invalid_ticket"), color: "danger" });
         return;
       }
       if (t.qty > (ticketObj.available_tickets || 0)) {
         failCount += 1;
         addToast({
-          title: `Quantidade solicitada maior que disponível para ${ticketObj.name}`,
+          title: t("pages.events.details.toasts.quantity_exceeded", { name: ticketObj.name }),
           color: "danger",
         });
         return;
@@ -239,7 +241,7 @@ const EventDetailsView = () => {
         if (res?.success) {
           successCount += 1;
           addToast({
-            title: res.message || "Ingresso reservado com sucesso",
+            title: res.message || t("pages.events.details.toasts.success"),
             color: "success",
           });
 
@@ -262,7 +264,7 @@ const EventDetailsView = () => {
         } else {
           failCount += 1;
           addToast({
-            title: res?.error || res?.message || "Erro ao reservar ingresso",
+            title: res?.error || res?.message || t("pages.events.details.toasts.error"),
             color: "danger",
           });
         }
@@ -272,7 +274,7 @@ const EventDetailsView = () => {
           title:
             err?.response?.data?.message ||
             err.message ||
-            "Erro ao reservar ingresso",
+            t("pages.events.details.toasts.error"),
           color: "danger",
         });
       }
@@ -299,7 +301,7 @@ const EventDetailsView = () => {
       setTickets(reset);
     } else if (successCount > 0 && failCount > 0) {
       addToast({
-        title: `Sucesso: ${successCount}, Falha: ${failCount}`,
+        title: t("pages.events.details.toasts.mixed_results", { success: successCount, fail: failCount }),
         color: "warning",
       });
     }
@@ -327,7 +329,7 @@ const EventDetailsView = () => {
   };
 
   const parseEventDate = () => {
-    if (!event?.event_date) return { day: "", month: "" };
+    if (!event?.event_date) return { day: "", month: "", isPast: false };
 
     // Parse date from API (format: YYYY-MM-DD)
     // Split manually to avoid timezone issues
@@ -340,6 +342,11 @@ const EventDetailsView = () => {
       parseInt(dayNum),
     );
 
+    // Check if event is past (strictly before today)
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const isPast = dateObj < today;
+
     // Get month name in Portuguese (short form, e.g., "Nov")
     const monthName = dateObj
       .toLocaleString("pt-PT", { month: "short" })
@@ -348,10 +355,10 @@ const EventDetailsView = () => {
     // Format as "Month Year" (e.g., "NOV 2025")
     const monthWithYear = `${monthName} ${year}`;
 
-    return { day: dayNum, month: monthWithYear };
+    return { day: dayNum, month: monthWithYear, isPast };
   };
 
-  const { day, month } = parseEventDate();
+  const { day, month, isPast } = parseEventDate();
 
   // Handle video play/pause based on active slide
   const handleSlideChange = (swiper) => {
@@ -386,7 +393,7 @@ const EventDetailsView = () => {
   if (!event) {
     return (
       <div className="min-h-screen bg-gray-50 mt-20 flex items-center justify-center">
-        <p className="text-gray-500">Evento não encontrado.</p>
+        <p className="text-gray-500">{t("pages.events.details.not_found")}</p>
       </div>
     );
   }
@@ -418,7 +425,7 @@ const EventDetailsView = () => {
                   <div>
                     <Swiper
                       spaceBetween={10}
-                      navigation={false}
+                      navigation={true}
                       pagination={{ clickable: true }}
                       modules={[Navigation, Thumbs, Pagination]}
                       thumbs={{
@@ -485,23 +492,23 @@ const EventDetailsView = () => {
               <div className="grid grid-cols-3 gap-2 lg:gap-4 mt-4 lg:mt-6">
                 <div className="p-3 lg:p-4">
                   <div className="text-gray-600 text-xs lg:text-sm mb-1">
-                    DURAÇÃO
+                    {t("pages.events.details.duration")}
                   </div>
                   <div className="font-bold text-sm lg:text-base">
-                    {event.duration_minutes || 0} min
+                    {event.duration_minutes || 0} {t("pages.events.details.min")}
                   </div>
                 </div>
                 <div className="p-3 lg:p-4 border-l">
                   <div className="text-gray-600 text-xs lg:text-sm mb-1">
-                    CLASSIFICAÇÃO
+                    {t("pages.events.details.classification")}
                   </div>
                   <div className="font-bold text-sm lg:text-base">
-                    {event.category?.name || "Geral"}
+                    {event.category?.name || t("pages.events.details.general")}
                   </div>
                 </div>
                 <div className="p-3 lg:p-4 border-l">
                   <div className="text-gray-600 text-xs lg:text-sm mb-1">
-                    PROMOTOR
+                    {t("pages.events.details.promoter")}
                   </div>
                   <div className="font-bold text-sm lg:text-base">
                     {event.venue?.name || "N/E"}
@@ -511,7 +518,7 @@ const EventDetailsView = () => {
 
               <div className="p-3 lg:p-4 mt-4">
                 <div className="font-bold text-sm lg:text-base mb-2">
-                  PARA MAIS INFORMAÇÕES 📞
+                  {t("pages.events.details.info_title")}
                 </div>
                 {event.venue?.branch?.phone ||
                   event.venue?.branch?.manager?.phone ? (
@@ -531,7 +538,7 @@ const EventDetailsView = () => {
 
               <div className="p-3 lg:p-4 mt-4">
                 <h3 className="font-bold text-base lg:text-lg mb-3">
-                  Descrição Curta
+                  {t("pages.events.details.short_description")}
                 </h3>
                 <p className="text-xs lg:text-base text-gray-700 mb-3">
                   {event.short_description}
@@ -540,14 +547,14 @@ const EventDetailsView = () => {
 
               <div className="p-3 lg:p-4 mt-4">
                 <h3 className="font-bold text-base lg:text-lg mb-3">
-                  LOCALIZAÇÃO
+                  {t("pages.events.details.location")}
                 </h3>
                 <div className="text-gray-700">
                   <div className="font-semibold text-sm lg:text-base">
                     {event.venue?.name}
                   </div>
                   <div className="text-xs lg:text-sm">
-                    {event.venue?.address || "Localização não disponível"}
+                    {event.venue?.address || t("pages.events.details.location_unavailable")}
                   </div>
                 </div>
               </div>
@@ -556,130 +563,143 @@ const EventDetailsView = () => {
             <div>
               <div className="bg-white rounded-lg shadow-lg p-4 lg:p-6 lg:sticky lg:top-4">
                 <h2 className="text-lg lg:text-xl font-bold mb-4 lg:mb-6">
-                  Selecione os Ingressos
+                  {t("pages.events.details.select_tickets")}
                 </h2>
 
-                {event.ticket_types?.map((ticket) => {
-                  const ticketQty = tickets[ticket.id] || 0;
-                  const originalPrice = parseFloat(ticket.price || 0);
-                  const effectivePrice = getEffectivePrice(ticket);
-                  const subtotal = ticketQty * effectivePrice;
-                  const symbol = ticket.currency?.code;
-                  const isDisabled = ticket.status !== "active";
-                  const discount = hasDiscount(ticket);
-                  const discountPercent = getDiscountPercentage(ticket);
+                {isPast ? (
+                  <div className="text-center py-6">
+                    <p className="text-red-500 font-bold mb-2">
+                      {t("pages.events.details.event_ended")}
+                    </p>
+                    <p className="text-gray-500 text-sm">
+                      {t("pages.events.details.bookings_closed")}
+                    </p>
+                  </div>
+                ) : (
+                  <>
+                    {event.ticket_types?.map((ticket) => {
+                      const ticketQty = tickets[ticket.id] || 0;
+                      const originalPrice = parseFloat(ticket.price || 0);
+                      const effectivePrice = getEffectivePrice(ticket);
+                      const subtotal = ticketQty * effectivePrice;
+                      const symbol = ticket.currency?.code;
+                      const isDisabled = ticket.status !== "active";
+                      const discount = hasDiscount(ticket);
+                      const discountPercent = getDiscountPercentage(ticket);
 
-                  return (
-                    <div
-                      key={ticket.id}
-                      className="border-b pb-4 lg:pb-6 mb-4 lg:mb-6"
-                    >
-                      <div className="flex justify-between items-start mb-2 lg:mb-3">
-                        <div className="flex-1">
-                          <h3 className="font-bold text-base lg:text-lg">
-                            {ticket.name}
-                          </h3>
+                      return (
+                        <div
+                          key={ticket.id}
+                          className="border-b pb-4 lg:pb-6 mb-4 lg:mb-6"
+                        >
+                          <div className="flex justify-between items-start mb-2 lg:mb-3">
+                            <div className="flex-1">
+                              <h3 className="font-bold text-base lg:text-lg">
+                                {ticket.name}
+                              </h3>
 
-                          {/* Price Display with Discount */}
-                          <div className="flex items-center gap-2 mt-1">
-                            <div className="text-xl lg:text-2xl font-bold text-gray-900">
-                              {formatPrice(effectivePrice)} {symbol}
-                            </div>
-
-                            {discount && (
-                              <>
-                                <div className="text-sm lg:text-base text-gray-400 line-through">
-                                  {formatPrice(originalPrice)} {symbol}
+                              {/* Price Display with Discount */}
+                              <div className="flex items-center gap-2 mt-1">
+                                <div className="text-xl lg:text-2xl font-bold text-gray-900">
+                                  {formatPrice(effectivePrice)} {symbol}
                                 </div>
-                                <span className="bg-red-500 text-white text-xs px-2 py-1 rounded font-semibold">
-                                  -{discountPercent}%
-                                </span>
-                              </>
-                            )}
-                          </div>
-                        </div>
-                        {/* {ticket.available_tickets > 0 && (
+
+                                {discount && (
+                                  <>
+                                    <div className="text-sm lg:text-base text-gray-400 line-through">
+                                      {formatPrice(originalPrice)} {symbol}
+                                    </div>
+                                    <span className="bg-red-500 text-white text-xs px-2 py-1 rounded font-semibold">
+                                      -{discountPercent}%
+                                    </span>
+                                  </>
+                                )}
+                              </div>
+                            </div>
+                            {/* {ticket.available_tickets > 0 && (
                           <span className="bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded ml-3">
                             Available {ticket.available_tickets}
                           </span>
                         )} */}
-                      </div>
-                      <p className="text-xs lg:text-sm text-gray-600 mt-2">
-                        {ticket.description || "Sem descrição."}
-                      </p>
-                      {isDisabled && (
-                        <div className="bg-red-50 text-red-600 text-center py-2 px-3 rounded text-xs lg:text-sm font-semibold mb-4">
-                          VENDAS SOMENTE PRESENCIAIS
+                          </div>
+                          <p className="text-xs lg:text-sm text-gray-600 mt-2">
+                            {ticket.description || t("pages.events.details.no_ticket_description")}
+                          </p>
+                          {isDisabled && (
+                            <div className="bg-red-50 text-red-600 text-center py-2 px-3 rounded text-xs lg:text-sm font-semibold mb-4">
+                              {t("pages.events.details.sales_in_person")}
+                            </div>
+                          )}
+
+                          <div className="flex items-center justify-between mt-3 lg:mt-4">
+                            <div
+                              className="flex items-center gap-3"
+                              style={{ opacity: isDisabled ? 0.5 : 1 }}
+                            >
+                              <button
+                                onClick={() => handleDecrement(ticket.id)}
+                                disabled={isDisabled}
+                                className={`w-8 h-8 rounded flex items-center justify-center text-sm ${isDisabled
+                                  ? "bg-gray-300 text-white cursor-not-allowed"
+                                  : "bg-black text-white hover:bg-gray-800"
+                                  }`}
+                              >
+                                −
+                              </button>
+                              <span className="w-12 text-center font-bold text-sm">
+                                {ticketQty}
+                              </span>
+                              <button
+                                onClick={() => handleIncrement(ticket.id)}
+                                disabled={isDisabled}
+                                className={`w-8 h-8 rounded flex items-center justify-center text-sm ${isDisabled
+                                  ? "bg-gray-300 text-white cursor-not-allowed"
+                                  : "bg-black text-white hover:bg-gray-800"
+                                  }`}
+                              >
+                                +
+                              </button>
+                            </div>
+                            <div className="text-right">
+                              <div className="text-xs lg:text-sm text-gray-600">
+                                {t("pages.events.details.subtotal")}
+                              </div>
+                              <div className="font-bold text-sm lg:text-base">
+                                {formatPrice(subtotal)} {symbol}
+                              </div>
+                            </div>
+                          </div>
                         </div>
+                      );
+                    }) || (
+                        <p className="text-gray-500 text-sm">
+                          Nenhum tipo de ingresso disponível.
+                        </p>
                       )}
 
-                      <div className="flex items-center justify-between mt-3 lg:mt-4">
-                        <div
-                          className="flex items-center gap-3"
-                          style={{ opacity: isDisabled ? 0.5 : 1 }}
-                        >
-                          <button
-                            onClick={() => handleDecrement(ticket.id)}
-                            disabled={isDisabled}
-                            className={`w-8 h-8 rounded flex items-center justify-center text-sm ${isDisabled
-                              ? "bg-gray-300 text-white cursor-not-allowed"
-                              : "bg-black text-white hover:bg-gray-800"
-                              }`}
-                          >
-                            −
-                          </button>
-                          <span className="w-12 text-center font-bold text-sm">
-                            {ticketQty}
-                          </span>
-                          <button
-                            onClick={() => handleIncrement(ticket.id)}
-                            disabled={isDisabled}
-                            className={`w-8 h-8 rounded flex items-center justify-center text-sm ${isDisabled
-                              ? "bg-gray-300 text-white cursor-not-allowed"
-                              : "bg-black text-white hover:bg-gray-800"
-                              }`}
-                          >
-                            +
-                          </button>
+                    <div className="border-t pt-4 lg:pt-6">
+                      <div className="flex justify-between items-center mb-4">
+                        <div className="text-base lg:text-lg font-bold ">
+                          {t("pages.events.details.total_event")}
                         </div>
-                        <div className="text-right">
-                          <div className="text-xs lg:text-sm text-gray-600">
-                            Subtotal
-                          </div>
-                          <div className="font-bold text-sm lg:text-base">
-                            {formatPrice(subtotal)} {symbol}
-                          </div>
+                        <div className="text-xl lg:text-2xl font-bold">
+                          {formatPrice(calculateTotal())} {event.currency?.code}
                         </div>
                       </div>
+                      <button
+                        className="w-full bg-gray-700 text-white py-3 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-gray-800 transition-colors cursor-pointer disabled:opacity-50"
+                        onClick={handleBookEvent}
+                        disabled={
+                          bookingLoading ||
+                          !event.is_available_for_booking ||
+                          calculateTotal() === 0
+                        }
+                      >
+                        {bookingLoading ? t("pages.events.details.booking") : t("pages.events.details.book_tickets")}
+                      </button>
                     </div>
-                  );
-                }) || (
-                    <p className="text-gray-500 text-sm">
-                      Nenhum tipo de ingresso disponível.
-                    </p>
-                  )}
-
-                <div className="border-t pt-4 lg:pt-6">
-                  <div className="flex justify-between items-center mb-4">
-                    <div className="text-base lg:text-lg font-bold ">
-                      TOTAL EVENTO
-                    </div>
-                    <div className="text-xl lg:text-2xl font-bold">
-                      {formatPrice(calculateTotal())} {event.currency?.code}
-                    </div>
-                  </div>
-                  <button
-                    className="w-full bg-gray-700 text-white py-3 lg:py-4 rounded-lg font-bold text-base lg:text-lg hover:bg-gray-800 transition-colors cursor-pointer disabled:opacity-50"
-                    onClick={handleBookEvent}
-                    disabled={
-                      bookingLoading ||
-                      !event.is_available_for_booking ||
-                      calculateTotal() === 0
-                    }
-                  >
-                    {bookingLoading ? "Reservando..." : "Reservar Ingressos"}
-                  </button>
-                </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -687,7 +707,7 @@ const EventDetailsView = () => {
             <Rating slug={slug} resource="event" />
           </div>
           <div className="mt-8">
-            <h3 className="text-xl font-bold mb-4">Comentários</h3>
+            <h3 className="text-xl font-bold mb-4">{t("pages.events.details.reviews")}</h3>
             <Comment slug={slug} resource="event" />
           </div>
         </div>

@@ -29,23 +29,23 @@ const MenuItemModal = ({ isOpen, onOpenChange, selectedItem }) => {
       if (response?.success) {
         dispatch(addItemToCart(response));
         addToast({
-          title: "Item adicionado ao carrinho",
-          description: response.message || "Item adicionado com sucesso!",
+          title: t("cardapio.add_success.title"),
+          description: response.message || t("cardapio.add_success.message"),
           color: "success",
         });
         onOpenChange(false);
       } else {
         addToast({
-          title: "Erro",
-          description: response?.error || "Erro ao adicionar item ao carrinho",
+          title: t("cardapio.add_error.title"),
+          description: response?.error || t("cardapio.add_error.message"),
           color: "danger",
         });
       }
     } catch (error) {
       console.error("Error adding to cart:", error);
       addToast({
-        title: "Erro",
-        description: "Erro ao adicionar item ao carrinho",
+        title: t("cardapio.add_error.title"),
+        description: t("cardapio.add_error.message"),
         color: "danger",
       });
     } finally {
@@ -143,11 +143,10 @@ const MenuItemModal = ({ isOpen, onOpenChange, selectedItem }) => {
                             {t("cardapio.availability")}
                           </span>
                           <span
-                            className={`font-semibold ${
-                              selectedItem.is_available
+                            className={`font-semibold ${selectedItem.is_available
                                 ? "text-green-600"
                                 : "text-red-600"
-                            }`}
+                              }`}
                           >
                             {selectedItem.is_available
                               ? t("cardapio.available")
@@ -214,7 +213,7 @@ const MenuItemModal = ({ isOpen, onOpenChange, selectedItem }) => {
                       isLoading={addingToCart}
                       isDisabled={addingToCart}
                     >
-                      {addingToCart ? "Adicionando..." : t("cardapio.addToCart")}
+                      {addingToCart ? t("cardapio.adding") : t("cardapio.addToCart")}
                     </Button>
                   )}
                 </ModalFooter>

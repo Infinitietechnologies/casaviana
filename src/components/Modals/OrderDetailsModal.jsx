@@ -10,8 +10,10 @@ import {
     Chip,
     Divider,
 } from "@heroui/react";
+import { useTranslation } from "react-i18next";
 
 const OrderDetailsModal = ({ isOpen, onOpenChange, order }) => {
+    const { t } = useTranslation();
     if (!order) return null;
 
     const { items } = order;
@@ -51,6 +53,15 @@ const OrderDetailsModal = ({ isOpen, onOpenChange, order }) => {
         }
     };
 
+    const getStatusLabel = (status) => {
+        if (status === "pending") return t("orders.status.pending");
+        if (status === "completed") return t("orders.status.completed");
+        if (status === "delivered") return t("orders.status.delivered");
+        if (status === "processing") return t("orders.status.processing");
+        if (status === "cancelled") return t("orders.status.cancelled");
+        return status;
+    };
+
     return (
         <Modal
             isOpen={isOpen}
@@ -65,7 +76,7 @@ const OrderDetailsModal = ({ isOpen, onOpenChange, order }) => {
                             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pr-8">
                                 <div>
                                     <h2 className="text-lg sm:text-xl font-bold">
-                                        Pedido #{order.id}
+                                        {t("orders.details.order_number")}{order.id}
                                     </h2>
                                     <p className="text-xs sm:text-sm text-gray-500">
                                         {formatDate(order.created_at)}
@@ -77,11 +88,7 @@ const OrderDetailsModal = ({ isOpen, onOpenChange, order }) => {
                                     size="sm"
                                     className="capitalize"
                                 >
-                                    {order.status === "pending"
-                                        ? "Pendente"
-                                        : order.status === "completed"
-                                            ? "Concluído"
-                                            : order.status}
+                                    {getStatusLabel(order.status)}
                                 </Chip>
                             </div>
                         </ModalHeader>
@@ -91,7 +98,7 @@ const OrderDetailsModal = ({ isOpen, onOpenChange, order }) => {
                                 <div className="grid grid-cols-2 gap-3 sm:gap-6 text-sm">
                                     <div>
                                         <span className="text-gray-500 block text-[10px] sm:text-xs uppercase tracking-wide">
-                                            Valor Total
+                                            {t("orders.details.total_amount")}
                                         </span>
                                         <span className="font-bold text-base sm:text-lg text-primary-600">
                                             {formatAmount(order.total_amount)}
@@ -99,7 +106,7 @@ const OrderDetailsModal = ({ isOpen, onOpenChange, order }) => {
                                     </div>
                                     <div>
                                         <span className="text-gray-500 block text-[10px] sm:text-xs uppercase tracking-wide">
-                                            Qtd. Itens
+                                            {t("orders.details.items_count")}
                                         </span>
                                         <span className="font-medium text-gray-900">
                                             {items?.reduce((acc, item) => acc + item.quantity, 0) || 0}
@@ -113,7 +120,7 @@ const OrderDetailsModal = ({ isOpen, onOpenChange, order }) => {
                             {/* Items List */}
                             <div>
                                 <h3 className="font-semibold text-base sm:text-lg mb-3 sm:mb-4 flex items-center gap-2">
-                                    Itens do Pedido
+                                    {t("orders.details.order_items")}
                                     <Chip size="sm" variant="solid" className="h-5 min-w-5">
                                         {items?.length || 0}
                                     </Chip>
@@ -145,7 +152,7 @@ const OrderDetailsModal = ({ isOpen, onOpenChange, order }) => {
 
                                                 <div className="flex-1 flex flex-col justify-between">
                                                     <div>
-                                                        <h4 className="font-semibold text-gray-900">{item.menu_item?.name || "Item Indisponível"}</h4>
+                                                        <h4 className="font-semibold text-gray-900">{item.menu_item?.name || t("orders.details.item_unavailable")}</h4>
                                                         <p className="text-xs text-gray-500 line-clamp-2">{item.menu_item?.short_description}</p>
                                                     </div>
                                                     <div className="flex justify-between items-end mt-2">
@@ -162,7 +169,7 @@ const OrderDetailsModal = ({ isOpen, onOpenChange, order }) => {
 
                                     {(!items || items.length === 0) && (
                                         <div className="text-center py-8 text-gray-500 italic">
-                                            Detalhes dos itens indisponíveis.
+                                            {t("orders.details.items_details_unavailable")}
                                         </div>
                                     )}
                                 </div>
@@ -170,7 +177,7 @@ const OrderDetailsModal = ({ isOpen, onOpenChange, order }) => {
                         </ModalBody>
                         <ModalFooter>
                             <Button color="danger" variant="light" onPress={onClose}>
-                                Fechar
+                                {t("modals.actions.close")}
                             </Button>
                         </ModalFooter>
                     </>

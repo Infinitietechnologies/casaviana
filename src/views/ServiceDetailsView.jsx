@@ -13,8 +13,10 @@ import RightSidebar from "@/components/RightSidebar";
 import { useDisclosure } from "@heroui/react";
 import ServiceBookingForm from "@/components/ServiceBookingForm";
 import Drawer from "@/components/Drawer";
+import { useTranslation } from "react-i18next";
 
 const ServiceDetailsView = () => {
+  const { t } = useTranslation();
   const router = useRouter();
   const { slug } = router.query;
   const [service, setService] = useState(null);
@@ -108,7 +110,7 @@ const ServiceDetailsView = () => {
   if (!service) {
     return (
       <div className="min-h-screen bg-gray-50 mt-20 flex items-center justify-center">
-        <p className="text-gray-500">Serviço não encontrado.</p>
+        <p className="text-gray-500">{t("pages.services.details.not_found")}</p>
       </div>
     );
   }
@@ -127,7 +129,7 @@ const ServiceDetailsView = () => {
                     <Swiper
                       spaceBetween={10}
                       // navigation={imagesToDisplay.length > 1 || service?.video}
-                      navigation={false}
+                      navigation={true}
                       pagination={{ clickable: true }}
                       modules={[Navigation, Pagination]}
                       onSlideChange={handleSlideChange}
@@ -178,7 +180,7 @@ const ServiceDetailsView = () => {
 
                 <div className="text-gray-200 lg:pt-0 flex flex-col justify-center">
                   <div className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-2">
-                    {service.category?.name || "Serviço"}
+                    {service.category?.name || t("pages.services.details.service_default")}
                   </div>
                   <h1 className="text-2xl lg:text-3xl font-bold mb-4">
                     {service.title}
@@ -192,7 +194,7 @@ const ServiceDetailsView = () => {
                   {service.price !== null && service.price !== undefined && (
                     <div className="text-xl lg:text-2xl font-bold text-white mb-2">
                       {service.price === 0
-                        ? "Sob Consulta"
+                        ? t("pages.services.price_on_request")
                         : new Intl.NumberFormat("ao-AO", {
                           style: "currency",
                           currency: "AOA",
@@ -205,6 +207,61 @@ const ServiceDetailsView = () => {
                         )}
                     </div>
                   )}
+
+
+                  <hr className="my-6 border-gray-700" />
+                  <div className="lg:col-span-1">
+                    <div className="rounded-xl shadow-lg sticky top-24">
+                      <h3 className="text-lg font-bold mb-4">
+                        {t("pages.services.details.interested_title")}
+                      </h3>
+                      <p className="text-sm mb-6">
+                        {t("pages.services.details.interested_text")}
+                      </p>
+                      <div className="flex gap-3 space-y-3">
+                        <Button
+                          className="w-full font-bold text-white bg-gradient-to-r from-orange-500 to-red-600 shadow-md"
+                          onPress={onOpen}
+                        >
+                          {t("pages.services.details.book_now")}
+                        </Button>
+
+                        <Button
+                          as="a"
+                          href={`https://wa.me/message/YOUR_WHATSAPP_LINK?text=Olá, estou interessado no serviço: ${service.title}`}
+                          target="_blank"
+                          className="w-full bg-green-500 text-white font-semibold"
+                          startContent={
+                            <svg
+                              viewBox="0 0 24 24"
+                              width="24"
+                              height="24"
+                              stroke="white"
+                              strokeWidth="2"
+                              fill="none"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="css-i6dzq1"
+                            >
+                              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                            </svg>
+                          }
+                        >
+                          WhatsApp
+                        </Button>
+
+                        <Button
+                          as="a"
+                          href="/contact-us"
+                          variant="flat"
+                          className="w-full font-semibold"
+                        >
+                          {t("pages.services.details.contact_us")}
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -216,30 +273,30 @@ const ServiceDetailsView = () => {
                   {service.min_capacity && (
                     <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
                       <div className="text-gray-500 text-xs uppercase font-semibold mb-1">
-                        Capacidade Mínima
+                        {t("pages.services.details.min_capacity")}
                       </div>
                       <div className="text-gray-900 font-medium">
-                        {service.min_capacity} Pessoas
+                        {service.min_capacity} {t("pages.services.details.people")}
                       </div>
                     </div>
                   )}
                   {service.max_capacity && (
                     <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
                       <div className="text-gray-500 text-xs uppercase font-semibold mb-1">
-                        Capacidade Máxima
+                        {t("pages.services.details.max_capacity")}
                       </div>
                       <div className="text-gray-900 font-medium">
-                        {service.max_capacity} Pessoas
+                        {service.max_capacity} {t("pages.services.details.people")}
                       </div>
                     </div>
                   )}
                   {service.min_notice_hours && (
                     <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
                       <div className="text-gray-500 text-xs uppercase font-semibold mb-1">
-                        Aviso Prévio Mínimo
+                        {t("pages.services.details.min_notice")}
                       </div>
                       <div className="text-gray-900 font-medium">
-                        {service.min_notice_hours} Horas
+                        {service.min_notice_hours} {t("pages.services.details.hours")}
                       </div>
                     </div>
                   )}
@@ -247,7 +304,7 @@ const ServiceDetailsView = () => {
 
                 <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                   <h3 className="text-xl font-bold text-gray-900 mb-4">
-                    Detalhes do Serviço
+                    {t("pages.services.details.description_title")}
                   </h3>
                   <div className="prose max-w-none text-gray-600">
                     {service.description ? (
@@ -257,60 +314,8 @@ const ServiceDetailsView = () => {
                         }}
                       />
                     ) : (
-                      <p>Nenhuma descrição adicional disponível.</p>
+                      <p>{t("pages.services.details.no_description")}</p>
                     )}
-                  </div>
-                </div>
-              </div>
-
-              <div className="lg:col-span-1">
-                <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 sticky top-24">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">
-                    Interessado neste serviço?
-                  </h3>
-                  <p className="text-gray-600 text-sm mb-6">
-                    Entre em contacto connosco para verificar disponibilidade e
-                    fazer uma reserva.
-                  </p>
-                  <div className="space-y-3">
-                    <Button
-                      className="w-full font-bold text-white bg-gradient-to-r from-orange-500 to-red-600 shadow-md"
-                      size="lg"
-                      onPress={onOpen}
-                    >
-                      Reservar Agora
-                    </Button>
-                    <Button
-                      as="a"
-                      href={`https://wa.me/message/YOUR_WHATSAPP_LINK?text=Olá, estou interessado no serviço: ${service.title}`}
-                      target="_blank"
-                      className="w-full bg-green-500 text-white font-semibold"
-                      startContent={
-                        <svg
-                          viewBox="0 0 24 24"
-                          width="24"
-                          height="24"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="css-i6dzq1"
-                        >
-                          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-                        </svg>
-                      }
-                    >
-                      WhatsApp
-                    </Button>
-                    <Button
-                      as="a"
-                      href="/contact-us"
-                      variant="bordered"
-                      className="w-full font-semibold"
-                    >
-                      Contactar-nos
-                    </Button>
                   </div>
                 </div>
               </div>
@@ -346,11 +351,10 @@ const ServiceDetailsView = () => {
               </svg>
             </div>
             <h3 className="text-2xl font-bold text-gray-900">
-              Pedido Enviado!
+              {t("pages.services.details.success_title")}
             </h3>
             <p className="text-gray-600 max-w-md text-lg">
-              O seu pedido de reserva foi enviado com sucesso. Entraremos em
-              contacto brevemente para confirmar os detalhes.
+              {t("pages.services.details.success_message")}
             </p>
             <Button
               color="primary"
@@ -358,7 +362,7 @@ const ServiceDetailsView = () => {
               onPress={onClose}
               className="mt-8 px-8"
             >
-              Fechar
+              {t("pages.services.details.close_button")}
             </Button>
           </div>
         ) : (

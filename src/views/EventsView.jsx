@@ -17,8 +17,10 @@ import "swiper/css/pagination";
 
 import { EventsPageSkeleton } from "@/components/Skeletons/EventsSkeletons";
 import Head from "next/head";
+import { useTranslation } from "react-i18next";
 
 const EventsView = () => {
+  const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState("all");
   const [initialEvents, setInitialEvents] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState([]);
@@ -116,6 +118,11 @@ const EventsView = () => {
       parseInt(dayNum),
     );
 
+    // Check if event is past (strictly before today)
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const isPast = dateObj < today;
+
     // Get month name in Portuguese (short form, e.g., "Nov")
     const monthName = dateObj
       .toLocaleString("pt-PT", { month: "short" })
@@ -127,20 +134,21 @@ const EventsView = () => {
     return {
       id: event.id,
       title: event.title,
-      time: event.start_time ? `At ${event.start_time}` : "All Day",
+      time: event.start_time ? `At ${event.start_time}` : t("pages.events.all_day"),
       slug: event.slug,
       date: event.event_date,
       day: dayNum,
       month: monthWithYear,
-      category: event.category?.name || "Uncategorized",
+      category: event.category?.name || t("pages.events.uncategorized"),
       image: event.banner_image || event.images?.[0] || "/images/event2.png",
       showBadge: event.status === "published" && event.is_available_for_booking,
-      badgeText: event.is_sold_out ? "Sold Out" : "Registration Open",
+      badgeText: event.is_sold_out ? t("pages.events.sold_out") : t("pages.events.registration_open"),
       registrationOpen: event.is_available_for_booking && !event.is_sold_out,
       status: event.status,
       venue: event.venue?.name,
       availableSeats: event.available_seats,
       totalSeats: event.total_seats,
+      isPast: isPast,
     };
   };
 
@@ -186,7 +194,9 @@ const EventsView = () => {
           </div>
         </div>
 
-        <button className="btn_black">{"Comprar Ingresso"}</button>
+        {!event.isPast && (
+          <button className="btn_black">{t("pages.events.buy_ticket")}</button>
+        )}
       </div>
     </div>
   );
@@ -194,7 +204,7 @@ const EventsView = () => {
   return (
     <>
       <Head>
-        <title>{`Eventos - Casa Viana`}</title>
+        <title>{`${t("pages.events.title")} - Casa Viana`}</title>
         <meta name="description" content="Explore os eventos da Casa Viana." />
       </Head>
 
@@ -202,11 +212,11 @@ const EventsView = () => {
         <main>
           <section className="text-white py-8 bg-black full-width">
             <div className="px-4 sm:px-6 lg:px-8 xl:px-20">
-              <h2 className="text-xl sm:text-2xl font-bold mb-6">Destaques</h2>
+              <h2 className="text-xl sm:text-2xl font-bold mb-6">{t("pages.events.highlights")}</h2>
 
               {featuredEvents.length === 0 ? (
                 <p className="text-gray-400">
-                  Nenhum evento em destaque no momento.
+                  {t("pages.events.no_highlights")}
                 </p>
               ) : (
                 <>
@@ -308,11 +318,11 @@ const EventsView = () => {
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-10 gap-6">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                     <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
-                      Próximos eventos
+                      {t("pages.events.upcoming")}
                     </h2>
                     <Input
                       type="text"
-                      placeholder="Procurar evento"
+                      placeholder={t("pages.events.search_placeholder")}
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                       variant="bordered"
@@ -327,7 +337,7 @@ const EventsView = () => {
                   <div className="flex items-center gap-3">
                     {activeCategory !== "all" && (
                       <span className="text-sm text-gray-600">
-                        Filtrado:{" "}
+                        {t("pages.services.filtered_by")}{" "}
                         <span className="font-semibold">
                           {
                             categories.find((c) => c.value === activeCategory)
@@ -340,7 +350,7 @@ const EventsView = () => {
                       onPress={onOpen}
                       className="bg-black text-white hover:bg-gray-800"
                     >
-                      Filtros
+                      {t("pages.services.filter_button")}
                     </Button>
                   </div>
                 </div>
@@ -348,14 +358,14 @@ const EventsView = () => {
                 <div className="d-flex flex-wrap event-row" id="upcoming-events">
                   {upcomingLoading ? (
                     <div className="w-full text-center py-12">
-                      <p className="text-gray-500 text-lg">Carregando...</p>
+                      <p className="text-gray-500 text-lg">Loading...</p>
                     </div>
                   ) : upcomingEvents.length === 0 ? (
                     <div className="w-full text-center py-12">
                       <p className="text-gray-500 text-lg">
                         {debouncedSearch
-                          ? "Nenhum evento encontrado com esse termo de pesquisa."
-                          : "Nenhum evento disponível no momento."}
+                          ? t("pages.events.no_results")
+                          : t("pages.events.no_events")}
                       </p>
                     </div>
                   ) : (
@@ -378,9 +388,9 @@ const EventsView = () => {
         <Drawer isOpen={isOpen} onClose={onClose} placement="right" size="sm">
           <DrawerContent>
             <DrawerHeader className="flex flex-col gap-1">
-              <h2 className="text-xl font-bold">Filtrar Eventos</h2>
+              <h2 className="text-xl font-bold">{t("pages.services.drawer.title")}</h2>
               <p className="text-sm text-gray-500">
-                Selecione uma categoria para filtrar
+                {t("pages.services.drawer.subtitle")}
               </p>
             </DrawerHeader>
             <DrawerBody>
@@ -394,7 +404,7 @@ const EventsView = () => {
                   size="lg"
                   variant={tempCategory === "all" ? "solid" : "flat"}
                 >
-                  Todos
+                  {t("pages.services.drawer.all")}
                 </Chip>
 
                 {categories.map((category) => (
@@ -415,14 +425,14 @@ const EventsView = () => {
             </DrawerBody>
             <DrawerFooter className="gap-2">
               <Button color="danger" variant="light" onPress={handleResetFilter}>
-                Clear filter
+                {t("pages.services.drawer.clear")}
               </Button>
               <Button
                 color="primary"
                 onPress={handleApplyFilter}
                 className="bg-blue-600"
               >
-                Apply filter
+                {t("pages.services.drawer.apply")}
               </Button>
             </DrawerFooter>
           </DrawerContent>

@@ -13,8 +13,10 @@ import {
 } from "@heroui/react";
 import LeftSidebar from "@/components/LeftSidebar";
 import RightSidebar from "@/components/RightSidebar";
+import { useTranslation } from "react-i18next";
 
 const ServicesView = () => {
+    const { t } = useTranslation();
     const [activeCategory, setActiveCategory] = useState("all");
     const [initialServices, setInitialServices] = useState([]);
     const [filteredServices, setFilteredServices] = useState([]);
@@ -153,7 +155,7 @@ const ServicesView = () => {
                         </span>
                         {service.price !== null && service.price !== undefined && (
                             <span className="text-lg font-bold text-black">
-                                {service.price === 0 ? "Sob Consulta" : new Intl.NumberFormat('ao-AO', { style: 'currency', currency: 'AOA' }).format(service.price)}
+                                {service.price === 0 ? t("pages.services.price_on_request") : new Intl.NumberFormat('ao-AO', { style: 'currency', currency: 'AOA' }).format(service.price)}
                             </span>
                         )}
                     </div>
@@ -170,8 +172,8 @@ const ServicesView = () => {
 
                     <div className="lg:col-span-8 py-4 md:py-6 gap-6 flex flex-col">
                         <section className="py-8 bg-black rounded-xl px-4 sm:px-6 lg:px-8 xl:px-20 text-white shadow-lg">
-                            <h1 className="text-3xl font-bold">Nossos Serviços</h1>
-                            <p className="text-gray-300 mt-2">Explore a variedade de serviços que oferecemos.</p>
+                            <h1 className="text-3xl font-bold">{t("pages.services.title")}</h1>
+                            <p className="text-gray-300 mt-2">{t("pages.services.subtitle")}</p>
                         </section>
 
                         <section id="services" className="bg-white">
@@ -180,7 +182,7 @@ const ServicesView = () => {
                                     <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                                         <Input
                                             type="text"
-                                            placeholder="Procurar serviço"
+                                            placeholder={t("pages.services.search_placeholder")}
                                             value={searchTerm}
                                             onChange={(e) => setSearchTerm(e.target.value)}
                                             variant="bordered"
@@ -195,7 +197,7 @@ const ServicesView = () => {
                                     <div className="flex items-center gap-3">
                                         {activeCategory !== "all" && (
                                             <span className="text-sm text-gray-600">
-                                                Filtrado:{" "}
+                                                {t("pages.services.filtered_by")}{" "}
                                                 <span className="font-semibold">
                                                     {
                                                         categories.find((c) => c.value === activeCategory)
@@ -208,7 +210,7 @@ const ServicesView = () => {
                                             onPress={onOpen}
                                             className="bg-black text-white hover:bg-gray-800"
                                         >
-                                            Filtros
+                                            {t("pages.services.filter_button")}
                                         </Button>
                                     </div>
                                 </div>
@@ -220,8 +222,8 @@ const ServicesView = () => {
                                         <div className="w-full text-center py-12">
                                             <p className="text-gray-500 text-lg">
                                                 {debouncedSearch
-                                                    ? "Nenhum serviço encontrado com esse termo de pesquisa."
-                                                    : "Nenhum serviço disponível no momento."}
+                                                    ? t("pages.services.no_results")
+                                                    : t("pages.services.no_services")}
                                             </p>
                                         </div>
                                     ) : (
@@ -253,9 +255,9 @@ const ServicesView = () => {
             <Drawer isOpen={isOpen} onClose={onClose} placement="right" size="sm">
                 <DrawerContent>
                     <DrawerHeader className="flex flex-col gap-1">
-                        <h2 className="text-xl font-bold">Filtrar Serviços</h2>
+                        <h2 className="text-xl font-bold">{t("pages.services.drawer.title")}</h2>
                         <p className="text-sm text-gray-500">
-                            Selecione uma categoria para filtrar
+                            {t("pages.services.drawer.subtitle")}
                         </p>
                     </DrawerHeader>
                     <DrawerBody>
@@ -269,7 +271,7 @@ const ServicesView = () => {
                                 size="lg"
                                 variant={tempCategory === "all" ? "solid" : "flat"}
                             >
-                                Todos
+                                {t("pages.services.drawer.all")}
                             </Chip>
 
                             {categories.map((category) => (
@@ -290,14 +292,14 @@ const ServicesView = () => {
                     </DrawerBody>
                     <DrawerFooter className="gap-2">
                         <Button color="danger" variant="light" onPress={handleResetFilter}>
-                            Limpar filtro
+                            {t("pages.services.drawer.clear")}
                         </Button>
                         <Button
                             color="primary"
                             onPress={handleApplyFilter}
                             className="bg-blue-600"
                         >
-                            Aplicar filtro
+                            {t("pages.services.drawer.apply")}
                         </Button>
                     </DrawerFooter>
                 </DrawerContent>

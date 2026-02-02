@@ -1,4 +1,63 @@
 {
+  "header": {
+    "home": "Início",
+    "services": "Serviços",
+    "events": "Eventos",
+    "contact": "Contactos",
+    "blogs": "Blogs",
+    "login": "Entrar",
+    "logout": "Sair",
+    "logout_success": "Sessão terminada com sucesso",
+    "icons": {
+      "tv": "TV",
+      "radio": "Rádio"
+    }
+  },
+  "auth": {
+    "login": "Entrar",
+    "register": "Registar",
+    "login_modal": {
+      "welcome": "Bem-vindo",
+      "username_email_label": "Nome de Utilizador ou Email",
+      "username_email_placeholder": "Insira o seu nome de utilizador ou email",
+      "password_label": "Palavra-passe",
+      "password_placeholder": "Insira a sua palavra-passe"
+    },
+    "register_modal": {
+      "name_label": "Nome",
+      "name_placeholder": "Insira o seu nome completo",
+      "email_label": "Email",
+      "email_placeholder": "Insira o seu email",
+      "phone_label": "Telefone",
+      "phone_placeholder": "Insira o seu número de telefone",
+      "birthdate_label": "Data de Nascimento",
+      "confirm_password_label": "Confirmar Palavra-passe",
+      "confirm_password_placeholder": "Confirme a sua palavra-passe"
+    },
+    "toasts": {
+      "login_success": "Login efetuado com sucesso",
+      "generic_error": "Algo correu mal",
+      "fill_all_fields": "Por favor, preencha todos os campos",
+      "birthdate_invalid": "A data de nascimento deve ser anterior a hoje",
+      "password_mismatch": "As palavras-passe não coincidem",
+      "register_success": "Registado com sucesso"
+    }
+  },
+  "footer": {
+    "copyright": "Copyright © {{year}} – CASA VIANA | Todos os direitos reservados."
+  },
+  "sidebar": {
+    "left": {
+      "services_title": "Nossos serviços",
+      "advertisement_alt": "Publicidade",
+      "menu_item_alt": "Item do Menu"
+    },
+    "right": {
+      "directory_title": "Directório",
+      "recent_posts_title": "Publicações Recentes",
+      "no_blogs": "Nenhum blog em destaque encontrado."
+    }
+  },
   "cardapio": {
     "title": "Cardápio",
     "loadingCategories": "Carregando categorias...",
@@ -19,25 +78,522 @@
     "dietaryTags": "Tags Dietéticas",
     "close": "Fechar",
     "addToCart": "Adicionar ao Carrinho",
+    "adding": "Adicionando...",
+    "add_success": {
+      "title": "Item adicionado ao carrinho",
+      "message": "Item adicionado com sucesso!"
+    },
+    "add_error": {
+      "title": "Erro",
+      "message": "Erro ao adicionar item ao carrinho"
+    },
     "noItemsFound": "Nenhum item encontrado nesta categoria",
     "categoryNotFound": "Categoria não encontrada"
+  },
+  "profile": {
+    "sidebar": {
+      "my_profile": "Meu Perfil",
+      "bookings": "Reservas",
+      "orders": "Pedidos",
+      "favorites": "Favoritos",
+      "address": "Endereço",
+      "wallet": "Carteira",
+      "transactions": "Transações",
+      "payments": "Pagamentos",
+      "chat": "Chat",
+      "support_tickets": "Suporte",
+      "refer_earn": "Indique e Ganhe",
+      "default_user": "Usuário",
+      "no_email": "Sem email"
+    }
+  },
+  "home": {
+    "events": {
+      "featured_title": "EVENTOS EM DESTAQUE"
+    },
+    "featured": {
+      "title": "DESTAQUES DO CENTRO CULTURAL"
+    },
+    "cta": {
+      "view_more": "Veja mais"
+    },
+    "sections": {
+      "spaces_default": "ESPAÇOS"
+    }
+  },
+  "bookings": {
+    "title": "Reservas de Eventos",
+    "subtitle": "Veja todas as suas reservas de bilhetes de eventos",
+    "status": {
+      "all": "Todos os Estados",
+      "pending": "Pendente",
+      "confirmed": "Confirmado",
+      "cancelled": "Cancelado"
+    },
+    "table": {
+      "booking_number": "RESERVA #",
+      "event": "EVENTO",
+      "ticket_type": "TIPO DE BILHETE",
+      "quantity": "QTD",
+      "amount": "VALOR",
+      "status": "ESTADO",
+      "booked_at": "RESERVADO EM",
+      "actions": "AÇÕES"
+    },
+    "error": {
+      "fetch_failed": "Falha ao carregar reservas",
+      "retry": "Tentar novamente"
+    },
+    "filters": {
+      "status": "Filtrar por Estado",
+      "select_status": "Selecione o estado",
+      "clear": "Limpar Filtros",
+      "refresh": "Atualizar"
+    },
+    "pagination": {
+      "total_bookings": "total de reservas",
+      "page": "Página",
+      "of": "de",
+      "showing": "Mostrando",
+      "per_page": "por página"
+    },
+    "empty": {
+      "filtered": "Nenhuma reserva encontrada para o estado {{status}}",
+      "title": "Nenhuma reserva encontrada",
+      "filtered_subtitle": "Tente selecionar um filtro de estado diferente",
+      "subtitle": "Suas reservas de eventos aparecerão aqui",
+      "clear_filters": "Limpar Filtros"
+    },
+    "actions": {
+      "view_details": "Ver Detalhes"
+    }
+  },
+  "orders": {
+    "title": "Meus Pedidos",
+    "subtitle": "Acompanhe o histórico de seus pedidos de comida",
+    "status": {
+      "all": "Todos os Estados",
+      "pending": "Pendente",
+      "completed": "Concluído",
+      "cancelled": "Cancelado",
+      "processing": "Em Processamento",
+      "delivered": "Entregue"
+    },
+    "table": {
+      "order_number": "PEDIDO #",
+      "items": "ITENS",
+      "total_amount": "VALOR TOTAL",
+      "status": "ESTADO",
+      "date": "DATA",
+      "actions": "AÇÕES"
+    },
+    "error": {
+      "fetch_failed": "Falha ao carregar pedidos",
+      "retry": "Tentar novamente"
+    },
+    "filters": {
+      "status": "Filtrar por Estado",
+      "select_status": "Selecione o estado",
+      "search": "Pesquisar",
+      "search_placeholder": "Buscar pedidos...",
+      "clear": "Limpar",
+      "refresh": "Atualizar"
+    },
+    "pagination": {
+      "total_orders": "total de pedidos",
+      "page": "Página",
+      "of": "de"
+    },
+    "empty": {
+      "filtered": "Nenhum pedido encontrado com os filtros atuais",
+      "title": "Você ainda não fez nenhum pedido de comida",
+      "filtered_subtitle": "Tente limpar os filtros ou mudar sua pesquisa",
+      "subtitle": "Explore nosso cardápio e faça seu primeiro pedido!",
+      "clear_filters": "Limpar Filtros"
+    },
+    "item": {
+      "no_items": "Pedido sem itens",
+      "more_items": "+ {{count}} outros itens"
+    },
+    "actions": {
+      "view_details": "Ver Detalhes"
+    }
+  },
+  "pages": {
+    "home": {
+      "hero_title": "Bem-vindo à Casa Viana",
+      "hero_subtitle": "A melhor experiência de eventos e serviços",
+      "featured_services": "Serviços em Destaque",
+      "upcoming_events": "Próximos Eventos",
+      "view_all": "Ver Todos"
+    },
+    "services": {
+      "title": "Nossos Serviços",
+      "subtitle": "Explore a variedade de serviços que oferecemos.",
+      "search_placeholder": "Procurar serviço",
+      "filtered_by": "Filtrado:",
+      "filter_button": "Filtros",
+      "no_results": "Nenhum serviço encontrado com esse termo de pesquisa.",
+      "no_services": "Nenhum serviço disponível no momento.",
+      "price_on_request": "Sob Consulta",
+      "drawer": {
+        "title": "Filtrar Serviços",
+        "subtitle": "Selecione uma categoria para filtrar",
+        "all": "Todos",
+        "clear": "Limpar filtro",
+        "apply": "Aplicar filtro"
+      },
+      "details": {
+        "not_found": "Serviço não encontrado.",
+        "min_capacity": "Capacidade Mínima",
+        "max_capacity": "Capacidade Máxima",
+        "min_notice": "Aviso Prévio Mínimo",
+        "hours": "Horas",
+        "people": "Pessoas",
+        "description_title": "Detalhes do Serviço",
+        "no_description": "Nenhuma descrição adicional disponível.",
+        "interested_title": "Interessado neste serviço?",
+        "interested_text": "Entre em contacto connosco para verificar disponibilidade e fazer uma reserva.",
+        "book_now": "Reservar Agora",
+        "contact_us": "Contactar-nos",
+        "success_title": "Pedido Enviado!",
+        "success_message": "O seu pedido de reserva foi enviado com sucesso. Entraremos em contacto brevemente para confirmar os detalhes.",
+        "close_button": "Fechar"
+      }
+    },
+    "events": {
+      "title": "Eventos",
+      "highlights": "Destaques",
+      "upcoming": "Próximos eventos",
+      "search_placeholder": "Procurar evento",
+      "buy_ticket": "Comprar Ingresso",
+      "sold_out": "Esgotado",
+      "registration_open": "Inscrições Abertas",
+      "all_day": "Dia Todo",
+      "uncategorized": "Sem Categoria",
+      "no_highlights": "Nenhum evento em destaque no momento.",
+      "no_results": "Nenhum evento encontrado com esse termo de pesquisa.",
+      "no_events": "Nenhum evento disponível no momento.",
+      "details": {
+        "not_found": "Evento não encontrado",
+        "duration": "Duração",
+        "min": "min",
+        "classification": "Classificação",
+        "general": "Geral",
+        "promoter": "Promotor",
+        "info_title": "Informações & Reservas",
+        "short_description": "Breve Descrição",
+        "location": "Localização",
+        "location_unavailable": "Localização indisponível",
+        "select_tickets": "Selecione os Ingressos",
+        "download": "Baixar",
+        "no_ticket_description": "Sem descrição disponível",
+        "sales_in_person": "Vendas apenas presencialmente",
+        "subtotal": "Subtotal",
+        "total_event": "Total do Evento",
+        "book_tickets": "Reservar Ingressos",
+        "booking": "A Reservar...",
+        "reviews": "Comentários",
+        "event_ended": "Este evento já terminou",
+        "bookings_closed": "As reservas para este evento estão encerradas.",
+        "toasts": {
+          "invalid_event": "Evento inválido",
+          "select_one": "Selecione pelo menos 1 ingresso",
+          "invalid_ticket": "Tipo de ingresso inválido",
+          "quantity_exceeded": "Quantidade solicitada maior que disponível para {{name}}",
+          "success": "Ingresso reservado com sucesso",
+          "error": "Erro ao reservar ingresso",
+          "init_payment_error": "Erro ao iniciar pagamento",
+          "mixed_results": "Sucesso: {{success}}, Falha: {{fail}}"
+        }
+      }
+    },
+    "blogs": {
+      "title": "Nossos Blogs",
+      "subtitle": "Explore nossos artigos mais recentes, notícias e atualizações.",
+      "search_placeholder": "Pesquisar...",
+      "all": "Todos",
+      "read_more": "Ler mais",
+      "min_read": "min leitura",
+      "oops": "Oops!",
+      "error_loading": "Falha ao carregar conteúdo",
+      "try_again": "Tentar Novamente",
+      "no_articles": "Nenhum artigo encontrado",
+      "no_articles_desc": "Tente ajustar seus termos de pesquisa ou categoria.",
+      "clear_filters": "Limpar filtros",
+      "details": {
+        "error_fetching": "Erro ao buscar artigo",
+        "not_found": "Artigo não encontrado.",
+        "author": "Autor",
+        "related_posts": "Posts Relacionados",
+        "no_image": "Sem imagem",
+        "no_excerpt": "Sem resumo disponível."
+      }
+    }
+  },
+  "layout": {
+    "services": {
+      "default_title": "Nossos Serviços",
+      "default_description": "Explore a variedade de serviços que oferecemos."
+    }
+  },
+  "cart": {
+    "title": "Carrinho",
+    "item_count_singular": "item",
+    "item_count_plural": "itens",
+    "total": "Total:",
+    "actions": {
+      "clear": "Limpar",
+      "checkout": "Finalizar Compra"
+    },
+    "empty": {
+      "title": "Carrinho vazio",
+      "description": "Adicione itens ao carrinho antes de finalizar"
+    },
+    "empty_state": {
+      "title": "Seu carrinho está vazio"
+    },
+    "error": {
+      "title": "Erro",
+      "update_quantity": "Erro ao atualizar quantidade",
+      "clear": "Erro ao esvaziar carrinho",
+      "cart_id_not_found": "ID do carrinho não encontrado",
+      "payment_initiation": "Erro ao iniciar pagamento",
+      "payment_processing": "Ocorreu um erro ao processar o pagamento.",
+      "payment_processing_retry": "Ocorreu um erro ao processar o pagamento. Por favor, tente novamente."
+    },
+    "success": {
+      "title": "Sucesso",
+      "clear": "Carrinho esvaziado com sucesso"
+    }
+  },
+  "service_booking": {
+    "form": {
+      "date_label": "Data da Reserva",
+      "time_label": "Hora de Início",
+      "room_label": "Sala / Espaço",
+      "room_placeholder": "Selecione uma sala (Opcional)",
+      "guests_label": "Nº de Convidados",
+      "event_type_label": "Tipo de Evento",
+      "event_type_placeholder": "Selecione o tipo de evento",
+      "other_type_placeholder": "Especifique o tipo de evento...",
+      "name_label": "Nome Completo",
+      "email_label": "Email",
+      "institution_label": "Organização / Instituição",
+      "institution_placeholder": "Opcional",
+      "phone_label": "Telefone",
+      "whatsapp_label": "Número WhatsApp",
+      "notes_label": "Notas / Observações",
+      "notes_placeholder": "Detalhes adicionais sobre o evento...",
+      "addons_title": "Serviços Adicionais (Addons)",
+      "addons_subtitle": "Clique para ver os extras disponíveis",
+      "login_button": "Fazer Login",
+      "cancel_button": "Cancelar",
+      "submit_button": "Confirmar Reserva",
+      "optional": "Opcional"
+    },
+    "errors": {
+      "login_required": "Precisa fazer login para efectuar uma reserva.",
+      "generic_error": "Ocorreu um erro ao enviar a reserva.",
+      "connection_error": "Erro de conexão. Tente novamente."
+    },
+    "event_types": {
+      "Casamento": "Casamento",
+      "Aniversário": "Aniversário",
+      "Reserva de Almoço": "Reserva de Almoço",
+      "Reserva de Jantar": "Reserva de Jantar",
+      "Encomenda": "Encomenda",
+      "Reserva Empresarial": "Reserva Empresarial",
+      "Conferência": "Conferência",
+      "Reunião": "Reunião",
+      "Outro": "Outro"
+    }
+  },
+  "modals": {
+    "actions": {
+      "cancel": "Cancelar",
+      "logout": "Sair",
+      "continue": "Continuar"
+    },
+    "logout": {
+      "title": "Confirmar Saída",
+      "message": "Tem certeza que deseja sair?"
+    },
+    "report": {
+      "title": "Denunciar Comentário",
+      "description": "Por favor, forneça um motivo para denunciar este comentário.",
+      "placeholder": "Digite seu motivo aqui...",
+      "submit": "Enviar Denúncia"
+    },
+    "payment_gateway": {
+      "processing": "Processando Pagamento",
+      "select_method": "Selecione o Método de Pagamento",
+      "waiting_confirmation": "A aguardar confirmação do pagamento...",
+      "loading": "A carregar métodos de pagamento...",
+      "no_methods": "Nenhum método de pagamento disponível",
+      "descriptions": {
+        "bank_transfer": "Transfira diretamente para a nossa conta bancária",
+        "multicaixa_express": "Pagamento online seguro via Multicaixa"
+      }
+    },
+    "payment_result": {
+      "success": {
+        "title": "Pagamento bem-sucedido",
+        "description": "Seu pagamento foi processado com sucesso!"
+      },
+      "failed": {
+        "title": "Pagamento falhou",
+        "description": "O pagamento não foi processado. Por favor, tente novamente."
+      }
+    },
+    "payment_instructions": {
+      "title": "Prossiga com o Pagamento",
+      "message": "Por favor, proceda com a transferência bancária utilizando os detalhes abaixo.",
+      "reference": "Referência:",
+      "total_amount": "Valor Total:",
+      "bank_details": "Dados Bancários:",
+      "iban": "IBAN:",
+      "account": "Conta:"
+    },
+    "proof": {
+      "title": "Carregar Comprovativo de Pagamento",
+      "select_image": "Clique para selecionar imagem",
+      "file_info": "PNG, JPG até 5MB",
+      "loading": "A carregar...",
+      "submit": "Carregar Comprovativo",
+      "validation": {
+        "invalid_type": "Por favor, selecione um ficheiro de imagem válido (JPG, PNG).",
+        "size_limit": "O tamanho do ficheiro deve ser inferior a 5MB.",
+        "error_title": "Erro de validação",
+        "no_file": "Por favor, selecione um comprovativo."
+      },
+      "success": {
+        "title": "Sucesso",
+        "message": "Comprovativo carregado com sucesso!"
+      },
+      "error": {
+        "upload_title": "Erro no carregamento",
+        "generic": "Erro ao carregar o comprovativo.",
+        "unexpected": "Ocorreu um erro inesperado."
+      }
+    }
   },
   "payments": {
     "title": "Histórico de Pagamentos",
     "subtitle": "Veja todas as suas transações de pagamento",
-    "loading": "Carregando pagamentos...",
-    "noPayments": "Nenhum pagamento encontrado",
+    "error": "Falha ao carregar pagamentos",
     "retry": "Tentar novamente",
-    "id": "ID",
-    "date": "Data",
-    "amount": "Valor",
-    "method": "Método",
-    "status": "Status",
-    "reference": "Referência",
-    "completed": "Concluído",
-    "pending": "Pendente",
-    "failed": "Falhou",
-    "cancelled": "Cancelado",
-    "refunded": "Reembolsado"
-  }
+    "no_payments": "Nenhum pagamento encontrado",
+    "no_payments_desc": "Seu histórico de pagamentos aparecerá aqui",
+    "table": {
+      "id": "ID",
+      "date": "DATA",
+      "amount": "VALOR",
+      "method": "MÉTODO",
+      "status": "ESTADO",
+      "type": "TIPO",
+      "actions": "AÇÕES"
+    },
+    "status": {
+      "completed": "Concluído",
+      "paid": "Pago",
+      "pending": "Pendente",
+      "proof_uploaded": "Comprovativo Enviado",
+      "failed": "Falhou",
+      "cancelled": "Cancelado"
+    },
+    "actions": {
+      "no_action": "Nenhuma ação",
+      "upload_proof": "Enviar Comprovativo",
+      "view_proof": "Ver Comprovativo"
+    },
+    "modal": {
+      "title": "Comprovativo de Pagamento",
+      "close": "Fechar"
+    }
+  },
+  "maintenance": {
+    "title": "Em Manutenção",
+    "default_message": "Estamos a realizar melhorias no nosso sistema para lhe oferecer uma melhor experiência. Voltaremos em breve!",
+    "start": "Início:",
+    "end": "Fim Previsto:",
+    "footer": "Agradecemos a sua compreensão"
+  },
+  "comments": {
+    "title": "Comentários",
+    "reply": "Responder",
+    "replies": "respostas",
+    "report": "Denunciar",
+    "cancel": "Cancelar",
+    "submit": "Comentar",
+    "placeholder": "O que está a pensar?",
+    "login_to_comment": "Entre ou registe-se para deixar um comentário",
+    "login_to_report": "Por favor faça login para denunciar",
+    "loading": "A carregar comentários...",
+    "no_comments": "Ainda Sem Comentários",
+    "be_first": "Seja o primeiro a partilhar o que pensa!",
+    "comment_as": "Comentar como",
+    "time": {
+      "years": "anos atrás",
+      "months": "meses atrás",
+      "days": "dias atrás",
+      "hours": "h atrás",
+      "minutes": "min atrás",
+      "seconds": "s atrás"
+    },
+    "toasts": {
+      "empty": "Por favor insira um comentário",
+      "login_required": "Por favor faça login para comentar",
+      "success": "Comentário enviado com sucesso",
+      "error": "Falha ao enviar comentário",
+      "report_success": "Denúncia enviada com sucesso",
+      "report_error": "Falha ao enviar denúncia"
+    }
+  },
+  "ratings": {
+    "title": "Avaliações e Críticas",
+    "write_review": "Escrever Avaliação",
+    "reviews": "Críticas",
+    "ratings": "Avaliações",
+    "no_ratings": "Ainda sem avaliações",
+    "be_first": "Seja o primeiro a partilhar a sua experiência!",
+    "write_first": "Escrever Primeira Avaliação",
+    "view_all": "Ver todas as {{count}} críticas",
+    "modal": {
+      "title": "Partilhe a Sua Experiência",
+      "subtitle": "O seu feedback ajuda outros a tomar decisões informadas",
+      "how_rate": "Como avalia isto?",
+      "select_rating": "Selecione uma avaliação",
+      "of_5": "de 5 estrelas",
+      "review_title": "Título da Avaliação",
+      "title_placeholder": "Resuma a sua experiência",
+      "review_body": "A Sua Avaliação",
+      "body_placeholder": "Partilhe detalhes sobre a sua experiência...",
+      "submit": "Enviar Avaliação",
+      "submitting": "A enviar...",
+      "chars": "caracteres"
+    },
+    "labels": {
+      "very_bad": "Muito Mau",
+      "bad": "Mau",
+      "medium": "Médio",
+      "good": "Bom",
+      "excellent": "Excelente"
+    },
+    "toasts": {
+      "select_rating": "Por favor selecione uma avaliação",
+      "success": "Avaliação enviada",
+      "error": "Falha ao enviar avaliação"
+    }
+  },
+  "404": {
+    "title": "Oops! Página Não Encontrada",
+    "message": "A página que procura parece ter-se perdido. Vamos ajudá-lo a encontrar o caminho!",
+    "back_home": "Voltar ao Início",
+    "go_back": "Voltar"
+  },
+  "meta": {
+    "description": "Restaurante e Marisqueira Casa Viana - O melhor marisco."
+  },
+  "loading_system": "A carregar..."
 }

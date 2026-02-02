@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import {
     Table,
     TableHeader,
@@ -19,6 +19,7 @@ import {
 import { get_orders } from "@/Api/api";
 import OrderDetailsModal from "../components/Modals/OrderDetailsModal";
 import ProfileSidebar from "./ProfileSidebar";
+import { useTranslation } from "react-i18next";
 
 const statusColorMap = {
     completed: "success",
@@ -28,51 +29,8 @@ const statusColorMap = {
     cancelled: "danger",
 };
 
-const statusOptions = [
-    { key: "all", label: "Todos os Estados" },
-    { key: "pending", label: "Pendente" },
-    { key: "completed", label: "Concluído" },
-    { key: "cancelled", label: "Cancelado" },
-];
-
-const TableSkeleton = () => (
-    <Table aria-label="Loading orders">
-        <TableHeader>
-            <TableColumn>PEDIDO #</TableColumn>
-            <TableColumn>ITENS</TableColumn>
-            <TableColumn>VALOR TOTAL</TableColumn>
-            <TableColumn>ESTADO</TableColumn>
-            <TableColumn>DATA</TableColumn>
-            <TableColumn>AÇÕES</TableColumn>
-        </TableHeader>
-        <TableBody>
-            {[...Array(5)].map((_, index) => (
-                <TableRow key={index}>
-                    <TableCell>
-                        <Skeleton className="h-4 w-16 rounded" />
-                    </TableCell>
-                    <TableCell>
-                        <Skeleton className="h-4 w-32 rounded" />
-                    </TableCell>
-                    <TableCell>
-                        <Skeleton className="h-4 w-24 rounded" />
-                    </TableCell>
-                    <TableCell>
-                        <Skeleton className="h-6 w-20 rounded-full" />
-                    </TableCell>
-                    <TableCell>
-                        <Skeleton className="h-4 w-32 rounded" />
-                    </TableCell>
-                    <TableCell>
-                        <Skeleton className="h-8 w-8 rounded-full" />
-                    </TableCell>
-                </TableRow>
-            ))}
-        </TableBody>
-    </Table>
-);
-
 export default function OrdersView() {
+    const { t } = useTranslation();
     const [orders, setOrders] = useState([]);
     const [page, setPage] = useState(1);
     const [perPage] = useState(10);
@@ -85,6 +43,15 @@ export default function OrdersView() {
     const [isDetailsOpen, setIsDetailsOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [debouncedSearch, setDebouncedSearch] = useState("");
+
+    const statusOptions = useMemo(() => [
+        { key: "all", label: t("orders.status.all") },
+        { key: "pending", label: t("orders.status.pending") },
+        { key: "processing", label: t("orders.status.processing") },
+        { key: "completed", label: t("orders.status.completed") },
+        { key: "delivered", label: t("orders.status.delivered") },
+        { key: "cancelled", label: t("orders.status.cancelled") },
+    ], [t]);
 
     // Debounce search
     useEffect(() => {
@@ -119,12 +86,12 @@ export default function OrdersView() {
                 setTotalPages(paginationData.last_page || 1);
                 setTotalRecords(paginationData.total || 0);
             } else {
-                setError(response?.error || "Falha ao carregar pedidos");
+                setError(response?.error || t("orders.error.fetch_failed"));
                 setOrders([]);
             }
         } catch (err) {
             console.error("Failed to fetch orders", err);
-            setError("Falha ao carregar pedidos");
+            setError(t("orders.error.fetch_failed"));
             setOrders([]);
         } finally {
             setLoading(false);
@@ -169,6 +136,43 @@ export default function OrdersView() {
         return `${integerPart},${decimalPart} AOA`;
     };
 
+    const TableSkeleton = () => (
+        <Table aria-label={t("orders.title")}>
+            <TableHeader>
+                <TableColumn>{t("orders.table.order_number")}</TableColumn>
+                <TableColumn>{t("orders.table.items")}</TableColumn>
+                <TableColumn>{t("orders.table.total_amount")}</TableColumn>
+                <TableColumn>{t("orders.table.status")}</TableColumn>
+                <TableColumn>{t("orders.table.date")}</TableColumn>
+                <TableColumn>{t("orders.table.actions")}</TableColumn>
+            </TableHeader>
+            <TableBody>
+                {[...Array(5)].map((_, index) => (
+                    <TableRow key={index}>
+                        <TableCell>
+                            <Skeleton className="h-4 w-16 rounded" />
+                        </TableCell>
+                        <TableCell>
+                            <Skeleton className="h-4 w-32 rounded" />
+                        </TableCell>
+                        <TableCell>
+                            <Skeleton className="h-4 w-24 rounded" />
+                        </TableCell>
+                        <TableCell>
+                            <Skeleton className="h-6 w-20 rounded-full" />
+                        </TableCell>
+                        <TableCell>
+                            <Skeleton className="h-4 w-32 rounded" />
+                        </TableCell>
+                        <TableCell>
+                            <Skeleton className="h-8 w-8 rounded-full" />
+                        </TableCell>
+                    </TableRow>
+                ))}
+            </TableBody>
+        </Table>
+    );
+
     if (error && !loading) {
         return (
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 mt-24 px-4 mb-8">
@@ -193,7 +197,7 @@ export default function OrdersView() {
                             onPress={fetchOrders}
                             className="bg-amber-500 text-white font-semibold"
                         >
-                            Tentar novamente
+                            {t("orders.error.retry")}
                         </Button>
                     </div>
                 </div>
@@ -208,10 +212,10 @@ export default function OrdersView() {
             <div className="flex-1">
                 <div className="mb-6">
                     <h1 className="text-3xl font-bold text-gray-900">
-                        Meus Pedidos
+                        {t("orders.title")}
                     </h1>
                     <p className="text-gray-600 mt-2">
-                        Acompanhe o histórico de seus pedidos de comida
+                        {t("orders.subtitle")}
                     </p>
                 </div>
 
@@ -220,10 +224,10 @@ export default function OrdersView() {
                     <div className="flex flex-col sm:flex-row gap-4 items-end">
                         <div className="flex-1 max-w-xs">
                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Filtrar por Estado
+                                {t("orders.filters.status")}
                             </label>
                             <Select
-                                placeholder="Selecione o estado"
+                                placeholder={t("orders.filters.select_status")}
                                 selectedKeys={new Set([statusFilter])}
                                 onSelectionChange={handleStatusChange}
                                 className="max-w-xs"
@@ -240,10 +244,10 @@ export default function OrdersView() {
 
                         <div className="flex-1 max-w-xs">
                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Pesquisar
+                                {t("orders.filters.search")}
                             </label>
                             <Input
-                                placeholder="Buscar pedidos..."
+                                placeholder={t("orders.filters.search_placeholder")}
                                 value={searchQuery}
                                 onValueChange={setSearchQuery}
                                 startContent={
@@ -292,7 +296,7 @@ export default function OrdersView() {
                                         </svg>
                                     }
                                 >
-                                    Limpar
+                                    {t("orders.filters.clear")}
                                 </Button>
                             )}
                             <Button
@@ -316,7 +320,7 @@ export default function OrdersView() {
                                     </svg>
                                 }
                             >
-                                Atualizar
+                                {t("orders.filters.refresh")}
                             </Button>
                         </div>
                     </div>
@@ -340,7 +344,7 @@ export default function OrdersView() {
                                     />
                                 </svg>
                                 <span>
-                                    <strong>{totalRecords}</strong> total de pedidos
+                                    <strong>{totalRecords}</strong> {t("orders.pagination.total_orders")}
                                 </span>
                             </div>
                             <div className="flex items-center gap-2">
@@ -359,7 +363,7 @@ export default function OrdersView() {
                                     />
                                 </svg>
                                 <span>
-                                    Página <strong>{page}</strong> de{" "}
+                                    {t("orders.pagination.page")} <strong>{page}</strong> {t("orders.pagination.of")}{" "}
                                     <strong>{totalPages}</strong>
                                 </span>
                             </div>
@@ -387,20 +391,20 @@ export default function OrdersView() {
 
                         <p className="text-gray-600 text-lg">
                             {statusFilter !== "all" || searchQuery
-                                ? "Nenhum pedido encontrado com os filtros atuais"
-                                : "Você ainda não fez nenhum pedido de comida"}
+                                ? t("orders.empty.filtered")
+                                : t("orders.empty.title")}
                         </p>
                         <p className="text-gray-500 text-sm mt-2">
                             {statusFilter !== "all" || searchQuery
-                                ? "Tente limpar os filtros ou mudar sua pesquisa"
-                                : "Explore nosso cardápio e faça seu primeiro pedido!"}
+                                ? t("orders.empty.filtered_subtitle")
+                                : t("orders.empty.subtitle")}
                         </p>
                         {(statusFilter !== "all" || searchQuery) && (
                             <Button
                                 onPress={handleClearFilters}
                                 className="mt-4 bg-amber-500 text-white"
                             >
-                                Limpar Filtros
+                                {t("orders.empty.clear_filters")}
                             </Button>
                         )}
                     </div>
@@ -408,7 +412,7 @@ export default function OrdersView() {
                     <div className="bg-white rounded-lg shadow overflow-hidden">
                         <div className="overflow-x-auto">
                             <Table
-                                aria-label="Tabela de pedidos"
+                                aria-label={t("orders.title")}
                                 className="min-w-full"
                                 bottomContent={
                                     totalPages > 1 ? (
@@ -426,12 +430,12 @@ export default function OrdersView() {
                                 }
                             >
                                 <TableHeader>
-                                    <TableColumn>PEDIDO #</TableColumn>
-                                    <TableColumn>ITENS</TableColumn>
-                                    <TableColumn>VALOR TOTAL</TableColumn>
-                                    <TableColumn>ESTADO</TableColumn>
-                                    <TableColumn>DATA</TableColumn>
-                                    <TableColumn>AÇÕES</TableColumn>
+                                    <TableColumn>{t("orders.table.order_number")}</TableColumn>
+                                    <TableColumn>{t("orders.table.items")}</TableColumn>
+                                    <TableColumn>{t("orders.table.total_amount")}</TableColumn>
+                                    <TableColumn>{t("orders.table.status")}</TableColumn>
+                                    <TableColumn>{t("orders.table.date")}</TableColumn>
+                                    <TableColumn>{t("orders.table.actions")}</TableColumn>
                                 </TableHeader>
 
                                 <TableBody>
@@ -446,11 +450,11 @@ export default function OrdersView() {
                                             <TableCell>
                                                 <div className="flex flex-col">
                                                     <span className="font-medium text-gray-900">
-                                                        {order.items?.length > 0 ? order.items[0].menu_item?.name : "Pedido sem itens"}
+                                                        {order.items?.length > 0 ? order.items[0].menu_item?.name : t("orders.item.no_items")}
                                                     </span>
                                                     {order.items?.length > 1 && (
                                                         <span className="text-xs text-gray-500">
-                                                            + {order.items.length - 1} outros itens
+                                                            {t("orders.item.more_items", { count: order.items.length - 1 })}
                                                         </span>
                                                     )}
                                                 </div>
@@ -469,13 +473,7 @@ export default function OrdersView() {
                                                     variant="flat"
                                                     className="capitalize"
                                                 >
-                                                    {order.status === "completed"
-                                                        ? "Concluído"
-                                                        : order.status === "pending"
-                                                            ? "Pendente"
-                                                            : order.status === "cancelled"
-                                                                ? "Cancelado"
-                                                                : order.status}
+                                                    {t(`orders.status.${order.status}`) || order.status}
                                                 </Chip>
                                             </TableCell>
 
@@ -492,7 +490,7 @@ export default function OrdersView() {
                                                     variant="light"
                                                     color="primary"
                                                     onPress={() => handleViewDetails(order)}
-                                                    aria-label="Ver Detalhes"
+                                                    aria-label={t("orders.actions.view_details")}
                                                 >
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"

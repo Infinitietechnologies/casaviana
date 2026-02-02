@@ -15,8 +15,10 @@ import { initiate_payment, delete_cart, add_to_cart, get_cart } from "@/Api/api"
 import { clearCart, addItemToCart, setCart } from "@/store/cartSlice";
 import PaymentGatewayModal from "./Modals/PaymentGatewayModal";
 import PaymentInstructionsModal from "./Modals/PaymentInstructionsModal";
+import { useTranslation } from "react-i18next";
 
 const CartOffcanvas = ({ isOpen, onClose }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
@@ -58,8 +60,8 @@ const CartOffcanvas = ({ isOpen, onClose }) => {
         }
       } else {
         addToast({
-          title: "Erro",
-          description: response?.error || "Erro ao atualizar quantidade",
+          title: t("cart.error.title"),
+          description: response?.error || t("cart.error.update_quantity"),
           color: "danger",
         });
       }
@@ -81,8 +83,8 @@ const CartOffcanvas = ({ isOpen, onClose }) => {
   const handleCheckout = () => {
     if (cart.items.length === 0) {
       addToast({
-        title: "Carrinho vazio",
-        description: "Adicione itens ao carrinho antes de finalizar",
+        title: t("cart.empty.title"),
+        description: t("cart.empty.description"),
         color: "warning",
       });
       return;
@@ -99,22 +101,22 @@ const CartOffcanvas = ({ isOpen, onClose }) => {
       if (res?.success !== false) { // Assuming success or data is returned
         dispatch(clearCart());
         addToast({
-          title: "Sucesso",
-          description: "Carrinho esvaziado com sucesso",
+          title: t("cart.success.title"),
+          description: t("cart.success.clear"),
           color: "success",
         });
       } else {
         addToast({
-          title: "Erro",
-          description: res?.error || "Erro ao esvaziar carrinho",
+          title: t("cart.error.title"),
+          description: res?.error || t("cart.error.clear"),
           color: "danger",
         });
       }
     } catch (error) {
       console.error("Error clearing cart:", error);
       addToast({
-        title: "Erro",
-        description: "Erro ao esvaziar carrinho",
+        title: t("cart.error.title"),
+        description: t("cart.error.clear"),
         color: "danger",
       });
     } finally {
@@ -133,8 +135,8 @@ const CartOffcanvas = ({ isOpen, onClose }) => {
 
     if (!cartId) {
       addToast({
-        title: "Erro",
-        description: "ID do carrinho não encontrado",
+        title: t("cart.error.title"),
+        description: t("cart.error.cart_id_not_found"),
         color: "danger",
       });
       return;
@@ -161,16 +163,16 @@ const CartOffcanvas = ({ isOpen, onClose }) => {
         onGatewayModalClose();
       } else {
         addToast({
-          title: "Erro ao iniciar pagamento",
-          description: res?.error || "Ocorreu um erro ao processar o pagamento.",
+          title: t("cart.error.payment_initiation"),
+          description: res?.error || t("cart.error.payment_processing"),
           color: "danger",
         });
       }
     } catch (error) {
       console.error("Error initiating payment:", error);
       addToast({
-        title: "Erro ao iniciar pagamento",
-        description: "Ocorreu um erro ao processar o pagamento. Por favor, tente novamente.",
+        title: t("cart.error.payment_initiation"),
+        description: t("cart.error.payment_processing_retry"),
         color: "danger",
       });
     } finally {
@@ -192,9 +194,9 @@ const CartOffcanvas = ({ isOpen, onClose }) => {
         <DrawerContent>
           <DrawerHeader className="flex flex-row justify-between items-center border-b">
             <div className="flex flex-col gap-1">
-              <h2 className="text-2xl font-bold">Carrinho</h2>
+              <h2 className="text-2xl font-bold">{t("cart.title")}</h2>
               <p className="text-sm text-gray-500">
-                {cart.items.length} {cart.items.length === 1 ? "item" : "itens"}
+                {cart.items.length} {cart.items.length === 1 ? t("cart.item_count_singular") : t("cart.item_count_plural")}
               </p>
             </div>
             {cart.items.length > 0 && (
@@ -205,7 +207,7 @@ const CartOffcanvas = ({ isOpen, onClose }) => {
                 onPress={handleClearCart}
                 isLoading={clearLoading}
               >
-                Limpar
+                {t("cart.actions.clear")}
               </Button>
             )}
           </DrawerHeader>
@@ -225,7 +227,7 @@ const CartOffcanvas = ({ isOpen, onClose }) => {
                     d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
                   />
                 </svg>
-                <p className="text-gray-500 text-lg">Seu carrinho está vazio</p>
+                <p className="text-gray-500 text-lg">{t("cart.empty_state.title")}</p>
               </div>
             ) : (
               <div className="divide-y">
@@ -289,7 +291,7 @@ const CartOffcanvas = ({ isOpen, onClose }) => {
             <DrawerFooter className="border-t">
               <div className="w-full">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-lg font-semibold">Total:</span>
+                  <span className="text-lg font-semibold">{t("cart.total")}</span>
                   <span className="text-2xl font-bold text-red-600">
                     {formatPrice(cart.finalTotal)} Kz
                   </span>
@@ -301,7 +303,7 @@ const CartOffcanvas = ({ isOpen, onClose }) => {
                   onPress={handleCheckout}
                   isLoading={checkoutLoading}
                 >
-                  Finalizar Compra
+                  {t("cart.actions.checkout")}
                 </Button>
               </div>
             </DrawerFooter>
@@ -326,4 +328,3 @@ const CartOffcanvas = ({ isOpen, onClose }) => {
 };
 
 export default CartOffcanvas;
-

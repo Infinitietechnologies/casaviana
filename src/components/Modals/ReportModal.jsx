@@ -8,8 +8,10 @@ import {
   ModalHeader,
   Textarea,
 } from "@heroui/react";
+import { useTranslation } from "react-i18next";
 
 const ReportModal = ({ isOpen, onOpenChange, onSubmit, isSubmitting }) => {
+  const { t } = useTranslation();
   const [reason, setReason] = useState("");
 
   const handleSubmit = () => {
@@ -27,33 +29,33 @@ const ReportModal = ({ isOpen, onOpenChange, onSubmit, isSubmitting }) => {
       <ModalContent>
         {(onClose) => (
           <>
-            <ModalHeader className="flex flex-col gap-1">Report Comment</ModalHeader>
+            <ModalHeader className="flex flex-col gap-1">{t("modals.report.title")}</ModalHeader>
             <ModalBody>
               <p className="text-sm text-gray-500 mb-2">
-                Please provide a reason for reporting this comment.
+                {t("modals.report.description")}
               </p>
               <Textarea
-                placeholder="Enter your reason here..."
+                placeholder={t("modals.report.placeholder")}
                 value={reason}
                 onChange={(e) => setReason(e.target.value)}
                 minRows={3}
               />
             </ModalBody>
             <ModalFooter>
-              <Button 
-                color="default" 
-                variant="light" 
+              <Button
+                color="default"
+                variant="light"
                 onPress={() => handleClose(onClose)}
               >
-                Cancel
+                {t("modals.actions.cancel")}
               </Button>
-              <Button 
-                color="danger" 
+              <Button
+                color="danger"
                 onPress={handleSubmit}
                 isLoading={isSubmitting}
                 isDisabled={!reason.trim()}
               >
-                Submit Report
+                {t("modals.report.submit")}
               </Button>
             </ModalFooter>
           </>

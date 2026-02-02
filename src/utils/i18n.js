@@ -2,6 +2,7 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import enTranslations from "../../public/locales/en.json" assert { type: "json" };
 import ptTranslations from "../../public/locales/pt.json" assert { type: "json" };
+import zhTranslations from "../../public/locales/zh.json" assert { type: "json" };
 
 const LANGUAGE_KEY = "app_language";
 
@@ -18,6 +19,7 @@ if (!i18n.isInitialized) {
     resources: {
       en: { translation: enTranslations },
       pt: { translation: ptTranslations },
+      zh: { translation: zhTranslations },
     },
     lng: getInitialLanguage(),
     fallbackLng: "en",
@@ -31,9 +33,8 @@ if (!i18n.isInitialized) {
 
 export const changeLanguage = (lng) => {
   if (typeof document !== "undefined") {
-    document.cookie = `${LANGUAGE_KEY}=${lng};path=/;max-age=${
-      365 * 24 * 60 * 60
-    }`;
+    document.cookie = `${LANGUAGE_KEY}=${lng};path=/;max-age=${365 * 24 * 60 * 60
+      }`;
     document.documentElement.setAttribute("dir", "ltr");
   }
   i18n.changeLanguage(lng);

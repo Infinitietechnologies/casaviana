@@ -7,29 +7,32 @@ import {
   ModalFooter,
   ModalHeader,
 } from "@heroui/react";
+import { useTranslation } from "react-i18next";
 
 const LogoutModal = ({ isOpen, onOpenChange, onConfirm }) => {
+  const { t } = useTranslation();
+
   return (
     <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
       <ModalContent>
         {(onClose) => (
           <>
-            <ModalHeader className="flex flex-col gap-1">Confirm Logout</ModalHeader>
+            <ModalHeader className="flex flex-col gap-1">{t("modals.logout.title")}</ModalHeader>
             <ModalBody>
-              <p>Are you sure you want to log out?</p>
+              <p>{t("modals.logout.message")}</p>
             </ModalBody>
             <ModalFooter>
               <Button color="default" variant="light" onPress={onClose}>
-                Cancel
+                {t("modals.actions.cancel")}
               </Button>
-              <Button 
-                color="danger" 
+              <Button
+                color="danger"
                 onPress={() => {
                   onConfirm();
                   onClose();
                 }}
               >
-                Logout
+                {t("modals.actions.logout")}
               </Button>
             </ModalFooter>
           </>

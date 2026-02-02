@@ -1,6 +1,8 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import { Input, Textarea, Button, Select, SelectItem, CheckboxGroup, Checkbox, Accordion, AccordionItem } from "@heroui/react";
 import { create_service_booking, get_rooms, get_addons } from "@/Api/api";
+import { useTranslation } from "react-i18next";
 
 const EVENT_TYPES = [
     "Casamento",
@@ -15,6 +17,7 @@ const EVENT_TYPES = [
 ];
 
 const ServiceBookingForm = ({ serviceId, onSuccess, onClose }) => {
+    const { t } = useTranslation();
     const [formData, setFormData] = useState({
         service_id: serviceId,
         booking_date: "",
@@ -134,18 +137,18 @@ const ServiceBookingForm = ({ serviceId, onSuccess, onClose }) => {
             } else {
                 if (isMounted) {
                     if (res.status === 401) {
-                        setGeneralError("Precisa fazer login para efectuar uma reserva.");
+                        setGeneralError(t("service_booking.errors.login_required"));
                         setErrors({ _status: 401 });
                     } else if (res.errors) {
                         setErrors(res.errors);
                     } else {
-                        setGeneralError(res.error || "Ocorreu um erro ao enviar a reserva.");
+                        setGeneralError(res.error || t("service_booking.errors.generic_error"));
                     }
                 }
             }
         } catch (err) {
             if (isMounted) {
-                setGeneralError("Erro de conexão. Tente novamente.");
+                setGeneralError(t("service_booking.errors.connection_error"));
             }
         } finally {
             if (isMounted) {
@@ -179,7 +182,7 @@ const ServiceBookingForm = ({ serviceId, onSuccess, onClose }) => {
                                 size="sm"
                                 className="w-fit"
                             >
-                                Fazer Login
+                                {t("service_booking.form.login_button")}
                             </Button>
                         )}
                     </div>
@@ -189,7 +192,7 @@ const ServiceBookingForm = ({ serviceId, onSuccess, onClose }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Input
                     type="date"
-                    label="Data da Reserva"
+                    label={t("service_booking.form.date_label")}
                     name="booking_date"
                     value={formData.booking_date}
                     onChange={handleChange}
@@ -200,7 +203,7 @@ const ServiceBookingForm = ({ serviceId, onSuccess, onClose }) => {
                 />
                 <Input
                     type="time"
-                    label="Hora de Início"
+                    label={t("service_booking.form.time_label")}
                     name="start_time"
                     value={formData.start_time}
                     onChange={handleChange}
@@ -213,8 +216,8 @@ const ServiceBookingForm = ({ serviceId, onSuccess, onClose }) => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Select
-                    label="Sala / Espaço"
-                    placeholder="Selecione uma sala (Opcional)"
+                    label={t("service_booking.form.room_label")}
+                    placeholder={t("service_booking.form.room_placeholder")}
                     selectedKeys={selectedRoom}
                     onSelectionChange={setSelectedRoom}
                     errorMessage={errors.room_id?.[0]}
@@ -230,7 +233,7 @@ const ServiceBookingForm = ({ serviceId, onSuccess, onClose }) => {
 
                 <Input
                     type="number"
-                    label="Nº de Convidados"
+                    label={t("service_booking.form.guests_label")}
                     name="number_of_guests"
                     value={formData.number_of_guests}
                     onChange={handleChange}
@@ -243,8 +246,8 @@ const ServiceBookingForm = ({ serviceId, onSuccess, onClose }) => {
 
             <div>
                 <Select
-                    label="Tipo de Evento"
-                    placeholder="Selecione o tipo de evento"
+                    label={t("service_booking.form.event_type_label")}
+                    placeholder={t("service_booking.form.event_type_placeholder")}
                     selectedKeys={selectedType}
                     onSelectionChange={setSelectedType}
                     // isRequired 
@@ -253,7 +256,7 @@ const ServiceBookingForm = ({ serviceId, onSuccess, onClose }) => {
                 >
                     {EVENT_TYPES.map((type) => (
                         <SelectItem key={type} value={type}>
-                            {type}
+                            {t(`service_booking.event_types.${type}`)}
                         </SelectItem>
                     ))}
                 </Select>
@@ -262,7 +265,7 @@ const ServiceBookingForm = ({ serviceId, onSuccess, onClose }) => {
                 <div>
                     {isOtherSelected && (
                         <Input
-                            placeholder="Especifique o tipo de evento..."
+                            placeholder={t("service_booking.form.other_type_placeholder")}
                             value={customEventType}
                             onChange={(e) => setCustomEventType(e.target.value)}
                             errorMessage={errors.event_type?.[0]}
@@ -276,7 +279,7 @@ const ServiceBookingForm = ({ serviceId, onSuccess, onClose }) => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Input
-                    label="Nome Completo"
+                    label={t("service_booking.form.name_label")}
                     name="contact_name"
                     value={formData.contact_name}
                     onChange={handleChange}
@@ -286,7 +289,7 @@ const ServiceBookingForm = ({ serviceId, onSuccess, onClose }) => {
                 />
                 <Input
                     type="email"
-                    label="Email"
+                    label={t("service_booking.form.email_label")}
                     name="contact_email"
                     value={formData.contact_email}
                     onChange={handleChange}
@@ -298,16 +301,16 @@ const ServiceBookingForm = ({ serviceId, onSuccess, onClose }) => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Input
-                    label="Organização / Instituição"
+                    label={t("service_booking.form.institution_label")}
                     name="institution_name"
                     value={formData.institution_name}
                     onChange={handleChange}
-                    placeholder="Opcional"
+                    placeholder={t("service_booking.form.institution_placeholder")}
                     errorMessage={errors.institution_name?.[0]}
                     isInvalid={!!errors.institution_name}
                 />
                 <Input
-                    label="Telefone"
+                    label={t("service_booking.form.phone_label")}
                     name="contact_phone"
                     value={formData.contact_phone}
                     onChange={handleChange}
@@ -318,13 +321,13 @@ const ServiceBookingForm = ({ serviceId, onSuccess, onClose }) => {
             </div>
 
             <Input
-                label="WhatsApp Number"
+                label={t("service_booking.form.whatsapp_label")}
                 name="whatsapp_number"
                 value={formData.whatsapp_number}
                 onChange={handleChange}
                 errorMessage={errors.whatsapp_number?.[0]}
                 isInvalid={!!errors.whatsapp_number}
-                description="Opcional"
+                description={t("service_booking.form.optional")}
             />
 
 
@@ -334,9 +337,9 @@ const ServiceBookingForm = ({ serviceId, onSuccess, onClose }) => {
                     <Accordion variant="shadow" className="mb-4">
                         <AccordionItem
                             key="addons"
-                            aria-label="Serviços Adicionais"
-                            title="Serviços Adicionais (Addons)"
-                            subtitle="Clique para ver os extras disponíveis"
+                            aria-label={t("service_booking.form.addons_title")}
+                            title={t("service_booking.form.addons_title")}
+                            subtitle={t("service_booking.form.addons_subtitle")}
                         >
                             <Accordion selectionMode="multiple" variant="light">
                                 {Object.entries(groupedAddons).map(([type, typeAddons]) => (
@@ -366,21 +369,21 @@ const ServiceBookingForm = ({ serviceId, onSuccess, onClose }) => {
 
 
             <Textarea
-                label="Notas / Observações"
+                label={t("service_booking.form.notes_label")}
                 name="customer_notes"
                 value={formData.customer_notes}
                 onChange={handleChange}
-                placeholder="Detalhes adicionais sobre o evento..."
+                placeholder={t("service_booking.form.notes_placeholder")}
                 errorMessage={errors.customer_notes?.[0]}
                 isInvalid={!!errors.customer_notes}
             />
 
             <div className="flex justify-end gap-2 pt-4">
                 <Button color="danger" variant="light" onPress={onClose}>
-                    Cancelar
+                    {t("service_booking.form.cancel_button")}
                 </Button>
                 <Button color="primary" type="submit" isLoading={loading}>
-                    Confirmar Reserva
+                    {t("service_booking.form.submit_button")}
                 </Button>
             </div>
         </form>

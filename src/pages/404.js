@@ -1,6 +1,9 @@
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 export default function Custom404() {
+  const { t } = useTranslation();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-rose-50 flex items-center justify-center px-4">
       <div className="max-w-2xl w-full text-center">
@@ -33,11 +36,10 @@ export default function Custom404() {
 
         {/* Error Message */}
         <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-          Oops! Page Not Found
+          {t("404.title")}
         </h1>
         <p className="text-lg text-gray-600 mb-8 max-w-md mx-auto">
-          The page you're looking for seems to have wandered off into the
-          digital wilderness. Let's get you back on track!
+          {t("404.message")}
         </p>
 
         {/* Action Buttons */}
@@ -46,13 +48,13 @@ export default function Custom404() {
             href="/"
             className="px-8 py-3 bg-gradient-to-r from-red-500 to-rose-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
           >
-            Go Back Home
+            {t("404.back_home")}
           </Link>
           <button
             onClick={() => window.history.back()}
             className="px-8 py-3 bg-white text-gray-700 font-semibold rounded-lg shadow-md hover:shadow-lg border border-gray-200 transform hover:-translate-y-0.5 transition-all duration-200"
           >
-            Go Back
+            {t("404.go_back")}
           </button>
         </div>
 

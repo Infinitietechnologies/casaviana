@@ -1,4 +1,63 @@
 {
+  "header": {
+    "home": "Home",
+    "services": "Services",
+    "events": "Events",
+    "contact": "Contacts",
+    "blogs": "Blogs",
+    "login": "Login",
+    "logout": "Logout",
+    "logout_success": "Logged out successfully",
+    "icons": {
+      "tv": "TV",
+      "radio": "Radio"
+    }
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "login_modal": {
+      "welcome": "Welcome",
+      "username_email_label": "Username or Email",
+      "username_email_placeholder": "Enter your username or email",
+      "password_label": "Password",
+      "password_placeholder": "Enter your password"
+    },
+    "register_modal": {
+      "name_label": "Name",
+      "name_placeholder": "Enter your full name",
+      "email_label": "Email",
+      "email_placeholder": "Enter your email",
+      "phone_label": "Phone",
+      "phone_placeholder": "Enter your phone number",
+      "birthdate_label": "Date of Birth",
+      "confirm_password_label": "Confirm Password",
+      "confirm_password_placeholder": "Confirm your password"
+    },
+    "toasts": {
+      "login_success": "Logged in successfully",
+      "generic_error": "Something went wrong",
+      "fill_all_fields": "Please fill in all fields",
+      "birthdate_invalid": "Date of birth must be before today",
+      "password_mismatch": "Passwords do not match",
+      "register_success": "Registered successfully"
+    }
+  },
+  "footer": {
+    "copyright": "Copyright © {{year}} – CASA VIANA | All rights reserved."
+  },
+  "sidebar": {
+    "left": {
+      "services_title": "Our Services",
+      "advertisement_alt": "Advertisement",
+      "menu_item_alt": "Menu Item"
+    },
+    "right": {
+      "directory_title": "Directory",
+      "recent_posts_title": "Recent Posts",
+      "no_blogs": "No featured blogs found."
+    }
+  },
   "cardapio": {
     "title": "Menu",
     "loadingCategories": "Loading categories...",
@@ -19,25 +78,522 @@
     "dietaryTags": "Dietary Tags",
     "close": "Close",
     "addToCart": "Add to Cart",
+    "adding": "Adding...",
+    "add_success": {
+      "title": "Item added to cart",
+      "message": "Item added successfully!"
+    },
+    "add_error": {
+      "title": "Error",
+      "message": "Error adding item to cart"
+    },
     "noItemsFound": "No items found in this category",
     "categoryNotFound": "Category not found"
+  },
+  "profile": {
+    "sidebar": {
+      "my_profile": "My Profile",
+      "bookings": "Bookings",
+      "orders": "Orders",
+      "favorites": "Favorites",
+      "address": "Address",
+      "wallet": "Wallet",
+      "transactions": "Transactions",
+      "payments": "Payments",
+      "chat": "Chat",
+      "support_tickets": "Support Tickets",
+      "refer_earn": "Refer & Earn",
+      "default_user": "User",
+      "no_email": "No email"
+    }
+  },
+  "home": {
+    "events": {
+      "featured_title": "FEATURED EVENTS"
+    },
+    "featured": {
+      "title": "CULTURAL CENTER HIGHLIGHTS"
+    },
+    "cta": {
+      "view_more": "View more"
+    },
+    "sections": {
+      "spaces_default": "SPACES"
+    }
+  },
+  "bookings": {
+    "title": "Event Bookings",
+    "subtitle": "View all your event ticket bookings",
+    "status": {
+      "all": "All Statuses",
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled"
+    },
+    "table": {
+      "booking_number": "BOOKING #",
+      "event": "EVENT",
+      "ticket_type": "TICKET TYPE",
+      "quantity": "QTY",
+      "amount": "AMOUNT",
+      "status": "STATUS",
+      "booked_at": "BOOKED AT",
+      "actions": "ACTIONS"
+    },
+    "error": {
+      "fetch_failed": "Failed to load bookings",
+      "retry": "Retry"
+    },
+    "filters": {
+      "status": "Filter by Status",
+      "select_status": "Select status",
+      "clear": "Clear Filters",
+      "refresh": "Refresh"
+    },
+    "pagination": {
+      "total_bookings": "total bookings",
+      "page": "Page",
+      "of": "of",
+      "showing": "Showing",
+      "per_page": "per page"
+    },
+    "empty": {
+      "filtered": "No bookings found for status {{status}}",
+      "title": "No bookings found",
+      "filtered_subtitle": "Try selecting a different status filter",
+      "subtitle": "Your event bookings will appear here",
+      "clear_filters": "Clear Filters"
+    },
+    "actions": {
+      "view_details": "View Details"
+    }
+  },
+  "orders": {
+    "title": "My Orders",
+    "subtitle": "Track your food order history",
+    "status": {
+      "all": "All Statuses",
+      "pending": "Pending",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "processing": "Processing",
+      "delivered": "Delivered"
+    },
+    "table": {
+      "order_number": "ORDER #",
+      "items": "ITEMS",
+      "total_amount": "TOTAL AMOUNT",
+      "status": "STATUS",
+      "date": "DATE",
+      "actions": "ACTIONS"
+    },
+    "error": {
+      "fetch_failed": "Failed to load orders",
+      "retry": "Try again"
+    },
+    "filters": {
+      "status": "Filter by Status",
+      "select_status": "Select status",
+      "search": "Search",
+      "search_placeholder": "Search orders...",
+      "clear": "Clear",
+      "refresh": "Refresh"
+    },
+    "pagination": {
+      "total_orders": "total orders",
+      "page": "Page",
+      "of": "of"
+    },
+    "empty": {
+      "filtered": "No orders found with current filters",
+      "title": "You haven\"t placed any food orders yet",
+      "filtered_subtitle": "Try clearing filters or changing your search",
+      "subtitle": "Explore our menu and place your first order!",
+      "clear_filters": "Clear Filters"
+    },
+    "item": {
+      "no_items": "Order with no items",
+      "more_items": "+ {{count}} other items"
+    },
+    "actions": {
+      "view_details": "View Details"
+    }
+  },
+  "pages": {
+    "home": {
+      "hero_title": "Welcome to Casa Viana",
+      "hero_subtitle": "The best event and service experience",
+      "featured_services": "Featured Services",
+      "upcoming_events": "Upcoming Events",
+      "view_all": "View All"
+    },
+    "services": {
+      "title": "Our Services",
+      "subtitle": "Explore the variety of services we offer.",
+      "search_placeholder": "Search service",
+      "filtered_by": "Filtered:",
+      "filter_button": "Filters",
+      "no_results": "No services found with that search term.",
+      "no_services": "No services available at the moment.",
+      "price_on_request": "On Request",
+      "drawer": {
+        "title": "Filter Services",
+        "subtitle": "Select a category to filter",
+        "all": "All",
+        "clear": "Clear filter",
+        "apply": "Apply filter"
+      },
+      "details": {
+        "not_found": "Service not found.",
+        "min_capacity": "Minimum Capacity",
+        "max_capacity": "Maximum Capacity",
+        "min_notice": "Minimum Notice",
+        "hours": "Hours",
+        "people": "People",
+        "description_title": "Service Details",
+        "no_description": "No additional description available.",
+        "interested_title": "Interested in this service?",
+        "interested_text": "Contact us to check availability and make a reservation.",
+        "book_now": "Book Now",
+        "contact_us": "Contact Us",
+        "success_title": "Request Sent!",
+        "success_message": "Your booking request has been sent successfully. We will contact you shortly to confirm details.",
+        "close_button": "Close"
+      }
+    },
+    "events": {
+      "title": "Events",
+      "highlights": "Highlights",
+      "upcoming": "Upcoming Events",
+      "search_placeholder": "Search event",
+      "buy_ticket": "Buy Ticket",
+      "sold_out": "Sold Out",
+      "registration_open": "Registration Open",
+      "all_day": "All Day",
+      "uncategorized": "Uncategorized",
+      "no_highlights": "No highlighted events at the moment.",
+      "no_results": "No events found with that search term.",
+      "no_events": "No events available at the moment.",
+      "details": {
+        "not_found": "Event not found.",
+        "duration": "Duration",
+        "min": "min",
+        "classification": "Classification",
+        "general": "General",
+        "promoter": "Promoter",
+        "info_title": "Info & Reservations",
+        "short_description": "Short Description",
+        "location": "Location",
+        "location_unavailable": "Location unavailable",
+        "select_tickets": "Select Tickets",
+        "no_ticket_description": "No description available",
+        "sales_in_person": "Sales in person only",
+        "subtotal": "Subtotal",
+        "total_event": "Total Event",
+        "book_tickets": "Book Tickets",
+        "booking": "Booking...",
+        "download": "Download",
+        "reviews": "Reviews",
+        "event_ended": "This event has ended",
+        "bookings_closed": "Bookings for this event are closed.",
+        "toasts": {
+          "invalid_event": "Invalid event",
+          "select_one": "Select at least 1 ticket",
+          "invalid_ticket": "Invalid ticket type",
+          "quantity_exceeded": "Quantity requested greater than available for {{name}}",
+          "success": "Ticket booked successfully",
+          "error": "Error booking ticket",
+          "init_payment_error": "Error initiating payment",
+          "mixed_results": "Success: {{success}}, Failed: {{fail}}"
+        }
+      }
+    },
+    "blogs": {
+      "title": "Our Blogs",
+      "subtitle": "Explore our latest articles, news, and updates.",
+      "search_placeholder": "Search...",
+      "all": "All",
+      "read_more": "Read more",
+      "min_read": "min read",
+      "oops": "Oops!",
+      "error_loading": "Failed to load content",
+      "try_again": "Try Again",
+      "no_articles": "No articles found",
+      "no_articles_desc": "Try adjusting your search terms or category.",
+      "clear_filters": "Clear filters",
+      "details": {
+        "error_fetching": "Error fetching article",
+        "not_found": "Article not found.",
+        "author": "Author",
+        "related_posts": "Related Posts",
+        "no_image": "No image",
+        "no_excerpt": "No excerpt available."
+      }
+    }
+  },
+  "layout": {
+    "services": {
+      "default_title": "Our Services",
+      "default_description": "Explore the variety of services we offer."
+    }
+  },
+  "cart": {
+    "title": "Cart",
+    "item_count_singular": "item",
+    "item_count_plural": "items",
+    "total": "Total:",
+    "actions": {
+      "clear": "Clear",
+      "checkout": "Checkout"
+    },
+    "empty": {
+      "title": "Cart is empty",
+      "description": "Add items to cart before checking out"
+    },
+    "empty_state": {
+      "title": "Your cart is empty"
+    },
+    "error": {
+      "title": "Error",
+      "update_quantity": "Error updating quantity",
+      "clear": "Error clearing cart",
+      "cart_id_not_found": "Cart ID not found",
+      "payment_initiation": "Error initiating payment",
+      "payment_processing": "An error occurred while processing the payment.",
+      "payment_processing_retry": "An error occurred while processing the payment. Please try again."
+    },
+    "success": {
+      "title": "Success",
+      "clear": "Cart cleared successfully"
+    }
+  },
+  "service_booking": {
+    "form": {
+      "date_label": "Booking Date",
+      "time_label": "Start Time",
+      "room_label": "Room / Space",
+      "room_placeholder": "Select a room (Optional)",
+      "guests_label": "No. of Guests",
+      "event_type_label": "Event Type",
+      "event_type_placeholder": "Select event type",
+      "other_type_placeholder": "Specify event type...",
+      "name_label": "Full Name",
+      "email_label": "Email",
+      "institution_label": "Organization / Institution",
+      "institution_placeholder": "Optional",
+      "phone_label": "Phone",
+      "whatsapp_label": "WhatsApp Number",
+      "notes_label": "Notes / Remarks",
+      "notes_placeholder": "Additional details about the event...",
+      "addons_title": "Additional Services (Addons)",
+      "addons_subtitle": "Click to view available extras",
+      "login_button": "Login",
+      "cancel_button": "Cancel",
+      "submit_button": "Confirm Booking",
+      "optional": "Optional"
+    },
+    "errors": {
+      "login_required": "You must log in to make a booking.",
+      "generic_error": "An error occurred while sending the booking.",
+      "connection_error": "Connection error. Please try again."
+    },
+    "event_types": {
+      "Casamento": "Wedding",
+      "Aniversário": "Birthday",
+      "Reserva de Almoço": "Lunch Reservation",
+      "Reserva de Jantar": "Dinner Reservation",
+      "Encomenda": "Order",
+      "Reserva Empresarial": "Corporate Reservation",
+      "Conferência": "Conference",
+      "Reunião": "Meeting",
+      "Outro": "Other"
+    }
+  },
+  "modals": {
+    "actions": {
+      "cancel": "Cancel",
+      "logout": "Logout",
+      "continue": "Continue"
+    },
+    "logout": {
+      "title": "Confirm Logout",
+      "message": "Are you sure you want to log out?"
+    },
+    "report": {
+      "title": "Report Comment",
+      "description": "Please provide a reason for reporting this comment.",
+      "placeholder": "Enter your reason here...",
+      "submit": "Submit Report"
+    },
+    "payment_gateway": {
+      "processing": "Processing Payment",
+      "select_method": "Select Payment Method",
+      "waiting_confirmation": "Waiting for payment confirmation...",
+      "loading": "Loading payment methods...",
+      "no_methods": "No payment methods available",
+      "descriptions": {
+        "bank_transfer": "Transfer directly to our bank account",
+        "multicaixa_express": "Secure online payment via Multicaixa"
+      }
+    },
+    "payment_result": {
+      "success": {
+        "title": "Payment Successful",
+        "description": "Your payment has been processed successfully!"
+      },
+      "failed": {
+        "title": "Payment Failed",
+        "description": "The payment was not processed. Please try again."
+      }
+    },
+    "payment_instructions": {
+      "title": "Proceed with Payment",
+      "message": "Please proceed with the bank transfer using the details below.",
+      "reference": "Reference:",
+      "total_amount": "Total Amount:",
+      "bank_details": "Bank Details:",
+      "iban": "IBAN:",
+      "account": "Account:"
+    },
+    "proof": {
+      "title": "Upload Payment Proof",
+      "select_image": "Click to select image",
+      "file_info": "PNG, JPG up to 5MB",
+      "loading": "Uploading...",
+      "submit": "Upload Proof",
+      "validation": {
+        "invalid_type": "Please select a valid image file (JPG, PNG).",
+        "size_limit": "File size must be less than 5MB.",
+        "error_title": "Validation Error",
+        "no_file": "Please select a proof file."
+      },
+      "success": {
+        "title": "Success",
+        "message": "Proof uploaded successfully!"
+      },
+      "error": {
+        "upload_title": "Upload Error",
+        "generic": "Error uploading proof.",
+        "unexpected": "An unexpected error occurred."
+      }
+    }
   },
   "payments": {
     "title": "Payment History",
     "subtitle": "View all your payment transactions",
-    "loading": "Loading payments...",
-    "noPayments": "No payments found",
+    "error": "Failed to load payments",
     "retry": "Retry",
-    "id": "ID",
-    "date": "Date",
-    "amount": "Amount",
-    "method": "Method",
-    "status": "Status",
-    "reference": "Reference",
-    "completed": "Completed",
-    "pending": "Pending",
-    "failed": "Failed",
-    "cancelled": "Cancelled",
-    "refunded": "Refunded"
-  }
+    "no_payments": "No payments found",
+    "no_payments_desc": "Your payment history will appear here",
+    "table": {
+      "id": "ID",
+      "date": "DATE",
+      "amount": "AMOUNT",
+      "method": "METHOD",
+      "status": "STATUS",
+      "type": "TYPE",
+      "actions": "ACTIONS"
+    },
+    "status": {
+      "completed": "Completed",
+      "paid": "Paid",
+      "pending": "Pending",
+      "proof_uploaded": "Proof Uploaded",
+      "failed": "Failed",
+      "cancelled": "Cancelled"
+    },
+    "actions": {
+      "no_action": "No action",
+      "upload_proof": "Upload Proof",
+      "view_proof": "View Proof"
+    },
+    "modal": {
+      "title": "Payment Proof",
+      "close": "Close"
+    }
+  },
+  "maintenance": {
+    "title": "Under Maintenance",
+    "default_message": "We are making improvements to our system to offer you a better experience. We'll be back shortly!",
+    "start": "Start:",
+    "end": "Expected End:",
+    "footer": "Thank you for your understanding"
+  },
+  "comments": {
+    "title": "Comments",
+    "reply": "Reply",
+    "replies": "replies",
+    "report": "Report",
+    "cancel": "Cancel",
+    "submit": "Comment",
+    "placeholder": "What are you thinking?",
+    "login_to_comment": "Log in or register to leave a comment",
+    "login_to_report": "Please log in to report",
+    "loading": "Loading comments...",
+    "no_comments": "No Comments Yet",
+    "be_first": "Be the first to share your thoughts!",
+    "comment_as": "Comment as",
+    "time": {
+      "years": "years ago",
+      "months": "months ago",
+      "days": "days ago",
+      "hours": "h ago",
+      "minutes": "min ago",
+      "seconds": "s ago"
+    },
+    "toasts": {
+      "empty": "Please enter a comment",
+      "login_required": "Please log in to comment",
+      "success": "Comment submitted successfully",
+      "error": "Failed to submit comment",
+      "report_success": "Report submitted successfully",
+      "report_error": "Failed to submit report"
+    }
+  },
+  "ratings": {
+    "title": "Reviews & Ratings",
+    "write_review": "Write Review",
+    "reviews": "Reviews",
+    "ratings": "Ratings",
+    "no_ratings": "No ratings yet",
+    "be_first": "Be the first to share your experience!",
+    "write_first": "Write First Review",
+    "view_all": "View all {{count}} reviews",
+    "modal": {
+      "title": "Share Your Experience",
+      "subtitle": "Your feedback helps others make informed decisions",
+      "how_rate": "How do you rate this?",
+      "select_rating": "Select a rating",
+      "of_5": "of 5 stars",
+      "review_title": "Review Title",
+      "title_placeholder": "Summarize your experience",
+      "review_body": "Your Review",
+      "body_placeholder": "Share details about your experience...",
+      "submit": "Submit Review",
+      "submitting": "Submitting...",
+      "chars": "characters"
+    },
+    "labels": {
+      "very_bad": "Very Bad",
+      "bad": "Bad",
+      "medium": "Medium",
+      "good": "Good",
+      "excellent": "Excellent"
+    },
+    "toasts": {
+      "select_rating": "Please select a rating",
+      "success": "Review submitted",
+      "error": "Failed to submit review"
+    }
+  },
+  "404": {
+    "title": "Oops! Page Not Found",
+    "message": "The page you're looking for seems to have wandered off. Let's get you back on track!",
+    "back_home": "Go Back Home",
+    "go_back": "Go Back"
+  },
+  "meta": {
+    "description": "Casa Viana Restaurant and Seafood - The best seafood."
+  },
+  "loading_system": "Loading..."
 }

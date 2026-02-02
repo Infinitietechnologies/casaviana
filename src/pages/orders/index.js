@@ -11,8 +11,6 @@ export default function Orders() {
                 <meta name="description" content="Visualize o histórico de seus pedidos" />
             </Head>
             <OrdersView />
-            {/* <LayoutView>
-            </LayoutView> */}
         </>
     );
 }

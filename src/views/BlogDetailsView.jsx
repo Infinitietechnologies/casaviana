@@ -23,9 +23,11 @@ const Comment = dynamic(() => import("@/components/Comment/Comment"), {
 
 import { BlogDetailsSkeleton } from "@/components/Skeletons/BlogsSkeletons";
 import Head from "next/head";
+import { useTranslation } from "react-i18next";
 
 
 const BlogDetailsView = () => {
+  const { t, i18n } = useTranslation();
   const router = useRouter();
   const { slug } = router.query;
 
@@ -46,13 +48,13 @@ const BlogDetailsView = () => {
           setRelatedPosts(Object.values(response.related_posts || {}));
           setError(null);
         } else {
-          setError(response?.error || "Error fetching article");
+          setError(response?.error || t("pages.blogs.details.error_fetching"));
           setBlog(null);
           setRelatedPosts([]);
         }
       } catch (err) {
         console.error(err);
-        setError("Error fetching article");
+        setError(t("pages.blogs.details.error_fetching"));
         setBlog(null);
         setRelatedPosts([]);
       } finally {
@@ -76,10 +78,67 @@ const BlogDetailsView = () => {
   if (!blog) {
     return (
       <div className="min-h-screen flex items-center justify-center py-20">
-        <div>Article not found.</div>
+        <div>{t("pages.blogs.details.not_found")}</div>
       </div>
     );
   }
+
+  const RelatedPostCard = ({ post }) => (
+    <article className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
+      {post.featured_image ? (
+        <Link href={`/blogs/${post.slug}`}>
+          <img
+            src={post.featured_image}
+            alt={post.title}
+            className="w-full h-64 object-cover"
+            onError={(e) =>
+              (e.target.src = "/images/D.PRO-POST-no-Ponto-02s-750x375.jpg")
+            }
+          />
+        </Link>
+      ) : (
+        <div className="w-full h-64 bg-gray-100 flex items-center justify-center">
+          <span className="text-gray-400">{t("pages.blogs.details.no_image")}</span>
+        </div>
+      )}
+
+      <div className="p-6 flex flex-col flex-grow">
+        {post.category && (
+          <Chip className="text-xs font-medium text-red-600 bg-red-50 mb-3">
+            {post.category.name}
+          </Chip>
+        )}
+
+        <Link href={`/blogs/${post.slug}`}>
+          <h3 className="text-xl font-bold text-slate-900 mb-2 hover:text-red-600 transition-colors">
+            {post.title}
+          </h3>
+        </Link>
+
+        <p className="text-slate-600 text-sm mb-4 line-clamp-3 flex-grow">
+          {post.excerpt || t("pages.blogs.details.no_excerpt")}
+        </p>
+
+        <div className="flex items-center text-sm text-slate-500 mt-auto">
+          {post.published_at && (
+            <span>
+              {new Date(post.published_at).toLocaleDateString(i18n.language, {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </span>
+          )}
+          {post.reading_time && (
+            <>
+              <span className="mx-2">•</span>
+              <span>{post.reading_time} {t("pages.blogs.min_read")}</span>
+            </>
+          )}
+        </div>
+      </div>
+    </article>
+  );
 
   return (
     <>
@@ -115,14 +174,14 @@ const BlogDetailsView = () => {
                   : blog.author?.name ||
                   blog.author?.username ||
                   blog.author?.email ||
-                  "Author"}
+                  t("pages.blogs.details.author")}
               </span>
             )}
             {blog.published_at && (
               <>
                 <span className="mx-2">•</span>
                 <span>
-                  {new Date(blog.published_at).toLocaleDateString("en-US", {
+                  {new Date(blog.published_at).toLocaleDateString(i18n.language, {
                     year: "numeric",
                     month: "long",
                     day: "numeric",
@@ -133,7 +192,7 @@ const BlogDetailsView = () => {
             {blog.reading_time && (
               <>
                 <span className="mx-2">•</span>
-                <span>{blog.reading_time} min read</span>
+                <span>{blog.reading_time} {t("pages.blogs.min_read")}</span>
               </>
             )}
             {blog.category && (
@@ -169,7 +228,7 @@ const BlogDetailsView = () => {
           {relatedPosts.length > 0 && (
             <section className="mt-20">
               <h2 className="text-3xl font-bold text-slate-900 mb-10">
-                Related Posts
+                {t("pages.blogs.details.related_posts")}
               </h2>
 
               {relatedPosts.length <= 3 ? (
@@ -212,63 +271,5 @@ const BlogDetailsView = () => {
     </>
   );
 };
-
-// Reusable card component for related posts
-const RelatedPostCard = ({ post }) => (
-  <article className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
-    {post.featured_image ? (
-      <Link href={`/blogs/${post.slug}`}>
-        <img
-          src={post.featured_image}
-          alt={post.title}
-          className="w-full h-64 object-cover"
-          onError={(e) =>
-            (e.target.src = "/images/D.PRO-POST-no-Ponto-02s-750x375.jpg")
-          }
-        />
-      </Link>
-    ) : (
-      <div className="w-full h-64 bg-gray-100 flex items-center justify-center">
-        <span className="text-gray-400">No image</span>
-      </div>
-    )}
-
-    <div className="p-6 flex flex-col flex-grow">
-      {post.category && (
-        <Chip className="text-xs font-medium text-red-600 bg-red-50 mb-3">
-          {post.category.name}
-        </Chip>
-      )}
-
-      <Link href={`/blogs/${post.slug}`}>
-        <h3 className="text-xl font-bold text-slate-900 mb-2 hover:text-red-600 transition-colors">
-          {post.title}
-        </h3>
-      </Link>
-
-      <p className="text-slate-600 text-sm mb-4 line-clamp-3 flex-grow">
-        {post.excerpt || "No excerpt available."}
-      </p>
-
-      <div className="flex items-center text-sm text-slate-500 mt-auto">
-        {post.published_at && (
-          <span>
-            {new Date(post.published_at).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </span>
-        )}
-        {post.reading_time && (
-          <>
-            <span className="mx-2">•</span>
-            <span>{post.reading_time} min read</span>
-          </>
-        )}
-      </div>
-    </div>
-  </article>
-);
 
 export default BlogDetailsView;

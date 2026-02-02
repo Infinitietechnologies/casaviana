@@ -3,11 +3,13 @@ import Image from "next/image";
 import { RightSidebarSkeleton } from "./Skeletons/CommonSkeletons";
 import React, { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 import api from "../Api/interceptor";
 import { get_blogs, get_categories } from "@/Api/api";
 
 const RightSidebar = () => {
+  const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState(null);
   const router = useRouter();
   const pathname = usePathname();
@@ -105,7 +107,7 @@ const RightSidebar = () => {
   return (
     <div className="lg:col-span-2 lg:sticky lg:top-24 self-start p-4 bg-white z-20 space-y-6">
       <h2 className="text-xl sm:text-2xl font-bold text-red-600 mb-4">
-        Directório
+        {t("sidebar.right.directory_title")}
       </h2>
 
       <div className="flex flex-col gap-2">
@@ -179,12 +181,12 @@ const RightSidebar = () => {
       </div>
 
       <h3 className="text-lg font-semibold text-gray-900 mb-3 mt-6">
-        Publicações Recentes
+        {t("sidebar.right.recent_posts_title")}
       </h3>
 
       <div className="space-y-2">
         {blogs.length === 0 && (
-          <p className="text-sm text-gray-500">No featured blogs found.</p>
+          <p className="text-sm text-gray-500">{t("sidebar.right.no_blogs")}</p>
         )}
 
         {blogs.slice(0, 4).map((blog, i) => (
