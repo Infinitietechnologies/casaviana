@@ -159,13 +159,23 @@ const ServiceBookingForm = ({ serviceId, onSuccess, onClose }) => {
 
     const isOtherSelected = Array.from(selectedType)[0] === "Outro";
 
-    // Group addons by type
-    const groupedAddons = addons.reduce((acc, addon) => {
-        const type = addon.type || "Outros";
-        if (!acc[type]) acc[type] = [];
-        acc[type].push(addon);
-        return acc;
-    }, {});
+    // Group addons by type (memoized to avoid re-renders)
+    const groupedAddons = React.useMemo(() => {
+        return addons.reduce((acc, addon) => {
+            const type = addon.type || "Outros";
+            if (!acc[type]) acc[type] = [];
+            acc[type].push(addon);
+            return acc;
+        }, {});
+    }, [addons]);
+
+    const [expandedGroupKeys, setExpandedGroupKeys] = useState(new Set([]));
+
+    useEffect(() => {
+        if (Object.keys(groupedAddons).length > 0) {
+            setExpandedGroupKeys(new Set(Object.keys(groupedAddons)));
+        }
+    }, [groupedAddons]);
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -334,14 +344,23 @@ const ServiceBookingForm = ({ serviceId, onSuccess, onClose }) => {
             {/* Stable container for addons */}
             <div className="min-h-0">
                 {addons.length > 0 && (
-                    <Accordion variant="shadow" className="mb-4">
+                    <Accordion
+                        variant="shadow"
+                        className="mb-4"
+                        defaultExpandedKeys={["addons"]}
+                    >
                         <AccordionItem
                             key="addons"
                             aria-label={t("service_booking.form.addons_title")}
                             title={t("service_booking.form.addons_title")}
                             subtitle={t("service_booking.form.addons_subtitle")}
                         >
-                            <Accordion selectionMode="multiple" variant="light">
+                            <Accordion
+                                selectionMode="multiple"
+                                variant="light"
+                                selectedKeys={expandedGroupKeys}
+                                onSelectionChange={setExpandedGroupKeys}
+                            >
                                 {Object.entries(groupedAddons).map(([type, typeAddons]) => (
                                     <AccordionItem key={type} aria-label={type} title={<span className="capitalize">{type}</span>}>
                                         <CheckboxGroup
