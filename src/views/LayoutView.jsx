@@ -28,7 +28,7 @@ const LayoutView = ({
                                 backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url(${backgroundImage})`,
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center',
-                                height: '198px'
+                                height: '231px'
                             } : {}}
                         >
                             <div className="relative z-10">
