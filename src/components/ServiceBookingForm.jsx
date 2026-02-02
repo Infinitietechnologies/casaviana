@@ -199,7 +199,7 @@ const ServiceBookingForm = ({ serviceId, onSuccess, onClose }) => {
                 )}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <Input
                     type="date"
                     label={t("service_booking.form.date_label")}
@@ -224,7 +224,7 @@ const ServiceBookingForm = ({ serviceId, onSuccess, onClose }) => {
                 />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <Select
                     label={t("service_booking.form.room_label")}
                     placeholder={t("service_booking.form.room_placeholder")}

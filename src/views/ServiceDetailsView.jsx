@@ -228,7 +228,7 @@ const ServiceDetailsView = () => {
 
                         <Button
                           as="a"
-                          href={`https://wa.me/message/YOUR_WHATSAPP_LINK?text=Olá, estou interessado no serviço: ${service.title}`}
+                          href={`https://wa.me/244929977503?text=Olá, estou interessado no serviço: ${service.title}`}
                           target="_blank"
                           className="w-full bg-green-500 text-white font-semibold"
                           startContent={
@@ -269,7 +269,7 @@ const ServiceDetailsView = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 px-2">
               <div className="lg:col-span-2 space-y-6">
                 {/* Additional Info Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {service.min_capacity && (
                     <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
                       <div className="text-gray-500 text-xs uppercase font-semibold mb-1">
