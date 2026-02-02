@@ -270,6 +270,7 @@
       "sold_out": "Sold Out",
       "registration_open": "Registration Open",
       "all_day": "All Day",
+      "at_time": "At {{time}}",
       "uncategorized": "Uncategorized",
       "no_highlights": "No highlighted events at the moment.",
       "no_results": "No events found with that search term.",

@@ -282,6 +282,7 @@
             "sold_out": "已售罄",
             "registration_open": "报名开启",
             "all_day": "全天",
+            "at_time": "在 {{time}}",
             "uncategorized": "未分类",
             "no_highlights": "当前没有精彩活动。",
             "no_results": "未找到符合搜索条件的活动。",

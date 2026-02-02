@@ -270,6 +270,7 @@
       "sold_out": "Esgotado",
       "registration_open": "Inscrições Abertas",
       "all_day": "Dia Todo",
+      "at_time": "Às {{time}}",
       "uncategorized": "Sem Categoria",
       "no_highlights": "Nenhum evento em destaque no momento.",
       "no_results": "Nenhum evento encontrado com esse termo de pesquisa.",

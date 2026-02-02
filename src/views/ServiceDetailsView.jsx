@@ -7,7 +7,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Button } from "@heroui/react";
+import { Button, Card, CardBody, CardHeader, Divider } from "@heroui/react";
 import LeftSidebar from "@/components/LeftSidebar";
 import RightSidebar from "@/components/RightSidebar";
 import { useDisclosure } from "@heroui/react";
@@ -266,60 +266,73 @@ const ServiceDetailsView = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 px-2">
-              <div className="lg:col-span-2 space-y-6">
-                {/* Additional Info Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  {service.min_capacity && (
-                    <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-                      <div className="text-gray-500 text-xs uppercase font-semibold mb-1">
-                        {t("pages.services.details.min_capacity")}
-                      </div>
-                      <div className="text-gray-900 font-medium">
-                        {service.min_capacity} {t("pages.services.details.people")}
-                      </div>
-                    </div>
-                  )}
-                  {service.max_capacity && (
-                    <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-                      <div className="text-gray-500 text-xs uppercase font-semibold mb-1">
-                        {t("pages.services.details.max_capacity")}
-                      </div>
-                      <div className="text-gray-900 font-medium">
-                        {service.max_capacity} {t("pages.services.details.people")}
-                      </div>
-                    </div>
-                  )}
-                  {service.min_notice_hours && (
-                    <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-                      <div className="text-gray-500 text-xs uppercase font-semibold mb-1">
-                        {t("pages.services.details.min_notice")}
-                      </div>
-                      <div className="text-gray-900 font-medium">
-                        {service.min_notice_hours} {t("pages.services.details.hours")}
-                      </div>
-                    </div>
-                  )}
-                </div>
+            <div className="grid grid-cols-1 gap-8">
+              {/* Additional Info Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
 
-                <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">
-                    {t("pages.services.details.description_title")}
-                  </h3>
-                  <div className="prose max-w-none text-gray-600">
-                    {service.description ? (
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: service.description,
-                        }}
-                      />
-                    ) : (
-                      <p>{t("pages.services.details.no_description")}</p>
-                    )}
+                {service.min_capacity && (
+                  <div className=" bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                    <div className="text-gray-500 text-xs uppercase font-semibold mb-1">
+                      {t("pages.services.details.min_capacity")}
+                    </div>
+                    <div className="text-gray-900 font-medium">
+                      {service.min_capacity} {t("pages.services.details.people")}
+                    </div>
                   </div>
-                </div>
+                )}
+
+                {service.max_capacity && (
+                  <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                    <div className="text-gray-500 text-xs uppercase font-semibold mb-1">
+                      {t("pages.services.details.max_capacity")}
+                    </div>
+                    <div className="text-gray-900 font-medium">
+                      {service.max_capacity} {t("pages.services.details.people")}
+                    </div>
+                  </div>
+                )}
+
+                {service.min_notice_hours && (
+                  <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                    <div className="text-gray-500 text-xs uppercase font-semibold mb-1">
+                      {t("pages.services.details.min_notice")}
+                    </div>
+                    <div className="text-gray-900 font-medium">
+                      {service.min_notice_hours} {t("pages.services.details.hours")}
+                    </div>
+                  </div>
+                )}
               </div>
+
+              <div className="grid grid-cols-1 bg-white rounded-xl shadow-sm border border-gray-100">
+
+                <Card>
+                  <CardHeader>
+                    <h3 className="text-xl font-bold text-gray-900 ">
+                      {t("pages.services.details.description_title")}
+                    </h3>
+                  </CardHeader>
+                  <Divider />
+                  <CardBody>
+                    <div className="prose max-w-none text-gray-600">
+                      {service.description ? (
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: service.description,
+                          }}
+                        />
+                      ) : (
+                        <p>{t("pages.services.details.no_description")}</p>
+                      )}
+                    </div>
+                  </CardBody>
+
+                </Card>
+
+              </div>
+
             </div>
+
           </div>
 
           <RightSidebar />

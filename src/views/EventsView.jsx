@@ -134,7 +134,7 @@ const EventsView = () => {
     return {
       id: event.id,
       title: event.title,
-      time: event.start_time ? `At ${event.start_time}` : t("pages.events.all_day"),
+      time: event.start_time ? t("pages.events.at_time", { time: event.start_time }) : t("pages.events.all_day"),
       slug: event.slug,
       date: event.event_date,
       day: dayNum,
