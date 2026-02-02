@@ -590,3 +590,33 @@ export const get_payment_gateways = async () => {
     return { success: false, error: error.message };
   }
 };
+
+
+export const get_orders = async (
+  page = 1,
+  perPage = 10,
+  status = null,
+  search = null,
+  start_date = null,
+  end_date = null,
+) => {
+  try {
+    const params = {
+      page,
+      per_page: perPage,
+      ...(status && status !== "all" && { status }),
+      ...(search && { search }),
+      ...(start_date && { start_date }),
+      ...(end_date && { end_date }),
+    };
+
+    const response = await api.get("/orders", { params });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    return {
+      success: false,
+      error: error.response?.data?.message || error.message,
+    };
+  }
+};
