@@ -413,7 +413,12 @@
     "actions": {
       "cancel": "Cancel",
       "logout": "Logout",
-      "continue": "Continue"
+      "continue": "Continue",
+      "close": "Close",
+      "view_payments": "View Payments",
+      "copied": "Copied to clipboard",
+      "copy": "COPY",
+      "confirm_payment_method": "Confirm Payment Method"
     },
     "logout": {
       "title": "Confirm Logout",
@@ -453,7 +458,18 @@
       "total_amount": "Total Amount:",
       "bank_details": "Bank Details:",
       "iban": "IBAN:",
-      "account": "Account:"
+      "account": "Account:",
+      "account_name": "Account Name",
+      "account_number": "Account Number",
+      "bank_name": "Bank Name",
+      "bank_code": "Bank Code (SWIFT)",
+      "important_instructions": "Important Instructions",
+      "static_instructions": {
+        "line_1": "Please transfer the exact order amount to the account details provided above",
+        "line_2": "After completing the transfer, you will need to upload the transfer receipt on the order details page",
+        "line_3": "Your order will remain in Awaiting status until the payment is confirmed by our team.",
+        "line_4": "Once we verify your payment, the order status will be updated to received, and processing will begin"
+      }
     },
     "proof": {
       "title": "Upload Payment Proof",

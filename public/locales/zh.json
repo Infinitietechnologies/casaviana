@@ -425,7 +425,12 @@
         "actions": {
             "cancel": "取消",
             "logout": "注销",
-            "continue": "继续"
+            "continue": "继续",
+            "close": "关闭",
+            "view_payments": "查看付款",
+            "copied": "已复制",
+            "copy": "复制",
+            "confirm_payment_method": "确认支付方式"
         },
         "logout": {
             "title": "确认注销",
@@ -465,7 +470,18 @@
             "total_amount": "总金额:",
             "bank_details": "银行详情:",
             "iban": "IBAN:",
-            "account": "账户:"
+            "account": "账户:",
+            "account_name": "账户名称",
+            "account_number": "账号",
+            "bank_name": "银行名称",
+            "bank_code": "银行代码 (SWIFT)",
+            "important_instructions": "重要说明",
+            "static_instructions": {
+                "line_1": "请将准确的订单金额转入上述提供的账户详情",
+                "line_2": "完成转账后，您需要在订单详情页面上传转账收据",
+                "line_3": "在我们的团队确认付款之前，您的订单将保持‘等待中’状态。",
+                "line_4": "一旦我们核实了您的付款，订单状态将更新为‘已收到’，并开始处理"
+            }
         },
         "proof": {
             "title": "上传支付凭证",

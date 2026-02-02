@@ -413,7 +413,12 @@
     "actions": {
       "cancel": "Cancelar",
       "logout": "Sair",
-      "continue": "Continuar"
+      "continue": "Continuar",
+      "close": "Fechar",
+      "view_payments": "Ver Pagamentos",
+      "copied": "Copiado!",
+      "copy": "COPIAR",
+      "confirm_payment_method": "Confirmar Método de Pagamento"
     },
     "logout": {
       "title": "Confirmar Saída",
@@ -453,7 +458,18 @@
       "total_amount": "Valor Total:",
       "bank_details": "Dados Bancários:",
       "iban": "IBAN:",
-      "account": "Conta:"
+      "account": "Conta:",
+      "account_name": "Nome da Conta",
+      "account_number": "Número da Conta",
+      "bank_name": "Nome do Banco",
+      "bank_code": "Código do Banco (SWIFT)",
+      "important_instructions": "Instruções Importantes",
+      "static_instructions": {
+        "line_1": "Por favor, transfira o valor exato da encomenda para os dados da conta fornecidos acima",
+        "line_2": "Após concluir a transferência, terá de carregar o comprovativo da transferência na página de detalhes da encomenda",
+        "line_3": "A sua encomenda permanecerá no estado 'A aguardar' até que o pagamento seja confirmado pela nossa equipa.",
+        "line_4": "Assim que verificarmos o seu pagamento, o estado da encomenda será atualizado para 'recebido' e o processamento será iniciado"
+      }
     },
     "proof": {
       "title": "Carregar Comprovativo de Pagamento",

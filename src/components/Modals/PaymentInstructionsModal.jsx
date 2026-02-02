@@ -10,7 +10,7 @@ import {
   addToast,
 } from "@heroui/react";
 import { useRouter } from "next/router";
-import { check_payment_status, get_cart } from "@/Api/api";
+import { check_payment_status, get_cart, get_payment_gateways } from "@/Api/api";
 import { useDispatch } from "react-redux";
 import { setCart } from "@/store/cartSlice";
 import { useTranslation } from "react-i18next";
@@ -26,6 +26,7 @@ const PaymentInstructionsModal = ({
   const dispatch = useDispatch();
   const [isPolling, setIsPolling] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState(null);
+  const [paymentGateways, setPaymentGateways] = useState(null);
   const pollingIntervalRef = useRef(null);
 
   const displayData = paymentData?.data?.data || paymentData?.data || {};
@@ -50,6 +51,23 @@ const PaymentInstructionsModal = ({
       console.error("Failed to update cart:", error);
     }
   };
+
+  const getPaymentGateways = async () => {
+    try {
+      const res = await get_payment_gateways();
+      if (res?.success && res.data) {
+        setPaymentGateways(res.data);
+      }
+    } catch (error) {
+      console.error("Failed to get payment gateways:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen && !isMulticaixa) {
+      getPaymentGateways();
+    }
+  }, [isOpen, isMulticaixa]);
 
   useEffect(() => {
     // Only poll for Multicaixa Express payments
@@ -154,17 +172,21 @@ const PaymentInstructionsModal = ({
     <Modal
       isOpen={isOpen}
       onClose={canClose ? handleClose : undefined}
-      size={isMulticaixa ? "md" : "md"}
+      size={isMulticaixa ? "md" : "2xl"}
       hideCloseButton={true}
       isDismissable={canClose}
+      scrollBehavior={isMulticaixa ? "outside" : "inside"}
       isKeyboardDismissDisabled={!canClose}
       classNames={{
-        base: isMulticaixa ? "max-w-md" : "",
+        base: isMulticaixa ? "max-w-md" : "overflow-auto",
       }}
     >
       <ModalContent>
         {(onClose) => (
           <>
+            <ModalHeader className="flex flex-col gap-1 text-2xl font-bold text-gray-900 border-b">
+              {t("modals.payment_instructions.title")}
+            </ModalHeader>
             {isMulticaixa ? (
               <ModalBody className="p-0">
                 {paymentUrl && (
@@ -189,9 +211,6 @@ const PaymentInstructionsModal = ({
               </ModalBody>
             ) : (
               <>
-                <ModalHeader className="flex flex-col gap-1 text-2xl font-bold text-gray-900 border-b">
-                  {t("modals.payment_instructions.title")}
-                </ModalHeader>
                 <ModalBody className="py-6">
                   <div className="bg-amber-50 border-l-4 border-amber-500 p-4 mb-6">
                     <p className="text-amber-700 text-sm">
@@ -200,54 +219,165 @@ const PaymentInstructionsModal = ({
                   </div>
 
                   <div className="space-y-4">
-                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                      <span className="text-gray-600 font-medium">{t("modals.payment_instructions.reference")}</span>
-                      <span className="font-mono font-bold text-gray-900">{displayData.reference}</span>
-                    </div>
 
-                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                      <span className="text-gray-600 font-medium">{t("modals.payment_instructions.total_amount")}</span>
-                      <span className="font-bold text-xl text-amber-600">
-                        {displayData.amount} {displayData.currency}
-                      </span>
-                    </div>
-
-                    {displayData.bank_details && displayData.bank_details.length > 0 && (
-                      <div className="mt-6">
-                        <h4 className="font-bold text-gray-900 mb-2">{t("modals.payment_instructions.bank_details")}</h4>
-                        <div className="space-y-3">
-                          {displayData.bank_details.map((bank, index) => (
-                            <div key={index} className="p-3 border rounded-lg">
-                              <p className="text-sm font-bold text-gray-800">{bank.bank_name}</p>
-                              <p className="text-sm text-gray-600">{t("modals.payment_instructions.iban")} <span className="font-mono">{bank.iban}</span></p>
-                              <p className="text-sm text-gray-600">{t("modals.payment_instructions.account")} <span className="font-mono">{bank.account_number}</span></p>
-                            </div>
-                          ))}
+                    {/* Bank Gateway Details */}
+                    {(() => {
+                      const bankGateway = paymentGateways?.find(g => g.gateway === "bank_transfer");
+                      if (!bankGateway) return (
+                        <div className="py-12 flex flex-col items-center justify-center bg-gray-50 rounded-2xl border border-dashed border-gray-200">
+                          <Spinner color="warning" size="md" />
+                          <p className="mt-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest">{t("modals.payment_instructions.loading_gateways")}</p>
                         </div>
-                      </div>
-                    )}
+                      );
+
+                      const { credentials } = bankGateway;
+
+                      const DetailItem = ({ label, value, icon }) => (
+                        <div className="flex items-center justify-between p-4 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300">
+                          <div className="flex items-center gap-4">
+                            <div className="p-3 bg-amber-50 rounded-2xl text-amber-600 shadow-inner">
+                              {icon}
+                            </div>
+                            <div>
+                              <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-0.5">{label}</p>
+                              <p className="text-sm font-extrabold text-gray-800 font-mono tracking-tight">{value}</p>
+                            </div>
+                          </div>
+                          <Button
+                            variant="bordered"
+                            size="sm"
+                            className="font-bold text-[10px] h-8 min-w-[80px] border-gray-200 bg-gray-100/30 hover:bg-gray-100/50 transition-colors rounded-xl"
+                            startContent={
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+                              </svg>
+                            }
+                            onPress={() => {
+                              navigator.clipboard.writeText(value);
+                              addToast({
+                                title: t("modals.actions.copied"),
+                                color: "success",
+                                size: "sm"
+                              });
+                            }}
+                          >
+                            {t("modals.actions.copy")}
+                          </Button>
+                        </div>
+                      );
+
+                      return (
+                        <div className="space-y-4">
+                          {/* Top row: Amount & Reference */}
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <DetailItem
+                              label={t("modals.payment_instructions.total_amount")}
+                              value={`${displayData.amount} ${displayData.currency}`}
+                              icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>}
+                            />
+                            <DetailItem
+                              label={t("modals.payment_instructions.reference")}
+                              value={displayData.reference}
+                              icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>}
+                            />
+                          </div>
+
+                          {/* Full width: Account Name */}
+                          <DetailItem
+                            label={t("modals.payment_instructions.account_name")}
+                            value={credentials.account_name}
+                            icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>}
+                          />
+
+                          {/* Bottom Grid: The 4 specific items side-by-side */}
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <DetailItem
+                              label={t("modals.payment_instructions.account_number")}
+                              value={credentials.account_number}
+                              icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>}
+                            />
+                            <DetailItem
+                              label={t("modals.payment_instructions.bank_name")}
+                              value={credentials.bank_name}
+                              icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>}
+                            />
+                            <DetailItem
+                              label={t("modals.payment_instructions.bank_code")}
+                              value={credentials.swift}
+                              icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>}
+                            />
+                            <DetailItem
+                              label={t("modals.payment_instructions.iban")}
+                              value={credentials.iban}
+                              icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>}
+                            />
+                          </div>
+                          {/* Important Instructions Box */}
+                          <div className="mt-8 bg-amber-50/50 border border-amber-100 rounded-3xl p-6 shadow-sm">
+                            <div className="flex items-center gap-3 mb-5">
+                              <div className="p-2 bg-amber-500 rounded-full text-white shadow-md shadow-amber-200">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                </svg>
+                              </div>
+                              <h5 className="font-black text-gray-800 uppercase tracking-widest text-sm">{t("modals.payment_instructions.important_instructions")}</h5>
+                            </div>
+                            <ul className="space-y-4">
+                              {/* Dynamic Instructions */}
+                              {(bankGateway.instructions || "").split(/\r?\n/).filter(line => line.trim()).map((line, idx) => (
+                                <li key={`dyn-${idx}`} className="flex gap-4 text-sm text-gray-600 leading-relaxed font-bold group">
+                                  <span className="text-amber-500 mt-1 flex-shrink-0 bg-white p-1 rounded-lg shadow-sm group-hover:bg-amber-50 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                  </span>
+                                  <span className="opacity-90">{line}</span>
+                                </li>
+                              ))}
+                              {/* Static Instructions */}
+                              {[1, 2, 3, 4].map((num) => (
+                                <li key={`stat-${num}`} className="flex gap-4 text-sm text-gray-600 leading-relaxed font-bold group">
+                                  <span className="text-amber-500 mt-1 flex-shrink-0 bg-white p-1 rounded-lg shadow-sm group-hover:bg-amber-50 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                  </span>
+                                  <span className="opacity-90">{t(`modals.payment_instructions.static_instructions.line_${num}`)}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      );
+                    })()}
                   </div>
                 </ModalBody>
-                <ModalFooter className="border-t">
-                  <Button color="danger" variant="light" onPress={handleClose}>
-                    {t("modals.actions.close")}
-                  </Button>
-                  <Button
-                    className="bg-red-500 text-white font-bold"
-                    onPress={() => {
-                      handleClose();
-                      router.push("/payments");
-                    }}
-                  >
-                    {t("modals.actions.view_payments")}
-                  </Button>
-                </ModalFooter>
               </>
             )}
+
+            <ModalFooter className="border-t gap-3">
+              <Button
+                variant="bordered"
+                className="flex-1 font-bold border-gray-200"
+                onPress={handleClose}
+              >
+                {t("modals.actions.cancel")}
+              </Button>
+              <Button
+                className="flex-[2] bg-orange-500 text-white font-extrabold shadow-lg shadow-orange-200"
+                onPress={() => {
+                  handleClose();
+                  router.push("/payments");
+                }}
+              >
+                {t("modals.actions.confirm_payment_method")}
+              </Button>
+            </ModalFooter>
           </>
         )}
+
       </ModalContent>
-    </Modal>
+    </Modal >
   );
 };
 
