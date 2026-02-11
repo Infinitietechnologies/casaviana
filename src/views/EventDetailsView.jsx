@@ -420,7 +420,24 @@ const EventDetailsView = () => {
 
           <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 px-4 lg:px-12">
             <div className="relative">
-              <div className="relative lg:absolute lg:top-[-60px] lg:left-0 lg:w-full ">
+              <div className="relative hidden lg:block lg:h-full"></div>
+            </div>
+
+            <div className="text-gray-200 lg:pt-0">
+              <div className="text-xs lg:text-sm">
+                {event.category?.name || "Evento"}
+              </div>
+              <h1 className="text-2xl lg:text-3xl font-bold mt-2">
+                {event.title}
+              </h1>
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 lg:px-6 py-6 lg:py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+            <div className="relative mt-0">
+              <div className="relative w-full lg:w-[570px] lg:-mt-52 mb-8 z-10">
                 {event?.images && event.images.length > 0 ? (
                   <div>
                     <Swiper
@@ -439,7 +456,7 @@ const EventDetailsView = () => {
                     >
                       {event.images.map((img, i) => (
                         <SwiperSlide key={i}>
-                          <div className="relative w-full h-[250px] sm:h-[350px] lg:h-[500px]">
+                          <div className="relative w-full aspect-square">
                             <img
                               src={img}
                               alt={`${event.title} - ${i + 1}`}
@@ -450,7 +467,7 @@ const EventDetailsView = () => {
                       ))}
                       {event?.video && (
                         <SwiperSlide key="video-slide">
-                          <div className="relative w-full h-[250px] sm:h-[350px] lg:h-[500px]">
+                          <div className="relative w-full aspect-square">
                             <video
                               ref={videoRef}
                               src={event.video}
@@ -473,22 +490,6 @@ const EventDetailsView = () => {
                   />
                 )}
               </div>
-            </div>
-
-            <div className="text-gray-200 lg:pt-0">
-              <div className="text-xs lg:text-sm">
-                {event.category?.name || "Evento"}
-              </div>
-              <h1 className="text-2xl lg:text-3xl font-bold mt-2">
-                {event.title}
-              </h1>
-            </div>
-          </div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 lg:px-6 py-6 lg:py-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-            <div className="relative mt-0 lg:mt-[280px]">
               <div className="grid grid-cols-3 gap-2 lg:gap-4 mt-4 lg:mt-6">
                 <div className="p-3 lg:p-4">
                   <div className="text-gray-600 text-xs lg:text-sm mb-1">
