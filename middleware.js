@@ -1,27 +1,30 @@
 import { NextResponse } from 'next/server';
 
 export function middleware(request) {
-    return new NextResponse(
+    const response = new NextResponse(
         `
+        <!DOCTYPE html>
         <html>
-            <head>
-                <title>Temporarily Unavailable</title>
-            </head>
-            <body style="font-family:sans-serif;text-align:center;padding-top:100px">
-                <h1>Site Temporarily Unavailable</h1>
-                <p>We’ll be back soon.</p>
-            </body>
+        <head>
+            <title>Maintenance</title>
+        </head>
+        <body style="font-family:sans-serif;text-align:center;padding-top:100px">
+            <h1>Site Under Maintenance</h1>
+            <p>Please check back later.</p>
+        </body>
         </html>
         `,
         {
             status: 503,
             headers: {
-                'Content-Type': 'text/html',
+                'content-type': 'text/html',
             },
         }
     );
+
+    return response;
 }
 
 export const config = {
-    matcher: '/:path*',
+    matcher: ['/((?!_next).*)'],
 };
