@@ -37,7 +37,7 @@ const Homepage = () => {
     const fetchEvents = async () => {
       setLoadingEvents(true);
       try {
-        const res = await get_events(null, null, 1, 2);
+        const res = await get_events(null, null, 1, 4);
         if (!mounted) return;
         if (res?.success && Array.isArray(res.data)) {
           const items = res.data.map((e) => ({
@@ -129,20 +129,20 @@ const Homepage = () => {
             <h2 className="bg-gradient-to-r from-orange-500 to-red-600 text-white text-base sm:text-lg md:text-xl text-center font-bold py-2 px-4 rounded-md mb-4 uppercase">
               {t("home.events.featured_title")}
             </h2>
-            <div className="flex justify-center gap-2 sm:gap-3">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
               {loadingEvents ? (
                 // Skeleton Loader for Events
-                Array.from({ length: 2 }).map((_, i) => (
+                Array.from({ length: 4 }).map((_, i) => (
                   <div
                     key={i}
-                    className="relative w-[48%] sm:w-[45%] md:w-[48%] h-[240px] sm:h-[260px] md:h-[260px] bg-gray-200 animate-pulse rounded-md"
+                    className="relative w-full h-[180px] sm:h-[200px] md:h-[220px] lg:h-[180px] bg-gray-200 animate-pulse rounded-md"
                   />
                 ))
               ) : (
                 eventImages.map((ev, i) => (
                   <div
                     key={i}
-                    className="relative w-[48%] sm:w-[45%] md:w-[48%] h-[240px] sm:h-[260px] md:h-[330px]"
+                    className="relative w-full h-[180px] sm:h-[200px] md:h-[220px] lg:h-[180px]"
                   >
                     <Link href={ev.slug || "/events"}>
                       <Image
@@ -214,8 +214,8 @@ const Homepage = () => {
                     const isBlog = topSection.source_filters?.type === "blog";
                     const Wrapper = isBlog ? Link : "div";
                     const wrapperProps = isBlog
-                      ? { href: `/blogs/${item.slug}`, className: "block relative w-full h-[400px] sm:h-[400px] md:h-[280px] lg:h-[260px]" }
-                      : { className: "relative w-full h-[400px] sm:h-[400px] md:h-[280px] lg:h-[300px]" };
+                      ? { href: `/blogs/${item.slug}`, className: "block relative w-full h-[400px] sm:h-[400px] md:h-[280px] lg:h-[300px]" }
+                      : { className: "relative w-full h-[400px] sm:h-[400px] md:h-[280px] lg:h-[340px]" };
 
                     return (
                       <SwiperSlide key={item.id} id={item.slug}>
