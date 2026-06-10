@@ -3,6 +3,7 @@ import { initReactI18next } from "react-i18next";
 import enTranslations from "../../public/locales/en.json" assert { type: "json" };
 import ptTranslations from "../../public/locales/pt.json" assert { type: "json" };
 import zhTranslations from "../../public/locales/zh.json" assert { type: "json" };
+import frTranslations from "../../public/locales/fr.json" assert { type: "json" };
 
 const LANGUAGE_KEY = "app_language";
 
@@ -20,6 +21,7 @@ if (!i18n.isInitialized) {
       en: { translation: enTranslations },
       pt: { translation: ptTranslations },
       zh: { translation: zhTranslations },
+      fr: { translation: frTranslations },
     },
     lng: getInitialLanguage(),
     fallbackLng: "en",

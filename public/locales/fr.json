@@ -1,0 +1,616 @@
+{
+  "header": {
+    "home": "Accueil",
+    "services": "Services",
+    "events": "Événements",
+    "contact": "Contacts",
+    "blogs": "Blogs",
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "logout_success": "Déconnecté avec succès",
+    "icons": {
+      "tv": "Télévision",
+      "radio": "Radio"
+    }
+  },
+  "auth": {
+    "login": "Connexion",
+    "register": "S'inscrire",
+    "login_modal": {
+      "welcome": "Bienvenue",
+      "username_email_label": "Nom d'utilisateur ou e-mail",
+      "username_email_placeholder": "Entrez votre nom d'utilisateur ou e-mail",
+      "password_label": "Mot de passe",
+      "password_placeholder": "Entrez votre mot de passe"
+    },
+    "register_modal": {
+      "name_label": "Nom",
+      "name_placeholder": "Entrez votre nom complet",
+      "email_label": "E-mail",
+      "email_placeholder": "Entrez votre e-mail",
+      "phone_label": "Téléphone",
+      "phone_placeholder": "Entrez votre numéro de téléphone",
+      "birthdate_label": "Date de naissance",
+      "confirm_password_label": "Confirmer le mot de passe",
+      "confirm_password_placeholder": "Confirmez votre mot de passe"
+    },
+    "toasts": {
+      "login_success": "Connecté avec succès",
+      "generic_error": "Un problème est survenu",
+      "fill_all_fields": "Veuillez remplir tous les champs",
+      "birthdate_invalid": "La date de naissance doit être antérieure à aujourd'hui",
+      "password_mismatch": "Les mots de passe ne correspondent pas",
+      "register_success": "Inscrit avec succès"
+    }
+  },
+  "footer": {
+    "copyright": "Copyright © {{year}} – CASA VIANA | Tous droits réservés."
+  },
+  "sidebar": {
+    "left": {
+      "services_title": "Nos Services",
+      "advertisement_alt": "Publicité",
+      "menu_item_alt": "Élément de menu"
+    },
+    "right": {
+      "directory_title": "Annuaire",
+      "recent_posts_title": "Articles Récents",
+      "no_blogs": "Aucun blog en vedette trouvé."
+    }
+  },
+  "cardapio": {
+    "title": "Menu",
+    "loadingCategories": "Chargement des catégories...",
+    "noCategoriesAvailable": "Aucune catégorie disponible",
+    "casaViana": "CASA VIANA",
+    "dipandaPlaza": "DIPANDA PLAZZA",
+    "quickView": "Aperçu rapide",
+    "description": "Description",
+    "price": "Prix",
+    "prepTime": "Temps de préparation",
+    "minutes": "minutes",
+    "calories": "Calories",
+    "cal": "cal",
+    "availability": "Disponibilité",
+    "available": "Disponible",
+    "unavailable": "Indisponible",
+    "allergens": "Allergènes",
+    "dietaryTags": "Tags diététiques",
+    "close": "Fermer",
+    "addToCart": "Ajouter au panier",
+    "adding": "Ajout...",
+    "add_success": {
+      "title": "Article ajouté au panier",
+      "message": "Article ajouté avec succès !"
+    },
+    "add_error": {
+      "title": "Erreur",
+      "message": "Erreur lors de l'ajout de l'article au panier"
+    },
+    "noItemsFound": "Aucun article trouvé dans cette catégorie",
+    "categoryNotFound": "Catégorie introuvable"
+  },
+  "profile": {
+    "sidebar": {
+      "my_profile": "Mon Profil",
+      "bookings": "Réservations",
+      "orders": "Commandes",
+      "favorites": "Favoris",
+      "address": "Adresse",
+      "wallet": "Portefeuille",
+      "transactions": "Transactions",
+      "payments": "Paiements",
+      "chat": "Chat",
+      "support_tickets": "Billets d'assistance",
+      "refer_earn": "Parrainer et gagner",
+      "default_user": "Utilisateur",
+      "no_email": "Aucun e-mail"
+    }
+  },
+  "home": {
+    "events": {
+      "featured_title": "ÉVÉNEMENTS EN VEDETTE"
+    },
+    "featured": {
+      "title": "POINTS FORTS DU CENTRE CULTUREL"
+    },
+    "cta": {
+      "view_more": "Voir plus"
+    },
+    "sections": {
+      "spaces_default": "ESPACES"
+    }
+  },
+  "bookings": {
+    "title": "Réservations d'événements",
+    "subtitle": "Voir toutes vos réservations de billets",
+    "status": {
+      "all": "Tous les statuts",
+      "pending": "En attente",
+      "confirmed": "Confirmé",
+      "cancelled": "Annulé"
+    },
+    "table": {
+      "booking_number": "RÉSERVATION #",
+      "event": "ÉVÉNEMENT",
+      "ticket_type": "TYPE DE BILLET",
+      "quantity": "QTÉ",
+      "amount": "MONTANT",
+      "status": "STATUT",
+      "booked_at": "RÉSERVÉ LE",
+      "actions": "ACTIONS"
+    },
+    "error": {
+      "fetch_failed": "Échec du chargement des réservations",
+      "retry": "Réessayer"
+    },
+    "filters": {
+      "status": "Filtrer par statut",
+      "select_status": "Sélectionner un statut",
+      "clear": "Effacer les filtres",
+      "refresh": "Actualiser"
+    },
+    "pagination": {
+      "total_bookings": "réservations totales",
+      "page": "Page",
+      "of": "sur",
+      "showing": "Affichage",
+      "per_page": "par page"
+    },
+    "empty": {
+      "filtered": "Aucune réservation trouvée pour le statut {{status}}",
+      "title": "Aucune réservation trouvée",
+      "filtered_subtitle": "Essayez de sélectionner un autre filtre de statut",
+      "subtitle": "Vos réservations d'événements apparaîtront ici",
+      "clear_filters": "Effacer les filtres"
+    },
+    "actions": {
+      "view_details": "Voir les détails"
+    }
+  },
+  "orders": {
+    "title": "Mes Commandes",
+    "subtitle": "Suivre l'historique de vos commandes de nourriture",
+    "status": {
+      "all": "Tous les statuts",
+      "pending": "En attente",
+      "completed": "Terminé",
+      "cancelled": "Annulé",
+      "processing": "En traitement",
+      "delivered": "Livré"
+    },
+    "table": {
+      "order_number": "COMMANDE #",
+      "items": "ARTICLES",
+      "total_amount": "MONTANT TOTAL",
+      "status": "STATUT",
+      "date": "DATE",
+      "actions": "ACTIONS"
+    },
+    "error": {
+      "fetch_failed": "Échec du chargement des commandes",
+      "retry": "Réessayer"
+    },
+    "filters": {
+      "status": "Filtrer par statut",
+      "select_status": "Sélectionner un statut",
+      "search": "Rechercher",
+      "search_placeholder": "Rechercher des commandes...",
+      "clear": "Effacer",
+      "refresh": "Actualiser"
+    },
+    "pagination": {
+      "total_orders": "commandes totales",
+      "page": "Page",
+      "of": "sur"
+    },
+    "empty": {
+      "filtered": "Aucune commande trouvée avec les filtres actuels",
+      "title": "Vous n'avez pas encore passé de commande",
+      "filtered_subtitle": "Essayez d'effacer les filtres ou de modifier votre recherche",
+      "subtitle": "Explorez notre menu et passez votre première commande !",
+      "clear_filters": "Effacer les filtres"
+    },
+    "item": {
+      "no_items": "Commande sans articles",
+      "more_items": "+ {{count}} autres articles"
+    },
+    "actions": {
+      "view_details": "Voir les détails"
+    }
+  },
+  "pages": {
+    "home": {
+      "hero_title": "Bienvenue à Casa Viana",
+      "hero_subtitle": "La meilleure expérience d'événements et de services",
+      "featured_services": "Services en vedette",
+      "upcoming_events": "Événements à venir",
+      "view_all": "Voir tout"
+    },
+    "services": {
+      "title": "Nos Services",
+      "subtitle": "Explorez la variété des services que nous offrons.",
+      "search_placeholder": "Rechercher un service",
+      "filtered_by": "Filtré :",
+      "filter_button": "Filtres",
+      "no_results": "Aucun service trouvé avec ce terme de recherche.",
+      "no_services": "Aucun service disponible pour le moment.",
+      "price_on_request": "Sur demande",
+      "drawer": {
+        "title": "Filtrer les services",
+        "subtitle": "Sélectionnez une catégorie pour filtrer",
+        "all": "Tous",
+        "clear": "Effacer le filtre",
+        "apply": "Appliquer le filtre"
+      },
+      "details": {
+        "not_found": "Service introuvable.",
+        "min_capacity": "Capacité minimale",
+        "max_capacity": "Capacité maximale",
+        "min_notice": "Préavis minimum",
+        "hours": "Heures",
+        "people": "Personnes",
+        "description_title": "Détails du service",
+        "no_description": "Aucune description supplémentaire disponible.",
+        "interested_title": "Intéressé par ce service ?",
+        "interested_text": "Contactez-nous pour vérifier la disponibilité et faire une réservation.",
+        "book_now": "Réserver maintenant",
+        "contact_us": "Contactez-nous",
+        "success_title": "Demande envoyée !",
+        "success_message": "Votre demande de réservation a été envoyée avec succès. Nous vous contacterons sous peu pour confirmer les détails.",
+        "close_button": "Fermer"
+      }
+    },
+    "events": {
+      "title": "Événements",
+      "highlights": "Points forts",
+      "upcoming": "Événements à venir",
+      "search_placeholder": "Rechercher un événement",
+      "buy_ticket": "Acheter un billet",
+      "sold_out": "Épuisé",
+      "registration_open": "Inscriptions ouvertes",
+      "all_day": "Toute la journée",
+      "at_time": "À {{time}}",
+      "uncategorized": "Non catégorisé",
+      "no_highlights": "Aucun événement en vedette pour le moment.",
+      "no_results": "Aucun événement trouvé avec ce terme de recherche.",
+      "no_events": "Aucun événement disponible pour le moment.",
+      "details": {
+        "not_found": "Événement introuvable.",
+        "duration": "Durée",
+        "min": "min",
+        "classification": "Classification",
+        "general": "Général",
+        "promoter": "Promoteur",
+        "info_title": "Info & Réservations",
+        "short_description": "Description courte",
+        "location": "Lieu",
+        "location_unavailable": "Lieu indisponible",
+        "select_tickets": "Sélectionner des billets",
+        "no_ticket_description": "Aucune description disponible",
+        "sales_in_person": "Ventes en personne uniquement",
+        "subtotal": "Sous-total",
+        "total_event": "Total Événement",
+        "book_tickets": "Réserver des billets",
+        "booking": "Réservation...",
+        "download": "Télécharger",
+        "reviews": "Avis",
+        "event_ended": "Cet événement est terminé",
+        "bookings_closed": "Les réservations pour cet événement sont fermées.",
+        "toasts": {
+          "invalid_event": "Événement invalide",
+          "select_one": "Sélectionnez au moins 1 billet",
+          "invalid_ticket": "Type de billet invalide",
+          "quantity_exceeded": "Quantité demandée supérieure à celle disponible pour {{name}}",
+          "success": "Billet réservé avec succès",
+          "error": "Erreur lors de la réservation du billet",
+          "init_payment_error": "Erreur lors de l'initiation du paiement",
+          "mixed_results": "Succès : {{success}}, Échec : {{fail}}"
+        }
+      }
+    },
+    "blogs": {
+      "title": "Nos Blogs",
+      "subtitle": "Explorez nos derniers articles, nouvelles et mises à jour.",
+      "search_placeholder": "Rechercher...",
+      "all": "Tous",
+      "read_more": "Lire la suite",
+      "min_read": "min de lecture",
+      "oops": "Oups !",
+      "error_loading": "Échec du chargement du contenu",
+      "try_again": "Réessayer",
+      "no_articles": "Aucun article trouvé",
+      "no_articles_desc": "Essayez de modifier vos termes de recherche ou votre catégorie.",
+      "clear_filters": "Effacer les filtres",
+      "details": {
+        "error_fetching": "Erreur lors de la récupération de l'article",
+        "not_found": "Article introuvable.",
+        "author": "Auteur",
+        "related_posts": "Articles connexes",
+        "no_image": "Pas d'image",
+        "no_excerpt": "Aucun extrait disponible."
+      }
+    }
+  },
+  "layout": {
+    "services": {
+      "default_title": "Nos Services",
+      "default_description": "Explorez la variété des services que nous offrons."
+    }
+  },
+  "cart": {
+    "title": "Panier",
+    "item_count_singular": "article",
+    "item_count_plural": "articles",
+    "total": "Total :",
+    "actions": {
+      "clear": "Vider",
+      "checkout": "Payer"
+    },
+    "empty": {
+      "title": "Le panier est vide",
+      "description": "Ajoutez des articles au panier avant de payer"
+    },
+    "empty_state": {
+      "title": "Votre panier est vide"
+    },
+    "error": {
+      "title": "Erreur",
+      "update_quantity": "Erreur lors de la mise à jour de la quantité",
+      "clear": "Erreur lors du vidage du panier",
+      "cart_id_not_found": "ID du panier introuvable",
+      "payment_initiation": "Erreur lors de l'initiation du paiement",
+      "payment_processing": "Une erreur s'est produite lors du traitement du paiement.",
+      "payment_processing_retry": "Une erreur s'est produite lors du traitement du paiement. Veuillez réessayer."
+    },
+    "success": {
+      "title": "Succès",
+      "clear": "Panier vidé avec succès"
+    }
+  },
+  "service_booking": {
+    "form": {
+      "date_label": "Date de réservation",
+      "time_label": "Heure de début",
+      "room_label": "Salle / Espace",
+      "room_placeholder": "Sélectionner une salle (Optionnel)",
+      "guests_label": "Nbr d'invités",
+      "event_type_label": "Type d'événement",
+      "event_type_placeholder": "Sélectionner le type d'événement",
+      "other_type_placeholder": "Spécifier le type d'événement...",
+      "name_label": "Nom Complet",
+      "email_label": "E-mail",
+      "institution_label": "Organisation / Institution",
+      "institution_placeholder": "Optionnel",
+      "phone_label": "Téléphone",
+      "whatsapp_label": "Numéro WhatsApp",
+      "notes_label": "Notes / Remarques",
+      "notes_placeholder": "Détails supplémentaires sur l'événement...",
+      "addons_title": "Services Supplémentaires (Addons)",
+      "addons_subtitle": "Cliquez pour voir les extras disponibles",
+      "login_button": "Connexion",
+      "cancel_button": "Annuler",
+      "submit_button": "Confirmer la Réservation",
+      "optional": "Optionnel"
+    },
+    "errors": {
+      "login_required": "Vous devez être connecté pour effectuer une réservation.",
+      "generic_error": "Une erreur s'est produite lors de l'envoi de la réservation.",
+      "connection_error": "Erreur de connexion. Veuillez réessayer."
+    },
+    "event_types": {
+      "Casamento": "Mariage",
+      "Aniversário": "Anniversaire",
+      "Reserva de Almoço": "Réservation de Déjeuner",
+      "Reserva de Jantar": "Réservation de Dîner",
+      "Encomenda": "Commande",
+      "Reserva Empresarial": "Réservation d'Entreprise",
+      "Conferência": "Conférence",
+      "Reunião": "Réunion",
+      "Outro": "Autre"
+    }
+  },
+  "modals": {
+    "actions": {
+      "cancel": "Annuler",
+      "logout": "Déconnexion",
+      "continue": "Continuer",
+      "close": "Fermer",
+      "view_payments": "Voir les paiements",
+      "copied": "Copié dans le presse-papiers",
+      "copy": "COPIER",
+      "confirm_payment_method": "Confirmer le mode de paiement"
+    },
+    "logout": {
+      "title": "Confirmer la Déconnexion",
+      "message": "Êtes-vous sûr de vouloir vous déconnecter ?"
+    },
+    "report": {
+      "title": "Signaler un commentaire",
+      "description": "Veuillez fournir une raison pour signaler ce commentaire.",
+      "placeholder": "Entrez votre raison ici...",
+      "submit": "Soumettre le signalement"
+    },
+    "payment_gateway": {
+      "processing": "Traitement du paiement",
+      "select_method": "Sélectionner un mode de paiement",
+      "waiting_confirmation": "En attente de confirmation de paiement...",
+      "loading": "Chargement des modes de paiement...",
+      "no_methods": "Aucun mode de paiement disponible",
+      "descriptions": {
+        "bank_transfer": "Transférez directement sur notre compte bancaire",
+        "multicaixa_express": "Paiement en ligne sécurisé via Multicaixa"
+      }
+    },
+    "payment_result": {
+      "success": {
+        "title": "Paiement Réussi",
+        "description": "Votre paiement a été traité avec succès !"
+      },
+      "failed": {
+        "title": "Échec du Paiement",
+        "description": "Le paiement n'a pas été traité. Veuillez réessayer."
+      }
+    },
+    "payment_instructions": {
+      "title": "Procéder au Paiement",
+      "message": "Veuillez procéder au virement bancaire en utilisant les détails ci-dessous.",
+      "reference": "Référence :",
+      "total_amount": "Montant Total :",
+      "bank_details": "Détails Bancaires :",
+      "iban": "IBAN :",
+      "account": "Compte :",
+      "account_name": "Nom du Compte",
+      "account_number": "Numéro de Compte",
+      "bank_name": "Nom de la Banque",
+      "bank_code": "Code de la Banque (SWIFT)",
+      "important_instructions": "Instructions Importantes",
+      "static_instructions": {
+        "line_1": "Veuillez transférer le montant exact de la commande aux coordonnées bancaires fournies ci-dessus",
+        "line_2": "Après avoir effectué le transfert, vous devrez télécharger le reçu de transfert sur la page des détails de la commande",
+        "line_3": "Votre commande restera en attente jusqu'à ce que le paiement soit confirmé par notre équipe.",
+        "line_4": "Une fois que nous aurons vérifié votre paiement, le statut de la commande sera mis à jour en reçu et le traitement commencera"
+      }
+    },
+    "proof": {
+      "title": "Télécharger une preuve de paiement",
+      "select_image": "Cliquez pour sélectionner une image",
+      "file_info": "PNG, JPG jusqu'à 5 Mo",
+      "loading": "Téléchargement...",
+      "submit": "Télécharger la preuve",
+      "validation": {
+        "invalid_type": "Veuillez sélectionner un fichier image valide (JPG, PNG).",
+        "size_limit": "La taille du fichier doit être inférieure à 5 Mo.",
+        "error_title": "Erreur de Validation",
+        "no_file": "Veuillez sélectionner un fichier de preuve."
+      },
+      "success": {
+        "title": "Succès",
+        "message": "Preuve téléchargée avec succès !"
+      },
+      "error": {
+        "upload_title": "Erreur de Téléchargement",
+        "generic": "Erreur lors du téléchargement de la preuve.",
+        "unexpected": "Une erreur inattendue s'est produite."
+      }
+    }
+  },
+  "payments": {
+    "title": "Historique des Paiements",
+    "subtitle": "Voir toutes vos transactions de paiement",
+    "error": "Échec du chargement des paiements",
+    "retry": "Réessayer",
+    "no_payments": "Aucun paiement trouvé",
+    "no_payments_desc": "Votre historique de paiement apparaîtra ici",
+    "table": {
+      "id": "ID",
+      "date": "DATE",
+      "amount": "MONTANT",
+      "method": "MÉTHODE",
+      "status": "STATUT",
+      "type": "TYPE",
+      "actions": "ACTIONS"
+    },
+    "status": {
+      "completed": "Terminé",
+      "paid": "Payé",
+      "pending": "En attente",
+      "proof_uploaded": "Preuve téléchargée",
+      "failed": "Échoué",
+      "cancelled": "Annulé"
+    },
+    "actions": {
+      "no_action": "Aucune action",
+      "upload_proof": "Télécharger la Preuve",
+      "view_proof": "Voir la Preuve"
+    },
+    "modal": {
+      "title": "Preuve de Paiement",
+      "close": "Fermer"
+    }
+  },
+  "maintenance": {
+    "title": "En Maintenance",
+    "default_message": "Nous apportons des améliorations à notre système pour vous offrir une meilleure expérience. Nous serons de retour sous peu !",
+    "start": "Début :",
+    "end": "Fin prévue :",
+    "footer": "Merci de votre compréhension"
+  },
+  "comments": {
+    "title": "Commentaires",
+    "reply": "Répondre",
+    "replies": "réponses",
+    "report": "Signaler",
+    "cancel": "Annuler",
+    "submit": "Commenter",
+    "placeholder": "À quoi pensez-vous ?",
+    "login_to_comment": "Connectez-vous ou inscrivez-vous pour laisser un commentaire",
+    "login_to_report": "Veuillez vous connecter pour signaler",
+    "loading": "Chargement des commentaires...",
+    "no_comments": "Aucun commentaire pour le moment",
+    "be_first": "Soyez le premier à partager vos pensées !",
+    "comment_as": "Commenter en tant que",
+    "time": {
+      "years": "il y a des années",
+      "months": "il y a des mois",
+      "days": "il y a des jours",
+      "hours": "il y a h",
+      "minutes": "il y a min",
+      "seconds": "il y a s"
+    },
+    "toasts": {
+      "empty": "Veuillez entrer un commentaire",
+      "login_required": "Veuillez vous connecter pour commenter",
+      "success": "Commentaire soumis avec succès",
+      "error": "Échec de la soumission du commentaire",
+      "report_success": "Signalement soumis avec succès",
+      "report_error": "Échec de la soumission du signalement"
+    }
+  },
+  "ratings": {
+    "title": "Avis & Évaluations",
+    "write_review": "Écrire un Avis",
+    "reviews": "Avis",
+    "ratings": "Évaluations",
+    "no_ratings": "Aucune évaluation pour le moment",
+    "be_first": "Soyez le premier à partager votre expérience !",
+    "write_first": "Rédiger le premier avis",
+    "view_all": "Voir les {{count}} avis",
+    "modal": {
+      "title": "Partagez votre expérience",
+      "subtitle": "Vos commentaires aident les autres à prendre des décisions éclairées",
+      "how_rate": "Comment évaluez-vous ceci ?",
+      "select_rating": "Sélectionnez une évaluation",
+      "of_5": "sur 5 étoiles",
+      "review_title": "Titre de l'avis",
+      "title_placeholder": "Résumez votre expérience",
+      "review_body": "Votre Avis",
+      "body_placeholder": "Partagez les détails de votre expérience...",
+      "submit": "Soumettre l'avis",
+      "submitting": "Soumission en cours...",
+      "chars": "caractères"
+    },
+    "labels": {
+      "very_bad": "Très mauvais",
+      "bad": "Mauvais",
+      "medium": "Moyen",
+      "good": "Bon",
+      "excellent": "Excellent"
+    },
+    "toasts": {
+      "select_rating": "Veuillez sélectionner une évaluation",
+      "success": "Avis soumis",
+      "error": "Échec de la soumission de l'avis"
+    }
+  },
+  "404": {
+    "title": "Oups ! Page Introuvable",
+    "message": "La page que vous recherchez semble s'être égarée. Remettons-vous sur la bonne voie !",
+    "back_home": "Retour à l'Accueil",
+    "go_back": "Retour"
+  },
+  "meta": {
+    "description": "Restaurant Casa Viana et Fruits de mer - Les meilleurs fruits de mer."
+  },
+  "loading_system": "Chargement..."
+}

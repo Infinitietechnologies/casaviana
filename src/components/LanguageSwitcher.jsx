@@ -7,6 +7,7 @@ import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from "@
 const languages = [
     { code: "pt", name: "Português", flagUrl: "https://flagsapi.com/PT/shiny/64.png" },
     { code: "en", name: "English", flagUrl: "https://flagsapi.com/US/shiny/64.png" },
+    { code: "fr", name: "Français", flagUrl: "https://flagsapi.com/FR/shiny/64.png" },
     { code: "zh", name: "Chinese", flagUrl: "https://flagsapi.com/CN/shiny/64.png" },
 ];
 
