@@ -372,10 +372,10 @@ const Header = () => {
               )}
             </div>
 
-            {isLoggedIn ? (
-              <>
-                {/* Mobile right side */}
-                <div className="flex md:hidden items-center gap-3">
+            {/* Mobile right side */}
+            <div className="flex md:hidden items-center gap-3">
+              {isLoggedIn ? (
+                <>
                   {/* Cart for Mobile */}
                   <button
                     onClick={onCartOpen}
@@ -528,58 +528,58 @@ const Header = () => {
                       </button>
                     </div>
                   )}
-
-                  {/* Hamburger Menu */}
-                  <button
-                    className="text-white focus:outline-none"
-                    onClick={() => setMenuOpen(!menuOpen)}
-                  >
-                    {menuOpen ? (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2}
-                        stroke="currentColor"
-                        className="w-7 h-7"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M6 18L18 6M6 6l12 12"
-                        />
-                      </svg>
-                    ) : (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2}
-                        stroke="currentColor"
-                        className="w-7 h-7"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M4 6h16M4 12h16M4 18h16"
-                        />
-                      </svg>
-                    )}
-                  </button>
+                </>
+              ) : (
+                <div className="flex">
+                  <LoginModal />
                 </div>
-              </>
-            ) : (
-              <div className="sm:flex md:hidden">
-                <LoginModal />
-              </div>
-            )}
+              )}
+
+              {/* Hamburger Menu */}
+              <button
+                className="text-white focus:outline-none"
+                onClick={() => setMenuOpen(!menuOpen)}
+              >
+                {menuOpen ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                    className="w-7 h-7"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                    className="w-7 h-7"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                )}
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Mobile Menu Dropdown */}
         <div
           className={`md:hidden text-white flex flex-col items-center overflow-hidden transition-all duration-300 ease-in-out ${menuOpen
-            ? "max-h-96 py-4 backdrop-blur-md backdrop-saturate-150 bg-red-600/60 border-t border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.08)] relative z-[60]"
+            ? "max-h-[500px] py-4 backdrop-blur-md backdrop-saturate-150 bg-red-600/60 border-t border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.08)] relative z-[60]"
             : "max-h-0 py-0"
             }`}
         >
@@ -636,6 +636,27 @@ const Header = () => {
                 </svg>
                 <span className="text-sm font-semibold">{t("header.icons.radio")}</span>
               </div>
+            </Link>
+          </div>
+          {/* Cardapio and Qualidade buttons below TV/Radio */}
+          <div className="flex items-center gap-4 mt-4">
+            <Link href="/cardapio">
+              <Image
+                src="/images/cardapio.png"
+                alt="Cardápio"
+                width={65}
+                height={65}
+                className="object-contain hover:scale-105 transition-transform duration-200"
+              />
+            </Link>
+            <Link href="https://maps.app.goo.gl/UuTFT2sXNC6epm4x6">
+              <Image
+                src="/images/qualidade.png"
+                alt="Qualidade"
+                width={150}
+                height={50}
+                className="object-contain hover:scale-105 transition-transform duration-200"
+              />
             </Link>
           </div>
         </div>
