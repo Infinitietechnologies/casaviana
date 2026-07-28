@@ -117,15 +117,16 @@ const Header = () => {
     <>
       <nav
         className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 border-b
-          ${isScrolled
-            ? "bg-red-600 border-transparent shadow-lg"
-            : "bg-red-600 border-transparent"
+          ${
+            isScrolled
+              ? "bg-red-600 border-transparent shadow-lg"
+              : "bg-red-600 border-transparent"
           }`}
       >
         <div className="max-w-[1900px] mx-auto flex items-center justify-between h-20 px-4 md:px-6">
           {/* LEFT LOGOS */}
           <div className="flex items-center gap-2">
-            <Link href="/">
+            <Link href="/" onClick={() => setMenuOpen(false)}>
               <Image
                 src="/images/casa-viana.png"
                 alt="Casa Viana"
@@ -168,7 +169,9 @@ const Header = () => {
                     d="M8 4l4 4 4-4m4 6v7.5A1.5 1.5 0 0118.5 19h-13A1.5 1.5 0 014 17.5V10A1.5 1.5 0 015.5 8.5h13A1.5 1.5 0 0120 10z"
                   />
                 </svg>
-                <span className="text-sm font-semibold">{t("header.icons.tv")}</span>
+                <span className="text-sm font-semibold">
+                  {t("header.icons.tv")}
+                </span>
               </div>
             </Link>
 
@@ -192,7 +195,9 @@ const Header = () => {
                     d="M4.5 7.5l15-4.5M3 10.5v6.75A1.75 1.75 0 004.75 19h14.5A1.75 1.75 0 0021 17.25V10.5M6 14.25h.008v.008H6v-.008zm3 0h.008v.008H9v-.008zm3 0h.008v.008H12v-.008z"
                   />
                 </svg>
-                <span className="text-sm font-semibold">{t("header.icons.radio")}</span>
+                <span className="text-sm font-semibold">
+                  {t("header.icons.radio")}
+                </span>
               </div>
             </Link>
           </div>
@@ -261,7 +266,9 @@ const Header = () => {
                     <div className="absolute right-0 top-14 w-56 bg-white text-gray-800 rounded-lg shadow-lg py-2 z-50">
                       <div className="px-4 py-3 border-b">
                         <p className="text-sm font-semibold text-gray-900">
-                          {user?.name || user?.username || t("profile.sidebar.default_user")}
+                          {user?.name ||
+                            user?.username ||
+                            t("profile.sidebar.default_user")}
                         </p>
                         <p className="text-xs text-gray-500">
                           {user?.email || t("profile.sidebar.no_email")}
@@ -312,11 +319,27 @@ const Header = () => {
                         {t("profile.sidebar.bookings")}
                       </Link>
 
-                      <Link href='/orders'
+                      <Link
+                        href="/orders"
                         className="px-4 py-2.5 flex items-center gap-3 text-sm hover:bg-gray-100 transition"
                         onClick={() => setProfileOpen(false)}
                       >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-shopping-bag"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304" /><path d="M9 11v-5a3 3 0 0 1 6 0v5" /></svg>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="icon icon-tabler icons-tabler-outline icon-tabler-shopping-bag"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                          <path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304" />
+                          <path d="M9 11v-5a3 3 0 0 1 6 0v5" />
+                        </svg>
                         {t("profile.sidebar.orders")}
                       </Link>
 
@@ -396,7 +419,7 @@ const Header = () => {
                   </button>
 
                   {/* Cardapio small image */}
-                  <Link href="/cardapio">
+                  <Link href="/cardapio" onClick={() => setMenuOpen(false)}>
                     <Image
                       src="/images/cardapio.png"
                       alt="Cardápio"
@@ -419,12 +442,15 @@ const Header = () => {
 
                   {/* Mobile Dropdown Menu */}
                   {profileOpen && (
-                    <div className="absolute right-0 top-12 w-56 bg-white text-gray-800 rounded-lg shadow-lg py-2 z-50"
+                    <div
+                      className="absolute right-0 top-12 w-56 bg-white text-gray-800 rounded-lg shadow-lg py-2 z-50"
                       onMouseDown={(e) => e.stopPropagation()}
                     >
                       <div className="px-4 py-3 border-b">
                         <p className="text-sm font-semibold text-gray-900">
-                          {user?.name || user?.username || t("profile.sidebar.default_user")}
+                          {user?.name ||
+                            user?.username ||
+                            t("profile.sidebar.default_user")}
                         </p>
                         <p className="text-xs text-gray-500">
                           {user?.email || t("profile.sidebar.no_email")}
@@ -434,7 +460,10 @@ const Header = () => {
                       <Link
                         href="/my-profile"
                         className="px-4 py-2.5 flex items-center gap-3 text-sm hover:bg-gray-100 transition"
-                        onClick={() => setProfileOpen(false)}
+                        onClick={() => {
+                          setProfileOpen(false);
+                          setMenuOpen(false);
+                        }}
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -456,7 +485,10 @@ const Header = () => {
                       <Link
                         href="/bookings"
                         className="px-4 py-2.5 flex items-center gap-3 text-sm hover:bg-gray-100 transition"
-                        onClick={() => setProfileOpen(false)}
+                        onClick={() => {
+                          setProfileOpen(false);
+                          setMenuOpen(false);
+                        }}
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -474,17 +506,39 @@ const Header = () => {
                         </svg>
                         {t("profile.sidebar.bookings")}
                       </Link>
-                      <Link href='/orders'
+                      <Link
+                        href="/orders"
                         className="px-4 py-2.5 flex items-center gap-3 text-sm hover:bg-gray-100 transition"
-                        onClick={() => setProfileOpen(false)}
+                        onClick={() => {
+                          setProfileOpen(false);
+                          setMenuOpen(false);
+                        }}
                       >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-shopping-bag"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304" /><path d="M9 11v-5a3 3 0 0 1 6 0v5" /></svg>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="icon icon-tabler icons-tabler-outline icon-tabler-shopping-bag"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                          <path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304" />
+                          <path d="M9 11v-5a3 3 0 0 1 6 0v5" />
+                        </svg>
                         {t("profile.sidebar.orders")}
                       </Link>
                       <Link
                         href="/payments"
                         className="px-4 py-2.5 flex items-center gap-3 text-sm hover:bg-gray-100 transition"
-                        onClick={() => setProfileOpen(false)}
+                        onClick={() => {
+                          setProfileOpen(false);
+                          setMenuOpen(false);
+                        }}
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -578,16 +632,18 @@ const Header = () => {
 
         {/* Mobile Menu Dropdown */}
         <div
-          className={`md:hidden text-white flex flex-col items-center overflow-hidden transition-all duration-300 ease-in-out ${menuOpen
-            ? "max-h-[500px] py-4 backdrop-blur-md backdrop-saturate-150 bg-red-600/60 border-t border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.08)] relative z-[60]"
-            : "max-h-0 py-0"
-            }`}
+          className={`md:hidden text-white flex flex-col items-center overflow-hidden transition-all duration-300 ease-in-out ${
+            menuOpen
+              ? "max-h-[500px] py-4 backdrop-blur-md backdrop-saturate-150 bg-red-600/60 border-t border-white/20 shadow-[0_4px_20px_rgba(255,255,255,0.08)] relative z-[60]"
+              : "max-h-0 py-0"
+          }`}
         >
           {menuItems.map((item, i) => (
             <Link
               key={i}
               href={item.href}
               className="text-lg font-medium hover:text-gray-200 transition py-2"
+              onClick={() => setMenuOpen(false)}
             >
               {item.label}
             </Link>
@@ -596,6 +652,7 @@ const Header = () => {
             <Link
               href="#"
               className="group relative flex flex-col items-center hover:text-gray-200"
+              onClick={() => setMenuOpen(false)}
             >
               <div className="flex flex-row items-center justify-center w-16 h-10 rounded-xl bg-red-700 hover:bg-red-800 transition-colors shadow-md">
                 <svg
@@ -612,12 +669,15 @@ const Header = () => {
                     d="M8 4l4 4 4-4m4 6v7.5A1.5 1.5 0 0118.5 19h-13A1.5 1.5 0 014 17.5V10A1.5 1.5 0 015.5 8.5h13A1.5 1.5 0 0120 10z"
                   />
                 </svg>
-                <span className="text-sm font-semibold">{t("header.icons.tv")}</span>
+                <span className="text-sm font-semibold">
+                  {t("header.icons.tv")}
+                </span>
               </div>
             </Link>
             <Link
               href="#"
               className="group relative flex flex-col items-center hover:text-gray-200"
+              onClick={() => setMenuOpen(false)}
             >
               <div className="flex flex-row items-center justify-center w-20 h-10 rounded-xl bg-red-700 hover:bg-red-800 transition-colors shadow-md">
                 <svg
@@ -634,28 +694,35 @@ const Header = () => {
                     d="M4.5 7.5l15-4.5M3 10.5v6.75A1.75 1.75 0 004.75 19h14.5A1.75 1.75 0 0021 17.25V10.5M6 14.25h.008v.008H6v-.008zm3 0h.008v.008H9v-.008zm3 0h.008v.008H12v-.008z"
                   />
                 </svg>
-                <span className="text-sm font-semibold">{t("header.icons.radio")}</span>
+                <span className="text-sm font-semibold">
+                  {t("header.icons.radio")}
+                </span>
               </div>
             </Link>
           </div>
           {/* Cardapio and Qualidade buttons below TV/Radio */}
           <div className="flex items-center gap-4 mt-4">
-            <Link href="/cardapio">
+            <Link href="/cardapio" onClick={() => setMenuOpen(false)}>
               <Image
                 src="/images/cardapio.png"
                 alt="Cardápio"
-                width={65}
-                height={65}
+                width={50}
+                height={50}
                 className="object-contain hover:scale-105 transition-transform duration-200"
+                style={{ width: "10.43vh", height: "12.43vh" }}
               />
             </Link>
-            <Link href="https://maps.app.goo.gl/UuTFT2sXNC6epm4x6">
+            <Link
+              href="https://maps.app.goo.gl/UuTFT2sXNC6epm4x6"
+              onClick={() => setMenuOpen(false)}
+            >
               <Image
                 src="/images/qualidade.png"
                 alt="Qualidade"
                 width={150}
                 height={50}
                 className="object-contain hover:scale-105 transition-transform duration-200"
+                style={{ width: "37.3vh" }}
               />
             </Link>
           </div>

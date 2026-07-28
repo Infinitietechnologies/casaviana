@@ -103,7 +103,7 @@ const LeftSidebar = () => {
 
   return (
     <div className="lg:col-span-2 lg:sticky lg:top-24 self-start p-2 sm:p-4 space-y-6">
-
+     
       {ads.length > 0 && (
         <div className="w-full overflow-hidden rounded-md">
           <Swiper
@@ -141,8 +141,8 @@ const LeftSidebar = () => {
             href={
               service.slug
                 ? {
-                  pathname: `/servicos/${service.slug}`
-                }
+                    pathname: `/servicos/${service.slug}`,
+                  }
                 : "#"
             }
             key={service.id ?? i}
@@ -163,9 +163,7 @@ const LeftSidebar = () => {
             </div>
 
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold truncate">
-                {service.title}
-              </p>
+              <p className="text-sm font-semibold truncate">{service.title}</p>
               <p className="text-xs text-gray-500 truncate">
                 {service.category?.name}
               </p>
@@ -176,7 +174,6 @@ const LeftSidebar = () => {
           </Link>
         ))}
       </div>
-
     </div>
   );
 };
