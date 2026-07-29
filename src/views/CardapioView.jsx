@@ -95,18 +95,22 @@ const CardapioView = () => {
           <div className="lg:col-span-8 py-4 md:py-6 gap-6 flex flex-col items-center order-1 lg:order-2">
             {/* Menus Section */}
             {menus.length > 0 && (
-              <div className="flex flex-wrap justify-center items-center w-full px-4 md:px-6 mb-10 gap-3">
-                {menus.map((menu) => (
-                  <button
-                    key={menu.id}
-                    onClick={() => handleMenuSelect(menu)}
-                    className={`${
-                      selectedMenu?.id === menu.id ? "bg-red-600" : "bg-gray-400"
-                    } text-white font-bold text-lg px-6 py-3 rounded-md shadow hover:opacity-90 transition w-full sm:w-auto`}
-                  >
-                    {menu.name}
-                  </button>
-                ))}
+              <div className="w-full px-4 md:px-6 mb-10">
+                <div className="flex items-center gap-3 overflow-x-auto no-scrollbar pb-3 scroll-smooth snap-x snap-mandatory justify-start md:justify-center">
+                  {menus.map((menu) => (
+                    <button
+                      key={menu.id}
+                      onClick={() => handleMenuSelect(menu)}
+                      className={`${
+                        selectedMenu?.id === menu.id
+                          ? "bg-red-600 scale-105 shadow-md"
+                          : "bg-gray-400 hover:bg-gray-500"
+                      } text-white font-bold text-lg px-6 py-3 rounded-md shadow hover:opacity-90 transition-all duration-200 flex-shrink-0 snap-center`}
+                    >
+                      {menu.name}
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
 

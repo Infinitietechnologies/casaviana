@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import LoginModal from "./Modals/LoginModal";
 import LogoutModal from "./Modals/LogoutModal";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +15,12 @@ import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const { t } = useTranslation();
+  const router = useRouter();
+
+  useEffect(() => {
+    setMenuOpen(false);
+    setProfileOpen(false);
+  }, [router.asPath]);
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
@@ -401,7 +408,10 @@ const Header = () => {
                 <>
                   {/* Cart for Mobile */}
                   <button
-                    onClick={onCartOpen}
+                    onClick={() => {
+                      onCartOpen();
+                      setMenuOpen(false);
+                    }}
                     className="relative cursor-pointer"
                   >
                     <Image
@@ -430,7 +440,10 @@ const Header = () => {
 
                   {/* Profile icon */}
                   <div
-                    onClick={() => setProfileOpen(!profileOpen)}
+                    onClick={() => {
+                      setProfileOpen(!profileOpen);
+                      setMenuOpen(false);
+                    }}
                     className="w-9 h-9 flex items-center justify-center rounded-full cursor-pointer transition overflow-hidden border-2 border-white/30 hover:border-white/50"
                   >
                     <img
@@ -592,7 +605,10 @@ const Header = () => {
               {/* Hamburger Menu */}
               <button
                 className="text-white focus:outline-none"
-                onClick={() => setMenuOpen(!menuOpen)}
+                onClick={() => {
+                  setMenuOpen(!menuOpen);
+                  setProfileOpen(false);
+                }}
               >
                 {menuOpen ? (
                   <svg
@@ -709,7 +725,7 @@ const Header = () => {
                 width={50}
                 height={50}
                 className="object-contain hover:scale-105 transition-transform duration-200"
-                style={{ width: "10.43vh", height: "12.43vh" }}
+                style={{ width: "12.43vh", height: "12.43vh" }}
               />
             </Link>
             <Link
