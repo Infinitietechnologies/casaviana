@@ -270,7 +270,7 @@ const Header = () => {
 
                   {/* Dropdown Menu */}
                   {profileOpen && (
-                    <div className="absolute right-0 top-14 w-56 bg-white text-gray-800 rounded-lg shadow-lg py-2 z-50">
+                    <div className="absolute right-0 top-14 w-56 bg-white text-gray-800 rounded-lg shadow-lg py-2 z-[9999]">
                       <div className="px-4 py-3 border-b">
                         <p className="text-sm font-semibold text-gray-900">
                           {user?.name ||
@@ -456,7 +456,7 @@ const Header = () => {
                   {/* Mobile Dropdown Menu */}
                   {profileOpen && (
                     <div
-                      className="absolute right-0 top-12 w-56 bg-white text-gray-800 rounded-lg shadow-lg py-2 z-50"
+                      className="absolute right-0 top-12 w-56 bg-white text-gray-800 rounded-lg shadow-lg py-2 z-[9999]"
                       onMouseDown={(e) => e.stopPropagation()}
                     >
                       <div className="px-4 py-3 border-b">

@@ -7,6 +7,7 @@ import LeftSidebar from "@/components/LeftSidebar";
 import RightSidebar from "@/components/RightSidebar";
 import Image from "next/image";
 import Link from "next/link";
+import Head from "next/head";
 import { get_menu_items, get_restaurant_categories, get_menus } from "@/Api/api";
 import { CardapioItemsSkeleton } from "@/components/Skeletons/CardapioSkeletons";
 import MenuItemModal from "@/components/Modals/MenuItemModal";
@@ -368,9 +369,18 @@ const CardapioItemsView = () => {
   }
 
   return (
-    <div className="mx-auto px-2 sm:px-4 md:px-8 lg:px-0 min-h-screen mt-20 sm:mt-20 mb-4">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 relative min-h-screen">
-        {/* Left Sidebar */}
+    <>
+      <Head>
+        <title>{`${category?.name || slug} - ${t("cardapio.title")} | Casa Viana`}</title>
+        <meta
+          name="description"
+          content={`Cardápio de ${category?.name || slug} na Casa Viana.`}
+        />
+      </Head>
+
+      <div className="mx-auto px-2 sm:px-4 md:px-8 lg:px-0 min-h-screen mt-20 sm:mt-20 mb-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 relative min-h-screen">
+          {/* Left Sidebar */}
         <div className="lg:col-span-2 order-3 lg:order-1">
           <LeftSidebar />
         </div>
@@ -576,6 +586,7 @@ const CardapioItemsView = () => {
         selectedItem={selectedItem}
       />
     </div>
+    </>
   );
 };
 

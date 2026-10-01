@@ -111,73 +111,82 @@ const RightSidebar = () => {
       </h2>
 
       <div className="flex flex-col gap-2">
-        {categories.map((category, i) => (
-          <div
-            key={category.id || i}
-            className="relative group"
-            onMouseEnter={() => setOpenIndex(i)}
-            onMouseLeave={() => setOpenIndex(null)}
-          >
-            <button
-              onClick={() => handleSectionClick(category.slug)}
-              className="flex justify-between items-center bg-red-600 text-white font-semibold 
-                px-3 sm:px-4 py-2 rounded-md hover:bg-red-700 transition-colors 
-                text-lg sm:text-md w-full text-left truncate"
+        {categories.map((category, i) => {
+          const hasChildren = category.children && category.children.length > 0;
+          const isOpen = openIndex === i;
+
+          return (
+            <div
+              key={category.id || i}
+              className="relative group flex flex-col"
+              onMouseEnter={() => {
+                if (hasChildren && window.innerWidth >= 1024) setOpenIndex(i);
+              }}
+              onMouseLeave={() => {
+                if (window.innerWidth >= 1024) setOpenIndex(null);
+              }}
             >
-              {category.name}
-              {category.children && category.children.length > 0 && (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 16 16"
-                  fill="currentColor"
-                  className="w-3 h-3 ml-2"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M6.646 11.854a.5.5 0 0 0 .708 0l4.146-4.147a.5.5 0 0 0-.708-.707L7 10.793 3.207 6.999a.5.5 0 1 0-.708.707l4.147 4.148z"
-                  />
-                </svg>
-              )}
-            </button>
-
-            {category.children && category.children.length > 0 && openIndex === i && (
-              <div
-                className="hidden lg:block absolute left-[-210px] top-0 bg-[#8c181a] text-white 
-                rounded-md p-2 w-52 z-50"
+              <button
+                type="button"
+                onClick={(e) => {
+                  if (hasChildren) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleSubmenu(i);
+                  } else {
+                    handleSectionClick(category.slug);
+                  }
+                }}
+                className="flex justify-between items-center bg-red-600 text-white font-semibold 
+                  px-3 sm:px-4 py-2.5 rounded-md hover:bg-red-700 transition-colors 
+                  text-base sm:text-md w-full text-left cursor-pointer shadow-sm"
               >
-                {category.children.map((child, j) => (
-                  <div
-                    key={child.id || j}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleSectionClick(category.slug, child.slug);
-                    }}
-                    className="px-3 py-2 hover:bg-red-800 rounded-md cursor-pointer text-sm whitespace-nowrap"
+                <span className="truncate pr-2">{category.name}</span>
+                {hasChildren && (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    className={`w-4 h-4 ml-2 flex-shrink-0 transition-transform duration-200 ${
+                      isOpen ? "rotate-180" : ""
+                    }`}
                   >
-                    {child.name}
-                  </div>
-                ))}
-              </div>
-            )}
+                    <path
+                      fillRule="evenodd"
+                      d="M6.646 11.854a.5.5 0 0 0 .708 0l4.146-4.147a.5.5 0 0 0-.708-.707L7 10.793 3.207 6.999a.5.5 0 1 0-.708.707l4.147 4.148z"
+                    />
+                  </svg>
+                )}
+              </button>
 
-            {category.children && category.children.length > 0 && openIndex === i && (
-              <div className="lg:hidden bg-[#8c181a] text-white rounded-md p-2 mt-1 z-20">
-                {category.children.map((child, j) => (
+              {hasChildren && isOpen && (
+                <div className="bg-[#8c181a] text-white rounded-md p-2 mt-1 space-y-1 shadow-lg z-30 transition-all">
                   <div
-                    key={child.id || j}
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleSectionClick(category.slug, child.slug);
+                      handleSectionClick(category.slug);
                     }}
-                    className="px-3 py-2 hover:bg-red-800 rounded-md cursor-pointer text-sm"
+                    className="px-3 py-1.5 hover:bg-red-800 rounded cursor-pointer text-xs font-bold uppercase tracking-wider text-red-200 border-b border-white/10 mb-1"
                   >
-                    {child.name}
+                    {category.name} ({t("cardapio.all") || "Ver Todos"})
                   </div>
-                ))}
-              </div>
-            )}
-          </div>
-        ))}
+                  {category.children.map((child, j) => (
+                    <div
+                      key={child.id || j}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleSectionClick(category.slug, child.slug);
+                      }}
+                      className="px-3 py-2 hover:bg-red-800 rounded cursor-pointer text-sm transition-colors"
+                    >
+                      {child.name}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
 
       <h3 className="text-lg font-semibold text-gray-900 mb-3 mt-6">

@@ -60,6 +60,7 @@
   },
   "cardapio": {
     "title": "Cardápio",
+    "subtitle": "Escolha um menu e explore as nossas especialidades gastronómicas",
     "loadingCategories": "Carregando categorias...",
     "noCategoriesAvailable": "Nenhuma categoria disponível",
     "casaViana": "CASA VIANA",

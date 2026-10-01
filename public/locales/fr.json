@@ -60,6 +60,7 @@
   },
   "cardapio": {
     "title": "Menu",
+    "subtitle": "Choisissez un menu et explorez nos spécialités culinaires",
     "loadingCategories": "Chargement des catégories...",
     "noCategoriesAvailable": "Aucune catégorie disponible",
     "casaViana": "CASA VIANA",

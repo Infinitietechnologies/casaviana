@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import React, { useState, useEffect } from "react";
 import { get_menus, get_menu_details } from "@/Api/api";
+import Head from "next/head";
 import { CardapioCategoriesSkeleton } from "@/components/Skeletons/CardapioSkeletons";
 
 const CardapioView = () => {
@@ -84,6 +85,14 @@ const CardapioView = () => {
 
   return (
     <>
+      <Head>
+        <title>{`${t("cardapio.title")} - Casa Viana`}</title>
+        <meta
+          name="description"
+          content={t("cardapio.subtitle") || "Explore o cardápio e especialidades da Casa Viana."}
+        />
+      </Head>
+
       <div className="mx-auto py-4 md:py-0 px-2 sm:px-4 mt-20 sm:mt-24"></div>
 
       <div className="mx-auto px-2 sm:px-4 md:px-8 lg:px-0 min-h-screen">
@@ -93,6 +102,17 @@ const CardapioView = () => {
           </div>
 
           <div className="lg:col-span-8 py-4 md:py-6 gap-6 flex flex-col items-center order-1 lg:order-2">
+            {/* Page Header */}
+            <div className="w-full text-center mb-2">
+              <h1 className="text-3xl sm:text-4xl font-extrabold text-red-600 tracking-tight uppercase">
+                {t("cardapio.title")}
+              </h1>
+              <p className="text-gray-600 mt-2 text-sm sm:text-base max-w-xl mx-auto">
+                {t("cardapio.subtitle")}
+              </p>
+              <div className="w-16 h-1 bg-red-600 mx-auto mt-3 rounded-full"></div>
+            </div>
+
             {/* Menus Section */}
             {menus.length > 0 && (
               <div className="w-full px-4 md:px-6 mb-10">
