@@ -153,26 +153,11 @@ const CardapioView = () => {
                 </div>
               ) : (
                 categories.map((cat) => (
-                  <div
+                  <CategoryCard
                     key={cat.id}
-                    onClick={() => handleClick(cat.slug)}
-                    className="flex flex-col items-center rounded transition cursor-pointer"
-                  >
-                    <div className="flex flex-col items-center w-full">
-                      <div className="w-full aspect-[4/3] overflow-hidden flex items-center justify-center bg-gray-100 rounded">
-                        <Image
-                          src={cat.image || "/cardapio/default.png"}
-                          alt={cat.name}
-                          width={380}
-                          height={192}
-                          className="object-cover w-full h-full"
-                        />
-                      </div>
-                      <div className="mt-3 bg-red-600 text-white font-semibold text-sm text-center w-full py-1 rounded-sm">
-                        {cat.name}
-                      </div>
-                    </div>
-                  </div>
+                    cat={cat}
+                    onClick={handleClick}
+                  />
                 ))
               )}
             </div>
@@ -184,6 +169,37 @@ const CardapioView = () => {
         </div>
       </div>
     </>
+  );
+};
+
+const CategoryCard = ({ cat, onClick }) => {
+  const [src, setSrc] = useState(cat.image || "/cardapio/default.png");
+
+  useEffect(() => {
+    setSrc(cat.image || "/cardapio/default.png");
+  }, [cat.image]);
+
+  return (
+    <div
+      onClick={() => onClick(cat.slug)}
+      className="flex flex-col items-center rounded transition cursor-pointer group"
+    >
+      <div className="flex flex-col items-center w-full">
+        <div className="w-full aspect-[4/3] overflow-hidden flex items-center justify-center bg-gray-100 rounded-lg shadow-sm group-hover:shadow-md transition">
+          <Image
+            src={src}
+            alt={cat.name}
+            width={380}
+            height={192}
+            onError={() => setSrc("/cardapio/default.png")}
+            className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+        <div className="mt-3 bg-red-600 group-hover:bg-red-700 text-white font-semibold text-sm text-center w-full py-1.5 rounded transition">
+          {cat.name}
+        </div>
+      </div>
+    </div>
   );
 };
 

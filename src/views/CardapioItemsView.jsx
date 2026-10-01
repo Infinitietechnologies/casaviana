@@ -473,75 +473,15 @@ const CardapioItemsView = () => {
                 {/* Main Grid - Smooth Card Feed */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                   {menuItems.map((item, idx) => (
-                    <div
+                    <CardapioItemCard
                       key={item.id}
-                      className="relative overflow-hidden transition-all duration-300 cursor-pointer group rounded-xl shadow-lg bg-black/20 backdrop-blur-sm border border-white/10 hover:shadow-2xl hover:-translate-y-1 transform-gpu"
-                      onMouseEnter={() => setHoveredCard(item.id)}
-                      onMouseLeave={() => setHoveredCard(null)}
-                      onClick={() => handleQuickView(item)}
-                    >
-                      <div className="relative aspect-square overflow-hidden bg-neutral-900">
-                        <Image
-                          src={
-                            item.image ||
-                            item.images?.[0] ||
-                            "/cardapio/default.png"
-                          }
-                          alt={item.name}
-                          width={400}
-                          height={400}
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          loading={idx < 6 ? "eager" : "lazy"}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-
-                        {/* Top badges: Prep Time & Price */}
-                        <div className="absolute top-2 left-2 right-2 flex justify-between items-center z-10 pointer-events-none">
-                          {item.prep_time ? (
-                            <span className="bg-black/60 backdrop-blur-md text-white text-xs px-2.5 py-1 rounded-full font-medium">
-                              ⏱ {item.prep_time} min
-                            </span>
-                          ) : <span />}
-                          <span className="bg-red-600/90 backdrop-blur-md text-white text-xs md:text-sm px-2.5 py-1 rounded-full font-bold shadow">
-                            {item.formatted_price}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Item Details Overlay on Hover */}
-                      <div
-                        className={`absolute inset-0 flex flex-col justify-center items-center text-center text-white bg-black/70 px-4 transition-opacity duration-300 ${
-                          hoveredCard === item.id ? "opacity-100" : "opacity-0 pointer-events-none"
-                        }`}
-                      >
-                        <h3 className="font-bold text-base md:text-lg mb-1">
-                          {item.name}
-                        </h3>
-                        <p className="text-xs md:text-sm text-gray-200 line-clamp-3 mb-2">
-                          {item.short_description || item.description || ""}
-                        </p>
-                        <p className="text-base font-extrabold text-amber-300">
-                          {item.formatted_price}
-                        </p>
-                      </div>
-
-                      {/* Always Visible Bottom Bar with item name */}
-                      <div className="p-3 bg-neutral-900/80 backdrop-blur-sm border-t border-white/5 flex items-center justify-between">
-                        <h3 className="font-semibold text-white text-sm truncate pr-2">
-                          {item.name}
-                        </h3>
-                        <button
-                          type="button"
-                          className="text-xs bg-white/20 hover:bg-white text-white hover:text-neutral-900 px-2.5 py-1 rounded transition font-medium whitespace-nowrap"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleQuickView(item);
-                          }}
-                        >
-                          {t("cardapio.quickView")} 👁
-                        </button>
-                      </div>
-                    </div>
+                      item={item}
+                      idx={idx}
+                      hoveredCard={hoveredCard}
+                      setHoveredCard={setHoveredCard}
+                      onQuickView={handleQuickView}
+                      t={t}
+                    />
                   ))}
                 </div>
 
@@ -587,6 +527,92 @@ const CardapioItemsView = () => {
       />
     </div>
     </>
+  );
+};
+
+const CardapioItemCard = ({ item, idx, hoveredCard, setHoveredCard, onQuickView, t }) => {
+  const defaultFallback = "/cardapio/default.png";
+  const [imgSrc, setImgSrc] = useState(item.image || item.images?.[0] || defaultFallback);
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setImgSrc(item.image || item.images?.[0] || defaultFallback);
+    setHasError(false);
+  }, [item.image, item.images]);
+
+  const handleImageError = () => {
+    if (!hasError) {
+      setHasError(true);
+      setImgSrc(defaultFallback);
+    }
+  };
+
+  return (
+    <div
+      className="relative overflow-hidden transition-all duration-300 cursor-pointer group rounded-xl shadow-lg bg-black/20 backdrop-blur-sm border border-white/10 hover:shadow-2xl hover:-translate-y-1 transform-gpu"
+      onMouseEnter={() => setHoveredCard(item.id)}
+      onMouseLeave={() => setHoveredCard(null)}
+      onClick={() => onQuickView(item)}
+    >
+      <div className="relative aspect-square overflow-hidden bg-neutral-900">
+        <Image
+          src={imgSrc}
+          alt={item.name}
+          width={400}
+          height={400}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          loading={idx < 6 ? "eager" : "lazy"}
+          onError={handleImageError}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+
+        {/* Top badges: Prep Time & Price */}
+        <div className="absolute top-2 left-2 right-2 flex justify-between items-center z-10 pointer-events-none">
+          {item.prep_time ? (
+            <span className="bg-black/60 backdrop-blur-md text-white text-xs px-2.5 py-1 rounded-full font-medium">
+              ⏱ {item.prep_time} min
+            </span>
+          ) : <span />}
+          <span className="bg-red-600/90 backdrop-blur-md text-white text-xs md:text-sm px-2.5 py-1 rounded-full font-bold shadow">
+            {item.formatted_price}
+          </span>
+        </div>
+      </div>
+
+      {/* Item Details Overlay on Hover */}
+      <div
+        className={`absolute inset-0 flex flex-col justify-center items-center text-center text-white bg-black/75 px-4 transition-opacity duration-300 ${
+          hoveredCard === item.id ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <h3 className="font-bold text-base md:text-lg mb-1">
+          {item.name}
+        </h3>
+        <p className="text-xs md:text-sm text-gray-200 line-clamp-3 mb-2">
+          {item.short_description || item.description || ""}
+        </p>
+        <p className="text-base font-extrabold text-amber-300">
+          {item.formatted_price}
+        </p>
+      </div>
+
+      {/* Always Visible Bottom Bar with item name */}
+      <div className="p-3 bg-neutral-900/80 backdrop-blur-sm border-t border-white/5 flex items-center justify-between">
+        <h3 className="font-semibold text-white text-sm truncate pr-2">
+          {item.name}
+        </h3>
+        <button
+          type="button"
+          className="text-xs bg-white/20 hover:bg-white text-white hover:text-neutral-900 px-2.5 py-1 rounded transition font-medium whitespace-nowrap"
+          onClick={(e) => {
+            e.stopPropagation();
+            onQuickView(item);
+          }}
+        >
+          {t("cardapio.quickView")} 👁
+        </button>
+      </div>
+    </div>
   );
 };
 

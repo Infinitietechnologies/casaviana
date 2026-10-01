@@ -239,7 +239,10 @@ const CartOffcanvas = ({ isOpen, onClose }) => {
                           item.menu_item?.image ||
                           "/cardapio/default.png"
                         }
-                        alt={item.menu_item?.name || "Item"}
+                        onError={(e) => {
+                          e.currentTarget.onerror = null;
+                          e.currentTarget.src = "/cardapio/default.png";
+                        }}
                         className="w-full h-full object-cover"
                       />
                     </div>

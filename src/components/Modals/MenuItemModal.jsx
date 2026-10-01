@@ -19,6 +19,15 @@ const MenuItemModal = ({ isOpen, onOpenChange, selectedItem }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [addingToCart, setAddingToCart] = useState(false);
+  const [modalImgSrc, setModalImgSrc] = useState(
+    selectedItem?.image || selectedItem?.images?.[0] || "/cardapio/default.png"
+  );
+
+  React.useEffect(() => {
+    setModalImgSrc(
+      selectedItem?.image || selectedItem?.images?.[0] || "/cardapio/default.png"
+    );
+  }, [selectedItem]);
 
   const handleAddToCart = async () => {
     if (!selectedItem?.id) return;
@@ -77,21 +86,16 @@ const MenuItemModal = ({ isOpen, onOpenChange, selectedItem }) => {
                 <ModalBody>
                   <div className="flex flex-col gap-4">
                     {/* Image */}
-                    {selectedItem.image || selectedItem.images?.[0] ? (
-                      <div className="w-full h-64 rounded-lg overflow-hidden">
-                        <Image
-                          src={
-                            selectedItem.image ||
-                            selectedItem.images?.[0] ||
-                            "/cardapio/default.png"
-                          }
-                          alt={selectedItem.name}
-                          width={800}
-                          height={400}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    ) : null}
+                    <div className="w-full h-64 rounded-xl overflow-hidden bg-neutral-900 shadow-md">
+                      <Image
+                        src={modalImgSrc}
+                        alt={selectedItem.name}
+                        width={800}
+                        height={400}
+                        onError={() => setModalImgSrc("/cardapio/default.png")}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
 
                     {/* Description */}
                     {selectedItem.description && (
