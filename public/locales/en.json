@@ -88,7 +88,9 @@
       "message": "Error adding item to cart"
     },
     "noItemsFound": "No items found in this category",
-    "categoryNotFound": "Category not found"
+    "categoryNotFound": "Category not found",
+    "loadingMore": "Loading more items...",
+    "endOfMenu": "You have reached the end of the menu"
   },
   "profile": {
     "sidebar": {

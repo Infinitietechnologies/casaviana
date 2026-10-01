@@ -88,7 +88,9 @@
       "message": "Erreur lors de l'ajout de l'article au panier"
     },
     "noItemsFound": "Aucun article trouvé dans cette catégorie",
-    "categoryNotFound": "Catégorie introuvable"
+    "categoryNotFound": "Catégorie introuvable",
+    "loadingMore": "Chargement d'autres articles...",
+    "endOfMenu": "Vous avez atteint la fin du menu"
   },
   "profile": {
     "sidebar": {

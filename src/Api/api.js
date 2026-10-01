@@ -188,14 +188,26 @@ export const get_menu_details = async (slug) => {
   }
 };
 
-export const get_menu_items = async (category_id = null, menu_id = null) => {
+export const get_menu_items = async (
+  category_id_or_options = null,
+  menu_id = null,
+  page = null,
+  per_page = null,
+  category_slug = null
+) => {
   try {
-    const params = {};
-    if (category_id) {
-      params.category_id = category_id;
-    }
-    if (menu_id) {
-      params.menu_id = menu_id;
+    let params = {};
+    if (
+      typeof category_id_or_options === "object" &&
+      category_id_or_options !== null
+    ) {
+      params = { ...category_id_or_options };
+    } else {
+      if (category_id_or_options) params.category_id = category_id_or_options;
+      if (menu_id) params.menu_id = menu_id;
+      if (page) params.page = page;
+      if (per_page) params.per_page = per_page;
+      if (category_slug) params.category_slug = category_slug;
     }
     const response = await api.get("/menu-items", { params });
     return response.data;

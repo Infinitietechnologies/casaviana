@@ -88,7 +88,9 @@
       "message": "Erro ao adicionar item ao carrinho"
     },
     "noItemsFound": "Nenhum item encontrado nesta categoria",
-    "categoryNotFound": "Categoria não encontrada"
+    "categoryNotFound": "Categoria não encontrada",
+    "loadingMore": "A carregar mais itens...",
+    "endOfMenu": "Chegou ao fim do menu"
   },
   "profile": {
     "sidebar": {
